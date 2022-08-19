@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.promotion.dao.AppPromotionMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.promotion.entity.AppPromotionEntity">
+		SELECT
+			`id`, 
+			`promotion_url`, 
+			`app_resigned_d`, 
+			`app_base_id`, 
+			`app_name`, 
+			`promotion_domain`, 
+			`create_time`, 
+			`expire_time`
+		FROM
+			app_promotion
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="promotionUrl != null"> and `promotion_url` = #{promotionUrl} </if>
+		<if test="appResignedD != null"> and `app_resigned_d` = #{appResignedD} </if>
+		<if test="appBaseId != null"> and `app_base_id` = #{appBaseId} </if>
+		<if test="appName != null"> and `app_name` = #{appName} </if>
+		<if test="promotionDomain != null"> and `promotion_domain` = #{promotionDomain} </if>
+		<if test="createTime != null"> and `create_time` = #{createTime} </if>
+		<if test="expireTime != null">  and DATE_FORMAT(DATE_ADD(`expire_time`,INTERVAL 8 HOUR),'%Y-%m-%d') = #{expireTime}</if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO app_promotion (
+			`promotion_url`, 
+			`app_resigned_d`, 
+			`app_base_id`, 
+			`app_name`, 
+			`promotion_domain`, 
+			`create_time`, 
+			`expire_time`
+		)
+		VALUES (
+			#{promotionUrl}, 
+			#{appResignedD}, 
+			#{appBaseId}, 
+			#{appName}, 
+			#{promotionDomain}, 
+			#{createTime}, 
+			#{expireTime}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.promotion.entity.AppPromotionEntity">
+		SELECT
+			`id`, 
+			`promotion_url`, 
+			`app_resigned_d`, 
+			`app_base_id`, 
+			`app_name`, 
+			`promotion_domain`, 
+			`create_time`, 
+			`expire_time`
+		FROM
+			app_promotion
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE app_promotion
+	 	<set>
+			<if test="promotionUrl != null">`promotion_url` = #{promotionUrl}, </if>
+			<if test="appResignedD != null">`app_resigned_d` = #{appResignedD}, </if>
+			<if test="appBaseId != null">`app_base_id` = #{appBaseId}, </if>
+			<if test="appName != null">`app_name` = #{appName}, </if>
+			<if test="promotionDomain != null">`promotion_domain` = #{promotionDomain}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="expireTime != null">`expire_time` = #{expireTime}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			app_promotion
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

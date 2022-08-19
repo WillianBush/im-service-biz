@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.domain.dao.DomainMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.domain.entity.DomainEntity">
+		SELECT
+			`id`, 
+			`domain_type`, 
+			`domain_name`, 
+			`domain_enable`, 
+			`is_blocked`, 
+			`https_tomcat_jks_address`, 
+			`https_tomcat_pass`, 
+			`create_time`, 
+			`update_time`, 
+			`create_by`, 
+			`update_by`
+		FROM
+			domain
+		where
+		 1=1
+		<if test="domainType != null"> and `domain_type` = #{domainType} </if>
+		<if test="domainName != null"> and `domain_name` = #{domainName} </if>
+		<if test="domainEnable != null"> and `domain_enable` = #{domainEnable} </if>
+		<if test="isBlocked != null"> and `is_blocked` = #{isBlocked} </if>
+		<if test="httpsTomcatJksAddress != null"> and `https_tomcat_jks_address` = #{httpsTomcatJksAddress} </if>
+		<if test="httpsTomcatPass != null"> and `https_tomcat_pass` = #{httpsTomcatPass} </if>
+		<if test="createTime != null"> and `create_time` = #{createTime} </if>
+		<if test="updateTime != null"> and `update_time` = #{updateTime} </if>
+		<if test="createBy != null"> and `create_by` = #{createBy} </if>
+		<if test="updateBy != null"> and `update_by` = #{updateBy}</if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO domain (
+			`domain_type`, 
+			`domain_name`, 
+			`domain_enable`, 
+			`is_blocked`, 
+			`https_tomcat_jks_address`, 
+			`https_tomcat_pass`, 
+			`create_time`, 
+			`update_time`, 
+			`create_by`, 
+			`update_by`
+		)
+		VALUES (
+			#{domainType}, 
+			#{domainName}, 
+			#{domainEnable}, 
+			#{isBlocked}, 
+			#{httpsTomcatJksAddress}, 
+			#{httpsTomcatPass}, 
+			#{createTime}, 
+			#{updateTime}, 
+			#{createBy}, 
+			#{updateBy}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.domain.entity.DomainEntity">
+		SELECT
+			`id`, 
+			`domain_type`, 
+			`domain_name`, 
+			`domain_enable`, 
+			`is_blocked`, 
+			`https_tomcat_jks_address`, 
+			`https_tomcat_pass`, 
+			`create_time`, 
+			`update_time`, 
+			`create_by`, 
+			`update_by`
+		FROM
+			domain
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE domain
+	 	<set>
+			<if test="domainType != null">`domain_type` = #{domainType}, </if>
+			<if test="domainName != null">`domain_name` = #{domainName}, </if>
+			<if test="domainEnable != null">`domain_enable` = #{domainEnable}, </if>
+			<if test="isBlocked != null">`is_blocked` = #{isBlocked}, </if>
+			<if test="httpsTomcatJksAddress != null">`https_tomcat_jks_address` = #{httpsTomcatJksAddress}, </if>
+			<if test="httpsTomcatPass != null">`https_tomcat_pass` = #{httpsTomcatPass}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="createBy != null">`create_by` = #{createBy}, </if>
+			<if test="updateBy != null">`update_by` = #{updateBy}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			domain
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

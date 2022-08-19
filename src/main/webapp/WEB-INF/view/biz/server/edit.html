@@ -1,0 +1,39 @@
+@layout("../../system/layout.html", {title: "服务器基本信息"}){
+<table class="form" id="form">
+
+    <tr>
+        <td class="formTitle">服务器IP<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="服务器IP" v-model="server.serverIp" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">服务器名<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="服务器名" v-model="server.serverName" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+
+    <tr>
+        <td class="formTitle">SSH账号<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="SSH账号" v-model="server.sshAccountName" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">证书类型<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="证书类型:  1:密码 , 2证书" v-model="server.sshAccountType" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">SSH密码<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="SSH密码" v-model="server.sshAccountPassword" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+
+
+</table>
+<script src="${ctxPath}/static/js/biz/server/edit.js"></script>
+@}
