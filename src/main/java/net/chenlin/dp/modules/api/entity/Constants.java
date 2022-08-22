@@ -16,10 +16,10 @@ public class Constants {
     public final  static String ANDROID = "android";
 
     public static String downloadRedisCacheAndroid(String appBaseName, Long resignId){
-        return DOWNLOAD_PREFIX+IOS+":"+appBaseName+":"+resignId;
+        return DOWNLOAD_PREFIX+ANDROID+":"+appBaseName+":"+resignId;
     }
 
     public static String downloadRedisCacheIos(String appBaseName, Long resignId){
-        return DOWNLOAD_PREFIX+ANDROID+":"+appBaseName+":"+resignId;
+        return DOWNLOAD_PREFIX+IOS+":"+appBaseName+":"+resignId;
     }
 }

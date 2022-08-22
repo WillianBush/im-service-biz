@@ -37,7 +37,7 @@ public class SyncDownloadDataSchedule {
                     AppResignedEntity appResigned = new AppResignedEntity();
                     appResigned.setId(resignedId);
                     appResigned.setIosDownloadTimes(0);
-                    appResigned.setIosDownloadTimes(0);
+                    appResigned.setAndroidDownloadTimes(0);
                     if (redisKey.startsWith(Constants.DOWNLOAD_PREFIX+Constants.IOS)) {
                         appResigned.setIosDownloadTimes(downloadTime);
                     }

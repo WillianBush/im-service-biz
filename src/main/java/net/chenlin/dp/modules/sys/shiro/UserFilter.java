@@ -32,6 +32,7 @@ public class UserFilter extends AccessControlFilter {
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest httpServletRequest = (HttpServletRequest)request;
         HttpServletResponse httpServletResponse = (HttpServletResponse)response;
+        String servletPath = httpServletRequest.getServletPath();
 
         /**
          * 如果是ajax请求则不进行跳转
