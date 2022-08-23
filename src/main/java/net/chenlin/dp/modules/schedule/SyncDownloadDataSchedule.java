@@ -19,6 +19,7 @@ public class SyncDownloadDataSchedule {
     AppResignedMapper appResignedMapper;
 
     public void sync() {
+
         redisCacheManager.easyLock("SyncDownloadDataSchedule",()->{
             try {
                 log.info("执行定时任务同步下载量");
@@ -50,7 +51,6 @@ public class SyncDownloadDataSchedule {
             }catch (Exception e) {
                 log.error("执行定时任务同步下载量失败",e);
             }
-
         });
 
     }

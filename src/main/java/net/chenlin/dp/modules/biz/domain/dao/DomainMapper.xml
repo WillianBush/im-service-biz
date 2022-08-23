@@ -5,31 +5,34 @@
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.domain.entity.DomainEntity">
 		SELECT
-			`id`, 
-			`domain_type`, 
-			`domain_name`, 
-			`domain_enable`, 
-			`is_blocked`, 
-			`https_tomcat_jks_address`, 
-			`https_tomcat_pass`, 
-			`create_time`, 
-			`update_time`, 
-			`create_by`, 
-			`update_by`
+		d.`id` id,
+		d.`domain_type` domain_type,
+		d.`domain_name` domain_name,
+		d.`domain_enable`domain_enable,
+		d.`is_blocked` is_blocked,
+		d.`https_tomcat_jks_address` https_tomcat_jks_address,
+		d.`https_tomcat_pass` https_tomcat_pass,
+		d.`create_time` create_time,
+		d.`update_time` update_time,
+		d.`create_by` create_by,
+		d.`update_by`update_by,
+		ad.app_base_name app_name
 		FROM
-			domain
+			domain d
+		left join app_domain ad on d.domain_name = ad.domain_name
 		where
 		 1=1
-		<if test="domainType != null"> and `domain_type` = #{domainType} </if>
-		<if test="domainName != null"> and `domain_name` = #{domainName} </if>
-		<if test="domainEnable != null"> and `domain_enable` = #{domainEnable} </if>
-		<if test="isBlocked != null"> and `is_blocked` = #{isBlocked} </if>
-		<if test="httpsTomcatJksAddress != null"> and `https_tomcat_jks_address` = #{httpsTomcatJksAddress} </if>
-		<if test="httpsTomcatPass != null"> and `https_tomcat_pass` = #{httpsTomcatPass} </if>
-		<if test="createTime != null"> and `create_time` = #{createTime} </if>
-		<if test="updateTime != null"> and `update_time` = #{updateTime} </if>
-		<if test="createBy != null"> and `create_by` = #{createBy} </if>
-		<if test="updateBy != null"> and `update_by` = #{updateBy}</if>
+		<if test="domainType != null"> and d.`domain_type` = #{domainType} </if>
+		<if test="domainName != null"> and d.`domain_name` = #{domainName} </if>
+		<if test="domainEnable != null"> and d.`domain_enable` = #{domainEnable} </if>
+		<if test="isBlocked != null"> and d.`is_blocked` = #{isBlocked} </if>
+		<if test="httpsTomcatJksAddress != null"> and d.`https_tomcat_jks_address` = #{httpsTomcatJksAddress} </if>
+		<if test="httpsTomcatPass != null"> and d.`https_tomcat_pass` = #{httpsTomcatPass} </if>
+		<if test="createTime != null"> and d.`create_time` = #{createTime} </if>
+		<if test="updateTime != null"> and d.`update_time` = #{updateTime} </if>
+		<if test="createBy != null"> and d.`create_by` = #{createBy} </if>
+		<if test="updateBy != null"> and d.`update_by` = #{updateBy}</if>
+		<if test="appName != null"> and ad.`app_base_name` = #{appName}</if>
 		ORDER BY
 			id DESC
 	</select>

@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.domain.entity;
 import lombok.*;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -76,5 +77,8 @@ public class DomainEntity implements Serializable {
 	 * 更新人
 	 */
 	private String updateBy;
+
+	@Transient
+	private String appName;
 
 }

@@ -22,10 +22,11 @@ function getGrid() {
             params.domainName = $('#domainName').val();
             params.domainEnable = $('#domainEnable').val();
             params.isBlocked = $('#isBlocked').val();
+            params.appName = $('#appName').val();
             return removeEmptyField(params);
 		},
 		columns: [
-            {title : "操作", width : "80px", formatter : function(value, row, index) {
+            /*{title : "操作", width : "80px", formatter : function(value, row, index) {
                     var _html = '';
                     if (hasPermission('domain:edit')) {
                         _html += '<a href="javascript:;" onclick="vm.edit(\''+row.id+'\')" title="编辑"><i class="fa fa-pencil"></i></a>';
@@ -35,7 +36,7 @@ function getGrid() {
                     }
                     return _html;
                 }
-            },
+            },*/
 			// {checkbox: true},
             {field : "domainType", title : "域名类型", width : "100px", formatter: function (index, row) {
                     if (row.domainType == 1) {
@@ -46,6 +47,7 @@ function getGrid() {
                     }
                 }},
             {field : "domainName", title : "域名", width : "100px"},
+            {field : "appName", title : "app名字", width : "100px"},
             {field : "domainEnable", title : "是否启用", width : "80px", formatter: function (index, row) {
                     if (row.domainEnable == 1) {
                         return "已启用"
