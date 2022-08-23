@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
@@ -33,12 +32,12 @@ public class DpApplication extends SpringBootServletInitializer {
      * @param builder
      * @return
      */
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        builder.bannerMode(Banner.Mode.OFF);
-        SpringApplicationBuilder applicationBuilder = builder.sources(DpApplication.class);
-        LOGGER.info("The Dp application has been started successfully!");
-        return applicationBuilder;
-    }
+//    @Override
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//        builder.bannerMode(Banner.Mode.OFF);
+//        SpringApplicationBuilder applicationBuilder = builder.sources(DpApplication.class);
+//        LOGGER.info("The Dp application has been started successfully!");
+//        return applicationBuilder;
+//    }
 
 }

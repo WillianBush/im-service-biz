@@ -34,7 +34,7 @@
 		<if test="updateBy != null"> and d.`update_by` = #{updateBy}</if>
 		<if test="appName != null"> and ad.`app_base_name` = #{appName}</if>
 		ORDER BY
-			id DESC
+			d.id DESC
 	</select>
 	
 	<insert id="save">
