@@ -100,7 +100,7 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 	public R applyUrl(String appName, SysUserEntity user) {
 
 		// 获取可以的推广域名
-		List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName,2);
+		List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName,4);
 		// 随机生成6位字符串
 		List<String> randomCodes = GenerateRandomCode.getRandomCode(6,appDomainEntitiesEnable.size());
 		for (int i = 0; i < appDomainEntitiesEnable.size(); i++) {
