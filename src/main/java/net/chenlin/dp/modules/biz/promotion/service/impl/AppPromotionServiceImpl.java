@@ -11,6 +11,7 @@ import net.chenlin.dp.modules.biz.appBase.dao.AppBaseMapper;
 import net.chenlin.dp.modules.biz.appBase.entity.AppBaseEntity;
 import net.chenlin.dp.modules.biz.appDomain.dao.AppDomainMapper;
 import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
+import net.chenlin.dp.modules.biz.domain.dao.DomainMapper;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEnum;
 import net.chenlin.dp.modules.biz.promotion.dao.AppPromotionMapper;
 import net.chenlin.dp.modules.biz.promotion.entity.AppPromotionEntity;
@@ -35,6 +36,8 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 	private final AppDomainMapper appDomainMapper;
 
 	private final AppBaseMapper appBaseMapper;
+
+	private final DomainMapper domainMapper;
 
     /**
      * 分页查询
@@ -95,6 +98,7 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 
 	@Override
 	public R applyUrl(String appName, SysUserEntity user) {
+
 		// 获取可以的推广域名
 		List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName,2);
 		// 随机生成6位字符串

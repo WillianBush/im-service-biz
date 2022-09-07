@@ -10,5 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface DomainMapper extends TkBaseMapper<DomainEntity> {
-	
+
+   Integer selectDomainServer();
 }

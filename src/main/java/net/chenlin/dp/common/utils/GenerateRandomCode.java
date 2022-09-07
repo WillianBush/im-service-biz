@@ -78,4 +78,8 @@ public class GenerateRandomCode {
         }
     }
 
+    public static void main(String[] args) {
+        generateRandomAndChechedQQDoamins();
+    }
+
 }

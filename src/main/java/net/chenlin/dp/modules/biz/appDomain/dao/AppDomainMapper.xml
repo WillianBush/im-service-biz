@@ -164,4 +164,5 @@
 		where d.is_blocked = 1 and d.domain_enable = 1 and ad.`app_base_name` = #{appBaseName} and d.domain_type = #{domainType}
 		ORDER BY id DESC limit ${count}
 	</select>
+
 </mapper>

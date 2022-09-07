@@ -112,4 +112,16 @@
 		</foreach>
 	</delete>
 
+	<select id="selectDomainServer" resultType="java.lang.Integer">
+		SELECT COUNT(1)  FROM (
+								  SELECT
+									  server_id
+								  FROM
+									  domain
+								  WHERE
+									  domain_type = 2
+								  group by
+									  server_id) t ;
+	</select>
+
 </mapper>
