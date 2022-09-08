@@ -34,12 +34,14 @@ public class CheckDomainQQSchedule {
         log.info("[check] 开始检测域名....  domainEnables.size:{}",domainEnables.size());
         for (DomainEntity domain : domainEnables) {
             String checkDomainQQ = CHECK_DOMAIN_QQ + domain.getDomainName();
-            boolean blocked = doCheck(domain, checkDomainQQ);
-            if ( !blocked) {
+            synchronized (this) {
+                boolean blocked = doCheck(domain, checkDomainQQ);
+            }
+//            if ( !blocked) {
                 // 微信检测不准，去掉
 //                String checkDomainWechat = CHECK_DOMAIN_WECHAT + domain.getDomainName();
 //                doCheck(domain, checkDomainWechat);
-            }
+//            }
         }
 
         List<DomainEntity> domainEnablesChecked = domainService.getDomainEnable();

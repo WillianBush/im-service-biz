@@ -10,11 +10,11 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     druid:
       master-data-source:  #主库数据源
-        url: jdbc:mysql://8.210.199.46:3306/web_domain?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+        url: jdbc:mysql://18.140.249.227:3306/web_domain?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
         username: root
         password: qwer1234
       slave-data-source:  #从库数据源
-        url: jdbc:mysql://8.210.199.46:3306/web_domain?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+        url: jdbc:mysql://18.140.249.227:3306/web_domain?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
         username: root
         password: qwer1234
       initial-size: 10
