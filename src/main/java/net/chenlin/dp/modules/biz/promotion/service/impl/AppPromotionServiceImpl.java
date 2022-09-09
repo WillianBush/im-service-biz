@@ -6,7 +6,6 @@ import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.common.utils.DateUtils;
-import net.chenlin.dp.common.utils.GenerateRandomCode;
 import net.chenlin.dp.modules.biz.appBase.dao.AppBaseMapper;
 import net.chenlin.dp.modules.biz.appBase.entity.AppBaseEntity;
 import net.chenlin.dp.modules.biz.appDomain.dao.AppDomainMapper;
@@ -102,12 +101,13 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 		// 获取可以的推广域名
 		List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName,4);
 		// 随机生成6位字符串
-		List<String> randomCodes = GenerateRandomCode.getRandomCode(6,appDomainEntitiesEnable.size());
+//		List<String> randomCodes = GenerateRandomCode.getRandomCode(6,appDomainEntitiesEnable.size());
 		for (int i = 0; i < appDomainEntitiesEnable.size(); i++) {
 			AppDomainEntity appDomainEntity = appDomainEntitiesEnable.get(i);
 			AppPromotionEntity appPromotion = new AppPromotionEntity();
 			appPromotion.setPromotionDomain(appDomainEntity.getDomainName());
-			appPromotion.setPromotionUrl(randomCodes.get(i));
+//			appPromotion.setPromotionUrl(randomCodes.get(i));
+			appPromotion.setPromotionUrl("");
 			appPromotion.setAppName(appDomainEntity.getAppBaseName());
 			AppBaseEntity  appBase = appBaseMapper.selectOne(AppBaseEntity.builder().appName(appName).build());
 			appPromotion.setAppBaseId(appBase.getId());

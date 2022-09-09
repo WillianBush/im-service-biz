@@ -6,6 +6,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN mkdir -p /web-domain
 RUN mkdir -p /web-domain/upload
+RUN mkdir -p /web-domain/logs
 
 WORKDIR /web-domain
 

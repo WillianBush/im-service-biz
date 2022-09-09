@@ -28,13 +28,12 @@ public class ForwardController extends AbstractController {
     public String get(HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
         log.info("nginx转发过来的请求头，requestDomain：{}",requestDomain);
-//        try {
-//            String responseDomain = forwardService.getResponseDomain(requestDomain);
-//            return redirect("https://"+responseDomain);
-//        }catch (RRException exception) {
-//            log.error("nginx转发过来的请求头，requestDomain：{}",requestDomain,exception);
-//            return redirect("https://"+ Constants.DEFAULT_DOMAIN);
-//        }
+        try {
+            String responseDomain = forwardService.getResponseDomain(requestDomain);
+            return redirect("https://"+responseDomain);
+        }catch (RRException exception) {
+            log.error("nginx转发过来的请求头，requestDomain：{}",requestDomain,exception);
+        }
         return redirect("https://"+ Constants.DEFAULT_DOMAIN);
     }
 

@@ -24,18 +24,24 @@ public class ForwardServiceImpl implements ForwardService {
 
     private final AppPromotionMapper appPromotionMapper;
 
+//    @Override
+//    public String getResponseDomain(String requestDomain) throws RRException {
+//        AppDomainEntity appDomainEntity = new AppDomainEntity();
+//        appDomainEntity.setDomainName(requestDomain);
+//        appDomainEntity.setDomainType(DomainEnum.AdvertiseDomain.getCode());
+//        List<AppDomainEntity> appDomainEntities = appDomainMapper.select(appDomainEntity);
+//        if (appDomainEntities.isEmpty()) {
+//            log.error("getResponseDomain 找不到对应的域名，requestDomain：{}", requestDomain);
+//            return Constants.DEFAULT_DOMAIN;
+//        }
+//        AppDomainEntity appResigned = appDomainEntities.get(0);
+//        return getAppDomain(requestDomain, appResigned.getAppResignedId(), appDomainEntities.isEmpty());
+//    }
+
+
     @Override
     public String getResponseDomain(String requestDomain) throws RRException {
-        AppDomainEntity appDomainEntity = new AppDomainEntity();
-        appDomainEntity.setDomainName(requestDomain);
-        appDomainEntity.setDomainType(DomainEnum.AdvertiseDomain.getCode());
-        List<AppDomainEntity> appDomainEntities = appDomainMapper.select(appDomainEntity);
-        if (appDomainEntities.isEmpty()) {
-            log.error("getResponseDomain 找不到对应的域名，requestDomain：{}", requestDomain);
-            return Constants.DEFAULT_DOMAIN;
-        }
-        AppDomainEntity appResigned = appDomainEntities.get(0);
-        return getAppDomain(requestDomain, appResigned.getAppResignedId(), appDomainEntities.isEmpty());
+        return getResponseDomain(requestDomain,"");
     }
 
     @Override

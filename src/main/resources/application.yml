@@ -52,5 +52,5 @@ aliyun:
 log:
   level:
     root: info
-  file: ../logs/web-domain.log
+  file: ./logs/web-domain.log
   maxsize: 10MB

@@ -46,3 +46,6 @@ spring:
 global:
   upload-location: /web-domain/upload/ #文件上传目录
   upload-mapping: /web-domain/upload #文件上传目录访问路径
+
+log:
+  file: /web-domain/logs/web-domain.log

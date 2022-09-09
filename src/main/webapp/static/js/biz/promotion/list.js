@@ -41,6 +41,9 @@ function getGrid() {
             {field : "promotionDomain", title : "推广域名", width : "100px"},
             {field : "promotionUrl", title : "推广url", width : "100px",visible:false},
             {field : "promotionUrl", title : "推广链接", formatter: function (index, row) {
+                if (!row.promotionUrl || row.promotionUrl == ""){
+                    return row.promotionDomain
+                }
                     return row.promotionDomain +"/" +row.promotionUrl
                 }},
             {field : "appBaseId", title : "AppID原包", width : "100px",visible:false},

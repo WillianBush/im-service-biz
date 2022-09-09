@@ -26,17 +26,17 @@ function getGrid() {
             return removeEmptyField(params);
 		},
 		columns: [
-            /*{title : "操作", width : "80px", formatter : function(value, row, index) {
+            {title : "操作", width : "80px", formatter : function(value, row, index) {
                     var _html = '';
-                    if (hasPermission('domain:edit')) {
-                        _html += '<a href="javascript:;" onclick="vm.edit(\''+row.id+'\')" title="编辑"><i class="fa fa-pencil"></i></a>';
-                    }
+                    // if (hasPermission('domain:edit')) {
+                    //     _html += '<a href="javascript:;" onclick="vm.edit(\''+row.id+'\')" title="编辑"><i class="fa fa-pencil"></i></a>';
+                    // }
                     if (hasPermission('domain:remove')) {
                         _html += '<a href="javascript:;" onclick="vm.remove(false,\''+row.id+'\')" title="删除"><i class="fa fa-trash-o"></i></a>';
                     }
                     return _html;
                 }
-            },*/
+            },
 			// {checkbox: true},
             {field : "domainType", title : "域名类型", width : "100px", formatter: function (index, row) {
                     if (row.domainType == 1) {
