@@ -65,7 +65,7 @@ public class CheckDomainQQSchedule {
                 }
                 return true;
             }
-            Thread.sleep(2000);
+            Thread.sleep(800);
         } catch (IOException | InterruptedException e) {
             log.error("异常,checkDomain:{}",checkDomain,e);
         }
