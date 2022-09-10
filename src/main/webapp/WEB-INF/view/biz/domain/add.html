@@ -9,6 +9,13 @@
     </tr>
 
     <tr>
+        <td class="formTitle">APP名字<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="APP名字" v-model="domain.domainName" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+
+    <tr>
         <td class="formTitle">域名类型<font face="宋体">*</font></td>
         <td class="formValue">
             <input type="text" class="form-control" placeholder="1: 服务器域名；2 推广域名" v-model="domain.domainType" isvalid="yes" checkexpession="NotNull">

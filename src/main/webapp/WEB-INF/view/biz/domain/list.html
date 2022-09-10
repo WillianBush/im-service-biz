@@ -10,7 +10,13 @@
                 <option value="1">服务器域名</option>
                 <option value="2">推广域名</option>
             </select>
-            <input id = "appName"  \@keyup.enter="load" type="text" class="form-control" placeholder="app名字,只有服务器域名才有效" style="width: 205px;" />
+            <input id = "appName"  \@keyup.enter="load" type="text" class="form-control" placeholder="app名字,只有服务器域名才有效" style="width: auto" />
+<!--            APP名称：-->
+<!--            <select id = "appName" class = "form-control" style="width: 100px;" >-->
+<!--                <option value=""  style="display:none">请选择</option>-->
+<!--                <option value="1">启用</option>-->
+<!--                <option value="2">禁用</option>-->
+<!--            </select>-->
             是否启用:&nbsp;&nbsp;&nbsp;
             <select  id="domainEnable"  class="form-control"  style="width: 100px;" >
                 <option value=""  style="display:none">请选择</option>
@@ -34,7 +40,8 @@
             <div class="btn-group">
                 <a v-if="hasPermission('domain:list')" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
                 <a v-if="hasPermission('domain:save')" class="btn btn-default" \@click="save"><i class="fa fa-plus"></i>&nbsp;新增</a>
-                <a v-if="hasPermission('domain:remove')" class="btn btn-default" \@click="remove(true)"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                <a v-if="hasPermission('domain:remove')" class="btn btn-default" \@click="remove(true)"><i class="fa fa-trash-o"></i> 删除</a>
+                <a v-if="hasPermission('domain:excel')" class="btn btn-default" \@click="excel"><i class="fa fa-file-excel-o"></i> 下载</a>
 <!--                <a v-if="hasPermission('domain:save')" class="btn btn-default" \@click="generateDomain"><i class="fa fa-trash-o"></i>&nbsp;批量生成域名</a>-->
             </div>
         </div>

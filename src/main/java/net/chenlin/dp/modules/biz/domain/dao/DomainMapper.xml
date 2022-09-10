@@ -40,7 +40,8 @@
 	<insert id="save">
 		INSERT INTO domain (
 			`domain_type`, 
-			`domain_name`, 
+			`domain_name`,
+		    `appName`,
 			`domain_enable`, 
 			`is_blocked`, 
 			`https_tomcat_jks_address`, 
@@ -52,7 +53,8 @@
 		)
 		VALUES (
 			#{domainType}, 
-			#{domainName}, 
+			#{domainName},
+			#{appName},
 			#{domainEnable}, 
 			#{isBlocked}, 
 			#{httpsTomcatJksAddress}, 
@@ -88,6 +90,7 @@
 	 	<set>
 			<if test="domainType != null">`domain_type` = #{domainType}, </if>
 			<if test="domainName != null">`domain_name` = #{domainName}, </if>
+			<if test="appName != null">`domain_name` = #{appName}, </if>
 			<if test="domainEnable != null">`domain_enable` = #{domainEnable}, </if>
 			<if test="isBlocked != null">`is_blocked` = #{isBlocked}, </if>
 			<if test="httpsTomcatJksAddress != null">`https_tomcat_jks_address` = #{httpsTomcatJksAddress}, </if>
