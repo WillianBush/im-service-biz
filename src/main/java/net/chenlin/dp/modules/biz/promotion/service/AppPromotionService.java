@@ -49,4 +49,6 @@ public interface AppPromotionService {
 	R batchRemove(Long[] id);
 
     R applyUrl(String appName, SysUserEntity user);
+
+    R applyUrl(String appName, SysUserEntity user,Integer advertiseDomain);
 }

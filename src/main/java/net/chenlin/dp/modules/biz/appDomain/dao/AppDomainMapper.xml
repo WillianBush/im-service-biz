@@ -165,4 +165,30 @@
 		ORDER BY id DESC limit ${count}
 	</select>
 
+
+	<select id="getDomainsEnabledByBaseAppNameNoUse" resultType="net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity">
+		SELECT
+			ad.`id` id,
+			ad.`domain_type` domain_type,
+			ad.`domain_name` domain_name,
+			ad.`app_base_name` app_base_name,
+			ad.`android_resigned_package_name` android_resigned_package_name,
+			ad.`app_resigned_id` app_resigned_id,
+			ad.`create_time` create_time,
+			ad.`update_time`update_time,
+			ad.`create_by`create_by,
+			ad.`update_by` update_by
+		FROM
+			app_domain ad
+				left join domain d on ad.domain_name = d.domain_name
+		where d.is_blocked = 1 and d.domain_enable = 1 and ad.`app_base_name` = #{appBaseName} and d.domain_type = #{domainType}
+		and ad.domain_name not in
+
+		<foreach item="domainName" collection="domainUsedNames" open="(" separator="," close=")" >
+			#{domainName}
+		</foreach>
+
+		ORDER BY id DESC limit ${count}
+	</select>
+
 </mapper>

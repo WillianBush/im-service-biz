@@ -42,11 +42,12 @@ var vm = new Vue({
 		},
         apply: function() {
             var row = $('#dataGrid').bootstrapTable('getSelections');
+			var advertiseDomain = $("#advertiseDomain").val()
             if (row.length > 0) {
                 var appName = row[0].appName;
                 $.ConfirmAjax({
                     msg : "申请"+appName+"的推广链接？",
-                    url: '../../promotion/applyUrl?appName='+appName+'&_' + $.now(),
+                    url: '../../promotion/applyUrlV2?appName='+appName+'&advertiseDomain='+advertiseDomain+'&_' + $.now(),
                     success: function(data) {
                         vm.load();
                     }

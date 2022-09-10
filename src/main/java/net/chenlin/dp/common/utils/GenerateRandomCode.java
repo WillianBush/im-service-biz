@@ -105,20 +105,20 @@ public class GenerateRandomCode {
             for (String domainStuff : SHORT_DOMAIN_STUFF) {
                 String domain = str + "." + domainStuff;
                 try {
-//                    String checkDomainQQ = CHECK_DOMAIN_QQ + domain;
-//                    String resp = OKhttpUtil.httpGet(checkDomainQQ, null);
-//                    QiLingResponse response = JSONObject.parseObject(resp, QiLingResponse.class);
-//                    if (response != null && !response.getStatu()) {
-//                        log.info("域名：{} 已经被封",domain);
-//                        if (response.getCount() != null || response.getDescribe() != null || response.getReason() != null) {
-//                            log.error("麒麟接口返回异常， resp:{}",response);
-//                        }
-//                    }else {
-//                        listStringNormal.add(domain);
-//                    }
+                    String checkDomainQQ = CHECK_DOMAIN_QQ + domain;
+                    String resp = OKhttpUtil.httpGet(checkDomainQQ, null);
+                    QiLingResponse response = JSONObject.parseObject(resp, QiLingResponse.class);
+                    if (response != null && !response.getStatu()) {
+                        log.info("域名：{} 已经被封",domain);
+                        if (response.getCount() != null || response.getDescribe() != null || response.getReason() != null) {
+                            log.error("麒麟接口返回异常， resp:{}",response);
+                        }
+                    }else {
+                        listStringNormal.add(domain);
+                    }
 
-                    listStringNormal.add(domain);
-//                    Thread.sleep(1600);
+//                    listStringNormal.add(domain);
+                    Thread.sleep(1600);
                 } catch (Exception e) {
                     log.error("",e);
                 }
@@ -145,7 +145,7 @@ public class GenerateRandomCode {
                 }else {
                     listStringNormal.add(domain);
                 }
-                listStringNormal.add(domain);
+//                listStringNormal.add(domain);
                 Thread.sleep(1600);
             } catch (Exception e) {
                 log.error("",e);

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 域名URL
@@ -97,7 +98,6 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 
 	@Override
 	public R applyUrl(String appName, SysUserEntity user) {
-
 		// 获取可以的推广域名
 		List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName,4);
 		// 随机生成6位字符串
@@ -118,5 +118,41 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 			this.saveAppPromotion(appPromotion);
 		}
 		return R.ok();
+	}
+
+	@Override
+	public R applyUrl(String appName, SysUserEntity user, Integer advertiseDomain) {
+		// 获取可以的推广域名
+		AppPromotionEntity appPromotionExist = new AppPromotionEntity();
+		appPromotionExist.setAppName(appName);
+		List<AppPromotionEntity> appPromotionExists= appPromotionMapper.select(appPromotionExist);
+		List<AppDomainEntity> appDomainEntitiesEnable ;
+		if (appPromotionExists.isEmpty()) {
+			appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain);
+		}else {
+			List<String> domainUsedNames = appPromotionExists.stream().map(AppPromotionEntity::getPromotionDomain).collect(Collectors.toList());
+			appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppNameNoUse(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain,domainUsedNames);
+			if (appDomainEntitiesEnable.isEmpty()) {
+				return R.error(appName+"已经没有短域名,请尽快补充");
+			}
+		}
+		// 随机生成6位字符串
+//		List<String> randomCodes = GenerateRandomCode.getRandomCode(6,appDomainEntitiesEnable.size());
+		for (int i = 0; i < appDomainEntitiesEnable.size(); i++) {
+			AppDomainEntity appDomainEntity = appDomainEntitiesEnable.get(i);
+			AppPromotionEntity appPromotion = new AppPromotionEntity();
+			appPromotion.setPromotionDomain(appDomainEntity.getDomainName());
+//			appPromotion.setPromotionUrl(randomCodes.get(i));
+			appPromotion.setPromotionUrl("");
+			appPromotion.setAppName(appDomainEntity.getAppBaseName());
+			AppBaseEntity  appBase = appBaseMapper.selectOne(AppBaseEntity.builder().appName(appName).build());
+			appPromotion.setAppBaseId(appBase.getId());
+			LocalDateTime now = LocalDateTime.now();
+			appPromotion.setAppResignedD(appDomainEntity.getAppResignedId());
+			appPromotion.setCreateTime(DateUtils.LocalDateTimeToDate(now));
+			appPromotion.setExpireTime(DateUtils.LocalDateTimeToDate(now.plusDays(30)));
+			this.saveAppPromotion(appPromotion);
+		}
+		return R.ok("成功获取短域名 "+appDomainEntitiesEnable.size()+" 个");
 	}
 }

@@ -92,5 +92,18 @@ public class AppPromotionController extends AbstractController {
 		SysUserEntity user = super.getUser();
 		return appPromotionService.applyUrl(appName,user);
 	}
+
+
+	/**
+	 *
+	 * @param appName
+	 * @return
+	 */
+	@SysLog("申请推广链接")
+	@RequestMapping("/applyUrlV2")
+	public R applyUrl(@RequestParam(value = "appName") String appName,@RequestParam(value = "advertiseDomain") Integer advertiseDomain) {
+		SysUserEntity user = super.getUser();
+		return appPromotionService.applyUrl(appName,user,advertiseDomain);
+	}
 	
 }
