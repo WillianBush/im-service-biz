@@ -1,35 +1,22 @@
 package net.chenlin.dp.modules.biz.domain.controller;
 
-import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
-import net.chenlin.dp.common.utils.DateUtils;
-import net.chenlin.dp.common.utils.JSONUtils;
 import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
 import net.chenlin.dp.modules.biz.appDomain.service.AppDomainService;
 import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
-import net.chenlin.dp.modules.biz.domain.entity.DomainOutCsv;
 import net.chenlin.dp.modules.biz.domain.service.DomainService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.supercsv.io.CsvBeanWriter;
-import org.supercsv.io.ICsvBeanWriter;
-import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
@@ -155,41 +142,41 @@ public class DomainController extends AbstractController {
 
 	@RequestMapping(value = "/csv", method = RequestMethod.GET)
 	public void bootPercentage(@RequestParam Map<String, Object> params, HttpServletResponse response) throws IOException {
-		params = JSONUtils.mapNoEmpty(params);
-//        if (!userEntity.getRoleId().equals(SystemConstant.RoleEnum.Organization.getCode()))  throw new RRException("机构管理员才能下载报表");
-		String current = DateUtils.format(new Date(),DateUtils.DATE_TIME_PATTERN);
-		String filename = URLEncoder.encode("域名清单-" + current + ".csv", "UTF-8");
-		params.put("pageSize",1000);
-		List<DomainEntity> bootPercentageList = this.list(params).getRows(); // 这是一个业务代码 返回我要导出去的数据
-		List<DomainOutCsv> list = Lists.newArrayList();
-		bootPercentageList.stream().forEach(it->{
-			DomainOutCsv csv = new DomainOutCsv();
-			csv.setDomainType(it.getDomainType());
-			csv.setDomainName(it.getDomainName());
-			csv.setAppName(it.getAppName());
-			csv.setDomainEnable(it.getDomainEnable());
-			csv.setIsBlocked(it.getIsBlocked());
-			csv.setCreateTime(it.getCreateTime());
-			csv.setUpdateTime(it.getUpdateTime());
-			csv.setCreateBy(it.getCreateBy());
-			csv.setUpdateBy(it.getUpdateBy());
-			list.add(csv);
-		});
-		response.setContentType("application/octet-stream");
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-		// 防止乱码出现
-		Writer writer = new OutputStreamWriter(response.getOutputStream(), StandardCharsets.UTF_8);
-		// 写入字节流，让文档以UTF-8编码
-		writer.write('\uFEFF');
-		ICsvBeanWriter csvWriter = new CsvBeanWriter(writer, CsvPreference.STANDARD_PREFERENCE);
-//        String[] header = {"服务器类型", "域名", "app名字","是否启用","是否被封","创建时间","更新时间","创建人","更新人"};
-		String[] header = {"domainType","domainName", "appName","domainEnable","isBlocked","createTime","updateTime","createBy","updateBy"};
-		csvWriter.writeHeader(header);
-
-		for (DomainOutCsv it : list) {
-			csvWriter.write(it, header);
-		}
-		csvWriter.close();
+//		params = JSONUtils.mapNoEmpty(params);
+////        if (!userEntity.getRoleId().equals(SystemConstant.RoleEnum.Organization.getCode()))  throw new RRException("机构管理员才能下载报表");
+//		String current = DateUtils.format(new Date(),DateUtils.DATE_TIME_PATTERN);
+//		String filename = URLEncoder.encode("域名清单-" + current + ".csv", "UTF-8");
+//		params.put("pageSize",1000);
+//		List<DomainEntity> bootPercentageList = this.list(params).getRows(); // 这是一个业务代码 返回我要导出去的数据
+//		List<DomainOutCsv> list = Lists.newArrayList();
+//		bootPercentageList.stream().forEach(it->{
+//			DomainOutCsv csv = new DomainOutCsv();
+//			csv.setDomainType(it.getDomainType());
+//			csv.setDomainName(it.getDomainName());
+//			csv.setAppName(it.getAppName());
+//			csv.setDomainEnable(it.getDomainEnable());
+//			csv.setIsBlocked(it.getIsBlocked());
+//			csv.setCreateTime(it.getCreateTime());
+//			csv.setUpdateTime(it.getUpdateTime());
+//			csv.setCreateBy(it.getCreateBy());
+//			csv.setUpdateBy(it.getUpdateBy());
+//			list.add(csv);
+//		});
+//		response.setContentType("application/octet-stream");
+//		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+//		// 防止乱码出现
+//		Writer writer = new OutputStreamWriter(response.getOutputStream(), StandardCharsets.UTF_8);
+//		// 写入字节流，让文档以UTF-8编码
+//		writer.write('\uFEFF');
+//		ICsvBeanWriter csvWriter = new CsvBeanWriter(writer, CsvPreference.STANDARD_PREFERENCE);
+////        String[] header = {"服务器类型", "域名", "app名字","是否启用","是否被封","创建时间","更新时间","创建人","更新人"};
+//		String[] header = {"domainType","domainName", "appName","domainEnable","isBlocked","createTime","updateTime","createBy","updateBy"};
+//		csvWriter.writeHeader(header);
+//
+//		for (DomainOutCsv it : list) {
+//			csvWriter.write(it, header);
+//		}
+//		csvWriter.close();
 	}
 	
 	/**

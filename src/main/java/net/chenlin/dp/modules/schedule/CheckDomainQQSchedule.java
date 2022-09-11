@@ -30,7 +30,7 @@ public class CheckDomainQQSchedule {
     @Autowired
     public CheckDomainQQSchedule(DomainService domainService,TelegramUtil telegramUtil) {
         this.domainService = domainService;
-        this.telegramUtil =telegramUtil ;
+        this.telegramUtil = telegramUtil ;
     }
 
     public void check() {
@@ -54,7 +54,7 @@ public class CheckDomainQQSchedule {
         log.info("[check] 检测域名完毕....  检测前:{}；检测后：{}",domainEnables.size(),domainEnablesChecked.size());
         telegramUtil.sendMessage("[小缘自动检测] 检测域名完毕....  检测前:"+domainEnables.size()+"；检测后："+ domainEnablesChecked.size()+"短域名检测前:"
                 + domainEnables.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count()+";短域名检测后:"
-        + domainEnablesChecked.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count());
+        + domainEnablesChecked.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count() +" @haoke2022 @dubiying");
     }
 
     private boolean doCheck(DomainEntity domain, String checkDomain) {

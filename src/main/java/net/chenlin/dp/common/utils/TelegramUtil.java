@@ -1,22 +1,26 @@
 package net.chenlin.dp.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.TelegramModel;
 import net.chenlin.dp.common.entity.TelegramSendMessageResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class TelegramUtil {
 
-    private TelegramModel telegramModel;
+    private final TelegramModel telegramModel;
 
     private static final String TELEGRAM_URL = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s&disable_notification=false";
+
+    @Autowired
+    public TelegramUtil(TelegramModel telegramModel) {
+        this.telegramModel = telegramModel;
+    }
 
     public void sendMessage(String message) {
         synchronized (this) {
@@ -31,11 +35,11 @@ public class TelegramUtil {
         }
     }
 
-    public static void main(String[] args) {
-        //   robotToken: 5509412236:AAEVKk13si4gxudv7KA79JFXtiyuByhaXjk
-        //  groupId: -1001718074576
-        String url = String.format(TELEGRAM_URL, "5509412236:AAEVKk13si4gxudv7KA79JFXtiyuByhaXjk", "-1001718074576", "消息测试......请忽略, 域名检测,发现有 20 个域名已经QQ非官方 @haoke2022");
-
-
-    }
+//    public static void main(String[] args) {
+//        //   robotToken: 5509412236:AAEVKk13si4gxudv7KA79JFXtiyuByhaXjk
+//        //  groupId: -1001718074576
+//        String url = String.format(TELEGRAM_URL, "5509412236:AAEVKk13si4gxudv7KA79JFXtiyuByhaXjk", "-1001718074576", "消息测试......请忽略, 域名检测,发现有 20 个域名已经QQ非官方 @haoke2022");
+//
+//
+//    }
 }
