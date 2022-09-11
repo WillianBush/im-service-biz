@@ -27,45 +27,77 @@ public class ForwardController extends AbstractController {
     @RestAnon
     public String get(HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{}",requestDomain);
+        log.info("nginx转发过来的请求头，requestDomain：{}", requestDomain);
         try {
             String responseDomain = forwardService.getResponseDomain(requestDomain);
-            return redirect("https://"+responseDomain);
-        }catch (RRException exception) {
-            log.error("nginx转发过来的请求头，requestDomain：{}",requestDomain,exception);
+            return redirect("https://" + responseDomain);
+        } catch (RRException exception) {
+            log.error("nginx转发过来的请求头，requestDomain：{}", requestDomain, exception);
         }
-        return redirect("https://"+ Constants.DEFAULT_DOMAIN);
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
     }
 
     @PostMapping()
     @RestAnon
     public String post(HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{}",requestDomain);
-        return redirect("https://"+ Constants.DEFAULT_DOMAIN);
+        log.info("nginx转发过来的请求头，requestDomain：{}", requestDomain);
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
     }
 
     @PostMapping("/{path}")
     @RestAnon
-    public String postPath(@PathVariable(value = "path") String path , HttpServletRequest request) {
+    public String postPath(@PathVariable(value = "path") String path, HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{},url:{}",requestDomain,path);
-        return redirect("https://"+ Constants.DEFAULT_DOMAIN);
+        log.info("nginx转发过来的请求头，requestDomain：{},url:{}", requestDomain, path);
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
     }
 
 
     @GetMapping("/{path}")
     @RestAnon
-    public String getPath(@PathVariable(value = "path") String path , HttpServletRequest request) {
+    public String getPath(@PathVariable(value = "path") String path, HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{},url:{}",requestDomain,path);
-        try {
-            String responseDomain = forwardService.getResponseDomain(requestDomain,path);
-            return redirect("https://"+responseDomain);
-        }catch (RRException exception) {
-            log.error("nginx转发过来的请求头，requestDomain：{}",requestDomain,exception);
-            return redirect("https://"+ Constants.DEFAULT_DOMAIN);
-        }
+        log.info("nginx转发过来的请求头，requestDomain：{},url:{}", requestDomain, path);
+//        try {
+//            String responseDomain = forwardService.getResponseDomain(requestDomain,path);
+//            return redirect("https://"+responseDomain);
+//        }catch (RRException exception) {
+//            log.error("nginx转发过来的请求头，requestDomain：{}",requestDomain,exception);
+//            return redirect("https://"+ Constants.DEFAULT_DOMAIN);
+//        }
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+
+    @GetMapping("/{path}/{path2}")
+    @RestAnon
+    public String getPath2(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2) {
+//        String requestDomain = request.getHeader("Host");
+//        log.info("nginx转发过来的请求头，requestDomain：{},url:{},url2:{}", requestDomain, path, path2);
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+
+
+    @PostMapping("/{path}/{path2}")
+    @RestAnon
+    public String postPath2(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2) {
+//        String requestDomain = request.getHeader("Host");
+//        log.info("nginx转发过来的请求头，requestDomain：{},url1:{},url2:{}", requestDomain, path, path2);
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+
+
+    @GetMapping("/{path}/{path2}/{path3}")
+    @RestAnon
+    public String getPath3(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+
+
+    @PostMapping("/{path}/{path2}/{path3}")
+    @RestAnon
+    public String postPath3(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
     }
 
 }
