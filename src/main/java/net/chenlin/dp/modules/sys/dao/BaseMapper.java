@@ -103,5 +103,11 @@ public interface BaseMapper<T> {
 	 */
 	List<T> list();
 
+	/**
+	 * 根据id查询详情
+	 * @param name
+	 * @return
+	 */
+	T getObjectByName(Object name);
 
 }

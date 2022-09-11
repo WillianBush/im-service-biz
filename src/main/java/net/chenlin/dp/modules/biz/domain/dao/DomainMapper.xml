@@ -129,4 +129,23 @@
 									  server_id) t ;
 	</select>
 
+	<select id="getObjectByName" resultType="net.chenlin.dp.modules.biz.domain.entity.DomainEntity">
+		SELECT
+			`id`,
+			`domain_type`,
+			`domain_name`,
+			`domain_enable`,
+			`is_blocked`,
+			`https_tomcat_jks_address`,
+			`https_tomcat_pass`,
+			`create_time`,
+			`update_time`,
+			`create_by`,
+			`update_by`
+		FROM
+			domain
+		WHERE
+			domain_name = #{domainName}
+	</select>
+
 </mapper>

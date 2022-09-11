@@ -20,6 +20,7 @@ function getGrid() {
 		queryParams: function(params){
             params.appName = $('#appName').val();
             params.promotionDomain = $('#promotionDomain').val();
+            params.isBlocked = $('#isBlocked').val();
             params.expireTime = $('#expireTime').val();
             return removeEmptyField(params);
 		},
@@ -39,6 +40,7 @@ function getGrid() {
             },
             {field : "appName", title : "app名字", width : "100px"},
             {field : "promotionDomain", title : "推广域名", width : "100px"},
+            // {field : "domainIsBlocked", title : "是否可用", width : "100px"},
             {field : "promotionUrl", title : "推广url", width : "100px",visible:false},
             {field : "promotionUrl", title : "推广链接", formatter: function (index, row) {
                 if (!row.promotionUrl || row.promotionUrl == ""){
