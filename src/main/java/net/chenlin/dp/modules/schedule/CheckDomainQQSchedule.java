@@ -3,9 +3,11 @@ package net.chenlin.dp.modules.schedule;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.utils.OKhttpUtil;
+import net.chenlin.dp.common.utils.TelegramUtil;
 import net.chenlin.dp.modules.biz.domain.entity.DomainBlockEnum;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEnableEnum;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
+import net.chenlin.dp.modules.biz.domain.entity.DomainEnum;
 import net.chenlin.dp.modules.biz.domain.service.DomainService;
 import net.chenlin.dp.modules.schedule.entity.QiLingResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +25,19 @@ public class CheckDomainQQSchedule {
 
     private final DomainService domainService;
 
+    private final TelegramUtil telegramUtil;
+
     @Autowired
-    public CheckDomainQQSchedule(DomainService domainService) {
+    public CheckDomainQQSchedule(DomainService domainService,TelegramUtil telegramUtil) {
         this.domainService = domainService;
+        this.telegramUtil =telegramUtil ;
     }
 
     public void check() {
 
         List<DomainEntity> domainEnables = domainService.getDomainEnable();
         log.info("[check] 开始检测域名....  domainEnables.size:{}",domainEnables.size());
+        telegramUtil.sendMessage("[小缘自动检测] 开始检测域名....  域名数量:"+domainEnables.size());
         for (DomainEntity domain : domainEnables) {
             String checkDomainQQ = CHECK_DOMAIN_QQ + domain.getDomainName();
             synchronized (this) {
@@ -46,6 +52,9 @@ public class CheckDomainQQSchedule {
 
         List<DomainEntity> domainEnablesChecked = domainService.getDomainEnable();
         log.info("[check] 检测域名完毕....  检测前:{}；检测后：{}",domainEnables.size(),domainEnablesChecked.size());
+        telegramUtil.sendMessage("[小缘自动检测] 检测域名完毕....  检测前:"+domainEnables.size()+"；检测后："+ domainEnablesChecked.size()+"短域名检测前:"
+                + domainEnables.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count()+";短域名检测后:"
+        + domainEnablesChecked.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count());
     }
 
     private boolean doCheck(DomainEntity domain, String checkDomain) {

@@ -54,3 +54,7 @@ log:
     root: info
   file: ./logs/web-domain.log
   maxsize: 10MB
+
+telegram:
+  robotToken: 5509412236:AAEVKk13si4gxudv7KA79JFXtiyuByhaXjk
+  groupId: -1001718074576

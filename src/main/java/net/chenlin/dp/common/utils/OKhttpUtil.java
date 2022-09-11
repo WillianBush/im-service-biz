@@ -29,7 +29,7 @@ public class OKhttpUtil {
      * @param url
      * @return
      */
-    public String httpGet(String url, Map<String, String> queryParams, Map<String, String> header) throws IOException {
+    public static String httpGet(String url, Map<String, String> queryParams, Map<String, String> header) throws IOException {
         HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
         if (queryParams != null) {
             for (Map.Entry<String, String> param : queryParams.entrySet()) {
