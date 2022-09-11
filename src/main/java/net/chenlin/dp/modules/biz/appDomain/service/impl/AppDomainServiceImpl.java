@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.appDomain.service.impl;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
@@ -7,7 +8,8 @@ import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.appDomain.dao.AppDomainMapper;
 import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
 import net.chenlin.dp.modules.biz.appDomain.service.AppDomainService;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
+import net.chenlin.dp.modules.biz.appResigned.service.AppResignedService;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -17,11 +19,14 @@ import java.util.Map;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Service("appDomainService")
+@AllArgsConstructor
 public class AppDomainServiceImpl implements AppDomainService {
 
-	@Autowired
     private AppDomainMapper appDomainMapper;
 
+//	private AppBaseService appBaseService;
+
+	private AppResignedService appResignedService;
     /**
      * 分页查询
      * @param params
@@ -57,7 +62,7 @@ public class AppDomainServiceImpl implements AppDomainService {
 		return CommonUtils.msg(appDomain);
 	}
 
-    /**
+	/**
      * 修改
      * @param appDomain
      * @return
@@ -77,6 +82,11 @@ public class AppDomainServiceImpl implements AppDomainService {
 	public R batchRemove(Long[] id) {
 		int count = appDomainMapper.batchRemove(id);
 		return CommonUtils.msg(id, count);
+	}
+
+	@Override
+	public AppResignedEntity getAppResignedByAppName(String appName) {
+		return appResignedService.getAppResignedByAppName(appName);
 	}
 
 }

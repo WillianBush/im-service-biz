@@ -78,6 +78,19 @@ public class DomainEntity implements Serializable {
 	 */
 	private String updateBy;
 
+	/**
+	 * 服务器IP_id
+	 * */
+
+	private Integer serverId;
+
+	/**
+	 * 服务器IP
+	 * */
+
+	private String serverName;
+
+
 	@Transient
 	private String appName;
 

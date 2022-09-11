@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.domain.service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
 
 import java.util.List;

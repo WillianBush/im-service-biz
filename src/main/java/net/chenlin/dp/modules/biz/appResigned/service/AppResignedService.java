@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.appResigned.service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.modules.biz.appBase.entity.AppBaseEntity;
 import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
 
 import java.util.Map;
@@ -52,4 +53,11 @@ public interface AppResignedService {
     void increaseDownloadTimesIOS(AppResignedEntity appResigned);
 
     void increaseDownloadTimesAndroid(AppResignedEntity appResigned);
+
+    /**
+     * 根据name查询
+     * @param appName
+     * @return
+     */
+     AppResignedEntity getAppResignedByAppName(String appName);
 }

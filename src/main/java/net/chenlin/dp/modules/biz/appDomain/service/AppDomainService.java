@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.appDomain.service;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
+import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
 
 import java.util.Map;
 
@@ -46,5 +47,12 @@ public interface AppDomainService {
      * @return
      */
 	R batchRemove(Long[] id);
-	
+
+    /**
+     * 获取APPResign信息
+     *
+     * @param appName
+     * @return
+     */
+    AppResignedEntity getAppResignedByAppName(String appName);
 }

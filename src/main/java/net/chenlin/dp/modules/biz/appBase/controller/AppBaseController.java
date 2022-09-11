@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.appBase.controller;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
@@ -19,10 +20,10 @@ import java.util.Map;
  * @author wang<fangyuan.co@outlook.com>
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/appBase")
 public class AppBaseController extends AbstractController {
-	
-	@Autowired
+
 	private AppBaseService appBaseService;
 	
 	/**

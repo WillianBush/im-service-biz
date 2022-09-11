@@ -146,4 +146,17 @@
 		WHERE
 		id = #{id}
 	</update>
+
+<!--	<select id="getObjectByAppName" resultType="net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity">
+		SELECT
+			`id`,
+			`app_base_id`,
+			`app_base_name`,
+			`android_resigned_package_name`
+		FROM
+			app_resigned
+		WHERE
+			app_base_name = #{appName}
+	</select>-->
+
 </mapper>

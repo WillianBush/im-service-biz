@@ -1,8 +1,14 @@
 package net.chenlin.dp.modules.biz.domain.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.modules.biz.appBase.entity.AppBaseEntity;
+import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
+import net.chenlin.dp.modules.biz.appDomain.service.AppDomainService;
+import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
 import net.chenlin.dp.modules.biz.domain.service.DomainService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
@@ -15,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -22,12 +30,17 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author wang<fangyuan.co@outlook.com>
  */
 @RestController
+@AllArgsConstructor
+@Slf4j
 @RequestMapping("/domain")
 public class DomainController extends AbstractController {
 	
 	@Autowired
 	private DomainService domainService;
-	
+
+	private AppDomainService appDomainService;
+
+
 	/**
 	 * 列表
 	 * @param params
@@ -49,14 +62,56 @@ public class DomainController extends AbstractController {
 		SysUserEntity user = super.getUser();
 		domain.setCreateBy(user.getUsername());
 		domain.setUpdateBy(user.getUsername());
+		if (!(domain.getDomainType() == 1 || domain.getDomainType() == 2)) {
+			R r = new R();
+			r.put("msg", "域名类型参数错误");
+			return r;
+		}
+
+		if (1 == domain.getDomainType()) {
+			domain.setServerName("47.242.14.229");
+			domain.setServerId(1);
+//			switch (domain.getAppName()) {
+//				case "miaoyu":
+//				case "yueai":
+//				case "youyue":
+//				case "chulian":
+//					domain.setServerName("47.242.14.229");
+//					break;
+//			}
+		}else {
+			domain.setServerName("8.210.136.237");
+			domain.setServerId(2);
+		}
+		AppDomainEntity appDomain = new AppDomainEntity();
+		AppResignedEntity appResigned = appDomainService.getAppResignedByAppName(domain.getAppName());
+		if (null == appResigned) {
+			return R.error("AppName不存在");
+		}
+		DomainEntity domainEach = new DomainEntity();
+
 		if (!domain.getDomainName().contains(",")) {
+			appDomain.setDomainType(domain.getDomainType());
+			appDomain.setDomainName(domain.getDomainName());
+			appDomain.setAppBaseName(domain.getAppName());
+			appDomain.setAndroidResignedPackageName(appResigned.getAndroidResignedPackageName());
+			appDomain.setAppResignedId(appResigned.getId());
+			appDomain.setCreateTime(domain.getCreateTime());
+			appDomain.setUpdateTime(domain.getUpdateTime());
+			appDomain.setCreateBy(user.getUsername());
+			appDomain.setUpdateBy(user.getUsername());
+			appDomainService.saveAppDomain(appDomain);
 			return domainService.saveDomain(domain);
 		} else {
 			String[] nameList = domain.getDomainName().split(",");
+			if (nameList.length > 50) {
+				return R.error("输入域名数量超过50个！");
+			}
 			List<String> domainNameList = Arrays.asList(nameList);
 			AtomicReference<Long> countSuccess = new AtomicReference<>(0L);
 			AtomicReference<Long> countFailed = new AtomicReference<>(0L);
-			DomainEntity domainEach = new DomainEntity();
+//			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//			String now = format.format(System.currentTimeMillis());
 			domainNameList.forEach(it -> {
 				domainEach.setDomainName(it);
 				domainEach.setCreateBy(user.getUsername());
@@ -64,9 +119,22 @@ public class DomainController extends AbstractController {
 				domainEach.setDomainEnable(domain.getDomainEnable());
 				domainEach.setDomainType(domain.getDomainType());
 				domainEach.setCreateTime(domain.getCreateTime());
-				domainEach.setAppName(domain.getAppName());
 				domainEach.setIsBlocked(domain.getIsBlocked());
 				domainEach.setUpdateTime(domain.getUpdateTime());
+				domainEach.setServerName(domain.getServerName());
+				domainEach.setServerId(domain.getServerId());
+
+				appDomain.setDomainType(domain.getDomainType());
+				appDomain.setDomainName(it);
+				appDomain.setAppBaseName(domain.getAppName());
+				appDomain.setAndroidResignedPackageName(appResigned.getAndroidResignedPackageName());
+				appDomain.setAppResignedId(appResigned.getId());
+				appDomain.setCreateTime(domain.getCreateTime());
+				appDomain.setUpdateTime(domain.getUpdateTime());
+				appDomain.setCreateBy(user.getUsername());
+				appDomain.setUpdateBy(user.getUsername());
+
+				appDomainService.saveAppDomain(appDomain);
 				R r = domainService.saveDomain(domainEach);
 				if ("500" == r.get("code")) {
 					countFailed.updateAndGet(v -> v + 1);

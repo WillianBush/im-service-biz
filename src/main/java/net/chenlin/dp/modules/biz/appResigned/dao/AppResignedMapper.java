@@ -1,6 +1,7 @@
 package net.chenlin.dp.modules.biz.appResigned.dao;
 
 import net.chenlin.dp.common.mapper.TkBaseMapper;
+import net.chenlin.dp.modules.biz.appBase.entity.AppBaseEntity;
 import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,4 +14,11 @@ import org.apache.ibatis.annotations.Param;
 public interface AppResignedMapper extends TkBaseMapper<AppResignedEntity> {
     AppResignedEntity getLastResigned( @Param("appName") String appName);
     int increaseDownloadTimes( AppResignedEntity appResigned);
+
+//    /**
+//     * 根据name查询详情
+//     * @param appName
+//     * @return
+//     */
+//    AppResignedEntity getObjectByAppName(Object appName);
 }

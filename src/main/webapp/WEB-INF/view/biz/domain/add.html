@@ -4,14 +4,14 @@
     <tr>
         <td class="formTitle">域名<font face="宋体">*</font></td>
         <td class="formValue">
-            <input type="text" class="form-control" placeholder="域名，多个域名时用,分隔" v-model="domain.domainName" isvalid="yes" checkexpession="NotNull">
+            <input type="text" class="form-control" style="height: 100px; width: 600px" placeholder="域名，多个域名时用,分隔，单次最多提交50个" v-model="domain.domainName" isvalid="yes" checkexpession="NotNull">
         </td>
     </tr>
 
     <tr>
         <td class="formTitle">APP名字<font face="宋体">*</font></td>
         <td class="formValue">
-            <input type="text" class="form-control" placeholder="APP名字" v-model="domain.domainName" isvalid="yes" checkexpession="NotNull">
+            <input type="text" class="form-control" placeholder="APP名字" v-model="domain.appName" isvalid="yes" checkexpession="NotNull">
         </td>
     </tr>
 
@@ -21,6 +21,17 @@
             <input type="text" class="form-control" placeholder="1: 服务器域名；2 推广域名" v-model="domain.domainType" isvalid="yes" checkexpession="NotNull">
         </td>
     </tr>
+
+<!--    <tr>-->
+<!--        <td class="formTitle">域名服务器<font face="宋体">*</font></td>-->
+<!--        <td class="formValue">-->
+<!--            <select  id="domainEnable"  class="form-control"  style="width: 100px;" >-->
+<!--                <option value=""  style="display:none">请选择</option>-->
+<!--                <option value="1">启用</option>-->
+<!--                <option value="2">禁用</option>-->
+<!--            </select>-->
+<!--        </td>-->
+<!--    </tr>-->
 
     <tr>
         <td class="formTitle">是否启用<font face="宋体">*</font></td>

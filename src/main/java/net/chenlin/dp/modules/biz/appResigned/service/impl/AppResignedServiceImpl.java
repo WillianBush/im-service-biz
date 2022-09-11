@@ -108,4 +108,14 @@ public class AppResignedServiceImpl implements AppResignedService {
 		}
 		redisCacheManager.incr(redisCache,1);
 	}
+
+	/**
+	 * 为AppDomain提供APP信息
+	 * @param appName
+	 * @return
+	 */
+	@Override
+	public AppResignedEntity getAppResignedByAppName(String appName) {
+		return appResignedMapper.getLastResigned(appName);
+	}
 }

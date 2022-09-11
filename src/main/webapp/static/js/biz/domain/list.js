@@ -89,8 +89,8 @@ var vm = new Vue({
 			dialogOpen({
 				title: '新增',
 				url: 'biz/domain/add.html?_' + $.now(),
-				width: '420px',
-				height: '350px',
+				width: '800px',
+				height: '700px',
 				yes : function(iframeId) {
 					top.frames[iframeId].vm.acceptClick();
 				},
