@@ -8,12 +8,13 @@ import net.chenlin.dp.modules.biz.domain.service.DomainService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-//import org.supercsv.io.CsvBeanWriter;
-//import org.supercsv.io.ICsvBeanWriter;
-//import org.supercsv.prefs.CsvPreference;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -53,8 +54,8 @@ public class DomainController extends AbstractController {
 		} else {
 			String[] nameList = domain.getDomainName().split(",");
 			List<String> domainNameList = Arrays.asList(nameList);
-			AtomicReference<Long> countSuccess = new AtomicReference<>(Long.valueOf(0));
-			AtomicReference<Long> countFailed = new AtomicReference<>(Long.valueOf(0));
+			AtomicReference<Long> countSuccess = new AtomicReference<>(0L);
+			AtomicReference<Long> countFailed = new AtomicReference<>(0L);
 			DomainEntity domainEach = new DomainEntity();
 			domainNameList.forEach(it -> {
 				domainEach.setDomainName(it);
