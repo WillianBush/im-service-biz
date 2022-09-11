@@ -40,10 +40,10 @@ function getGrid() {
 			// {checkbox: true},
             {field : "domainType", title : "域名类型", width : "100px", formatter: function (index, row) {
                     if (row.domainType == 1) {
-                        return "服务器域名"
+                        return "落地页域名"
                     }
                     if (row.domainType == 2) {
-                        return "推广域名"
+                        return "短域名"
                     }
                 }},
             {field : "domainName", title : "域名", width : "100px"},

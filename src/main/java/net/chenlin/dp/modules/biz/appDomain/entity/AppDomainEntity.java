@@ -27,7 +27,7 @@ public class AppDomainEntity implements Serializable {
 	private Long id;
 	
 	/**
-	 * 1: 服务器域名；2 推广域名
+	 * 1: 服务器域名；2 短域名
 	 */
 	private Integer domainType;
 	

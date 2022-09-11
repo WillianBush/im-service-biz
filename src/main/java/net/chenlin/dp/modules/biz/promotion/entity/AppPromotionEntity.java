@@ -49,7 +49,7 @@ public class AppPromotionEntity implements Serializable {
 	private String appName;
 	
 	/**
-	 * 推广域名
+	 * 短域名
 	 */
 	private String promotionDomain;
 	
