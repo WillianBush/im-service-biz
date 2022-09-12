@@ -15,10 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 @Component("CheckDomainQQSchedule")
 @Slf4j
@@ -45,6 +48,7 @@ public class CheckDomainQQSchedule {
         if (left != 0){
             group ++;
         }
+        long start = System.currentTimeMillis();
         log.info("[check] 开始检测域名....  domainEnables.size:{}",domainEnables.size());
         telegramUtil.sendMessage("测试[小缘自动检测] 开始检测域名....  域名数量:"+domainEnables.size());
         List<List<DomainEntity>> domainEnableGroup = Lists.partition(domainEnables,group);
@@ -52,22 +56,22 @@ public class CheckDomainQQSchedule {
         // 微信检测不准，去掉
 //                String checkDomainWechat = CHECK_DOMAIN_WECHAT + domain.getDomainName();
 //                doCheck(domain, checkDomainWechat);
-        CopyOnWriteArrayList<Boolean> checked = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Map<String,String>> checked = new CopyOnWriteArrayList<>();
         for (List<DomainEntity> domainSub : domainEnableGroup) {
-            for (DomainEntity domain : domainEnables) {
+            for (DomainEntity domain : domainSub) {
                 String checkDomainQQ = CHECK_DOMAIN_QQ + domain.getDomainName();
-                CompletableFuture<Boolean>  f =  CompletableFuture.supplyAsync(()->doCheck(domain, checkDomainQQ));
-                f.whenComplete(new BiConsumer<Boolean, Throwable>() {
+                CompletableFuture<Map<String,String>>  f =  CompletableFuture.supplyAsync(()->doCheck(domain, checkDomainQQ));
+                f.whenComplete(new BiConsumer<Map<String,String>, Throwable>() {
                     @Override
-                    public void accept(Boolean aBoolean, Throwable throwable) {
-                        checked.add(aBoolean);
+                    public void accept(Map<String,String> amap, Throwable throwable) {
+                        checked.add(amap);
                     }
                 });
             }
             try {
                 Thread.sleep(1100);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("",e);
             }
         }
         while (checked.size() != domainEnables.size()){
@@ -75,21 +79,32 @@ public class CheckDomainQQSchedule {
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("",e);
             }
         }
-
+        long spendSeconds = (System.currentTimeMillis() -start) / 1000 ;
         List<DomainEntity> domainEnablesChecked = domainService.getDomainEnable();
         log.info("[check] 检测域名完毕....  检测前:{}；检测后：{}",domainEnables.size(),domainEnablesChecked.size());
         long shortDomainSize = domainEnables.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count();
         long shortDomainSizeChecked = domainEnablesChecked.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count();
-        String message = "测试:[小缘自动检测] 检测域名完毕....  检测前:"+domainEnables.size()+"；检测后："+ domainEnablesChecked.size()+";短域名检测前:" +shortDomainSize +";短域名检测后:" +  shortDomainSizeChecked+" @haoke2022 @dubiying ";
-        log.info("telegram 发送消息:{}",message);
-        telegramUtil.sendMessage(message);
+        StringBuilder message = new StringBuilder("测试:[小缘自动检测] 检测域名完毕....,耗时:" + spendSeconds + " 秒 ;检测前:" + domainEnables.size() + "；检测后：" + domainEnablesChecked.size() + ";短域名检测前:" + shortDomainSize + ";短域名检测后:" + shortDomainSizeChecked + " @haoke2022 @dubiying ");
+        List<Map<String,String>> mapList = checked.stream().filter(it->!it.isEmpty()).collect(Collectors.toList());
+        if (!mapList.isEmpty()) {
+            message.append("\n 以下已经非官方域名:");
+            for (Map<String, String> map : mapList) {
+                for (String key :
+                        map.keySet()) {
+                    message.append(key).append(":").append(map.get(key)).append("\n");
+                }
+
+            }
+        }
+        log.info("telegram 发送消息:{}", message);
+        telegramUtil.sendMessage(message.toString());
 
     }
 
-    private boolean doCheck(DomainEntity domain, String checkDomain) {
+    private Map<String,String> doCheck(DomainEntity domain, String checkDomain) {
             try {
 
                 String resp = OKhttpUtil.httpGet(checkDomain, null);
@@ -105,11 +120,12 @@ public class CheckDomainQQSchedule {
                     if (response.getCount() != null || response.getDescribe() != null || response.getReason() != null) {
                         log.error("麒麟接口返回异常， resp:{}",response);
                     }
+                    return Collections.singletonMap(domainEntity.getAppName(),domainEntity.getDomainName());
                 }
-                return true;
+                return Collections.emptyMap();
             } catch (IOException e) {
                 log.error("异常,checkDomain:{}",checkDomain,e);
             }
-        return false;
+        return Collections.emptyMap();
     }
 }
