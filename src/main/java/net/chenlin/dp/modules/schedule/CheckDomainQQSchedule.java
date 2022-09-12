@@ -97,11 +97,9 @@ public class CheckDomainQQSchedule {
         if (!mapList.isEmpty()) {
             message.append("[以下已经非官方域名: ");
             for (Map<String, String> map : mapList) {
-                for (String key :
-                        map.keySet()) {
+                for (String key :  map.keySet()) {
                     message.append(key).append(":").append(map.get(key)).append("; ");
                 }
-
             }
             message.append("]");
         }
@@ -126,7 +124,9 @@ public class CheckDomainQQSchedule {
                     if (response.getCount() != null || response.getDescribe() != null || response.getReason() != null) {
                         log.error("麒麟接口返回异常， resp:{}",response);
                     }
-                    return Collections.singletonMap(domainEntity.getAppName(),domainEntity.getDomainName());
+                    if (domainEntity.getDomainType().equals(DomainEnum.AdvertiseDomain.getCode())) {
+                        return Collections.singletonMap(domainEntity.getAppName(), domainEntity.getDomainName());
+                    }
                 }
                 return Collections.emptyMap();
             } catch (IOException e) {
