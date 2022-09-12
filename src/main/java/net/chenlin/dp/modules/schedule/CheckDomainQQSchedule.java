@@ -67,6 +67,11 @@ public class CheckDomainQQSchedule {
                         checked.add(amap);
                     }
                 });
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    log.error("",e);
+                }
             }
             try {
                 Thread.sleep(1100);
