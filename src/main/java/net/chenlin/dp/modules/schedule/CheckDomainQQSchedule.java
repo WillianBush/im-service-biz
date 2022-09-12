@@ -50,7 +50,7 @@ public class CheckDomainQQSchedule {
         }
         long start = System.currentTimeMillis();
         log.info("[check] 开始检测域名....  domainEnables.size:{}",domainEnables.size());
-        telegramUtil.sendMessage("测试[小缘自动检测] 开始检测域名....  域名数量:"+domainEnables.size());
+        telegramUtil.sendMessage("[小缘自动检测] 开始检测域名....  域名数量:"+domainEnables.size());
         List<List<DomainEntity>> domainEnableGroup = Lists.partition(domainEnables,group);
 
         // 微信检测不准，去掉
@@ -87,17 +87,18 @@ public class CheckDomainQQSchedule {
         log.info("[check] 检测域名完毕....  检测前:{}；检测后：{}",domainEnables.size(),domainEnablesChecked.size());
         long shortDomainSize = domainEnables.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count();
         long shortDomainSizeChecked = domainEnablesChecked.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count();
-        StringBuilder message = new StringBuilder("测试:[小缘自动检测] 检测域名完毕....,耗时:" + spendSeconds + " 秒 ;检测前:" + domainEnables.size() + "；检测后：" + domainEnablesChecked.size() + ";短域名检测前:" + shortDomainSize + ";短域名检测后:" + shortDomainSizeChecked + " @haoke2022 @dubiying ");
+        StringBuilder message = new StringBuilder("[小缘自动检测] 检测域名完毕....,耗时:" + spendSeconds + " 秒 ;检测前:" + domainEnables.size() + "；检测后：" + domainEnablesChecked.size() + ";短域名检测前:" + shortDomainSize + ";短域名检测后:" + shortDomainSizeChecked + " @haoke2022 @dubiying ");
         List<Map<String,String>> mapList = checked.stream().filter(it->!it.isEmpty()).collect(Collectors.toList());
         if (!mapList.isEmpty()) {
-            message.append("\n 以下已经非官方域名:");
+            message.append("[以下已经非官方域名: ");
             for (Map<String, String> map : mapList) {
                 for (String key :
                         map.keySet()) {
-                    message.append(key).append(":").append(map.get(key)).append("\n");
+                    message.append(key).append(":").append(map.get(key)).append("; ");
                 }
 
             }
+            message.append("]");
         }
         log.info("telegram 发送消息:{}", message);
         telegramUtil.sendMessage(message.toString());
