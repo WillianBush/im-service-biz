@@ -127,16 +127,17 @@ public class AppPromotionController extends AbstractController {
 		params.put("pageSize",1000);
 
 		List<AppPromotionEntity> bootPercentageList = appPromotionService.listAppPromotion(params).getRows(); // 这是一个业务代码 返回我要导出去的数据
-		List<AppPromotionEntity> list = Lists.newArrayList();
-		bootPercentageList.stream().forEach(it->{
-			AppPromotionEntity csv = new AppPromotionEntity();
-			csv.setAppName(it.getAppName());
-			csv.setPromotionDomain(it.getPromotionDomain());
-			csv.setPromotionUrl(it.getPromotionUrl());
-			csv.setCreateTime(it.getCreateTime());
-			csv.setExpireTime(it.getExpireTime());
-			list.add(csv);
-		});
+//		List<AppPromotionEntity> list = Lists.newArrayList();
+//		bootPercentageList.stream().forEach(it->{
+//			AppPromotionEntity csv = new AppPromotionEntity();
+//			csv.setAppName(it.getAppName());
+//			csv.setPromotionDomain(it.getPromotionDomain());
+//			csv.setPromotionUrl(it.getPromotionUrl());
+//			csv.setCreateTime(it.getCreateTime());
+//			csv.setExpireTime(it.getExpireTime());
+//			list.add(csv);
+//			list.add(it);
+//		});
 		response.setContentType("application/octet-stream");
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
 		// 防止乱码出现
@@ -148,7 +149,7 @@ public class AppPromotionController extends AbstractController {
 		String[] header = {"appName", "promotionDomain", "promotionUrl", "createTime", "expireTime"};
 		csvWriter.writeHeader(header);
 
-		for (AppPromotionEntity it : list) {
+		for (AppPromotionEntity it : bootPercentageList) {
 			csvWriter.write(it, header);
 		}
 		csvWriter.close();
