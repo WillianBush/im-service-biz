@@ -91,6 +91,38 @@ var vm = new Vue({
                 }
             });
         },
+        excel: function () {
+            var params ={};
+            params.appName = $('#appName').val();
+            params.promotionDomain = $('#promotionDomain').val();
+            params.isBlocked = $('#isBlocked').val();
+            params.expireTime = $('#expireTime').val();
+            params.pageNumber = 1;
+            params.sortOrder = "asc";
+
+            var form=$("<form>");
+            form.attr("style","display:none");
+            form.attr("enctype","application/json");
+            form.attr("method","get");
+            form.attr("action",'../../promotion/csv?_' + $.now());
+            if ("" !== params.appName || params.appName !== null) {
+                form.append($("<input name='appName' value='"+params.appName+"'/>"));
+            }
+            if ("" !== params.promotionDomain || params.promotionDomain !== null) {
+                form.append($("<input name='promotionDomain' value='"+params.promotionDomain+"'/>"));
+            }
+            if ("" !== params.isBlocked || params.isBlocked !== null) {
+                form.append($("<input name='isBlocked' value='"+params.isBlocked+"'/>"));
+            }
+            if ("" !== params.expireTime || params.expireTime !== null) {
+                form.append($("<input name='expireTime' value='"+params.expireTime+"'/>"));
+            }
+
+            form.append($("<input name='pageNumber' value='"+params.pageNumber+"'/>"));
+            form.append($("<input name='sortOrder' value='"+params.sortOrder+"'/>"));
+            $("body").append(form);
+            form.submit();
+        },
         remove: function(batch, id) {
             var ids = [];
             if (batch) {

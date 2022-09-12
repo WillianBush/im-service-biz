@@ -1,7 +1,7 @@
 @layout("../../system/layout.html", {title: ""}){
 <div class="row">
     <div><h3 style="color: red">如果落地页域名或短域名，每种少于20个，请联系技术添加域名</h3></div>
-    <div class="col-md-4 form-inline pull-left"  style="width: 75%;"  >
+    <div class="col-md-4 form-inline pull-left"  style="width: 60%;"  >
         <div class="form-group">
             <input id = "domainName"  \@keyup.enter="load" type="text" class="form-control" placeholder="域名" style="width: 180px;" />
             域名类型:&nbsp;&nbsp;&nbsp;
@@ -35,13 +35,13 @@
             <a class="btn btn-primary" \@click="load"><i class="fa fa-search"></i>&nbsp;查询</a>
         </div>
     </div>
-    <div class="col-md-8"  style="width: 25%;">
+    <div class="col-md-8"  style="width: 40%;">
         <div class="btn-toolbar pull-right">
             <div class="btn-group">
                 <a v-if="hasPermission('domain:list')" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
-                <a v-if="hasPermission('domain:save')" class="btn btn-default" \@click="save"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                <a v-if="hasPermission('domain:save')" class="btn btn-default" \@click="save"><i class="fa fa-plus"></i> 新增</a>
                 <a v-if="hasPermission('domain:remove')" class="btn btn-default" \@click="remove(true)"><i class="fa fa-trash-o"></i> 删除</a>
-                <a v-if="hasPermission('domain:excel')" class="btn btn-default" \@click="excel"><i class="fa fa-file-excel-o"></i> 下载</a>
+                <a v-if="hasPermission('domain:save')" class="btn btn-default" \@click="excel"><i class="fa fa-file-excel-o"></i> 下载</a>
 <!--                <a v-if="hasPermission('domain:save')" class="btn btn-default" \@click="generateDomain"><i class="fa fa-trash-o"></i>&nbsp;批量生成域名</a>-->
             </div>
         </div>

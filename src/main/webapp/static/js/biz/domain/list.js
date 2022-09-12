@@ -111,39 +111,42 @@ var vm = new Vue({
                 }
             });
         },
-        // excel: function () {
-        //     var params ={};
-        //     params.domainType = $('#domainType').val();
-        //     params.domainName = $('#domainName').val();
-        //     params.appName = $('#appName').val();
-        //     params.domainEnable = $('#domainEnable').val();
-        //     params.isBlocked = $('#isBlocked').val();
-        //     params.createTime = $('#createTime').val();
-        //     params.updateTime = $('#updateTime').val();
-        //     params.createBy = $('#createBy').val();
-        //     params.updateBy = $('#updateBy').val();
-        //     params.pageNumber = 1;
-        //     params.sortOrder = "asc";
-        //
-        //     var form=$("<form>");
-        //     form.attr("style","display:none");
-        //     form.attr("enctype","application/json");
-        //     form.attr("method","get");
-        //     form.attr("action",'../../domain/csv?_' + $.now());
-        //     form.append($("<input name='domainType' value='"+params.domainType+"'/>"));
-        //     form.append($("<input name='domainName' value='"+params.domainName+"'/>"));
-        //     form.append($("<input name='appName' value='"+params.appName+"'/>"));
-        //     form.append($("<input name='domainEnable' value='"+params.domainEnable+"'/>"));
-        //     form.append($("<input name='isBlocked' value='"+params.isBlocked+"'/>"));
-        //     form.append($("<input name='createTime' value='"+params.createTime+"'/>"));
-        //     form.append($("<input name='updateTime' value='"+params.updateTime+"'/>"));
-        //     form.append($("<input name='createBy' value='"+params.createBy+"'/>"));
-        //     form.append($("<input name='updateBy' value='"+params.updateBy+"'/>"));
-        //     form.append($("<input name='pageNumber' value='"+params.pageNumber+"'/>"));
-        //     form.append($("<input name='sortOrder' value='"+params.sortOrder+"'/>"));
-        //     $("body").append(form);
-        //     form.submit();
-        // },
+        excel: function () {
+            var params ={};
+            params.domainType = $('#domainType').val();
+            params.domainName = $('#domainName').val();
+            params.appName = $('#appName').val();
+            params.domainEnable = $('#domainEnable').val();
+            params.isBlocked = $('#isBlocked').val();
+            params.pageNumber = 1;
+            params.sortOrder = "asc";
+
+            var form=$("<form>");
+            form.attr("style","display:none");
+            form.attr("enctype","application/json");
+            form.attr("method","get");
+            form.attr("action",'../../domain/csv?_' + $.now());
+            if ("" !== params.domainType || params.domainType !== null) {
+                form.append($("<input name='domainType' value='"+params.domainType+"'/>"));
+            }
+            if (params.domainName !== null) {
+                form.append($("<input name='domainName' value='"+params.domainName+"'/>"));
+            }
+            if (params.appName !== null) {
+                form.append($("<input name='appName' value='"+params.appName+"'/>"));
+            }
+            if (params.domainEnable !== null) {
+                form.append($("<input name='domainEnable' value='"+params.domainEnable+"'/>"));
+            }
+            if (params.isBlocked !== null) {
+                form.append($("<input name='isBlocked' value='"+params.isBlocked+"'/>"));
+            }
+
+            form.append($("<input name='pageNumber' value='"+params.pageNumber+"'/>"));
+            form.append($("<input name='sortOrder' value='"+params.sortOrder+"'/>"));
+            $("body").append(form);
+            form.submit();
+        },
         remove: function(batch, id) {
             var ids = [];
             if (batch) {
