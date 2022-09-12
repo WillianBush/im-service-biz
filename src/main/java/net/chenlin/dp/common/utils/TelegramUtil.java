@@ -23,16 +23,14 @@ public class TelegramUtil {
     }
 
     public void sendMessage(String message) {
-        synchronized (this) {
             String url = String.format(TELEGRAM_URL, telegramModel.getRobotToken(), telegramModel.getGroupId(), message);
             try {
                 String resp = OKhttpUtil.httpGet(url, null);
                 TelegramSendMessageResponse response = JSONObject.parseObject(resp, TelegramSendMessageResponse.class);
                 log.info("telegram 发送消息:{}",response);
             } catch (IOException e) {
-                log.info("", e);
+                log.info("telegram 发送消息失败", e);
             }
-        }
     }
 
 //    public static void main(String[] args) {

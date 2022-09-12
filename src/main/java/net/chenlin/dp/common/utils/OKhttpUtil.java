@@ -19,7 +19,7 @@ public class OKhttpUtil {
 
 
     private static final OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
-            .connectTimeout(3000L, TimeUnit.MILLISECONDS)
+            .connectTimeout(30000L, TimeUnit.MILLISECONDS)
             .readTimeout(50000L, TimeUnit.MILLISECONDS);
 
 
