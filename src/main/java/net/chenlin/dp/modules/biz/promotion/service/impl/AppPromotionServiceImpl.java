@@ -53,7 +53,7 @@ public class AppPromotionServiceImpl implements AppPromotionService {
         Page<AppPromotionEntity> page = new Page<>(query);
         appPromotionMapper.listForPage(page, query);
         if (null != params.get("isBlocked")) {
-            Page<AppPromotionEntity> pageMore = new Page<>();
+            Page<AppPromotionEntity> pageMore = page;
 			List<AppPromotionEntity> list = new ArrayList<>();
             page.getRows().forEach( it -> {
                         if (domainMapper.getObjectByName(it.getPromotionDomain()).getIsBlocked().toString().equals(params.get("isBlocked"))) {
@@ -62,6 +62,8 @@ public class AppPromotionServiceImpl implements AppPromotionService {
                     }
             );
 			pageMore.setRows(list);
+            pageMore.setTotal(list.size());
+            pageMore.setTotalPages((list.size() / page.getPageSize() + 1));
             return pageMore;
         } else
             return page;
