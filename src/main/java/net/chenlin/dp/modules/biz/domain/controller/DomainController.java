@@ -159,7 +159,7 @@ public class DomainController extends AbstractController {
 //        if (!userEntity.getRoleId().equals(SystemConstant.RoleEnum.Organization.getCode()))  throw new RRException("机构管理员才能下载报表");
 		String current = DateUtils.format(new Date(),DateUtils.DATE_TIME_PATTERN);
 		String filename = URLEncoder.encode("域名清单-" + current + ".csv", "UTF-8");
-		params.put("pageSize",1000);
+		params.put("pageSize",10000);
 
 		List<DomainEntity> bootPercentageList = domainService.listDomain(params).getRows(); // 这是一个业务代码 返回我要导出去的数据
 		List<DomainOutCsv> list = Lists.newArrayList();
