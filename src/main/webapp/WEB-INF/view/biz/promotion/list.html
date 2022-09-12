@@ -23,6 +23,7 @@
 <!--                <a v-if="hasPermission('promotion:save')" class="btn btn-default" \@click="save"><i class="fa fa-plus"></i>&nbsp;新增</a>-->
                 <a v-if="hasPermission('promotion:list')" class="btn btn-default" \@click="applyUrl"><i class="fa fa-link"></i>&nbsp;申请推广链接</a>
                 <a v-if="hasPermission('promotion:remove')" class="btn btn-default" \@click="remove(true)"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                <a v-if="hasPermission('promotion:list')" class="btn btn-default" \@click="excel"><i class="fa fa-file-excel-o"></i> 下载</a>
             </div>
         </div>
     </div>

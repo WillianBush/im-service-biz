@@ -1,18 +1,31 @@
 package net.chenlin.dp.modules.biz.promotion.controller;
 
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.utils.DateUtils;
+import net.chenlin.dp.common.utils.JSONUtils;
+import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
+import net.chenlin.dp.modules.biz.domain.entity.DomainOutCsv;
 import net.chenlin.dp.modules.biz.promotion.entity.AppPromotionEntity;
 import net.chenlin.dp.modules.biz.promotion.service.AppPromotionService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -104,6 +117,41 @@ public class AppPromotionController extends AbstractController {
 	public R applyUrl(@RequestParam(value = "appName") String appName,@RequestParam(value = "advertiseDomain") Integer advertiseDomain) {
 		SysUserEntity user = super.getUser();
 		return appPromotionService.applyUrl(appName,user,advertiseDomain);
+	}
+
+	@RequestMapping(value = "/csv", method = RequestMethod.GET)
+	public void bootPercentage(@RequestParam Map<String, Object> params, HttpServletResponse response) throws IOException {
+		params = JSONUtils.mapNoEmpty(params);
+		String current = DateUtils.format(new Date(),DateUtils.DATE_TIME_PATTERN);
+		String filename = URLEncoder.encode("域名URL-" + current + ".csv", "UTF-8");
+		params.put("pageSize",1000);
+
+		List<AppPromotionEntity> bootPercentageList = appPromotionService.listAppPromotion(params).getRows(); // 这是一个业务代码 返回我要导出去的数据
+		List<AppPromotionEntity> list = Lists.newArrayList();
+		bootPercentageList.stream().forEach(it->{
+			AppPromotionEntity csv = new AppPromotionEntity();
+			csv.setAppName(it.getAppName());
+			csv.setPromotionDomain(it.getPromotionDomain());
+			csv.setPromotionUrl(it.getPromotionUrl());
+			csv.setCreateTime(it.getCreateTime());
+			csv.setExpireTime(it.getExpireTime());
+			list.add(csv);
+		});
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+		// 防止乱码出现
+		Writer writer = new OutputStreamWriter(response.getOutputStream(), StandardCharsets.UTF_8);
+		// 写入字节流，让文档以UTF-8编码
+		writer.write('\uFEFF');
+		ICsvBeanWriter csvWriter = new CsvBeanWriter(writer, CsvPreference.STANDARD_PREFERENCE);
+//        String[] header = {"服务器类型", "域名", "app名字","是否启用","是否被封","创建时间","更新时间","创建人","更新人"};
+		String[] header = {"appName", "promotionDomain", "promotionUrl", "createTime", "expireTime"};
+		csvWriter.writeHeader(header);
+
+		for (AppPromotionEntity it : list) {
+			csvWriter.write(it, header);
+		}
+		csvWriter.close();
 	}
 	
 }

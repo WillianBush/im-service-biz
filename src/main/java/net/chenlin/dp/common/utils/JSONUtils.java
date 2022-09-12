@@ -7,10 +7,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 /**
@@ -124,6 +121,19 @@ public class JSONUtils {
     @SuppressWarnings("rawtypes")
 	public static <T> T mapToBean(Map map, Class<T> clazz) {
         return objectMapper.convertValue(map, clazz);
+    }
+
+    public static Map<String, Object> mapNoEmpty(Map<String, Object> map) {
+        Map<String, Object> mapNew = new HashMap<>();
+        Set<String> set = map.keySet();
+        if(set != null && !set.isEmpty()) {
+            for(String key : set) {
+                if(map.get(key) != null && ! map.get(key).equals("")  ) {
+                    mapNew.put(key,map.get(key));
+                }
+            }
+        }
+        return mapNew;
     }
 	
 }
