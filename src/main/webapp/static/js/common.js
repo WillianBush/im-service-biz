@@ -93,7 +93,7 @@ $.fn.bootstrapTableEx = function(opt){
 		pagination: true,
 		smartDisplay: false,
 		pageSize: 50,
-		pageList: [50, 100, 150, 200, 300,],
+		pageList: [50, 100, 150],
         paginationLoop: false,
         paginationShowPageGo: true,
 		sidePagination: 'server',
