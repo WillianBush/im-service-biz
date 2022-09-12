@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 
 @Component("CheckDomainQQSchedule")
 @Slf4j
@@ -93,16 +92,16 @@ public class CheckDomainQQSchedule {
         long shortDomainSize = domainEnables.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count();
         long shortDomainSizeChecked = domainEnablesChecked.stream().filter(it-> DomainEnum.AdvertiseDomain.getCode().equals(it.getDomainType())).count();
         StringBuilder message = new StringBuilder("[小缘自动检测] 检测域名完毕....,耗时:" + spendSeconds + " 秒 ;检测前:" + domainEnables.size() + "；检测后：" + domainEnablesChecked.size() + ";短域名检测前:" + shortDomainSize + ";短域名检测后:" + shortDomainSizeChecked + " @haoke2022 @dubiying ");
-        List<Map<String,String>> mapList = checked.stream().filter(it->!it.isEmpty()).collect(Collectors.toList());
-        if (!mapList.isEmpty()) {
-            message.append("[以下已经非官方域名: ");
-            for (Map<String, String> map : mapList) {
-                for (String key :  map.keySet()) {
-                    message.append(key).append(":").append(map.get(key)).append("; ");
-                }
-            }
-            message.append("]");
-        }
+//        List<Map<String,String>> mapList = checked.stream().filter(it->!it.isEmpty()).collect(Collectors.toList());
+//        if (!mapList.isEmpty()) {
+//            message.append("[以下已经非官方域名: ");
+//            for (Map<String, String> map : mapList) {
+//                for (String key :  map.keySet()) {
+//                    message.append(key).append(":").append(map.get(key)).append("; ");
+//                }
+//            }
+//            message.append("]");
+//        }
         log.info("telegram 发送消息:{}", message);
         telegramUtil.sendMessage(message.toString());
 
