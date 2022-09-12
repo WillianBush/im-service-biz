@@ -100,4 +100,35 @@ public class ForwardController extends AbstractController {
         return redirect("https://" + Constants.DEFAULT_DOMAIN);
     }
 
+    @GetMapping("/{path}/{path2}/{path3}/{path4}")
+    @RestAnon
+    public String getPath4(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3, @PathVariable(value = "path4") String path4) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+    @GetMapping("/{path}/{path2}/{path3}/{path4}/{path5}")
+    @RestAnon
+    public String getPath5(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3, @PathVariable(value = "path4") String path4, @PathVariable(value = "path5") String path5) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+    @GetMapping("/{path}/{path2}/{path3}/{path4}/{path5}/{path6}")
+    @RestAnon
+    public String getPath6(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3, @PathVariable(value = "path4") String path4, @PathVariable(value = "path5") String path5, @PathVariable(value = "path6") String path6) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+
+    @PostMapping("/{path}/{path2}/{path3}/{path4}")
+    @RestAnon
+    public String postPath4(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3, @PathVariable(value = "path4") String path4) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+    @PostMapping("/{path}/{path2}/{path3}/{path4}/{path5}")
+    @RestAnon
+    public String postPath5(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3, @PathVariable(value = "path4") String path4, @PathVariable(value = "path5") String path5) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
+    @PostMapping("/{path}/{path2}/{path3}/{path4}/{path5}/{path6}")
+    @RestAnon
+    public String postPath6(@PathVariable(value = "path") String path, @PathVariable(value = "path2") String path2, @PathVariable(value = "path3") String path3, @PathVariable(value = "path4") String path4, @PathVariable(value = "path5") String path5, @PathVariable(value = "path6") String path6) {
+        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+    }
 }
