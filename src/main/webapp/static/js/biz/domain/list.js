@@ -37,7 +37,7 @@ function getGrid() {
                     return _html;
                 }
             },
-			// {checkbox: true},
+			{checkbox: true},
             {field : "domainType", title : "域名类型", width : "100px", formatter: function (index, row) {
                     if (row.domainType == 1) {
                         return "落地页域名"
