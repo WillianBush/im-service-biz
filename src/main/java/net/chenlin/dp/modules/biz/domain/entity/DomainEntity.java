@@ -90,6 +90,8 @@ public class DomainEntity implements Serializable {
 
 	private String serverName;
 
+	private Integer domainOrigin;
+
 
 	@Transient
 	private String appName;

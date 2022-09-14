@@ -83,4 +83,10 @@ public class AppDomainEntity implements Serializable {
 	@Transient
 	private Integer isBlocked;
 
+	/**
+	 * 1 官方域名; 2 三方域名
+	 */
+	@Transient
+	private Integer domainOrigin;
+
 }

@@ -16,7 +16,6 @@ import net.chenlin.dp.modules.biz.domain.entity.DomainOutCsv;
 import net.chenlin.dp.modules.biz.domain.service.DomainService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
@@ -138,6 +137,7 @@ public class DomainController extends AbstractController {
 				appDomain.setUpdateTime(domain.getUpdateTime());
 				appDomain.setCreateBy(user.getUsername());
 				appDomain.setUpdateBy(user.getUsername());
+				appDomain.setDomainOrigin(domain.getDomainOrigin());
 
 				appDomainService.saveAppDomain(appDomain);
 				R r = domainService.saveDomain(domainEach);

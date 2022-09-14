@@ -50,7 +50,8 @@
 			`create_by`,
 			`update_by`,
 		    `server_name`,
-		    `server_id`
+		    `server_id`,
+		    `domain_origin`
 		)
 		VALUES (
 			#{domainType}, 
@@ -64,7 +65,8 @@
 			#{createBy}, 
 			#{updateBy},
 			#{serverName},
-			#{serverId}
+			#{serverId},
+			#{domainOrigin}
 		)
 	</insert>
 	

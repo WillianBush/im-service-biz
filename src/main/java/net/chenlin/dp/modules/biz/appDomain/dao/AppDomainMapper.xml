@@ -181,13 +181,11 @@
 		FROM
 			app_domain ad
 				left join domain d on ad.domain_name = d.domain_name
-		where d.is_blocked = 1 and d.domain_enable = 1 and ad.`app_base_name` = #{appBaseName} and d.domain_type = #{domainType}
+		where d.is_blocked = 1 and d.domain_enable = 1 and ad.`app_base_name` = #{appBaseName} and d.domain_type = #{domainType} and d.domain_origin = 1
 		and ad.domain_name not in
-
 		<foreach item="domainName" collection="domainUsedNames" open="(" separator="," close=")" >
 			#{domainName}
 		</foreach>
-
 		ORDER BY id DESC limit ${count}
 	</select>
 
