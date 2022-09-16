@@ -24,6 +24,7 @@ public class UserPermFilter extends PermissionsAuthorizationFilter {
         if (WebUtils.isAjax(httpServletRequest)) {
             // ajax请求返回json
             R error = R.error("没有权限，请联系管理员授权");
+//            ((HttpServletResponse) response).sendRedirect("login.html");
             WebUtils.write(httpServletResponse, JSONUtils.beanToJson(error));
         } else {
             // 非异步请求直接跳转权限错误页面

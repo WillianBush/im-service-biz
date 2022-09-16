@@ -22,6 +22,7 @@ function getGrid() {
             params.domainType = $('#domainType').val();
             params.domainEnable = $('#domainEnable').val();
             params.isBlocked = $('#isBlocked').val();
+            params.qqChecked = $('#qqChecked').val();
             return removeEmptyField(params);
 		},
 		columns: [

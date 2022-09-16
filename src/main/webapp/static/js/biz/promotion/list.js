@@ -22,6 +22,7 @@ function getGrid() {
             params.promotionDomain = $('#promotionDomain').val();
             params.isBlocked = $('#isBlocked').val();
             params.expireTime = $('#expireTime').val();
+            params.qqChecked = $('#qqChecked').val();
             return removeEmptyField(params);
 		},
 		columns: [
@@ -39,8 +40,24 @@ function getGrid() {
                 }
             },
             {field : "appName", title : "app名字", width : "100px"},
+            {field : "qqChecked", title : "备案类型", width : "90px", formatter: function (index, row) {
+                    if (row.qqChecked == 1) {
+                        return "普通域名"
+                    }
+                    if (row.qqChecked == 2) {
+                        return "QQ绿标"
+                    }
+                }},
             {field : "promotionDomain", title : "推广域名", width : "100px"},
-            // {field : "domainIsBlocked", title : "是否可用", width : "100px"},
+            {field : "isBlocked", title : "是否被封", width : "80px", formatter: function (index, row) {
+                    if (row.isBlocked == 1) {
+                        return "正常"
+                    }
+                    if (row.isBlocked == 2) {
+                        return "不可用"
+                    }
+                }
+            },
             {field : "promotionUrl", title : "推广url", width : "100px",visible:false},
             {field : "promotionUrl", title : "推广链接", formatter: function (index, row) {
                 if (!row.promotionUrl || row.promotionUrl == ""){

@@ -6,6 +6,7 @@ import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
 import net.chenlin.dp.modules.biz.appResigned.service.AppResignedService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
+import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,9 @@ public class AppResignedController extends AbstractController {
 	@SysLog("新增重签后的app信息")
 	@RequestMapping("/save")
 	public R save(@RequestBody AppResignedEntity appResigned) {
+		SysUserEntity sysUserEntity = super.getUser();
+		appResigned.setCreateBy(sysUserEntity.getUsername());
+		appResigned.setUpdateBy(sysUserEntity.getUsername());
 		return appResignedService.saveAppResigned(appResigned);
 	}
 	

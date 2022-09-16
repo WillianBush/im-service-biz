@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.common.utils.ShiroUtils;
 import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
@@ -85,7 +86,11 @@ public abstract class AbstractController {
 	 * @return 用户id
 	 */
 	protected Long getUserId() {
-		return getUser().getUserId();
+		SysUserEntity user =getUser();
+		if (user == null) {
+			throw new GoLoginException("请重新登陆");
+		}
+		return user.getUserId();
 	}
 
 	/**

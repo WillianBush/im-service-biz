@@ -3,6 +3,7 @@ package net.chenlin.dp.common.exception;
 import net.chenlin.dp.common.entity.R;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.session.UnknownSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
@@ -25,6 +26,17 @@ public class RRExceptionHandler {
 	public R handleRRException(RRException e){
 		R r = new R();
 		r.put("code", e.getCode());
+		r.put("msg", e.getMessage());
+		return r;
+	}
+
+	/**
+	 * 自定义异常
+	 */
+	@ExceptionHandler({GoLoginException.class, UnknownSessionException.class})
+	public R handleGoLoginException(Exception e){
+		R r = new R();
+		r.put("code", 500);
 		r.put("msg", e.getMessage());
 		return r;
 	}

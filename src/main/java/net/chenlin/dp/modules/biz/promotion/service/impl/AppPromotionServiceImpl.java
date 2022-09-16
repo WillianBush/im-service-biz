@@ -11,6 +11,7 @@ import net.chenlin.dp.modules.biz.appBase.entity.AppBaseEntity;
 import net.chenlin.dp.modules.biz.appDomain.dao.AppDomainMapper;
 import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
 import net.chenlin.dp.modules.biz.domain.dao.DomainMapper;
+import net.chenlin.dp.modules.biz.domain.entity.DomainCheckEnum;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEnum;
 import net.chenlin.dp.modules.biz.promotion.dao.AppPromotionMapper;
 import net.chenlin.dp.modules.biz.promotion.entity.AppPromotionEntity;
@@ -19,7 +20,6 @@ import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -52,20 +52,21 @@ public class AppPromotionServiceImpl implements AppPromotionService {
         Query query = new Query(params);
         Page<AppPromotionEntity> page = new Page<>(query);
         appPromotionMapper.listForPage(page, query);
-        if (null != params.get("isBlocked")) {
-            Page<AppPromotionEntity> pageMore = page;
-			List<AppPromotionEntity> list = new ArrayList<>();
-            page.getRows().forEach( it -> {
-                        if (domainMapper.getObjectByName(it.getPromotionDomain()).getIsBlocked().toString().equals(params.get("isBlocked"))) {
-							list.add(it);
-                        }
-                    }
-            );
-			pageMore.setRows(list);
-            pageMore.setTotal(list.size());
-            pageMore.setTotalPages((list.size() / page.getPageSize() + 1));
-            return pageMore;
-        } else
+//        TODO @shenghong 垃圾代码
+//        if (null != params.get("isBlocked")) {
+//            Page<AppPromotionEntity> pageMore = page;
+//			List<AppPromotionEntity> list = new ArrayList<>();
+//            page.getRows().forEach( it -> {
+//                        if (domainMapper.getObjectByName(it.getPromotionDomain()).getIsBlocked().toString().equals(params.get("isBlocked"))) {
+//							list.add(it);
+//                        }
+//                    }
+//            );
+//			pageMore.setRows(list);
+//            pageMore.setTotal(list.size());
+//            pageMore.setTotalPages((list.size() / page.getPageSize() + 1));
+//            return pageMore;
+//        } else
             return page;
     }
 
@@ -120,7 +121,7 @@ public class AppPromotionServiceImpl implements AppPromotionService {
     @Override
     public R applyUrl(String appName, SysUserEntity user) {
         // 获取可以的推广域名
-        List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, 4);
+        List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, 4,DomainCheckEnum.NormalDomain.getCode());
         // 随机生成6位字符串
 //		List<String> randomCodes = GenerateRandomCode.getRandomCode(6,appDomainEntitiesEnable.size());
         for (int i = 0; i < appDomainEntitiesEnable.size(); i++) {
@@ -143,16 +144,21 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 
     @Override
     public R applyUrl(String appName, SysUserEntity user, Integer advertiseDomain) {
+        return applyUrl( appName,  user,  advertiseDomain,  DomainCheckEnum.NormalDomain.getCode());
+    }
+
+    @Override
+    public R applyUrl(String appName, SysUserEntity user, Integer advertiseDomain, Integer qqChecked) {
         // 获取可以的推广域名
         AppPromotionEntity appPromotionExist = new AppPromotionEntity();
         appPromotionExist.setAppName(appName);
         List<AppPromotionEntity> appPromotionExists = appPromotionMapper.select(appPromotionExist);
         List<AppDomainEntity> appDomainEntitiesEnable;
         if (appPromotionExists.isEmpty()) {
-            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain);
+            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain,qqChecked);
         } else {
             List<String> domainUsedNames = appPromotionExists.stream().map(AppPromotionEntity::getPromotionDomain).collect(Collectors.toList());
-            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppNameNoUse(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain, domainUsedNames);
+            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppNameNoUse(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain,qqChecked, domainUsedNames);
             if (appDomainEntitiesEnable.isEmpty()) {
                 return R.error(appName + "已经没有短域名,请尽快补充");
             }

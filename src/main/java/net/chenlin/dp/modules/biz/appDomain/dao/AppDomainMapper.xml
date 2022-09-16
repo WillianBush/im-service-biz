@@ -14,7 +14,8 @@
 		    ad.`create_time` create_time,
 		    ad.`update_time` update_time,
 		    ad.`create_by` create_by,
-		    ad.`update_by` update_by
+		    ad.`update_by` update_by,
+		    d.`qq_checked` qq_checked
 		FROM
 			app_domain ad
 		left join domain d on ad.domain_name = d.domain_name
@@ -31,6 +32,7 @@
 		<if test="updateBy != null"> and ad.`update_by` = #{updateBy}</if>
 		<if test="domainEnable != null"> and d.`domain_enable` = #{domainEnable} </if>
 		<if test="isBlocked != null"> and d.`is_blocked` = #{isBlocked} </if>
+		<if test="qqChecked != null"> and d.`qq_checked` = #{qqChecked} </if>
 		ORDER BY
 			ad.id DESC
 	</select>
@@ -161,7 +163,7 @@
 		FROM
 			app_domain ad
 		left join domain d on ad.domain_name = d.domain_name
-		where d.is_blocked = 1 and d.domain_enable = 1 and ad.`app_base_name` = #{appBaseName} and d.domain_type = #{domainType}
+		where d.is_blocked = 1 and d.domain_enable = 1 and ad.`app_base_name` = #{appBaseName} and d.domain_type = #{domainType}  and d.qq_checked = #{qqChecked}
 		ORDER BY id DESC limit ${count}
 	</select>
 
@@ -182,6 +184,7 @@
 			app_domain ad
 				left join domain d on ad.domain_name = d.domain_name
 		where d.is_blocked = 1 and d.domain_enable = 1 and ad.`app_base_name` = #{appBaseName} and d.domain_type = #{domainType} and d.domain_origin = 1
+		  and d.qq_checked = #{qqChecked}
 		and ad.domain_name not in
 		<foreach item="domainName" collection="domainUsedNames" open="(" separator="," close=")" >
 			#{domainName}

@@ -46,6 +46,14 @@ function getGrid() {
                         return "短域名"
                     }
                 }},
+            {field : "qqChecked", title : "备案类型", width : "90px", formatter: function (index, row) {
+                    if (row.qqChecked == 1) {
+                        return "普通域名"
+                    }
+                    if (row.qqChecked == 2) {
+                        return "QQ绿标"
+                    }
+                }},
             {field : "domainName", title : "域名", width : "100px"},
             {field : "appName", title : "app名字", width : "100px"},
             {field : "domainEnable", title : "是否启用", width : "80px", formatter: function (index, row) {

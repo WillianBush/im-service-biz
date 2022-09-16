@@ -5,26 +5,31 @@
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.promotion.entity.AppPromotionEntity">
 		SELECT
-			`id`, 
-			`promotion_url`, 
-			`app_resigned_d`, 
-			`app_base_id`, 
-			`app_name`, 
-			`promotion_domain`, 
-			`create_time`, 
-			`expire_time`
+		ap.`id` id,
+		ap.`promotion_url` promotion_url,
+		ap.`app_resigned_d` app_resigned_d,
+		ap.`app_base_id`app_base_id,
+		ap.`app_name` app_name,
+		ap.`promotion_domain` promotion_domain,
+		ap.`create_time` create_time,
+		ap.`expire_time` expire_time,
+		d.`is_blocked` is_blocked,
+		d.`qq_checked` qq_checked
 		FROM
-			app_promotion
+			app_promotion ap
+		left join domain d on d.domain_name = ap.`promotion_domain`
 		where
 		1=1
-		<if test="id != null"> and `id` = #{id} </if>
-		<if test="promotionUrl != null"> and `promotion_url` = #{promotionUrl} </if>
-		<if test="appResignedD != null"> and `app_resigned_d` = #{appResignedD} </if>
-		<if test="appBaseId != null"> and `app_base_id` = #{appBaseId} </if>
-		<if test="appName != null"> and `app_name` = #{appName} </if>
-		<if test="promotionDomain != null"> and `promotion_domain` = #{promotionDomain} </if>
-		<if test="createTime != null"> and `create_time` = #{createTime} </if>
-		<if test="expireTime != null">  and DATE_FORMAT(DATE_ADD(`expire_time`,INTERVAL 8 HOUR),'%Y-%m-%d') = #{expireTime}</if>
+		<if test="id != null"> and ap.`id` = #{id} </if>
+		<if test="promotionUrl != null"> and ap.`promotion_url` = #{promotionUrl} </if>
+		<if test="appResignedD != null"> and ap.`app_resigned_d` = #{appResignedD} </if>
+		<if test="appBaseId != null"> and ap.`app_base_id` = #{appBaseId} </if>
+		<if test="appName != null"> and ap.`app_name` = #{appName} </if>
+		<if test="promotionDomain != null"> and ap.`promotion_domain` = #{promotionDomain} </if>
+		<if test="isBlock != null"> and d.`is_blocked` = #{isBlocked} </if>
+		<if test="qqChecked != null"> and d.`qq_checked` = #{qqChecked} </if>
+		<if test="createTime != null"> and ap.`create_time` = #{createTime} </if>
+		<if test="expireTime != null">  and DATE_FORMAT(DATE_ADD(ap.`expire_time`,INTERVAL 8 HOUR),'%Y-%m-%d') = #{expireTime}</if>
 		ORDER BY
 			id DESC
 	</select>

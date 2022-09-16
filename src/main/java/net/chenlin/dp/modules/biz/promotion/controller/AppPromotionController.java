@@ -1,14 +1,11 @@
 package net.chenlin.dp.modules.biz.promotion.controller;
 
-import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.DateUtils;
 import net.chenlin.dp.common.utils.JSONUtils;
-import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
-import net.chenlin.dp.modules.biz.domain.entity.DomainOutCsv;
 import net.chenlin.dp.modules.biz.promotion.entity.AppPromotionEntity;
 import net.chenlin.dp.modules.biz.promotion.service.AppPromotionService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
@@ -114,9 +111,9 @@ public class AppPromotionController extends AbstractController {
 	 */
 	@SysLog("申请推广链接")
 	@RequestMapping("/applyUrlV2")
-	public R applyUrl(@RequestParam(value = "appName") String appName,@RequestParam(value = "advertiseDomain") Integer advertiseDomain) {
+	public R applyUrl(@RequestParam(value = "appName") String appName,@RequestParam(value = "advertiseDomain") Integer advertiseDomain,@RequestParam(value = "qqChecked") Integer qqChecked) {
 		SysUserEntity user = super.getUser();
-		return appPromotionService.applyUrl(appName,user,advertiseDomain);
+		return appPromotionService.applyUrl(appName,user,advertiseDomain,qqChecked);
 	}
 
 	@RequestMapping(value = "/csv", method = RequestMethod.GET)

@@ -96,4 +96,6 @@ public class DomainEntity implements Serializable {
 	@Transient
 	private String appName;
 
+	private Integer qqChecked;
+
 }

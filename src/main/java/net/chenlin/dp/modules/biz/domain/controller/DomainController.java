@@ -138,6 +138,7 @@ public class DomainController extends AbstractController {
 				appDomain.setCreateBy(user.getUsername());
 				appDomain.setUpdateBy(user.getUsername());
 				appDomain.setDomainOrigin(domain.getDomainOrigin());
+				appDomain.setQqChecked(domain.getQqChecked());
 
 				appDomainService.saveAppDomain(appDomain);
 				R r = domainService.saveDomain(domainEach);

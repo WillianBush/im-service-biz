@@ -18,7 +18,7 @@ public interface AppDomainMapper extends TkBaseMapper<AppDomainEntity> {
 
     AppDomainEntity getDomainsEnabledOne(@Param("domainType") Integer domainType,@Param("appResignedId")  Long appResignedId);
 
-    List<AppDomainEntity>  getDomainsEnabledByBaseAppName(@Param("domainType") Integer domainType,@Param("appBaseName")  String appBaseName,@Param("count")  int count);
+    List<AppDomainEntity>  getDomainsEnabledByBaseAppName(@Param("domainType") Integer domainType,@Param("appBaseName")  String appBaseName,@Param("count")  int count,@Param("qqChecked")  int qqChecked);
 
-    List<AppDomainEntity>  getDomainsEnabledByBaseAppNameNoUse(@Param("domainType") Integer domainType,@Param("appBaseName")  String appBaseName,@Param("count")  int count,@Param("domainUsedNames")  List<String> domainUsedNames);
+    List<AppDomainEntity>  getDomainsEnabledByBaseAppNameNoUse(@Param("domainType") Integer domainType,@Param("appBaseName")  String appBaseName,@Param("count")  int count,@Param("qqChecked")  int qqChecked,@Param("domainUsedNames")  List<String> domainUsedNames);
 }

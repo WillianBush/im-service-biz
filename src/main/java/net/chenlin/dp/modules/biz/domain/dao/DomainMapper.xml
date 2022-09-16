@@ -16,6 +16,7 @@
 		d.`update_time` update_time,
 		d.`create_by` create_by,
 		d.`update_by`update_by,
+		d.qq_checked qq_checked,
 		ad.app_base_name app_name
 		FROM
 			domain d
@@ -51,7 +52,8 @@
 			`update_by`,
 		    `server_name`,
 		    `server_id`,
-		    `domain_origin`
+		    `domain_origin`,
+		    `qq_checked`
 		)
 		VALUES (
 			#{domainType}, 
@@ -66,7 +68,8 @@
 			#{updateBy},
 			#{serverName},
 			#{serverId},
-			#{domainOrigin}
+			#{domainOrigin},
+		    #{qqChecked}
 		)
 	</insert>
 	

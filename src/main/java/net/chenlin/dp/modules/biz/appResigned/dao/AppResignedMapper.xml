@@ -56,8 +56,8 @@
 			#{iosDownloadTimes}, 
 			#{appBaseId}, 
 			#{appBaseName}, 
-			#{createTime}, 
-			#{updateTime}, 
+			now(),
+			now(),
 			#{androidResignedPackageName}, 
 			#{createBy}, 
 			#{updateBy}

@@ -77,16 +77,13 @@ public class AppDomainEntity implements Serializable {
 	@Transient
 	private Integer domainEnable;
 
-	/**
-	 * 是否被封， 1：正常 2：不可用
-	 */
 	@Transient
 	private Integer isBlocked;
 
-	/**
-	 * 1 官方域名; 2 三方域名
-	 */
 	@Transient
 	private Integer domainOrigin;
+
+	@Transient
+	private Integer qqChecked;
 
 }

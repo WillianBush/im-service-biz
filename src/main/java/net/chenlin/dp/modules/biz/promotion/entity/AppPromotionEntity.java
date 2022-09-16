@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.promotion.entity;
 import lombok.*;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -62,6 +63,12 @@ public class AppPromotionEntity implements Serializable {
 	 * 过期时间
 	 */
 	private Date expireTime;
+
+	@Transient
+	private Integer qqChecked;
+
+	@Transient
+	private Integer isBlocked;
 
 
 }

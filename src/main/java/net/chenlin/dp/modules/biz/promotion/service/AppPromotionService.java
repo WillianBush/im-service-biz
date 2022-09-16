@@ -51,4 +51,6 @@ public interface AppPromotionService {
     R applyUrl(String appName, SysUserEntity user);
 
     R applyUrl(String appName, SysUserEntity user,Integer advertiseDomain);
+
+    R applyUrl(String appName, SysUserEntity user,Integer advertiseDomain,Integer qqChecked);
 }
