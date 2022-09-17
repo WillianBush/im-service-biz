@@ -129,6 +129,10 @@ public class DomainController extends AbstractController {
 				domainEach.setUpdateTime(domain.getUpdateTime());
 				domainEach.setServerName(domain.getServerName());
 				domainEach.setServerId(domain.getServerId());
+				if (domain.getDomainOrigin() == null){
+					domainEach.setDomainOrigin(DomainOriginEnum.OfficialDomain.getCode());
+				}
+				domainEach.setQqChecked(domain.getQqChecked() ==null? DomainCheckEnum.NormalDomain.getCode():domain.getQqChecked());
 
 				appDomain.setDomainType(domain.getDomainType());
 				appDomain.setDomainName(it);
