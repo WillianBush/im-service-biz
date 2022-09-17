@@ -11,6 +11,7 @@ import net.chenlin.dp.common.utils.JSONUtils;
 import net.chenlin.dp.modules.biz.appDomain.entity.AppDomainEntity;
 import net.chenlin.dp.modules.biz.appDomain.service.AppDomainService;
 import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
+import net.chenlin.dp.modules.biz.domain.entity.DomainCheckEnum;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
 import net.chenlin.dp.modules.biz.domain.entity.DomainOriginEnum;
 import net.chenlin.dp.modules.biz.domain.entity.DomainOutCsv;
@@ -141,7 +142,7 @@ public class DomainController extends AbstractController {
 				if (domain.getDomainOrigin() == null){
 					appDomain.setDomainOrigin(DomainOriginEnum.OfficialDomain.getCode());
 				}
-				appDomain.setQqChecked(domain.getQqChecked());
+				appDomain.setQqChecked(domain.getQqChecked() ==null? DomainCheckEnum.NormalDomain.getCode():domain.getQqChecked());
 
 				appDomainService.saveAppDomain(appDomain);
 				R r = domainService.saveDomain(domainEach);
