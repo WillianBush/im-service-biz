@@ -188,7 +188,7 @@ public class GenerateRandomCode {
 
     public static void main(String[] args) {
         // 生成随机落地页
-//        generateRandomAndChechedQQDoamins();
+//        generateRandomAndChechedqqRegisterDomain();
         // 生成随机短域名
 //        generateRandomAndChechedShortDoamins();
         // 生成 qq绿标
