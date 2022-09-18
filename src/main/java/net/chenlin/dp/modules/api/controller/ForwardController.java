@@ -27,7 +27,7 @@ public class ForwardController extends AbstractController {
     @RestAnon
     public String get(HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{}", requestDomain);
+//        log.info("nginx转发过来的请求头，requestDomain：{}", requestDomain);
         try {
             String responseDomain = forwardService.getResponseDomain(requestDomain);
             return redirect("https://" + responseDomain);
@@ -41,7 +41,7 @@ public class ForwardController extends AbstractController {
     @RestAnon
     public String post(HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{}", requestDomain);
+//        log.info("nginx转发过来的请求头，requestDomain：{}", requestDomain);
         return redirect("https://" + Constants.DEFAULT_DOMAIN);
     }
 
@@ -49,7 +49,7 @@ public class ForwardController extends AbstractController {
     @RestAnon
     public String postPath(@PathVariable(value = "path") String path, HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{},url:{}", requestDomain, path);
+//        log.info("nginx转发过来的请求头，requestDomain：{},url:{}", requestDomain, path);
         return redirect("https://" + Constants.DEFAULT_DOMAIN);
     }
 
@@ -58,7 +58,7 @@ public class ForwardController extends AbstractController {
     @RestAnon
     public String getPath(@PathVariable(value = "path") String path, HttpServletRequest request) {
         String requestDomain = request.getHeader("Host");
-        log.info("nginx转发过来的请求头，requestDomain：{},url:{}", requestDomain, path);
+//        log.info("nginx转发过来的请求头，requestDomain：{},url:{}", requestDomain, path);
 //        try {
 //            String responseDomain = forwardService.getResponseDomain(requestDomain,path);
 //            return redirect("https://"+responseDomain);

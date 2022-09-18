@@ -132,7 +132,7 @@ public class GenerateRandomCode {
     }
 
     public static void  generateRandomAndChechedQQDoamins(){
-        List<String> listString = getRandomCodeDomain(5,91,qqRegisterDomain);
+        List<String> listString = getRandomCodeDomain(6,91,qqRegisterDomain);
         List<String> listStringNormal = new ArrayList<>();
         for(String domain : listString){
             try {
@@ -191,6 +191,7 @@ public class GenerateRandomCode {
 //        generateRandomAndChechedQQDoamins();
         // 生成随机短域名
 //        generateRandomAndChechedShortDoamins();
+        // 生成 qq绿标
         generateRandomAndChechedQQDoamins();
     }
 
