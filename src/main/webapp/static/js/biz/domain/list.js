@@ -45,6 +45,9 @@ function getGrid() {
                     if (row.domainType == 2) {
                         return "短域名"
                     }
+                    if (row.domainType == 3) {
+                        return "长连接"
+                    }
                 }},
             {field : "qqChecked", title : "备案类型", width : "90px", formatter: function (index, row) {
                     if (row.qqChecked == 1) {

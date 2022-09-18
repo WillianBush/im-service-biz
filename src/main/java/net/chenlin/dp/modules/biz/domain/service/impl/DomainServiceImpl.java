@@ -6,6 +6,7 @@ import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.domain.dao.DomainMapper;
 import net.chenlin.dp.modules.biz.domain.entity.DomainEntity;
+import net.chenlin.dp.modules.biz.domain.entity.DomainOriginEnum;
 import net.chenlin.dp.modules.biz.domain.service.DomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,9 @@ public class DomainServiceImpl implements DomainService {
      */
 	@Override
 	public R saveDomain(DomainEntity domain) {
+		if (domain.getDomainOrigin() == null ){
+			domain.setDomainOrigin(DomainOriginEnum.OfficialDomain.getCode());
+		}
 		int count = domainMapper.save(domain);
 		return CommonUtils.msg(count);
 	}

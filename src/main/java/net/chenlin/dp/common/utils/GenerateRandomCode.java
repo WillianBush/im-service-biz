@@ -16,6 +16,8 @@ public class GenerateRandomCode {
     private static final String[] SHORT_DOMAIN_STUFF = {"tv","pw","co","cc","nl","in","io","bz","im","it","la","nz","ph"
     ,"pw","ws"};
 
+    private static final String qqRegisterDomain = "syxicecream.com";
+
     /**
      *
      * @param passLength 数据书长度
@@ -130,6 +132,34 @@ public class GenerateRandomCode {
     }
 
     public static void  generateRandomAndChechedQQDoamins(){
+        List<String> listString = getRandomCodeDomain(5,91,qqRegisterDomain);
+        List<String> listStringNormal = new ArrayList<>();
+        for(String domain : listString){
+            try {
+//                String checkDomainQQ = CHECK_DOMAIN_QQ + domain;
+//                String resp = OKhttpUtil.httpGet(checkDomainQQ, null);
+//                QiLingResponse response = JSONObject.parseObject(resp, QiLingResponse.class);
+//                if (response != null && !response.getStatu()) {
+//                    log.info("域名：{} 已经被封",domain);
+//                    if (response.getCount() != null || response.getDescribe() != null || response.getReason() != null) {
+//                        log.error("麒麟接口返回异常， resp:{}",response);
+//                    }
+//                }else {
+//                    listStringNormal.add(domain);
+//                }
+                listStringNormal.add(domain);
+//                Thread.sleep(1600);
+            } catch (Exception e) {
+                log.error("",e);
+            }
+        }
+        for (String str :  listStringNormal) {
+            System.out.println(str);
+        }
+    }
+
+
+    public static void  generateRandomAndChechedqqRegisterDomain(){
         List<String> listString = getRandomCodeDomain(6,200,"xyz");
         List<String> listStringNormal = new ArrayList<>();
         for(String domain : listString){
@@ -160,7 +190,8 @@ public class GenerateRandomCode {
         // 生成随机落地页
 //        generateRandomAndChechedQQDoamins();
         // 生成随机短域名
-        generateRandomAndChechedShortDoamins();
+//        generateRandomAndChechedShortDoamins();
+        generateRandomAndChechedQQDoamins();
     }
 
 }
