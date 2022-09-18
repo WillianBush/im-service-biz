@@ -1,8 +1,8 @@
 package net.chenlin.dp.modules.api.entity;
 
 public class Constants {
-    public final static String DEFAULT_DOMAIN = "www.baidu.com/";
-
+//    public final static String DEFAULT_DOMAIN = "www.baidu.com/";
+    public final static String DEFAULT_DOMAIN = "jb186.vip";
     public final  static String DOWNLOAD_IOS_PATH ="qwefff";
 
     public final  static String DOWNLOAD_ANDROID_PATH ="dif1234";
