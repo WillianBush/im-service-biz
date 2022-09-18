@@ -121,7 +121,7 @@ public class AppPromotionServiceImpl implements AppPromotionService {
     @Override
     public R applyUrl(String appName, SysUserEntity user) {
         // 获取可以的推广域名
-        List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, 4,DomainCheckEnum.NormalDomain.getCode());
+        List<AppDomainEntity> appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, 4,DomainCheckEnum.NormalDomain.getCode(),1);
         // 随机生成6位字符串
 //		List<String> randomCodes = GenerateRandomCode.getRandomCode(6,appDomainEntitiesEnable.size());
         for (int i = 0; i < appDomainEntitiesEnable.size(); i++) {
@@ -149,16 +149,21 @@ public class AppPromotionServiceImpl implements AppPromotionService {
 
     @Override
     public R applyUrl(String appName, SysUserEntity user, Integer advertiseDomain, Integer qqChecked) {
+        return applyUrl( appName,  user,  advertiseDomain,  DomainCheckEnum.NormalDomain.getCode(),1);
+    }
+
+    @Override
+    public R applyUrl(String appName, SysUserEntity user, Integer advertiseDomain, Integer qqChecked, Integer shortLink) {
         // 获取可以的推广域名
         AppPromotionEntity appPromotionExist = new AppPromotionEntity();
         appPromotionExist.setAppName(appName);
         List<AppPromotionEntity> appPromotionExists = appPromotionMapper.select(appPromotionExist);
         List<AppDomainEntity> appDomainEntitiesEnable;
         if (appPromotionExists.isEmpty()) {
-            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain,qqChecked);
+            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppName(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain,qqChecked,shortLink);
         } else {
             List<String> domainUsedNames = appPromotionExists.stream().map(AppPromotionEntity::getPromotionDomain).collect(Collectors.toList());
-            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppNameNoUse(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain,qqChecked, domainUsedNames);
+            appDomainEntitiesEnable = appDomainMapper.getDomainsEnabledByBaseAppNameNoUse(DomainEnum.AdvertiseDomain.getCode(), appName, advertiseDomain,qqChecked, domainUsedNames,shortLink);
             if (appDomainEntitiesEnable.isEmpty()) {
                 return R.error(appName + "已经没有短域名,请尽快补充");
             }

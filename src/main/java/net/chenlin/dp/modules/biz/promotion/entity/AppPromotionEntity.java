@@ -70,5 +70,6 @@ public class AppPromotionEntity implements Serializable {
 	@Transient
 	private Integer isBlocked;
 
-
+	@Transient
+	private Integer shortLink;
 }

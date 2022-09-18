@@ -34,6 +34,7 @@
 		<if test="createBy != null"> and d.`create_by` = #{createBy} </if>
 		<if test="updateBy != null"> and d.`update_by` = #{updateBy}</if>
 		<if test="appName != null"> and ad.`app_base_name` = #{appName}</if>
+		<if test="qqChecked != null"> and d.qq_checked = #{qqChecked}</if>
 		ORDER BY
 			d.id DESC
 	</select>
@@ -53,7 +54,8 @@
 		    `server_name`,
 		    `server_id`,
 		    `domain_origin`,
-		    `qq_checked`
+		    `qq_checked`,
+		    `short_link`
 		)
 		VALUES (
 			#{domainType}, 
@@ -69,7 +71,8 @@
 			#{serverName},
 			#{serverId},
 			#{domainOrigin},
-		    #{qqChecked}
+		    #{qqChecked},
+		    #{shortLink}
 		)
 	</insert>
 	

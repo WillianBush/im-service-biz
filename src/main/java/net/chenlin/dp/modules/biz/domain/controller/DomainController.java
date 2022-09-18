@@ -78,14 +78,6 @@ public class DomainController extends AbstractController {
 		if (1 == domain.getDomainType()) {
 			domain.setServerName("47.242.14.229");
 			domain.setServerId(1);
-//			switch (domain.getAppName()) {
-//				case "miaoyu":
-//				case "yueai":
-//				case "youyue":
-//				case "chulian":
-//					domain.setServerName("47.242.14.229");
-//					break;
-//			}
 		}else {
 			domain.setServerName("8.210.136.237");
 			domain.setServerId(2);
@@ -108,6 +100,8 @@ public class DomainController extends AbstractController {
 			appDomain.setUpdateTime(domain.getUpdateTime());
 			appDomain.setCreateBy(user.getUsername());
 			appDomain.setUpdateBy(user.getUsername());
+			appDomain.setQqChecked(domain.getQqChecked());
+			appDomain.setDomainOrigin(domain.getDomainOrigin());
 			appDomainService.saveAppDomain(appDomain);
 			return domainService.saveDomain(domain);
 		} else {
@@ -133,7 +127,7 @@ public class DomainController extends AbstractController {
 					domainEach.setDomainOrigin(DomainOriginEnum.OfficialDomain.getCode());
 				}
 				domainEach.setQqChecked(domain.getQqChecked() ==null? DomainCheckEnum.NormalDomain.getCode():domain.getQqChecked());
-
+				domainEach.setShortLink(domain.getShortLink());
 				appDomain.setDomainType(domain.getDomainType());
 				appDomain.setDomainName(it);
 				appDomain.setAppBaseName(domain.getAppName());

@@ -111,9 +111,9 @@ public class AppPromotionController extends AbstractController {
 	 */
 	@SysLog("申请推广链接")
 	@RequestMapping("/applyUrlV2")
-	public R applyUrl(@RequestParam(value = "appName") String appName,@RequestParam(value = "advertiseDomain") Integer advertiseDomain,@RequestParam(value = "qqChecked") Integer qqChecked) {
+	public R applyUrl(@RequestParam(value = "appName") String appName,@RequestParam(value = "advertiseDomain") Integer advertiseDomain,@RequestParam(value = "qqChecked") Integer qqChecked,@RequestParam(value = "shortLink") Integer shortLink) {
 		SysUserEntity user = super.getUser();
-		return appPromotionService.applyUrl(appName,user,advertiseDomain,qqChecked);
+		return appPromotionService.applyUrl(appName,user,advertiseDomain,qqChecked,shortLink);
 	}
 
 	@RequestMapping(value = "/csv", method = RequestMethod.GET)

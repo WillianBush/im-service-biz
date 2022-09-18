@@ -98,4 +98,6 @@ public class DomainEntity implements Serializable {
 
 	private Integer qqChecked;
 
+	private Integer shortLink;
+
 }
