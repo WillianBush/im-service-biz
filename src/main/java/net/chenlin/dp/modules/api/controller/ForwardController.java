@@ -34,7 +34,7 @@ public class ForwardController extends AbstractController {
         } catch (RRException exception) {
             log.error("nginx转发过来的请求头，requestDomain：{}", requestDomain, exception);
         }
-        return redirect("https://" + Constants.DEFAULT_DOMAIN);
+        return redirect("https://" + Constants.DEFAULT_DOMAIN1);
     }
 
     @PostMapping()
