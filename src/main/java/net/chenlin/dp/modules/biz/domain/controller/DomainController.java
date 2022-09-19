@@ -168,13 +168,13 @@ public class DomainController extends AbstractController {
 		List<DomainOutCsv> list = Lists.newArrayList();
 		bootPercentageList.stream().forEach(it->{
 			DomainOutCsv csv = new DomainOutCsv();
-			csv.setDomainType(it.getDomainType());
+			csv.setDomainType(it.getDomainType().equals(1)?"落地页域名":"短域名");
 			csv.setDomainName(it.getDomainName());
 			csv.setAppName(it.getAppName());
-			csv.setDomainEnable(it.getDomainEnable());
-			csv.setIsBlocked(it.getIsBlocked());
-			csv.setCreateTime(it.getCreateTime());
-			csv.setUpdateTime(it.getUpdateTime());
+			csv.setDomainEnable(it.getDomainEnable().equals(1)?"启用":"禁用");
+			csv.setIsBlocked(it.getIsBlocked().equals(1)?"正常":"不可用");
+			csv.setCreateTime(DateUtils.format(it.getCreateTime(),DateUtils.DATE_PATTERN));
+			csv.setUpdateTime(DateUtils.format(it.getUpdateTime(),DateUtils.DATE_PATTERN));
 			csv.setCreateBy(it.getCreateBy());
 			csv.setUpdateBy(it.getUpdateBy());
 			list.add(csv);

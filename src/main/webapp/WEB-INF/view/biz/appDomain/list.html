@@ -9,24 +9,26 @@
                 <option value="1">落地页域名</option>
                 <option value="2">短域名</option>
             </select>
-<!--            是否启用:&nbsp;&nbsp;&nbsp;-->
-<!--            <select  id="domainEnable"  class="form-control"  style="width: 100px;" >-->
-<!--                <option value=""  style="display:none">请选择</option>-->
-<!--                <option value="1">启用</option>-->
-<!--                <option value="2">禁用</option>-->
-<!--            </select>-->
-            是否被封:&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;
             <select  id="isBlocked"  class="form-control"  style="width: 100px;" >
-                <option value=""  style="display:none">请选择</option>
+                <option value=""  style="display:none">是否被封</option>
                 <option value="1">正常</option>
                 <option value="2">不可用</option>
             </select>
-            是否qq绿标:&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;
             <select  id="qqChecked"  class="form-control"  style="width: 100px;" >
-                <option value=""  style="display:none">请选择</option>
+                <option value=""  style="display:none">是否qq绿标</option>
                 <option value="1">普通域名</option>
                 <option value="2">qq绿标域名</option>
             </select>
+            &nbsp;&nbsp;&nbsp;
+            <select  id="shortLink"  class="form-control"  style="width: 100px;" >
+                <option value=""  style="display:none">域名长短</option>
+                <option value="1">长链接</option>
+                <option value="2">短链接</option>
+            </select>
+            购买月份: <input id ="createMonth" \@keyup.enter="load" type="month" class="form-control" placeholder="" style="width: 140px;" />
+
         </div>
         <div class="form-group">
             <a class="btn btn-primary" \@click="load"><i class="fa fa-search"></i>&nbsp;查询</a>
@@ -38,6 +40,7 @@
                 <a v-if="hasPermission('appDomain:list')" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
                 <a v-if="hasPermission('appDomain:save')" class="btn btn-default" \@click="save"><i class="fa fa-plus"></i>&nbsp;新增</a>
                 <a v-if="hasPermission('appDomain:remove')" class="btn btn-default" \@click="remove(true)"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                <a v-if="hasPermission('appDomain:list')" class="btn btn-default" \@click="excel"><i class="fa fa-file-excel-o"></i> 下载</a>
             </div>
         </div>
     </div>

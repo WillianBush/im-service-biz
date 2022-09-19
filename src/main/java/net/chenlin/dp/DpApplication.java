@@ -12,16 +12,16 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @author wang<fangyuan.co@outlook.com>
  */
 @SpringBootApplication
-public class WebDomainApplication extends SpringBootServletInitializer {
+public class DpApplication extends SpringBootServletInitializer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebDomainApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DpApplication.class);
 
     /**
      * jar启动
      * @param args
      */
     public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(WebDomainApplication.class);
+        SpringApplication application = new SpringApplication(DpApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
         LOGGER.info("The fang-yuan application has been started successfully!");

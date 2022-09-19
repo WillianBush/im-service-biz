@@ -121,7 +121,7 @@ public class AppPromotionController extends AbstractController {
 		params = JSONUtils.mapNoEmpty(params);
 		String current = DateUtils.format(new Date(),DateUtils.DATE_TIME_PATTERN);
 		String filename = URLEncoder.encode("域名URL-" + current + ".csv", "UTF-8");
-		params.put("pageSize",1000);
+		params.put("pageSize",10000);
 
 		List<AppPromotionEntity> bootPercentageList = appPromotionService.listAppPromotion(params).getRows(); // 这是一个业务代码 返回我要导出去的数据
 

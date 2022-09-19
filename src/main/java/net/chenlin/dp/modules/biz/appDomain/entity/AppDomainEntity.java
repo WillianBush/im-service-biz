@@ -86,4 +86,10 @@ public class AppDomainEntity implements Serializable {
 	@Transient
 	private Integer qqChecked;
 
+	@Transient
+	private String createMonth;
+
+    @Transient
+	private Integer shortLink;
+
 }

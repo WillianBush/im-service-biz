@@ -25,9 +25,8 @@ function getGrid() {
 			// {checkbox: true},
             {title : "操作",width: "60px", formatter : function(value, row, index) {
                     var _html = '';
-
-                    if (hasPermission('appResign:remove')) {
-                        _html += '<a href="javascript:;" onclick="vm.remove(false,\''+row.id+'\')" title="删除"><i class="fa fa-trash-o"></i></a>';
+                    if (hasPermission('appResign:edit')) {
+                        _html += '<a href="javascript:;" onclick="vm.edit(\''+row.id+'\')" title="编辑"><i class="fa fa-pencil"></i></a>';
                     }
                     return _html;
                 }

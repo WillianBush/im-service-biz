@@ -14,7 +14,8 @@
 		ap.`create_time` create_time,
 		ap.`expire_time` expire_time,
 		d.`is_blocked` is_blocked,
-		d.`qq_checked` qq_checked
+		d.`qq_checked` qq_checked,
+		d.short_link  short_link
 		FROM
 			app_promotion ap
 		left join domain d on d.domain_name = ap.`promotion_domain`
@@ -30,6 +31,7 @@
 		<if test="qqChecked != null"> and d.`qq_checked` = #{qqChecked} </if>
 		<if test="createTime != null"> and ap.`create_time` = #{createTime} </if>
 		<if test="expireTime != null">  and DATE_FORMAT(DATE_ADD(ap.`expire_time`,INTERVAL 8 HOUR),'%Y-%m-%d') = #{expireTime}</if>
+		<if test="shortLink != null"> and d.short_link = #{shortLink} </if>
 		ORDER BY
 			id DESC
 	</select>

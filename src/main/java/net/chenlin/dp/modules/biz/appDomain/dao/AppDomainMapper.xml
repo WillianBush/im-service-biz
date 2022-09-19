@@ -15,7 +15,8 @@
 		    ad.`update_time` update_time,
 		    ad.`create_by` create_by,
 		    ad.`update_by` update_by,
-		    d.`qq_checked` qq_checked
+		    d.`qq_checked` qq_checked,
+		    d.short_link  short_link
 		FROM
 			app_domain ad
 		left join domain d on ad.domain_name = d.domain_name
@@ -33,6 +34,8 @@
 		<if test="domainEnable != null"> and d.`domain_enable` = #{domainEnable} </if>
 		<if test="isBlocked != null"> and d.`is_blocked` = #{isBlocked} </if>
 		<if test="qqChecked != null"> and d.`qq_checked` = #{qqChecked} </if>
+		<if test="createMonth != null"> and date_format( ad.`create_time`,"%Y-%m") = #{createMonth} </if>
+		<if test="shortLink != null"> and d.short_link = #{shortLink}</if>
 		ORDER BY
 			ad.id DESC
 	</select>

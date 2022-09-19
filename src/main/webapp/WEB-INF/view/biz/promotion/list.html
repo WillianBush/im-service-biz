@@ -4,18 +4,24 @@
         <div class="form-group">
             <input id ="appName" \@keyup.enter="load" type="text" class="form-control" placeholder="app名字" style="width: 100px;" />
             <input id ="promotionDomain" \@keyup.enter="load" type="text" class="form-control" placeholder="推广域名" style="width: 100px;" />
-            是否可用:&nbsp;
+            &nbsp;
             <select  id="isBlocked"  class="form-control"  style="width: 100px;" >
-                <option value=""  style="display:none">请选择</option>
+                <option value=""  style="display:none">是否可用</option>
                 <option value="1">正常</option>
                 <option value="2">不可用</option>
             </select>
             过期日： <input id ="expireTime" \@keyup.enter="load" type="date" class="form-control" placeholder="" style="width: 140px;" />
-            备案类型:&nbsp;
+            &nbsp;
             <select  id="qqChecked"  class="form-control"  style="width: 100px;" >
-                <option value=""  style="display:none">请选择</option>
+                <option value=""  style="display:none">备案类型</option>
                 <option value="1">普通域名</option>
                 <option value="2">QQ绿标</option>
+            </select>
+            &nbsp;&nbsp;&nbsp;
+            <select  id="shortLink"  class="form-control"  style="width: 100px;" >
+                <option value=""  style="display:none">域名长短</option>
+                <option value="1">长链接</option>
+                <option value="2">短链接</option>
             </select>
         </div>
         <div class="form-group">

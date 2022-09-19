@@ -28,6 +28,7 @@ function getGrid() {
             return removeEmptyField(params);
 		},
 		columns: [
+            {checkbox: true},
             {title : "操作", width : "80px", formatter : function(value, row, index) {
                     var _html = '';
                     // if (hasPermission('domain:edit')) {
@@ -39,16 +40,12 @@ function getGrid() {
                     return _html;
                 }
             },
-			{checkbox: true},
             {field : "domainType", title : "域名类型", width : "100px", formatter: function (index, row) {
                     if (row.domainType == 1) {
                         return "落地页域名"
                     }
                     if (row.domainType == 2) {
                         return "短域名"
-                    }
-                    if (row.domainType == 3) {
-                        return "长连接"
                     }
                 }},
             {field : "qqChecked", title : "备案类型", width : "90px", formatter: function (index, row) {
@@ -61,15 +58,15 @@ function getGrid() {
                 }},
             {field : "domainName", title : "域名", width : "100px"},
             {field : "appName", title : "app名字", width : "100px"},
-            {field : "domainEnable", title : "是否启用", width : "80px", formatter: function (index, row) {
-                    if (row.domainEnable == 1) {
-                        return "已启用"
-                    }
-                    if (row.domainEnable == 2) {
-                        return "未启用"
-                    }
-                }
-                },
+            // {field : "domainEnable", title : "是否启用", width : "80px", formatter: function (index, row) {
+            //         if (row.domainEnable == 1) {
+            //             return "已启用"
+            //         }
+            //         if (row.domainEnable == 2) {
+            //             return "未启用"
+            //         }
+            //     }
+            //     },
             {field : "isBlocked", title : "是否被封", width : "80px", formatter: function (index, row) {
                     if (row.isBlocked == 1) {
                         return "正常"
@@ -82,9 +79,17 @@ function getGrid() {
             // {field : "httpsTomcatJksAddress", title : "域名证书地址", width : "255px"},
             // {field : "httpsTomcatPass", title : "域名证书密码", width : "255x"},
             {field : "createTime", title : "创建时间", width : "100px"},
-            {field : "updateTime", title : "更新时间", width : "100px"},
+            // {field : "updateTime", title : "更新时间", width : "100px"},
             {field : "createBy", title : "创建人", width : "100px"},
-            {field : "updateBy", title : "更新人", width : "100px"}
+            {field : "shortLink", title : "域名长短", width : "90px", formatter: function (index, row) {
+                    if (row.shortLink == 1) {
+                        return "长链接"
+                    }
+                    if (row.shortLink == 2) {
+                        return "短链接"
+                    }
+                }}
+            // {field : "updateBy", title : "更新人", width : "100px"}
 		]
 	})
 }

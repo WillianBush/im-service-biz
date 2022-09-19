@@ -23,6 +23,7 @@ function getGrid() {
             params.isBlocked = $('#isBlocked').val();
             params.expireTime = $('#expireTime').val();
             params.qqChecked = $('#qqChecked').val();
+            params.shortLink = $('#shortLink').val();
             return removeEmptyField(params);
 		},
 		columns: [
@@ -68,7 +69,15 @@ function getGrid() {
             {field : "appBaseId", title : "AppID原包", width : "100px",visible:false},
             {field : "appResignedD", title : "重签后的AppID", width : "100px",visible:false},
             {field : "createTime", title : "创建时间", width : "180px"},
-            {field : "expireTime", title : "过期时间", width : "180px"}
+            {field : "expireTime", title : "过期时间", width : "180px"},
+            {field : "shortLink", title : "域名长短", width : "90px", formatter: function (index, row) {
+                    if (row.shortLink == 1) {
+                        return "长连接"
+                    }
+                    if (row.shortLink == 2) {
+                        return "短连接"
+                    }
+                }}
 		]
 	})
 }
@@ -115,6 +124,8 @@ var vm = new Vue({
             params.isBlocked = $('#isBlocked').val();
             params.expireTime = $('#expireTime').val();
             params.qqChecked = $('#qqChecked').val();
+            params.shortLink = $('#shortLink').val();
+
             params.pageNumber = 1;
             params.sortOrder = "asc";
 
@@ -137,6 +148,9 @@ var vm = new Vue({
             }
             if ("" !== params.qqChecked || params.qqChecked !== null) {
                 form.append($("<input name='qqChecked' value='"+params.qqChecked+"'/>"));
+            }
+            if ("" !== params.shortLink || params.shortLink !== null) {
+                form.append($("<input name='shortLink' value='"+params.shortLink+"'/>"));
             }
 
             form.append($("<input name='pageNumber' value='"+params.pageNumber+"'/>"));
