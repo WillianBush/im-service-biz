@@ -78,7 +78,7 @@ public class ForwardServiceImpl implements ForwardService {
             return appDomainEntityEnable.getDomainName();
         }
         log.error("getResponseDomain 已经找不到能使用的落地页域名。。。，requestDomain：{}，AppResignedId：{}", requestDomain, appResignedD);
-        return Constants.DEFAULT_DOMAIN1;
+        return Constants.DEFAULT_DOMAIN;
     }
 
 }
