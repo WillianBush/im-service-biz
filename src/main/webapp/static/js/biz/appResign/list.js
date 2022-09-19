@@ -33,13 +33,13 @@ function getGrid() {
                 }
             },
             {field : "appBaseName", title : "app", width : "100px"},
-            {field : "androidResignedDownloadAddress", title : "安卓下载地址", width : "100px"},
+            {field : "androidResignedDownloadAddress", title : "安卓下载地址", width : "220px"},
             // {field : "androidDownloadTimes", title : "安卓下载次数", width : "100px"},
-            {field : "iosDownloadAddrss", title : "iOS下载地址", width : "100px"},
+            {field : "iosDownloadAddrss", title : "iOS下载地址", width : "110px"},
             // {field : "iosDownloadTimes", title : "iOS下载次数", width : "100px"},
             {field : "appBaseId", title : "appId", width : "100px", visible:false},
-            {field : "createTime", title : "创建时间", width : "180px"},
-            {field : "updateTime", title : "更新时间", width : "180px"},
+            // {field : "createTime", title : "创建时间", width : "180px"},
+            // {field : "updateTime", title : "更新时间", width : "180px"},
             // {field : "androidResignedPackageName", title : "安卓重签后的报名", width : "100px", visible:false},
             // {field : "createBy", title : "创建人", width : "100px"},
             // {field : "updateBy", title : "更新人", width : "100px"}
