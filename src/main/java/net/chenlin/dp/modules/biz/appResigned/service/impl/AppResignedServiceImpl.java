@@ -10,8 +10,12 @@ import net.chenlin.dp.modules.api.entity.Constants;
 import net.chenlin.dp.modules.biz.appResigned.dao.AppResignedMapper;
 import net.chenlin.dp.modules.biz.appResigned.entity.AppResignedEntity;
 import net.chenlin.dp.modules.biz.appResigned.service.AppResignedService;
+import net.chenlin.dp.modules.biz.domain.dao.DomainMapper;
+import net.chenlin.dp.modules.biz.domain.entity.DomainLinkCounts;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +30,8 @@ public class AppResignedServiceImpl implements AppResignedService {
 
 	private RedisCacheManager redisCacheManager;
 
+	private DomainMapper domainMapper;
+
 
     /**
      * 分页查询
@@ -37,6 +43,23 @@ public class AppResignedServiceImpl implements AppResignedService {
 		Query query = new Query(params);
 		Page<AppResignedEntity> page = new Page<>(query);
 		appResignedMapper.listForPage(page, query);
+		List<AppResignedEntity> appResignedEntityList = page.getRows();
+		List<AppResignedEntity> appResignedEntityList1 = new LinkedList<>();
+		for (AppResignedEntity appResignedEntity: appResignedEntityList) {
+			List<DomainLinkCounts> domainLinkCounts = domainMapper.listDomainLinkCounts(appResignedEntity.getAppBaseName());
+			if (domainLinkCounts.isEmpty()) {
+				appResignedEntity.setShortLinkCounts(0L);
+				appResignedEntity.setNormalLinkCounts(0L);
+			}else {
+				long normalLinkCounts = domainLinkCounts.stream().filter(it -> it.getShortLink().equals(1)).count();
+				long shortLinkCounts = domainLinkCounts.stream().filter(it -> it.getShortLink().equals(2)).count();
+
+				appResignedEntity.setNormalLinkCounts(normalLinkCounts);
+				appResignedEntity.setShortLinkCounts(shortLinkCounts);
+			}
+			appResignedEntityList1.add(appResignedEntity);
+		}
+		page.setRows(appResignedEntityList1);
 		return page;
 	}
 

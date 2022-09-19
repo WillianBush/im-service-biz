@@ -157,4 +157,26 @@
 			domain_name = #{domainName}
 	</select>
 
+
+	<select id="listDomainLinkCounts" resultType="net.chenlin.dp.modules.biz.domain.entity.DomainLinkCounts">
+		SELECT
+			d.domain_name domain_name,
+			d.short_link short_link,
+			ad.app_base_name app_base_name
+		FROM
+			domain d
+				LEFT JOIN app_domain ad ON d.domain_name = ad.domain_name
+		WHERE
+			d.is_blocked = 1
+		  AND d.domain_enable = 1
+		  and d.domain_type = 2
+		  AND ad.app_base_name = #{appBaseName} 	AND d.domain_name  NOT IN (
+			SELECT
+				promotion_domain
+			FROM
+				app_promotion
+			WHERE
+				app_name = #{appBaseName})
+	</select>
+
 </mapper>
