@@ -35,7 +35,8 @@
 		<if test="isBlocked != null"> and d.`is_blocked` = #{isBlocked} </if>
 		<if test="qqChecked != null"> and d.`qq_checked` = #{qqChecked} </if>
 		<if test="createMonth != null"> and date_format( ad.`create_time`,"%Y-%m") = #{createMonth} </if>
-		<if test="shortLink != null"> and d.short_link = #{shortLink}</if>
+		<if test="shortLink != null and shortLink == 1" > and  length(ad.domain_name) > 7 </if>
+		<if test="shortLink != null and shortLink == 2" > and  length(ad.domain_name) &lt;= 7 </if>
 		ORDER BY
 			ad.id DESC
 	</select>
