@@ -52,11 +52,11 @@ public class ForwardServiceImpl implements ForwardService {
         List<AppPromotionEntity> appDomainEntities= appPromotionMapper.select(appPromotion);
         if (appDomainEntities.isEmpty()){
             log.error("getResponseDomain 找不到对应的url，requestDomain：{}", appPromotion);
-            return Constants.DEFAULT_DOMAIN;
+            return Constants.DEFAULT_DOMAIN1;
         }
         AppPromotionEntity appPromotionOne = appDomainEntities.get(0);
         if (appPromotionOne.getExpireTime().before(new Date())) {
-            return Constants.DEFAULT_DOMAIN;
+            return Constants.DEFAULT_DOMAIN1;
         }
         return getAppDomain(requestDomain, appPromotionOne.getAppResignedD(), appDomainEntities.isEmpty());
     }
@@ -78,7 +78,7 @@ public class ForwardServiceImpl implements ForwardService {
             return appDomainEntityEnable.getDomainName();
         }
         log.error("getResponseDomain 已经找不到能使用的落地页域名。。。，requestDomain：{}，AppResignedId：{}", requestDomain, appResignedD);
-        return Constants.DEFAULT_DOMAIN;
+        return Constants.DEFAULT_DOMAIN1;
     }
 
 }

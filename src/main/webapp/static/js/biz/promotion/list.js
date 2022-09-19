@@ -114,6 +114,7 @@ var vm = new Vue({
             params.promotionDomain = $('#promotionDomain').val();
             params.isBlocked = $('#isBlocked').val();
             params.expireTime = $('#expireTime').val();
+            params.qqChecked = $('#qqChecked').val();
             params.pageNumber = 1;
             params.sortOrder = "asc";
 
@@ -133,6 +134,9 @@ var vm = new Vue({
             }
             if ("" !== params.expireTime || params.expireTime !== null) {
                 form.append($("<input name='expireTime' value='"+params.expireTime+"'/>"));
+            }
+            if ("" !== params.qqChecked || params.qqChecked !== null) {
+                form.append($("<input name='qqChecked' value='"+params.qqChecked+"'/>"));
             }
 
             form.append($("<input name='pageNumber' value='"+params.pageNumber+"'/>"));

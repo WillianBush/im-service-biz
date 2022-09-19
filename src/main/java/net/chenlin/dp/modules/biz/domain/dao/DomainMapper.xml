@@ -35,6 +35,7 @@
 		<if test="updateBy != null"> and d.`update_by` = #{updateBy}</if>
 		<if test="appName != null"> and ad.`app_base_name` = #{appName}</if>
 		<if test="qqChecked != null"> and d.qq_checked = #{qqChecked}</if>
+		<if test="shortLink != null"> and d.short_link = #{shortLink}</if>
 		ORDER BY
 			d.id DESC
 	</select>

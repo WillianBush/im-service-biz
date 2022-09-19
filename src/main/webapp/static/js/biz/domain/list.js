@@ -24,6 +24,7 @@ function getGrid() {
             params.isBlocked = $('#isBlocked').val();
             params.appName = $('#appName').val();
             params.qqChecked = $('#qqChecked').val();
+            params.shortLink = $('#shortLink').val();
             return removeEmptyField(params);
 		},
 		columns: [
@@ -130,6 +131,8 @@ var vm = new Vue({
             params.appName = $('#appName').val();
             params.domainEnable = $('#domainEnable').val();
             params.isBlocked = $('#isBlocked').val();
+            params.appName = $('#appName').val();
+            params.qqChecked = $('#qqChecked').val();
             params.pageNumber = 1;
             params.sortOrder = "asc";
 
@@ -153,7 +156,12 @@ var vm = new Vue({
             if (params.isBlocked !== null) {
                 form.append($("<input name='isBlocked' value='"+params.isBlocked+"'/>"));
             }
-
+            if (params.appName !== null) {
+                form.append($("<input name='appName' value='"+params.appName+"'/>"));
+            }
+            if (params.qqChecked !== null) {
+                form.append($("<input name='qqChecked' value='"+params.qqChecked+"'/>"));
+            }
             form.append($("<input name='pageNumber' value='"+params.pageNumber+"'/>"));
             form.append($("<input name='sortOrder' value='"+params.sortOrder+"'/>"));
             $("body").append(form);
