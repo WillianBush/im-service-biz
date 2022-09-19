@@ -10,7 +10,7 @@ RUN mkdir -p /web-domain/logs
 
 WORKDIR /web-domain
 
-EXPOSE 8999
+EXPOSE 9000
 
 ADD web-domain.jar ./
 
