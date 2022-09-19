@@ -52,7 +52,7 @@ function getGrid() {
                 }
             },
             {field: "domainName", title: "域名", width: "100px"},
-            {field: "appBaseName", title: "app原包名", width: "100px"},{field : "domainType", title : "域名类型", width : "100px"},
+            {field: "appBaseName", title: "app原包名", width: "100px"},
             {field : "qqChecked", title : "备案类型", width : "90px", formatter: function (index, row) {
                     if (row.qqChecked == 1) {
                         return "普通域名"
