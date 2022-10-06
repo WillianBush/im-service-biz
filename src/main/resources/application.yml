@@ -52,7 +52,7 @@ aliyun:
 log:
   level:
     root: info
-  file: ./logs/code-generate.log
+  file: ./logs/springboot-mybatis.log
   maxsize: 10MB
 
 telegram:

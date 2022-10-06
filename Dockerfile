@@ -12,9 +12,9 @@ WORKDIR /springboot-mybatis
 
 EXPOSE 8998
 
-ADD web-domain.jar ./
+ADD springboot-mybatis.jar ./
 
 
-CMD java -Xms1024m -Xmx2048m -Djava.security.egd=file:/dev/./urandom -jar web-domain.jar
+CMD java -Xms1024m -Xmx2048m -Djava.security.egd=file:/dev/./urandom -jar springboot-mybatis.jar
 
 
