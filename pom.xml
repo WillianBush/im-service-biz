@@ -4,15 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fangyuan</groupId>
-    <artifactId>springboot-mybatis</artifactId>
+    <artifactId>im-service-biz</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- 生成war时放开注释，以及第58行注释
     <packaging>war</packaging>
     -->
 
-    <name>springboot-mybatis</name>
-    <description>基本框架</description>
+    <name>im-service-biz</name>
+    <description>聊天 app 管理后台</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
