@@ -52,7 +52,7 @@ aliyun:
 log:
   level:
     root: info
-  file: ./logs/web-domain.log
+  file: ./logs/code-generate.log
   maxsize: 10MB
 
 telegram:

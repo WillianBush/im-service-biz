@@ -57,7 +57,7 @@ public class JdbcGenUtils {
                 String columnName = currColumn.get("COLUMN_NAME");
                 String methodName = GenUtils.columnToJava(columnName);
                 columnEntity.setColumnName(columnName);
-                columnEntity.setFieldName(StringUtils.uncapitalize(methodName));
+                columnEntity.setFieldName(columnName);
                 columnEntity.setMethodName(methodName);
 
                 columnEntity.setColumnKey(currColumn.get("COLUMN_KEY"));

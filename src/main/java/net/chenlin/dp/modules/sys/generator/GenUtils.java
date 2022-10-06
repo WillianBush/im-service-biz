@@ -63,12 +63,12 @@ public class GenUtils {
 		for (ColumnEntity column : columns) {
 			// 列名转换，java属性名及对应方法名
 
-			// user_id -> UserId
-			String columnName = columnToJava(column.getColumnName());
-			// userId
+			// user_id -> user_id
+			String columnName = columnToJava2(column.getColumnName());
+			// user-id
 			column.setFieldName(StringUtils.uncapitalize(columnName));
 			// UserId
-			column.setMethodName(columnName);
+			column.setMethodName(columnToJava(column.getColumnName()));
 			// 列数据类型转换
 			String fieldType = PropertiesUtils.getInstance("template/config").get(column.getDataType());
 			column.setFieldType(fieldType);
@@ -130,6 +130,10 @@ public class GenUtils {
 	 */
 	public static String columnToJava(String columnName) {
 		return WordUtils.capitalizeFully(columnName, new char[] { '_' }).replace("_", "");
+	}
+
+	public static String columnToJava2(String columnName) {
+		return WordUtils.capitalizeFully(columnName, new char[] { '_' });
 	}
 
 	/**
