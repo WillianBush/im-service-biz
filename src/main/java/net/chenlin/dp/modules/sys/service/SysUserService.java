@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.sys.service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserTokenEntity;
 
@@ -64,7 +65,7 @@ public interface SysUserService {
 	 */
 	Set<String> listUserRoles(Long userId);
 
-	List<Map<Long,String>> listUserRoleList(Long userId);
+	List<SysRoleEntity> listUserRoleList(Long userId);
 
 	/**
 	 * 用户修改密码

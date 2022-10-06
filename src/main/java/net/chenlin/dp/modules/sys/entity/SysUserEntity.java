@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -69,6 +70,7 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 创建用户id
 	 */
+	@Column(name = "user_id_create")
 	private Long userIdCreate;
 	
 	/**
@@ -92,7 +94,7 @@ public class SysUserEntity implements Serializable {
 	 */
 	private List<Long> roleIdList;
 
-	private List<Map<Long,String>> roleList;
+	private List<SysRoleEntity> roleList;
 
 
 }

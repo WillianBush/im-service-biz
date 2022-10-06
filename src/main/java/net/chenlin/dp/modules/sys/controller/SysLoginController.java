@@ -14,6 +14,7 @@ import net.chenlin.dp.common.utils.TokenUtils;
 import net.chenlin.dp.modules.sys.dao.SysUserRoleMapper;
 import net.chenlin.dp.modules.sys.entity.SysLoginEntity;
 import net.chenlin.dp.modules.sys.entity.SysLoginResp;
+import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysMenuService;
 import net.chenlin.dp.modules.sys.service.SysRoleService;
@@ -66,7 +67,7 @@ public class SysLoginController extends AbstractController {
 			SysLoginResp resp = new SysLoginResp();
 			resp.setSysUserEntity(userEntity);
 			String token = TokenUtils.generateValue(userEntity.getUsername());
-			List<Map<Long,String>>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));
+			List<SysRoleEntity>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));
 			sysUserService.saveOrUpdateToken(userEntity,token);
 			userEntity.setRoleList(roleSigns);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);

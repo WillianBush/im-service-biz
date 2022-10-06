@@ -5,8 +5,8 @@
 	
 	<select id="list" resultType="net.chenlin.dp.modules.sys.entity.SysRoleEntity">
 		SELECT
-			role_id,
-			role_name
+			role_id roleId,
+			role_name roleName
 		FROM
 			sys_role
 		ORDER BY
@@ -15,8 +15,8 @@
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.sys.entity.SysRoleEntity">
 		SELECT
-			r.role_id,
-			r.org_id,
+			r.role_id roleId,
+			r.org_id orgId,
 			(
 				SELECT 
 					name 
@@ -25,10 +25,10 @@
 				WHERE 
 					o.org_id = r.org_id
 			) AS orgName,
-			r.role_name,
-			r.role_sign,
+			r.role_name roleName,
+			r.role_sign roleSign,
 			r.remark,
-			r.gmt_create
+			r.gmt_create gmtCreate
 		FROM
 			sys_role r
 		<where>
@@ -64,8 +64,8 @@
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.sys.entity.SysRoleEntity">
 		SELECT
-			r.role_id,
-			r.org_id,
+			r.role_id roleId,
+			r.org_id orgId,
 			(
 				SELECT 
 					name 
@@ -74,8 +74,8 @@
 				WHERE 
 					o.org_id = r.org_id
 			) AS orgName,
-			r.role_name,
-			r.role_sign,
+			r.role_name roleName,
+			r.role_sign roleSIgn,
 			r.remark
 		FROM
 			sys_role r
@@ -109,7 +109,7 @@
 	
 	<select id="listUserRoles" parameterType="long" resultType="string">
 		SELECT DISTINCT
-			r.role_sign
+			r.role_sign roleSign
 		FROM
 			sys_user_role ur
 		LEFT JOIN sys_role r ON ur.role_id = r.role_id
@@ -121,12 +121,12 @@
 
 	<select id="listUserRoleList" parameterType="long" resultType="java.util.List">
 		SELECT DISTINCT
-			r.role_id,r.role_sign
+			r.role_id roleId ,r.role_sign roleSign
 		FROM
 			sys_user_role ur
 				LEFT JOIN sys_role r ON ur.role_id = r.role_id
 				LEFT JOIN sys_user u ON ur.user_id = u.user_id
 		WHERE
-			u.user_id = #{role}
+			u.user_id = #{userId}
 	</select>
 </mapper>

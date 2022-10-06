@@ -13,6 +13,7 @@ import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.modules.sys.dao.*;
+import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserTokenEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
@@ -169,7 +170,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Override
-	public List<Map<Long, String>> listUserRoleList(Long userId) {
+	public List<SysRoleEntity> listUserRoleList(Long userId) {
 		return sysRoleMapper.listUserRoleList(userId);
 	}
 
