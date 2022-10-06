@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.sys.dao;
 
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,6 @@ public interface SysRoleMapper extends BaseMapper<SysRoleEntity> {
 	 */
 	List<String> listUserRoles(Long userId);
 
-	List<SysRoleEntity> listUserRoleList(Long userId);
+	List<SysRoleEntity> listUserRoleList(@Param("userId") Long userId);
 	
 }

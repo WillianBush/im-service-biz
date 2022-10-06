@@ -119,8 +119,8 @@
 	</select>
 
 
-	<select id="listUserRoleList" parameterType="long" resultType="java.util.List">
-		SELECT DISTINCT
+	<select id="listUserRoleList" parameterType="java.lang.Long" resultType="java.util.List">
+		SELECT
 			r.role_id roleId ,r.role_sign roleSign
 		FROM
 			sys_user_role ur
