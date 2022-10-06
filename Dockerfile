@@ -4,17 +4,17 @@ MAINTAINER zhongxin@gmail.com
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN mkdir -p /web-domain
-RUN mkdir -p /web-domain/upload
-RUN mkdir -p /web-domain/logs
+RUN mkdir -p /springboot-mybatis
+RUN mkdir -p /springboot-mybatis/upload
+RUN mkdir -p /springboot-mybatis/logs
 
-WORKDIR /web-domain
+WORKDIR /springboot-mybatis
 
-EXPOSE 9000
+EXPOSE 8998
 
 ADD web-domain.jar ./
 
 
-CMD java -Xms2048m -Xmx6144m -Djava.security.egd=file:/dev/./urandom -jar web-domain.jar
+CMD java -Xms1024m -Xmx2048m -Djava.security.egd=file:/dev/./urandom -jar web-domain.jar
 
 
