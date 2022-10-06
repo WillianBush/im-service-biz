@@ -1,8 +1,6 @@
 package net.chenlin.dp.modules.sys.controller;
 
-import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import net.chenlin.dp.common.utils.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,8 +35,7 @@ public class SysKaptchaController {
         String text = producer.createText();
         //生成图片验证码
         BufferedImage image = producer.createImage(text);
-        //保存到shiro session
-        ShiroUtils.setSessionAttribute(Constants.KAPTCHA_SESSION_KEY, text);
+        // TODO 保存到 redis 和 用户名 一起
 
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(image, "jpg", out);

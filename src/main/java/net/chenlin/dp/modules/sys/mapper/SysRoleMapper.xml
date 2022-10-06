@@ -118,4 +118,15 @@
 			u.user_id = #{role}
 	</select>
 
+
+	<select id="listUserRoleList" parameterType="long" resultType="java.util.List">
+		SELECT DISTINCT
+			r.role_id,r.role_sign
+		FROM
+			sys_user_role ur
+				LEFT JOIN sys_role r ON ur.role_id = r.role_id
+				LEFT JOIN sys_user u ON ur.user_id = u.user_id
+		WHERE
+			u.user_id = #{role}
+	</select>
 </mapper>

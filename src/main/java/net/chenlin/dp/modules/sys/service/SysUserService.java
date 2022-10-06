@@ -64,6 +64,8 @@ public interface SysUserService {
 	 */
 	Set<String> listUserRoles(Long userId);
 
+	List<Map<Long,String>> listUserRoleList(Long userId);
+
 	/**
 	 * 用户修改密码
 	 * @param user
@@ -108,10 +110,10 @@ public interface SysUserService {
 
 	/**
 	 * 保存用户token
-	 * @param userId
+	 * @param sysUser
 	 * @return
 	 */
-	int saveOrUpdateToken(Long userId, String token);
+	int saveOrUpdateToken(SysUserEntity sysUser, String token);
 
 	/**
 	 * 根据token查询
@@ -133,5 +135,6 @@ public interface SysUserService {
 	 * @return
 	 */
 	SysUserEntity getUserByIdForToken(Long userId);
-	
+
+    SysUserEntity login(String username, String password);
 }

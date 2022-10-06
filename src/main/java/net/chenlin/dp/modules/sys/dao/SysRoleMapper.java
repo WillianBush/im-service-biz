@@ -4,6 +4,7 @@ import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 系统角色
@@ -18,5 +19,7 @@ public interface SysRoleMapper extends BaseMapper<SysRoleEntity> {
 	 * @return
 	 */
 	List<String> listUserRoles(Long userId);
+
+	List<Map<Long, String>> listUserRoleList(Long userId);
 	
 }

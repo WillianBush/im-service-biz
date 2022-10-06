@@ -1,5 +1,7 @@
 package net.chenlin.dp.common.exception;
 
+import net.chenlin.dp.common.constant.RestApiConstant;
+
 /**
  * 自定义异常
  * @author wang<fangyuan.co@outlook.com>
@@ -10,11 +12,17 @@ public class GoLoginException extends RuntimeException {
 
     private String msg;
 
-    private int code = 500;
+    private int code = 1001;
 
     public GoLoginException(String msg) {
 		super(msg);
 		this.msg = msg;
+	}
+
+	public GoLoginException(RestApiConstant.TokenErrorEnum tokenErrorEnum) {
+		super(tokenErrorEnum.getMsg());
+		this.msg = tokenErrorEnum.getMsg();
+		this.code = tokenErrorEnum.getCode();
 	}
 
 	public GoLoginException(String msg, Throwable e) {

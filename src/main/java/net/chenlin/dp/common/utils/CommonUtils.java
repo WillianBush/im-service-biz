@@ -3,17 +3,7 @@ package net.chenlin.dp.common.utils;
 import net.chenlin.dp.common.constant.MsgConstant;
 import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.R;
-import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.apache.commons.lang.StringUtils;
-import org.beetl.core.Configuration;
-import org.beetl.core.GroupTemplate;
-import org.beetl.core.Template;
-import org.beetl.core.resource.ClasspathResourceLoader;
-import org.beetl.core.resource.FileResourceLoader;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
 
 /**
  * 通用工具类
@@ -21,39 +11,6 @@ import java.util.Map;
  */
 public class CommonUtils {
 
-	/**
-	 * 根据模板生成文件内容
-	 * @param templateClassPath 类路径模板
-	 * @param bindAttrs 绑定变量表
-	 * @return 生成结果内容
-	 * @throws IOException
-	 */
-	public static String generate(String templateClassPath, Map<String, Object> bindAttrs) throws IOException {
-		ClasspathResourceLoader classpathResourceLoader = new ClasspathResourceLoader(getPath(templateClassPath));
-		Configuration cfg = Configuration.defaultConfiguration();
-		GroupTemplate groupTemplate = new GroupTemplate(classpathResourceLoader, cfg);
-		Template template = groupTemplate.getTemplate(getFile(templateClassPath));
-		template.fastBinding(bindAttrs);
-		return template.render();
-	}
-
-	/**
-	 * 生成代码到本地
-	 * @param templateFilePath 模板绝对路径
-	 * @param outputFilePath 输入文件绝对路径
-	 * @param bindAttrs 绑定变量表
-	 * @throws IOException
-	 */
-	public static void generate(String templateFilePath, String outputFilePath, Map<String, Object> bindAttrs) throws IOException {
-		FileResourceLoader fileResourceLoader = new FileResourceLoader(getPath(templateFilePath));
-		Configuration cfg = Configuration.defaultConfiguration();
-		GroupTemplate groupTemplate = new GroupTemplate(fileResourceLoader, cfg);
-		Template template = groupTemplate.getTemplate(getFile(templateFilePath));
-		template.fastBinding(bindAttrs);
-		File outputFile = new File(outputFilePath);
-		FileWriterWithEncoding writer = new FileWriterWithEncoding(outputFile, "utf-8");
-		template.renderTo(writer);
-	}
 
 	/**
 	 * 根据文件绝对路径获取目录

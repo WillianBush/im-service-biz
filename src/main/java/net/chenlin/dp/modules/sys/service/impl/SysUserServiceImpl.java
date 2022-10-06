@@ -1,10 +1,15 @@
 package net.chenlin.dp.modules.sys.service.impl;
 
+import com.alibaba.fastjson2.JSONObject;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.support.properties.JwtProperties;
+import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.modules.sys.dao.*;
@@ -22,26 +27,23 @@ import java.util.*;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Service("sysUserService")
+@AllArgsConstructor
+@Slf4j
 public class SysUserServiceImpl implements SysUserService {
 
-	@Autowired
 	private SysUserMapper sysUserMapper;
 
-	@Autowired
 	private SysMenuMapper sysMenuMapper;
 
-	@Autowired
 	private SysRoleMapper sysRoleMapper;
 
-	@Autowired
 	private SysUserRoleMapper sysUserRoleMapper;
 
-	@Autowired
 	private SysUserTokenMapper sysUserTokenMapper;
 
-	@Autowired
 	private JwtProperties jwtProperties;
 
+	private RedisCacheManager redisCacheManager;
 	/**
 	 * 分页查询用户列表
 	 * @param params
@@ -166,6 +168,11 @@ public class SysUserServiceImpl implements SysUserService {
 		return rolesSet;
 	}
 
+	@Override
+	public List<Map<Long, String>> listUserRoleList(Long userId) {
+		return sysRoleMapper.listUserRoleList(userId);
+	}
+
 	/**
 	 * 用户修改密码
 	 * @param user
@@ -232,15 +239,16 @@ public class SysUserServiceImpl implements SysUserService {
 
 	/**
 	 * 保存用户token
-	 * @param userId
+	 * @param sysUser
+	 * @param token
 	 * @return
 	 */
 	@Override
-	public int saveOrUpdateToken(Long userId, String token) {
+	public int saveOrUpdateToken(SysUserEntity sysUser, String token) {
 		Date now = new Date();
 		Date expire = new Date(now.getTime() + jwtProperties.getExpiration() * 1000);
 		SysUserTokenEntity sysUserTokenEntity = new SysUserTokenEntity();
-		sysUserTokenEntity.setUserId(userId);
+		sysUserTokenEntity.setUserId(sysUser.getUserId());
 		sysUserTokenEntity.setGmtModified(now);
 		sysUserTokenEntity.setGmtExpire(expire);
 		sysUserTokenEntity.setToken(token);
@@ -248,6 +256,7 @@ public class SysUserServiceImpl implements SysUserService {
 		if (count == 0) {
 			return sysUserTokenMapper.save(sysUserTokenEntity);
 		}
+		redisCacheManager.set(RedisCacheKeys.LOGIN_REDIS_CACHE +token, JSONObject.toJSONString(sysUser));
 		return count;
 	}
 
@@ -281,4 +290,9 @@ public class SysUserServiceImpl implements SysUserService {
 		return sysUserMapper.getObjectById(userId);
 	}
 
+	@Override
+	public SysUserEntity login(String username, String password) {
+		log.info("login, username:{};password:{}",username,password);
+		return sysUserMapper.getByUserNameAndPassword(username,password);
+	}
 }

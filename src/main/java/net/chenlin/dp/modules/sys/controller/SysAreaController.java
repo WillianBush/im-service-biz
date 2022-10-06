@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.sys.entity.SysAreaEntity;
@@ -19,9 +20,12 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/sys/area")
+@AllArgsConstructor
 public class SysAreaController extends AbstractController {
 
-	@Autowired
+
+
+
 	private SysAreaService sysAreaService;
 	
 	/**

@@ -3,7 +3,7 @@ package net.chenlin.dp.common.aspect;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.common.utils.JSONUtils;
-import net.chenlin.dp.common.utils.ShiroUtils;
+import net.chenlin.dp.common.utils.UserUtil;
 import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.dao.SysLogMapper;
 import net.chenlin.dp.modules.sys.entity.SysLogEntity;
@@ -15,7 +15,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 
 
@@ -27,8 +29,11 @@ import java.lang.reflect.Method;
 @Component
 public class SysLogAspect {
 	
-	@Autowired
+	@Resource
 	private SysLogMapper sysLogMapper;
+
+	@Resource
+	private UserUtil userUtil;
 	
 	@Pointcut("@annotation(net.chenlin.dp.common.annotation.SysLog)")
 	public void logPointCut() { 
@@ -71,7 +76,7 @@ public class SysLogAspect {
 		//设置IP地址
 		sysLog.setIp(WebUtils.getIpAddr());
 		//用户名
-		SysUserEntity currUser = ShiroUtils.getUserEntity();
+		SysUserEntity currUser = userUtil.getUserEntity();
 		if(CommonUtils.isNullOrEmpty(currUser)) {
 			if(CommonUtils.isNullOrEmpty(sysLog.getParams())) {
 				sysLog.setUserId(-1L);
@@ -81,8 +86,8 @@ public class SysLogAspect {
 				sysLog.setUsername("获取用户信息为空");
 			}
 		} else {
-			sysLog.setUserId(ShiroUtils.getUserId());
-			sysLog.setUsername(ShiroUtils.getUserEntity().getUsername());
+			sysLog.setUserId(-1L);
+			sysLog.setUsername("未知用户");
 		}
 		sysLog.setTime(time);
 		//保存系统日志

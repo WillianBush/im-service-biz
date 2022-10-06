@@ -1,9 +1,6 @@
 package net.chenlin.dp.common.exception;
 
 import net.chenlin.dp.common.entity.R;
-import org.apache.shiro.authz.AuthorizationException;
-import org.apache.shiro.authz.UnauthorizedException;
-import org.apache.shiro.session.UnknownSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
@@ -33,10 +30,10 @@ public class RRExceptionHandler {
 	/**
 	 * 自定义异常
 	 */
-	@ExceptionHandler({GoLoginException.class, UnknownSessionException.class})
-	public R handleGoLoginException(Exception e){
+	@ExceptionHandler({GoLoginException.class})
+	public R handleGoLoginException(GoLoginException e){
 		R r = new R();
-		r.put("code", 500);
+		r.put("code", e.getCode());
 		r.put("msg", e.getMessage());
 		return r;
 	}
@@ -50,17 +47,6 @@ public class RRExceptionHandler {
 	public R handleDuplicateKeyException(DuplicateKeyException e){
 		logger.error(e.getMessage(), e);
 		return R.error("数据库中已存在该记录");
-	}
-
-	/**
-	 * 无权限异常
-	 * @param e
-	 * @return
-	 */
-	@ExceptionHandler({UnauthorizedException.class, AuthorizationException.class})
-	public R handleAuthorizationException(AuthorizationException e){
-		logger.error(e.getMessage(), e);
-		return R.error("没有权限，请联系管理员授权");
 	}
 
 	/**

@@ -26,6 +26,7 @@
 		WHERE
 			user_id = #{value}
 	</select>
+
 	
 	<insert id="save">
 		INSERT INTO sys_user_token (

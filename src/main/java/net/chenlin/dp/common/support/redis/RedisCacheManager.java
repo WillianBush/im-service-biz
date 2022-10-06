@@ -1,6 +1,7 @@
 package net.chenlin.dp.common.support.redis;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  * 操作有序set：redisTemplate.opsForZSet();
  * @author wang<fangyuan.co@outlook.com>
  */
-@Component
+@Component("redisCacheManager")
 public class RedisCacheManager {
 
     private final RedisTemplate<String, Object> redisTemplate;
@@ -51,6 +52,47 @@ public class RedisCacheManager {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    /**
+     * 实体类需要继承 Serializable
+     *
+     * @param key
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    public <T> List<T> getJsonListFromJsonString(String key, Class<T> tClass) {
+        Object jsonStr = get(key);
+        if (!ObjectUtils.isEmpty(jsonStr)) return null;
+        return JSONArray.parse(jsonStr.toString()).toList(tClass);
+    }
+
+    public <T> T getJsonObjectFromJsonString(String key, Class<T> tClass) {
+        Object jsonStr = get(key);
+        if (ObjectUtils.isEmpty(jsonStr)) return null;
+        return JSONObject.parseObject(jsonStr.toString(), tClass);
+    }
+
+    public Boolean easyLock(String key, DoAfterLockVoid doAfterLockVoid) {
+        Boolean success = setIfAbsent(key, "1");
+        if (success != null && success) {
+            doAfterLockVoid.afterLock();
+            del(key);
+            return true;
+        }
+        return false;
+    }
+
+    public <T> T easyLockIfExistReturn(String key,DoAfterLock2<T> doAfterLock){
+        Boolean success = setIfAbsent(key,"1");
+        if (success != null && success) {
+            T t = doAfterLock.afterLock();
+            del(key);
+            return t;
+        }
+        return null;
     }
 
     /**
@@ -697,35 +739,7 @@ public class RedisCacheManager {
     }
 
 
-    /**
-     * 实体类需要继承 Serializable
-     *
-     * @param key
-     * @param tClass
-     * @param <T>
-     * @return
-     */
-    public <T> List<T> getJsonListFromJsonString(String key, Class<T> tClass) {
-        Object jsonStr = get(key);
-        if (!ObjectUtils.isEmpty(jsonStr)) return null;
-        return JSONObject.parseArray(jsonStr.toString(), tClass);
-    }
 
-    public <T> T getJsonObjectFromJsonString(String key, Class<T> tClass) {
-        Object jsonStr = get(key);
-        if (ObjectUtils.isEmpty(jsonStr)) return null;
-        return JSONObject.parseObject(jsonStr.toString(), tClass);
-    }
-
-    public Boolean easyLock(String key, DoAfterLockVoid doAfterLockVoid) {
-        Boolean success = setIfAbsent(key, "1");
-        if (success != null && success) {
-            doAfterLockVoid.afterLock();
-            del(key);
-            return true;
-        }
-        return false;
-    }
 
     public interface DoAfterLockVoid {
         void afterLock();
@@ -737,14 +751,6 @@ public class RedisCacheManager {
     public Boolean setIfAbsent(String key,String value) {
         return redisTemplate.opsForValue().setIfAbsent(key,value);
     }
-    public <T> T easyLockIfExistReturn(String key,DoAfterLock2<T> doAfterLock){
-        Boolean success = setIfAbsent(key,"1");
-        if (success != null && success) {
-            T t = doAfterLock.afterLock();
-            del(key);
-            return t;
-        }
-        return null;
-    }
+
 
 }

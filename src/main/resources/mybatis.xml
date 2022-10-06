@@ -62,7 +62,8 @@
     </plugins>
 
     <mappers>
-        <package name="net.chenlin.dp.modules.*.dao"/>
+        <package name="net.chenlin.dp.modules.sys.*.dao"/>
+        <package name="net.chenlin.dp.modules.biz.*.dao"/>
     </mappers>
     
 </configuration>

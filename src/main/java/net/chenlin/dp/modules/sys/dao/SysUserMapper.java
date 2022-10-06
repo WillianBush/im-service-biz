@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.sys.dao;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public interface SysUserMapper extends BaseMapper<SysUserEntity> {
 	 */
 	SysUserEntity getByUserName(String username);
 
+
+	SysUserEntity getByUserNameAndPassword(@Param("username") String username,@Param("password")  String password);
 	/**
 	 * 查询用户所有菜单id
 	 * @param userId

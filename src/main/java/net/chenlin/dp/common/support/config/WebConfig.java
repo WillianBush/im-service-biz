@@ -29,7 +29,7 @@ import java.util.Properties;
  */
 @DependsOn("springContextUtils")
 @Configuration
-public class WebConfig implements WebMvcConfigurer, ErrorPageRegistrar {
+public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     GlobalProperties globalProperties;
@@ -40,20 +40,8 @@ public class WebConfig implements WebMvcConfigurer, ErrorPageRegistrar {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        if (StringUtils.isBlank(globalProperties.getUploadLocation())) {
-            throw new RuntimeException("文件上传路径为空，请先在application.yml中配置{global.upload-location}路径！");
-        }
-        if (!globalProperties.getUploadLocation().endsWith("/")) {
-            throw new RuntimeException("文件上传路径必须以 / 结束！");
-        }
-        File uploadDest = new File(globalProperties.getUploadLocation());
-        if (!uploadDest.exists()) {
-            throw new RuntimeException("配置的文件上传路径不存在，请配置已存在的路径！");
-        }
-        registry.addResourceHandler(globalProperties.getRegisterUploadMapping())
-                .addResourceLocations(globalProperties.getRegisterUploadLocation());
-        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("swagger-ui.html");
+//        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**
@@ -63,22 +51,7 @@ public class WebConfig implements WebMvcConfigurer, ErrorPageRegistrar {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册rest拦截器
-        registry.addInterceptor(new RestApiInterceptor()).addPathPatterns("/rest/**");
-    }
-
-    /**
-     * shiroFilter注册
-     * @return
-     */
-    @Bean
-    public FilterRegistrationBean shiroFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new DelegatingFilterProxy("shiroFilter"));
-        //该值缺省为false，表示生命周期由SpringApplicationContext管理，设置为true则表示由ServletContainer管理
-        registration.addInitParameter("targetFilterLifecycle", "true");
-        registration.setOrder(Integer.MAX_VALUE - 1);
-        registration.addUrlPatterns("/*");
-        return registration;
+        registry.addInterceptor(new RestApiInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","/health-check");
     }
 
     /**
@@ -95,16 +68,6 @@ public class WebConfig implements WebMvcConfigurer, ErrorPageRegistrar {
         return registration;
     }
 
-    /**
-     * 错误页面
-     * @param registry
-     */
-    @Override
-    public void registerErrorPages(ErrorPageRegistry registry) {
-        ErrorPage notFound = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404");
-        ErrorPage sysError = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error/500");
-        registry.addErrorPages(notFound, sysError);
-    }
 
     /**
      * 验证码生成相关

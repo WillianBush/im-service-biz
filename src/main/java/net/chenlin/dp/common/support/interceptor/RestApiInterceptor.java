@@ -1,11 +1,13 @@
 package net.chenlin.dp.common.support.interceptor;
 
-import io.jsonwebtoken.JwtException;
 import net.chenlin.dp.common.annotation.RestAnon;
+import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.constant.RestApiConstant;
-import net.chenlin.dp.common.utils.*;
+import net.chenlin.dp.common.support.redis.RedisCacheManager;
+import net.chenlin.dp.common.utils.JSONUtils;
+import net.chenlin.dp.common.utils.SpringContextUtils;
+import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
-import net.chenlin.dp.modules.sys.entity.SysUserTokenEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -29,7 +31,8 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter {
 
     private final SysUserService userService = (SysUserService) SpringContextUtils.getBean("sysUserService");
 
-    private final JwtUtils jwtUtils = SpringContextUtils.getBean("jwtUtils", JwtUtils.class);
+    private final RedisCacheManager redisCacheManager = (RedisCacheManager) SpringContextUtils.getBean("redisCacheManager");
+
 
     /**
      * 拦截
@@ -73,42 +76,15 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
         try {
-            boolean flag = jwtUtils.isExpred(token);
-            if (flag) {
+            SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
+            if (sysUser == null ) {
                 WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_EXPIRED.getResp()));
                 return false;
             }
-        } catch (JwtException e) {
+        } catch (Exception e) {
             log.info("token解析异常：{}", token);
             return false;
         }
-
-        // token校验
-        SysUserTokenEntity sysUserTokenEntity = userService.getUserTokenByToken(jwtUtils.getMd5Key(token));
-        if (sysUserTokenEntity == null) {
-            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_INVALID.getResp()));
-            return false;
-        }
-
-        // token中的userId和数据库中userId是否一致
-        if (sysUserTokenEntity.getUserId() != Long.parseLong(jwtUtils.getUserId(token))) {
-            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_INVALID.getResp()));
-            return false;
-        }
-
-        // token过期
-        if (TokenUtils.isExpired(sysUserTokenEntity.getGmtExpire())) {
-            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_EXPIRED.getResp()));
-            return false;
-        }
-
-        // 用户校验
-        SysUserEntity sysUserEntity = userService.getUserByIdForToken(sysUserTokenEntity.getUserId());
-        if (sysUserEntity.getStatus() == 0) {
-            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.USER_DISABLE.getResp()));
-            return false;
-        }
-
         return true;
     }
 

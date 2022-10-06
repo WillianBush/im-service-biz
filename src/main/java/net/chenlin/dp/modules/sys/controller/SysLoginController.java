@@ -1,107 +1,105 @@
 package net.chenlin.dp.modules.sys.controller;
 
-import com.google.code.kaptcha.Constants;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
+import net.chenlin.dp.common.constant.RedisCacheKeys;
+import net.chenlin.dp.common.constant.RestApiConstant;
+import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
+import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.MD5Utils;
-import net.chenlin.dp.common.utils.ShiroUtils;
+import net.chenlin.dp.common.utils.TokenUtils;
+import net.chenlin.dp.modules.sys.dao.SysUserRoleMapper;
+import net.chenlin.dp.modules.sys.entity.SysLoginEntity;
+import net.chenlin.dp.modules.sys.entity.SysLoginResp;
+import net.chenlin.dp.modules.sys.entity.SysUserEntity;
+import net.chenlin.dp.modules.sys.service.SysMenuService;
+import net.chenlin.dp.modules.sys.service.SysRoleService;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
  * 用户controller
  * @author wang<fangyuan.co@outlook.com>
  */
-@Controller
+@RestController
+@Slf4j
+@AllArgsConstructor
 public class SysLoginController extends AbstractController {
 
-	@Autowired
 	private SysUserService sysUserService;
 
-	@Autowired
-	private GlobalProperties globalProperties;
+	SysUserRoleMapper sysUserRoleMapper;
 
-	/**
-	 * 跳转登录页面
-	 * @return
-	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String toLogin() {
-		if (ShiroUtils.isLogin() || ShiroUtils.getUserEntity() != null) {
-			return redirect("/");
-		}
-		return html("/login");
-	}
-	
 	/**
 	 * 登录
 	 */
 	@SysLog("登录")
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model) {
-		String username = getParam("username").trim();
-		String password = getParam("password").trim();
+	@PostMapping(value = "/login")
+	public R login(@RequestBody SysLoginEntity user) {
 		try {
 			// 开启验证码
-			if (globalProperties.isKaptchaEnable()) {
-				String code = getParam("code").trim();
-				if (StringUtils.isBlank(code)) {
-					model.addAttribute("errorMsg", "验证码不能为空");
-					return html("/login");
-				}
-				String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
-				if (!code.equalsIgnoreCase(kaptcha)) {
-					model.addAttribute("errorMsg", "验证码错误");
-					return html("/login");
-				}
-			}
 			// 用户名验证
-			if (StringUtils.isBlank(username)) {
-				model.addAttribute("errorMsg", "用户名不能为空");
-				return html("/login");
+			if (StringUtils.isBlank(user.getUsername())) {
+				throw new GoLoginException("用户名不能为空",1001);
 			}
 			// 密码验证
-			if (StringUtils.isBlank(password)) {
-				model.addAttribute("errorMsg", "密码不能为空");
-				return html("/login");
+			if (StringUtils.isBlank(user.getPassword())) {
+				throw  new GoLoginException("密码不能为空",1001);
 			}
-			UsernamePasswordToken token = new UsernamePasswordToken(username, MD5Utils.encrypt(username, password));
-			ShiroUtils.getSubject().login(token);
-			SecurityUtils.getSubject().getSession().setAttribute("sessionFlag", true);
-			return redirect("/");
-		} catch (UnknownAccountException | IncorrectCredentialsException | LockedAccountException e) {
-			model.addAttribute("errorMsg", e.getMessage());
-		} catch (AuthenticationException e) {
-			model.addAttribute("errorMsg", "登录服务异常");
+			String password = MD5Utils.encrypt(user.getUsername(), user.getPassword());
+			SysUserEntity userEntity = sysUserService.login(user.getUsername(),password);
+			if (userEntity == null ) {
+				return R.error(1001,"账号或密码错误");
+			}
+			SysLoginResp resp = new SysLoginResp();
+			resp.setSysUserEntity(userEntity);
+			String token = TokenUtils.generateValue(userEntity.getUsername());
+			List<Map<Long,String>>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));
+			sysUserService.saveOrUpdateToken(userEntity,token);
+			userEntity.setRoleList(roleSigns);
+			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
+			return R.ok(200,"验证成功",resp);
+		} catch (Exception e) {
+			log.error("login, 登录异常 user:{}",user,e);
 		}
-		return html("/login");
+		return  R.error(500,"登录服务异常");
 	}
 
-	/**
-	 * 跳转后台控制台
-	 * @return
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
-		return html("/index");
-	}
 	
 	/**
 	 * 退出
 	 */
 	@SysLog("退出系统")
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout() {
-		ShiroUtils.logout();
-		return html("/login");
+	@PostMapping(value = "/logout")
+	public R logout() {
+		redisCacheManager.del(RedisCacheKeys.LOGIN_REDIS_CACHE + getToken());
+		return  R.ok(200,"成功退出");
+	}
+
+	private String getToken() {
+		// 请求头token
+		String token =  getHttpServletRequest().getHeader(RestApiConstant.AUTH_TOKEN);
+		if (StringUtils.isBlank(token)) {
+			// 请求参数token
+			token =  getHttpServletRequest().getParameter(RestApiConstant.AUTH_TOKEN);
+
+			if (token == null) {
+				token = (String) getHttpServletRequest().getSession().getAttribute(RestApiConstant.AUTH_TOKEN);
+			}
+		}
+		return token;
 	}
 	
 }

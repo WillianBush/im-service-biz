@@ -1,9 +1,17 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.chenlin.dp.common.constant.RedisCacheKeys;
+import net.chenlin.dp.common.constant.RestApiConstant;
 import net.chenlin.dp.common.exception.GoLoginException;
-import net.chenlin.dp.common.utils.ShiroUtils;
+import net.chenlin.dp.common.support.redis.RedisCacheManager;
+import net.chenlin.dp.common.utils.JSONUtils;
+import net.chenlin.dp.common.utils.SpringContextUtils;
 import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
+import net.chenlin.dp.modules.sys.service.SysUserService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,12 +23,11 @@ import javax.servlet.http.HttpSession;
  * Controller公共组件
  * @author wang<fangyuan.co@outlook.com>
  */
+@Slf4j
 public abstract class AbstractController {
 
-	/**
-	 * 日志
-	 */
-	protected Logger LOGGER = LoggerFactory.getLogger(getClass());
+
+	protected final RedisCacheManager redisCacheManager = (RedisCacheManager) SpringContextUtils.getBean("redisCacheManager");
 
 	/**
 	 * 获取参数
@@ -78,7 +85,15 @@ public abstract class AbstractController {
 	 * @return SysUserEntity
 	 */
 	protected SysUserEntity getUser() {
-		return ShiroUtils.getUserEntity();
+		String token = getToken();
+		if (token == null ) {
+			throw new GoLoginException("登录过期",1001);
+		}
+		SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
+		if (sysUser == null ) {
+			throw new GoLoginException("登录过期",1001);
+		}
+		return sysUser;
 	}
 
 	/**
@@ -110,5 +125,15 @@ public abstract class AbstractController {
 	protected String html(String page) {
 		return page.concat(".html");
 	}
-	
+
+
+	private String getToken() {
+		// 请求头token
+		String token =  getHttpServletRequest().getHeader(RestApiConstant.AUTH_TOKEN);
+		if (StringUtils.isBlank(token)) {
+			// 请求参数token
+			return  getHttpServletRequest().getParameter(RestApiConstant.AUTH_TOKEN);
+		}
+		return token;
+	}
 }

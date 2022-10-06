@@ -19,6 +19,8 @@ public interface SysMenuService {
 	 */
 	R listUserMenu(Long userId);
 
+	List<SysMenuEntity> getAllMenuList(Long userId);
+
 	/**
 	 * 查询菜单列表
 	 * @param params

@@ -77,43 +77,6 @@ public class JSONUtils {
         return objectMapper.readValue(jsonStr, Map.class);
     }
 
-    /**
-     * json转map，指定类型
-     * @param jsonStr
-     * @param clazz
-     * @return
-     * @throws Exception
-     */
-    public static <T> Map<String, T> jsonToMap(String jsonStr, Class<T> clazz)
-            throws Exception {
-        Map<String, Map<String, Object>> map = objectMapper.readValue(jsonStr,
-                new TypeReference<Map<String, T>>() {
-                });
-        Map<String, T> result = new HashMap<String, T>();
-        for (Entry<String, Map<String, Object>> entry : map.entrySet()) {
-            result.put(entry.getKey(), mapToBean(entry.getValue(), clazz));
-        }
-        return result;
-    }
-
-    /**
-     * json数组转list，指定类型
-     * @param jsonArrayStr
-     * @param clazz
-     * @return
-     * @throws Exception
-     */
-    public static <T> List<T> jsonToList(String jsonArrayStr, Class<T> clazz)
-            throws Exception {
-        List<Map<String, Object>> list = objectMapper.readValue(jsonArrayStr,
-                new TypeReference<List<T>>() {
-                });
-        List<T> result = new ArrayList<T>();
-        for (Map<String, Object> map : list) {
-            result.add(mapToBean(map, clazz));
-        }
-        return result;
-    }
 
     /**
      * map转化对象

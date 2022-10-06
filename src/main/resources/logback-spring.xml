@@ -3,8 +3,8 @@
     <include resource="org/springframework/boot/logging/logback/base.xml" />
     <logger name="org.springframework.web" level="INFO"/>
     <logger name="org.springboot.sample" level="TRACE" />
-    <springProperty name="logFile" source="log.file" />
-    <springProperty name="maxFileSize" source="log.maxsize" />
+    <property name="logFile" value="logs/im-service-biz.log" />
+    <property name="maxFileSize" value="10MB" />
 
 
     <appender name="adminLog" class="ch.qos.logback.core.rolling.RollingFileAppender">

@@ -50,6 +50,21 @@
 		WHERE
 			username = #{username}
 	</select>
+
+
+	<select id="getByUserNameAndPassword" resultType="net.chenlin.dp.modules.sys.entity.SysUserEntity">
+		SELECT
+			user_id,
+			username,
+			password,
+			email,
+			mobile,
+			status
+		FROM
+			sys_user
+		WHERE
+			username = #{username} and password = #{password}
+	</select>
 	
 	<select id="listAllMenuId" resultType="long">
 		SELECT DISTINCT

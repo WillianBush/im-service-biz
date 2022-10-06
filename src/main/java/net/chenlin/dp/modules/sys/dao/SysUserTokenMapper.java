@@ -23,5 +23,6 @@ public interface SysUserTokenMapper extends BaseMapper<SysUserTokenEntity> {
 	 * @return
 	 */
 	SysUserTokenEntity getByUserId(Long userId);
+
 	
 }
