@@ -1,21 +1,16 @@
 package net.chenlin.dp.modules.biz.employee.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
-import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.dao.EmployeeMapper;
+import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
-import tk.mybatis.mapper.entity.Example;
-import tk.mybatis.mapper.util.Sqls;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * 
