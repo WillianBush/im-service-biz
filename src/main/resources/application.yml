@@ -20,6 +20,8 @@ spring:
   # 环境 sit:集成测试环境|pre:预生产环境|prd:生成环境
   profiles:
     active: local
+  application:
+    name: im-service-biz
   mvc:
     static-path-pattern: /static/**
   # jackson时间格式化
