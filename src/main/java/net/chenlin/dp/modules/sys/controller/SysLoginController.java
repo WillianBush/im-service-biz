@@ -71,6 +71,7 @@ public class SysLoginController extends AbstractController {
 			sysUserService.saveOrUpdateToken(userEntity,token);
 			userEntity.setRoleList(roleSigns);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
+			resp.setToken(token);
 			return R.ok(200,"验证成功",resp);
 		} catch (Exception e) {
 			log.error("login, 登录异常 user:{}",user,e);
