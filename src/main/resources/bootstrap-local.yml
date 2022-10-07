@@ -5,8 +5,8 @@ spring:
         server-addr: nacos.t6prn1.xyz:8849
         file-extension: yaml
         group: DEFAULT_GROUP
-        namespace: 0b0b1900-e2da-4351-942c-d93bfb68488b
+        namespace: cb0149ee-d34e-4912-a856-0fe08ee3980f
         shared-configs: ${spring.application.name}.${spring.cloud.nacos.config.file-extension},${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
       discovery:
         server-addr: nacos.t6prn1.xyz:8849
-        namespace: 0b0b1900-e2da-4351-942c-d93bfb68488b
+        namespace: cb0149ee-d34e-4912-a856-0fe08ee3980f
