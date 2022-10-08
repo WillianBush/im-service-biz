@@ -32,6 +32,7 @@ public class TokenUtils {
 
     public static String generateValue(String param) {
         try {
+            param = param + System.currentTimeMillis();
             MessageDigest algorithm = MessageDigest.getInstance("MD5");
             algorithm.reset();
             algorithm.update(param.getBytes());

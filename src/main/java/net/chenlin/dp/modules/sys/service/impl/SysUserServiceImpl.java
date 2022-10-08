@@ -258,7 +258,7 @@ public class SysUserServiceImpl implements SysUserService {
 		if (count == 0) {
 			return sysUserTokenMapper.save(sysUserTokenEntity);
 		}
-		redisCacheManager.set(RedisCacheKeys.LOGIN_REDIS_CACHE +token, JSONObject.toJSONString(sysUser));
+		redisCacheManager.set(RedisCacheKeys.LOGIN_REDIS_CACHE +token, JSONObject.toJSONString(sysUser),jwtProperties.getExpiration());
 		return count;
 	}
 
