@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	public Page<MemberEntity> listMember(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<MemberEntity> page = new Page<>(query);
-		memberMapper.listForPage(page, query);
+		page.setRows(memberMapper.listForPage(page, query));
 		return page;
 	}
 

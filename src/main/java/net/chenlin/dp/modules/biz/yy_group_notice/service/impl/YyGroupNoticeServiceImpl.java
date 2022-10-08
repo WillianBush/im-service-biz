@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.yy_group_notice.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +33,8 @@ public class YyGroupNoticeServiceImpl implements YyGroupNoticeService {
 	public Page<YyGroupNoticeEntity> listYyGroupNotice(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<YyGroupNoticeEntity> page = new Page<>(query);
-		yyGroupNoticeMapper.listForPage(page, query);
+		List<YyGroupNoticeEntity> resp = yyGroupNoticeMapper.listForPage(page, query);
+		page.setRows(resp);
 		return page;
 	}
 

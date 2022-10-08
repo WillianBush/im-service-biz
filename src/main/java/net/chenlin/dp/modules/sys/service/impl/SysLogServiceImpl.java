@@ -12,6 +12,7 @@ import net.chenlin.dp.modules.sys.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,7 +34,8 @@ public class SysLogServiceImpl implements SysLogService {
     public Page<SysLogEntity> listLog(Map<String, Object> params) {
         Query query = new Query(params);
         Page<SysLogEntity> page = new Page<>(query);
-        sysLogMapper.listForPage(page, query);
+        List<SysLogEntity> resp= sysLogMapper.listForPage(page, query);
+        page.setRows(resp);
         return page;
     }
 

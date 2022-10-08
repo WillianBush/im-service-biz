@@ -72,8 +72,8 @@ public class SysLoginController extends AbstractController {
 			resp.setSysUserEntity(userEntity);
 			String token = TokenUtils.generateValue(userEntity.getUsername());
 			List<SysRoleEntity>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));
-			sysUserService.saveOrUpdateToken(userEntity,token);
 			userEntity.setRoleList(roleSigns);
+			sysUserService.saveOrUpdateToken(userEntity,token);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
 			resp.setToken(token);
 			return Resp.ok(200,"验证成功",resp);

@@ -65,9 +65,10 @@ public class PaginationStatementHandlerInterceptor implements Interceptor {
         // 屏蔽mybatis原有分页
         metaStatementHandler.setValue("delegate.rowBounds.offset", RowBounds.NO_ROW_OFFSET);
         metaStatementHandler.setValue("delegate.rowBounds.limit", RowBounds.NO_ROW_LIMIT);
-        if (logger.isDebugEnabled()) {
-            logger.debug("分页SQL : " + boundSql.getSql());
-        }
+//        if (logger.isDebugEnabled()) {
+//            logger.debug("分页SQL : " + boundSql.getSql());
+//        }
+        logger.info("SQL : " + boundSql.getSql());
         return invocation.proceed();
     }
 

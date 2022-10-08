@@ -54,7 +54,8 @@ public class SysUserServiceImpl implements SysUserService {
 	public Page<SysUserEntity> listUser(Map<String, Object> params) {
 		Query form = new Query(params);
 		Page<SysUserEntity> page = new Page<>(form);
-		sysUserMapper.listForPage(page, form);
+		List<SysUserEntity> userEntities = sysUserMapper.listForPage(page, form);
+		page.setRows(userEntities);
 		return page;
 	}
 

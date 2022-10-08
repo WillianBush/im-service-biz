@@ -45,7 +45,8 @@ public class SysRoleServiceImpl implements SysRoleService {
 	public Page<SysRoleEntity> listRole(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<SysRoleEntity> page = new Page<>(query);
-		sysRoleMapper.listForPage(page, query);
+		List<SysRoleEntity> resp=sysRoleMapper.listForPage(page, query);
+		page.setRows(resp);
 		return page;
 	}
 

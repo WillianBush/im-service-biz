@@ -33,7 +33,7 @@ public class RoomServiceImpl implements RoomService {
 	public Page<RoomEntity> listRoom(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<RoomEntity> page = new Page<>(query);
-		roomMapper.listForPage(page, query);
+		page.setRows(roomMapper.listForPage(page, query));
 		return page;
 	}
 

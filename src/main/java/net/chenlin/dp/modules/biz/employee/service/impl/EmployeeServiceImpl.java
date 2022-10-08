@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Page<EmployeeEntity> listEmployee(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<EmployeeEntity> page = new Page<>(query);
-		employeeMapper.listForPage(page, query);
+		page.setRows(employeeMapper.listForPage(page, query));
 
 //		EmployeeEntity employee = employeeMapper.selectOne(EmployeeEntity.builder()
 //						.name("admin")

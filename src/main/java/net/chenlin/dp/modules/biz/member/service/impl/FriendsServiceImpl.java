@@ -32,7 +32,7 @@ public class FriendsServiceImpl implements FriendsService {
 	public Page<FriendsEntity> listFriends(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<FriendsEntity> page = new Page<>(query);
-		friendsMapper.listForPage(page, query);
+		page.setRows(friendsMapper.listForPage(page, query));
 		return page;
 	}
 

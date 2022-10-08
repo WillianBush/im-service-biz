@@ -32,7 +32,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 	public Page<RoomMemberEntity> listRoomMember(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<RoomMemberEntity> page = new Page<>(query);
-		roomMemberMapper.listForPage(page, query);
+		page.setRows(roomMemberMapper.listForPage(page, query));
 		return page;
 	}
 

@@ -32,7 +32,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
 	public Page<MemberloginlogEntity> listMemberloginlog(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
-		memberloginlogMapper.listForPage(page, query);
+		page.setRows(memberloginlogMapper.listForPage(page, query));
 		return page;
 	}
 

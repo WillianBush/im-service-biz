@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.yy_ip_list.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +33,8 @@ public class YyIpListServiceImpl implements YyIpListService {
 	public Page<YyIpListEntity> listYyIpList(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<YyIpListEntity> page = new Page<>(query);
-		yyIpListMapper.listForPage(page, query);
+		List<YyIpListEntity> resp=yyIpListMapper.listForPage(page, query);
+		page.setRows(resp);
 		return page;
 	}
 
