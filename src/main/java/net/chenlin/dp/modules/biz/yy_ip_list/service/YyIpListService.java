@@ -1,44 +1,44 @@
-package net.chenlin.dp.modules.biz.notice.service;
+package net.chenlin.dp.modules.biz.yy_ip_list.service;
 
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
-import net.chenlin.dp.modules.biz.notice.entity.NoticeEntity;
+import net.chenlin.dp.modules.biz.yy_ip_list.entity.YyIpListEntity;
 
 /**
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
-public interface NoticeService {
+public interface YyIpListService {
 
     /**
      * 分页查询
      * @param params
      * @return
      */
-	Page<NoticeEntity> listNotice(Map<String, Object> params);
+	Page<YyIpListEntity> listYyIpList(Map<String, Object> params);
 
     /**
      * 新增
-     * @param notice
+     * @param yyIpList
      * @return
      */
-	Resp<NoticeEntity> saveNotice(NoticeEntity notice);
+	Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList);
 
     /**
      * 根据id查询
      * @param id
      * @return
      */
-	Resp<NoticeEntity> getNoticeById(Long id);
+	Resp<YyIpListEntity> getYyIpListById(Long id);
 
     /**
      * 修改
-     * @param notice
+     * @param yyIpList
      * @return
      */
-	Resp<Integer> updateNotice(NoticeEntity notice);
+	Resp<Integer> updateYyIpList(YyIpListEntity yyIpList);
 
     /**
      * 删除
