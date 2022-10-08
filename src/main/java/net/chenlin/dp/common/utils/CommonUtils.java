@@ -3,7 +3,10 @@ package net.chenlin.dp.common.utils;
 import net.chenlin.dp.common.constant.MsgConstant;
 import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import org.apache.commons.lang.StringUtils;
+
+import java.util.List;
 
 /**
  * 通用工具类
@@ -81,6 +84,27 @@ public class CommonUtils {
 		}
 		return R.ok().put(SystemConstant.DATA_ROWS, data);
 	}
+
+	public static  <T> Resp<T>  msgResp(int count) {
+		if(isIntThanZero(count)){
+			return Resp.ok(MsgConstant.MSG_OPERATION_SUCCESS);
+		}
+		return Resp.error(MsgConstant.MSG_OPERATION_FAILED);
+	}
+
+	public static <T> Resp<T> msgResp(T data) {
+		if(isNullOrEmpty(data)){
+			return Resp.error(MsgConstant.MSG_INIT_FORM);
+		}
+		return Resp.ok().ok(data);
+	}
+
+	public static <T> Resp<T> msgResp(List<T> dataRows) {
+		if(isNullOrEmpty(dataRows)){
+			return Resp.error(MsgConstant.MSG_INIT_FORM);
+		}
+		return Resp.ok().ok(dataRows);
+	}
 	
 	/**
 	 * 返回数据
@@ -105,6 +129,18 @@ public class CommonUtils {
 				return R.error(MsgConstant.removeFailed(total.length, count));
 			}else{
 				return R.error(MsgConstant.MSG_OPERATION_FAILED);
+			}
+		}
+	}
+
+	public static Resp msgResp(Object[] total, int count) {
+		if(total.length == count){
+			return Resp.ok(MsgConstant.MSG_OPERATION_SUCCESS);
+		}else{
+			if(isIntThanZero(count)){
+				return Resp.error(MsgConstant.removeFailed(total.length, count));
+			}else{
+				return Resp.error(MsgConstant.MSG_OPERATION_FAILED);
 			}
 		}
 	}

@@ -7,11 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.constant.RestApiConstant;
-import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.exception.GoLoginException;
-import net.chenlin.dp.common.support.properties.GlobalProperties;
-import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.common.utils.TokenUtils;
 import net.chenlin.dp.modules.sys.dao.SysUserRoleMapper;
@@ -19,8 +16,6 @@ import net.chenlin.dp.modules.sys.entity.SysLoginEntity;
 import net.chenlin.dp.modules.sys.entity.SysLoginResp;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
-import net.chenlin.dp.modules.sys.service.SysMenuService;
-import net.chenlin.dp.modules.sys.service.SysRoleService;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 
 /**
