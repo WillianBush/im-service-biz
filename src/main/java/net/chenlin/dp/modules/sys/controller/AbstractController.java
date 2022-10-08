@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.constant.RestApiConstant;
+import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.JSONUtils;
 import net.chenlin.dp.common.utils.SpringContextUtils;
 import net.chenlin.dp.common.utils.WebUtils;
+import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
@@ -106,6 +108,16 @@ public abstract class AbstractController {
 			throw new GoLoginException("请重新登陆");
 		}
 		return user.getUserId();
+	}
+
+	protected boolean isSuperAdmin(){
+		SysUserEntity user = getUser();
+		for ( SysRoleEntity role: user.getRoleList()) {
+			if (role.getRoleId().equals(SystemConstant.SUPER_ADMIN)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

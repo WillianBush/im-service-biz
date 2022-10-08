@@ -1,6 +1,9 @@
 package net.chenlin.dp.modules.sys.entity;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -11,6 +14,7 @@ import java.io.Serializable;
  * @url www.chenlintech.com
  * @date 2017年8月10日 上午10:48:34
  */
+@ApiModel
 public class SysRoleMenuEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -18,16 +22,19 @@ public class SysRoleMenuEntity implements Serializable {
 	/**
 	 * 记录id
 	 */
+	@ApiModelProperty(value = "记录id")
 	private Long id;
 
 	/**
 	 * 角色ID
 	 */
+	@ApiModelProperty(value = "角色ID")
 	private Long roleId;
 
 	/**
 	 * 菜单ID
 	 */
+	@ApiModelProperty(value = "菜单ID")
 	private Long menuId;
 
 	public SysRoleMenuEntity() {

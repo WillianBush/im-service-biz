@@ -1,6 +1,9 @@
 package net.chenlin.dp.modules.sys.entity;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.List;
  * @url www.chenlintech.com
  * @date 2017年8月10日 上午10:48:22
  */
+@ApiModel
 public class SysRoleEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -20,50 +24,61 @@ public class SysRoleEntity implements Serializable {
 	/**
 	 * 角色id
 	 */
+	@ApiModelProperty(value = "角色id")
 	private Long roleId;
 	
 	/**
 	 * 机构id
 	 */
+	@ApiModelProperty(value = "机构id")
 	private Long orgId;
 	
 	/**
 	 * 机构名称
 	 */
+	@ApiModelProperty(value = "机构名称")
 	private String orgName;
 
 	/**
 	 * 角色名称
 	 */
+	@ApiModelProperty(value = "角色名称")
 	private String roleName;
 	
 	/**
 	 * 角色标识
 	 */
+	@ApiModelProperty(value = "角色标识")
 	private String roleSign;
 
 	/**
 	 * 备注
 	 */
+	@ApiModelProperty(value = "备注")
 	private String remark;
 	
 	/**
 	 * 创建者id
 	 */
+	@ApiModelProperty(value = "创建者id")
 	private Long userIdCreate;
-	
+
+	@ApiModelProperty(value = "菜单 id列表")
 	private List<Long> menuIdList;
-	
+
+	@ApiModelProperty(value = "")
 	private List<Long> orgIdList;
 	
 	/**
 	 * 创建时间
 	 */
+	@ApiModelProperty(value = "创建时间")
 	private Timestamp gmtCreate;
 	
 	/**
 	 * 修改时间
 	 */
+	@ApiModelProperty(value = "修改时间")
 	private Timestamp gmtModified;
 
 	public SysRoleEntity() {

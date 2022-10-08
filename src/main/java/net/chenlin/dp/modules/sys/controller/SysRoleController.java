@@ -8,7 +8,9 @@ import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.modules.sys.entity.SysLogEntity;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
+import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,10 +35,10 @@ public class SysRoleController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "角色列表")
 	public Page<SysRoleEntity> list(@RequestBody Map<String, Object> params) {
-		if(getUserId() != SystemConstant.SUPER_ADMIN) {
+		if (!isSuperAdmin()) {
 			params.put("userIdCreate", getUserId());
 		}
 		return sysRoleService.listRole(params);

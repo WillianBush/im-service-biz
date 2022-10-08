@@ -1,5 +1,7 @@
 package net.chenlin.dp.modules.sys.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import net.chenlin.dp.common.utils.CommonUtils;
 
 import java.io.Serializable;
@@ -14,6 +16,7 @@ import java.util.List;
  * @url www.chenlintech.com
  * @date 2017年8月18日 下午1:20:48
  */
+@ApiModel
 public class SysAreaEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,67 +24,82 @@ public class SysAreaEntity implements Serializable {
 	/**
 	 * 区域id
 	 */
+	@ApiModelProperty(value = "区域id")
 	private Long areaId;
 	
 	/**
 	 * 区域代码
 	 */
+	@ApiModelProperty(value = "区域代码")
 	private String areaCode;
 	
 	/**
 	 * 父级代码，省级为0
 	 */
+	@ApiModelProperty(value = "父级代码，省级为0")
 	private String parentCode;
 	
 	/**
 	 * 父级名称
 	 */
+	@ApiModelProperty(value = "父级名称")
 	private String parentName;
 	
 	/**
 	 * 区域名称
 	 */
+	@ApiModelProperty(value = "")
 	private String name;
 	
 	/**
 	 * 层级，1：省级，2：地市，3：区县
 	 */
+	@ApiModelProperty(value = "层级，1：省级，2：地市，3：区县")
 	private Integer layer;
 	
 	/**
 	 * 排序
 	 */
+	@ApiModelProperty(value = "排序")
 	private Integer orderNum;
 	
 	/**
 	 * 状态，1：显示，0：隐藏
 	 */
+	@ApiModelProperty(value = "状态，1：显示，0：隐藏")
 	private Integer status;
 	
 	/**
 	 * 备注
 	 */
+	@ApiModelProperty(value = "备注")
 	private String remark;
 	
 	/**
 	 * 创建时间
 	 */
+	@ApiModelProperty(value = "创建时间")
 	private Timestamp gmtCreate;
 	
 	/**
 	 * 修改时间
 	 */
+	@ApiModelProperty(value = "修改时间")
 	private Timestamp gmtModified;
 	
 	/**
 	 * ztree属性
 	 */
+	@ApiModelProperty(value = "ztree属性")
 	private Boolean open;
-	
+
+	@ApiModelProperty(value = "")
 	private Boolean isParent;
-	
+
+	@ApiModelProperty(value = "")
 	private Integer size;
-	
+
+	@ApiModelProperty(value = "")
 	private List<?> list;
 
 	public SysAreaEntity() {

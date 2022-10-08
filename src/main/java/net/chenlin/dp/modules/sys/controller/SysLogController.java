@@ -33,7 +33,7 @@ public class SysLogController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "日志列表")
 	public Page<SysLogEntity> listLog(@RequestBody Map<String, Object> params) {
 		return sysLogService.listLog(params);

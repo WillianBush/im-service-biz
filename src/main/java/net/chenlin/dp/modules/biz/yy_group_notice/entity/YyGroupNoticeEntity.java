@@ -38,9 +38,9 @@ public class YyGroupNoticeEntity implements Serializable {
 	private String message;
 	
 	@ApiModelProperty(value = "图片")
-	private  picture;
+	private String picture;
 	
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "创建时间")
 	private Date create_time;
 	
 

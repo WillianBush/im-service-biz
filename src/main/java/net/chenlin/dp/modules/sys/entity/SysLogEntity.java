@@ -1,5 +1,8 @@
 package net.chenlin.dp.modules.sys.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -12,53 +15,42 @@ import java.sql.Timestamp;
  * @url www.chenlintech.com
  * @date 2017年8月14日 下午8:05:17
  */
+@ApiModel
 public class SysLogEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * 日志id
-	 */
+
+	@ApiModelProperty(value = "日志id")
 	private Long id;
 	
-	/**
-	 * 操作用户id
-	 */
+
+	@ApiModelProperty(value = "操作用户id")
 	private Long userId;
 	
-	/**
-	 * 操作用户
-	 */
+
+	@ApiModelProperty(value = "操作用户")
 	private String username;
 	
-	/**
-	 * 操作
-	 */
+
+	@ApiModelProperty(value = "操作")
 	private String operation;
 	
-	/**
-	 * 方法
-	 */
+
+	@ApiModelProperty(value = "方法")
 	private String method;
 	
-	/**
-	 * 参数
-	 */
+
+	@ApiModelProperty(value = "参数")
 	private String params;
 	
-	/**
-	 * 耗时
-	 */
+
+	@ApiModelProperty(value = "耗时")
 	private Long time;
-	
-	/**
-	 * 操作ip地址
-	 */
+
+	@ApiModelProperty(value = "操作ip地址")
 	private String ip;
-	
-	/**
-	 * 创建时间
-	 */
+
+	@ApiModelProperty(value = "创建时间")
 	private Timestamp gmtCreate;
 
 	public SysLogEntity() {

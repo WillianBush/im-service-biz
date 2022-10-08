@@ -8,6 +8,7 @@ import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
+import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +32,10 @@ public class SysUserController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "管理员列表")
 	public Page<SysUserEntity> list(@RequestBody Map<String, Object> params) {
-		if(getUserId() != SystemConstant.SUPER_ADMIN) {
+		if (!isSuperAdmin()) {
 			params.put("userIdCreate", getUserId());
 		}
 		return sysUserService.listUser(params);

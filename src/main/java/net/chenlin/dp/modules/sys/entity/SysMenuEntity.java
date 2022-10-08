@@ -1,5 +1,8 @@
 package net.chenlin.dp.modules.sys.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -12,70 +15,48 @@ import java.util.List;
  * @url www.chenlintech.com
  * @date 2017年8月9日 下午11:15:17
  */
+@ApiModel
 public class SysMenuEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 菜单id
-	 */
+	@ApiModelProperty(value = "菜单id")
 	private Long menuId;
-	
-	/**
-	 * 父级id，一级菜单为0
-	 */
+
+	@ApiModelProperty(value = "父级id，一级菜单为0")
 	private Long parentId;
-	
-	/**
-	 * 父级菜单名称
-	 */
+
+	@ApiModelProperty(value = "父级菜单名称")
 	private String parentName;
-	
-	/**
-	 * 菜单名称
-	 */
+
+	@ApiModelProperty(value = "菜单名称")
 	private String name;
-	
-	/**
-	 * 菜单url
-	 */
+
+	@ApiModelProperty(value = "菜单url")
 	private String url;
-	
-	/**
-	 * 授权标识(多个用逗号分隔，如：user:list,user:create)
-	 */
+
+	@ApiModelProperty(value = "授权标识(多个用逗号分隔，如：user:list,user:create)")
 	private String perms;
-	
-	/**
-	 * 类型(0：目录   1：菜单   2：按钮)
-	 */
+
+	@ApiModelProperty(value = "类型(0：目录   1：菜单   2：按钮)")
 	private Integer type;
-	
-	/**
-	 * 菜单图标
-	 */
+
+	@ApiModelProperty(value = "菜单图标")
 	private String icon;
-	
-	/**
-	 * 排序
-	 */
+
+	@ApiModelProperty(value = "排序")
 	private Integer orderNum;
-	
-	/**
-	 * 创建时间
-	 */
+
+	@ApiModelProperty(value = "创建时间")
 	private Timestamp gmtCreate;
-	
-	/**
-	 * 修改时间
-	 */
+
+	@ApiModelProperty(value = "修改时间")
 	private Timestamp gmtModified;
-	
-	/**
-	 * ztree属性
-	 */
+
+	@ApiModelProperty(value = "ztree属性")
 	private Boolean open;
-	
+
+	@ApiModelProperty(value = "")
 	private List<?> list;
 
 	public SysMenuEntity() {
