@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.member.dao.MemberloginlogMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
+		SELECT
+			`id`, 
+			`createDate`, 
+			`modifyDate`, 
+			`ip`, 
+			`mid`, 
+			`mnickName`, 
+			`mtel`
+		FROM
+			memberloginlog
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="createdate != null"> and `createDate` = #{createdate} </if>
+		<if test="modifydate != null"> and `modifyDate` = #{modifydate} </if>
+		<if test="ip != null"> and `ip` = #{ip} </if>
+		<if test="mid != null"> and `mid` = #{mid} </if>
+		<if test="mnickname != null"> and `mnickName` = #{mnickname} </if>
+		<if test="mtel != null"> and `mtel` = #{mtel} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO memberloginlog (
+			`id`, 
+			`createDate`, 
+			`modifyDate`, 
+			`ip`, 
+			`mid`, 
+			`mnickName`, 
+			`mtel`
+		)
+		VALUES (
+			#{id}, 
+			#{createdate}, 
+			#{modifydate}, 
+			#{ip}, 
+			#{mid}, 
+			#{mnickname}, 
+			#{mtel}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
+		SELECT
+			`id`, 
+			`createDate`, 
+			`modifyDate`, 
+			`ip`, 
+			`mid`, 
+			`mnickName`, 
+			`mtel`
+		FROM
+			memberloginlog
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE memberloginlog
+	 	<set>
+			<if test="createdate != null">`createDate` = #{createdate}, </if>
+			<if test="modifydate != null">`modifyDate` = #{modifydate}, </if>
+			<if test="ip != null">`ip` = #{ip}, </if>
+			<if test="mid != null">`mid` = #{mid}, </if>
+			<if test="mnickname != null">`mnickName` = #{mnickname}, </if>
+			<if test="mtel != null">`mtel` = #{mtel}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			memberloginlog
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

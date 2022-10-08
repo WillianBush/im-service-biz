@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.room.dao.RoomMemberMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
+		SELECT
+			`id`, 
+			`room_id`, 
+			`member_id`, 
+			`is_manager`
+		FROM
+			room_member
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="room_id != null"> and `room_id` = #{room_id} </if>
+		<if test="member_id != null"> and `member_id` = #{member_id} </if>
+		<if test="is_manager != null"> and `is_manager` = #{is_manager} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO room_member (
+			`id`, 
+			`room_id`, 
+			`member_id`, 
+			`is_manager`
+		)
+		VALUES (
+			#{id}, 
+			#{room_id}, 
+			#{member_id}, 
+			#{is_manager}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
+		SELECT
+			`id`, 
+			`room_id`, 
+			`member_id`, 
+			`is_manager`
+		FROM
+			room_member
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE room_member
+	 	<set>
+			<if test="room_id != null">`room_id` = #{room_id}, </if>
+			<if test="member_id != null">`member_id` = #{member_id}, </if>
+			<if test="is_manager != null">`is_manager` = #{is_manager}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			room_member
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
