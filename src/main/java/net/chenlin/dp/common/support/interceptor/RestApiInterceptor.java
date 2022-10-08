@@ -65,26 +65,27 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter {
      */
     private boolean checkToken(HttpServletRequest request, HttpServletResponse response) {
         // 登录 或 有效状态校验 请求直接通过
-        String requestPath = request.getServletPath();
-        if (RestApiConstant.AUTH_REQUEST.equals(requestPath) || RestApiConstant.AUTH_CHECK.equals(requestPath) || requestPath.contains("swagger")) {
-            return true;
-        }
-        // 校验请求是否包含验证信息
-        String token = getToken(request);
-        if (StringUtils.isBlank(token)) {
-            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_NOT_FOUND.getResp()));
-            return false;
-        }
-        try {
-            SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
-            if (sysUser == null ) {
-                WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_EXPIRED.getResp()));
-                return false;
-            }
-        } catch (Exception e) {
-            log.info("token解析异常：{}", token);
-        }
-        return false;
+//        String requestPath = request.getServletPath();
+//        if (RestApiConstant.AUTH_REQUEST.equals(requestPath) || RestApiConstant.AUTH_CHECK.equals(requestPath)) {
+//            return true;
+//        }
+//        // 校验请求是否包含验证信息
+//        String token = getToken(request);
+//        if (StringUtils.isBlank(token)) {
+//            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_NOT_FOUND.getResp()));
+//            return false;
+//        }
+//        try {
+//            SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
+//            if (sysUser == null ) {
+//                WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_EXPIRED.getResp()));
+//                return false;
+//            }
+//        } catch (Exception e) {
+//            log.info("token解析异常：{}", token);
+//            return false;
+//        }
+        return true;
     }
 
     /**
