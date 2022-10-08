@@ -1,11 +1,14 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.constant.RestApiConstant;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
@@ -37,6 +40,7 @@ import java.util.Set;
 @RestController
 @Slf4j
 @AllArgsConstructor
+@Api(tags = "用户登录登出")
 public class SysLoginController extends AbstractController {
 
 	private SysUserService sysUserService;
@@ -48,7 +52,8 @@ public class SysLoginController extends AbstractController {
 	 */
 	@SysLog("登录")
 	@PostMapping(value = "/login")
-	public R login(@RequestBody SysLoginEntity user) {
+	@ApiOperation(value = "用户登录")
+	public Resp<SysLoginResp> login(@RequestBody SysLoginEntity user) {
 		try {
 			// 开启验证码
 			// 用户名验证
@@ -62,11 +67,11 @@ public class SysLoginController extends AbstractController {
 			String password = MD5Utils.encrypt(user.getUsername(), user.getPassword());
 			SysUserEntity userEntity = sysUserService.login(user.getUsername(),password);
 			if (userEntity == null ) {
-				return R.error(1001,"账号或密码错误");
+				return Resp.error(1001,"账号或密码错误");
 			}
 
 			if (userEntity.getStatus() == null || userEntity.getStatus().equals(0)){
-				return R.error(1001,"该账号已经禁用");
+				return Resp.error(1001,"该账号已经禁用");
 			}
 
 			SysLoginResp resp = new SysLoginResp();
@@ -78,11 +83,11 @@ public class SysLoginController extends AbstractController {
 			userEntity.setRoleList(roleSigns);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
 			resp.setToken(token);
-			return R.ok(200,"验证成功",resp);
+			return Resp.ok(200,"验证成功",resp);
 		} catch (Exception e) {
 			log.error("login, 登录异常 user:{}",user,e);
 		}
-		return  R.error(500,"登录服务异常");
+		return  Resp.error(500,"登录服务异常");
 	}
 
 	
@@ -91,9 +96,9 @@ public class SysLoginController extends AbstractController {
 	 */
 	@SysLog("退出系统")
 	@PostMapping(value = "/logout")
-	public R logout() {
+	public Resp logout() {
 		redisCacheManager.del(RedisCacheKeys.LOGIN_REDIS_CACHE + getToken());
-		return  R.ok(200,"成功退出");
+		return  Resp.ok(200,"成功退出");
 	}
 
 	private String getToken() {
