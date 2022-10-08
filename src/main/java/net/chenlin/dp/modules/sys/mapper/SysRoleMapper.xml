@@ -121,7 +121,7 @@
 
 	<select id="listUserRoleList" parameterType="java.lang.Long" resultType="net.chenlin.dp.modules.sys.entity.SysRoleEntity">
 		SELECT
-			r.role_id roleId,r.role_sign roleSign
+			r.role_id roleId,r.role_sign roleSign,r.role_name roleName,r.org_id orgId
 		FROM
 			sys_user_role ur
 				LEFT JOIN sys_role r ON ur.role_id = r.role_id

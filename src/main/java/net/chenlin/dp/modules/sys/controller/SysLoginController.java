@@ -64,7 +64,13 @@ public class SysLoginController extends AbstractController {
 			if (userEntity == null ) {
 				return R.error(1001,"账号或密码错误");
 			}
+
+			if (userEntity.getStatus() == null || userEntity.getStatus().equals(0)){
+				return R.error(1001,"该账号已经禁用");
+			}
+
 			SysLoginResp resp = new SysLoginResp();
+			userEntity.setPassword("");
 			resp.setSysUserEntity(userEntity);
 			String token = TokenUtils.generateValue(userEntity.getUsername());
 			List<SysRoleEntity>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));

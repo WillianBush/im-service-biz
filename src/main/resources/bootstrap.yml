@@ -56,3 +56,6 @@ log:
 telegram:
   robotToken: 5509412236:AAEVKk13si4gxudv7KA79JFXtiyuByhaXjk
   groupId: -1001718074576
+
+swagger2:
+  enable: true

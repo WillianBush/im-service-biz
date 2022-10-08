@@ -41,7 +41,7 @@
         <shiro-version>1.9.1</shiro-version>
         <httpclient-version>4.5.13</httpclient-version>
         <beetl-version>1.1.60.RELEASE</beetl-version>
-        <swagger-version>3.0.0</swagger-version>
+        <swagger-version>2.9.2</swagger-version>
         <servlet-version>3.1.0</servlet-version>
         <kaptcha-version>2.3.2</kaptcha-version>
         <jwt-version>0.11.5</jwt-version>

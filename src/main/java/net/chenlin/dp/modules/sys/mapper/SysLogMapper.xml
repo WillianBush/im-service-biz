@@ -6,14 +6,14 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.sys.entity.SysLogEntity">
 		SELECT
 			id,
-			user_id,
+			user_id userId,
 			username,
 			operation,
 			time,
 			method,
 			params,
 			ip,
-			gmt_create
+			gmt_create gmtCreate
 		FROM
 			sys_log
 		<where>

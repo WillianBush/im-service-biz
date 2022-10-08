@@ -14,7 +14,7 @@
 
 	<select id="listOrgChildren" resultType="long">
 		SELECT
-			org_id
+			org_id orgId
 		FROM
 			sys_org
 		WHERE
@@ -23,8 +23,8 @@
 	
 	<select id="list" resultType="net.chenlin.dp.modules.sys.entity.SysOrgEntity">
 		SELECT
-			o.org_id,
-			o.parent_id,
+			o.org_id orgId,
+			o.parent_id parentId,
 			(
 				SELECT
 					p.name
@@ -36,7 +36,7 @@
 			o.code,
 			o.name,
 			o.status,
-			o.order_num
+			o.order_num orderNum
 		FROM
 			sys_org o
 		ORDER BY
@@ -66,8 +66,8 @@
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.sys.entity.SysOrgEntity">
 		SELECT
-			o.org_id,
-			o.parent_id,
+			o.org_id orgId,
+			o.parent_id parentId,
 			(
 				SELECT
 					p.name
@@ -79,7 +79,7 @@
 			o.code,
 			o.name,		
 			o.status,
-			o.order_num
+			o.order_num orderNum
 		FROM
 			sys_org o
 		WHERE

@@ -5,10 +5,10 @@
 	
 	<select id="getByToken" resultType="net.chenlin.dp.modules.sys.entity.SysUserTokenEntity">
 		SELECT
-			user_id,
+			user_id userId,
 			token,
-			gmt_expire,
-			gmt_modified
+			gmt_expire gmtExpire,
+			gmt_modified gmtModified
 		FROM
 			sys_user_token
 		WHERE
@@ -17,10 +17,10 @@
 	
 	<select id="getByUserId" resultType="net.chenlin.dp.modules.sys.entity.SysUserTokenEntity">
 		SELECT
-			user_id,
+			user_id userId,
 			token,
-			gmt_expire,
-			gmt_modified
+			gmt_expire gmtExpire,
+			gmt_modified gmtModified
 		FROM
 			sys_user_token
 		WHERE

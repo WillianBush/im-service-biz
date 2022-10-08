@@ -3,6 +3,20 @@
 
 <mapper namespace="net.chenlin.dp.modules.sys.dao.SysAreaMapper">
 	
+	<resultMap id="SysAreaEntityResultMap" type="net.chenlin.dp.modules.sys.entity.SysAreaEntity">
+		<id column="area_id" property="areaId" />
+		<result  column="area_code" property="areaCode"/>
+		<result  column="parent_code" property="parentCode"/>
+		<result  column="name" property="name"/>
+		<result  column="layer" property="layer"/>
+		<result  column="order_num" property="orderNum"/>
+		<result  column="status" property="status"/>
+		<result  column="remark" property="remark"/>
+		<result  column="gmt_create" property="gmtCreate"/>
+		<result  column="gmt_modified" property="gmtModified"/>
+		<result  column="parentName" property="parentName"/>
+	</resultMap>
+	
 	<select id="countAreaChildren" resultType="int">
 		SELECT
 			COUNT(*)
@@ -19,7 +33,7 @@
 			)
 	</select>
 	
-	<select id="listAreaByParentCode" resultType="net.chenlin.dp.modules.sys.entity.SysAreaEntity">
+	<select id="listAreaByParentCode" resultMap="SysAreaEntityResultMap">
 		SELECT
 			a.area_id,
 			a.area_code,
@@ -76,7 +90,7 @@
 		)
 	</insert>
 	
-	<select id="getObjectById" resultType="net.chenlin.dp.modules.sys.entity.SysAreaEntity">
+	<select id="getObjectById" resultMap="SysAreaEntityResultMap">
 		SELECT
 			a.area_id,
 			a.area_code,

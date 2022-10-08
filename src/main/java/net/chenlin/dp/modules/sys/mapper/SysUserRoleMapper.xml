@@ -46,7 +46,7 @@
 	
 	<select id="listUserRoleId" resultType="long">
 		SELECT
-			role_id
+			role_id roleId
 		FROM
 			sys_user_role
 		WHERE

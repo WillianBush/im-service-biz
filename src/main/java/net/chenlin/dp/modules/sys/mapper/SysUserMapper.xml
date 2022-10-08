@@ -18,7 +18,7 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.sys.entity.SysUserEntity">
 		SELECT
 			u.user_id userId,
-			u.org_id,
+			u.org_id orgId,
 			(
 				SELECT 
 					name 
@@ -32,7 +32,7 @@
 			u.mobile,
 			u.status,
 			u.remark,
-			u.gmt_create
+			u.gmt_create gmtCreate
 		FROM
 			sys_user u
 		<where>
@@ -71,7 +71,8 @@
 			password,
 			email,
 			mobile,
-			status
+			status,
+			org_id orgId
 		FROM
 			sys_user
 		WHERE
@@ -80,7 +81,7 @@
 	
 	<select id="listAllMenuId" resultType="long">
 		SELECT DISTINCT
-			rm.menu_id
+			rm.menu_id menuId
 		FROM
 			sys_user_role ur
 		LEFT JOIN sys_role_menu rm ON ur.role_id = rm.role_id
@@ -90,7 +91,7 @@
 	
 	<select id="listAllOrgId" resultType="long">
 		SELECT DISTINCT
-			ro.org_id
+			ro.org_id orgId
 		FROM
 			sys_role_org ro
 		LEFT JOIN sys_user_role ur ON ro.role_id = ur.role_id
@@ -123,8 +124,8 @@
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.sys.entity.SysUserEntity">
 		SELECT
-			u.user_id,
-			u.org_id,
+			u.user_id userId,
+			u.org_id orgId,
 			(
 				SELECT 
 					name 

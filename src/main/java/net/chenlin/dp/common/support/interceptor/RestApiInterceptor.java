@@ -83,9 +83,8 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter {
             }
         } catch (Exception e) {
             log.info("token解析异常：{}", token);
-            return false;
         }
-        return true;
+        return false;
     }
 
     /**

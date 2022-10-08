@@ -19,7 +19,7 @@
 	
 	<select id="listMenuId" resultType="long">
 		SELECT
-			menu_id
+			menu_id menuId
 		FROM
 			sys_role_menu
 		WHERE

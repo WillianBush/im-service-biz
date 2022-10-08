@@ -19,7 +19,7 @@
 	
 	<select id="listOrgId" resultType="long">
 		SELECT
-			org_id
+			org_id orgId
 		FROM
 			sys_role_org
 		WHERE
