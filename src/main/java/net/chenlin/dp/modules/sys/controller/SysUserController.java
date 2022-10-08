@@ -1,5 +1,8 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.Page;
@@ -7,10 +10,7 @@ import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -20,9 +20,10 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/sys/user")
+@AllArgsConstructor
+@Api(tags = "后台管理员")
 public class SysUserController extends AbstractController {
-	
-	@Autowired
+
 	private SysUserService sysUserService;
 	
 	/**
@@ -30,7 +31,8 @@ public class SysUserController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
+	@ApiOperation(value = "管理员列表")
 	public Page<SysUserEntity> list(@RequestBody Map<String, Object> params) {
 		if(getUserId() != SystemConstant.SUPER_ADMIN) {
 			params.put("userIdCreate", getUserId());
@@ -41,7 +43,8 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 获取登录的用户信息
 	 */
-	@RequestMapping("/info")
+	@GetMapping("/info")
+	@ApiOperation(value = "获取登录的用户信息")
 	public R info(){
 		return R.ok().put("user", getUser());
 	}
@@ -50,7 +53,8 @@ public class SysUserController extends AbstractController {
 	 * 用户权限
 	 * @return
 	 */
-	@RequestMapping("/perms")
+	@GetMapping("/perms")
+	@ApiOperation(value = "用户权限")
 	public R listUserPerms() {
 		return CommonUtils.msgNotCheckNull(sysUserService.listUserPerms(getUserId()));
 	}
@@ -61,7 +65,8 @@ public class SysUserController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增用户")
-	@RequestMapping("/save")
+	@PostMapping("/save")
+	@ApiOperation(value = "新增用户")
 	public R save(@RequestBody SysUserEntity user) {
 		user.setUserIdCreate(getUserId());
 		return sysUserService.saveUser(user);
@@ -72,7 +77,8 @@ public class SysUserController extends AbstractController {
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping("/infoUser")
+	@GetMapping("/infoUser")
+	@ApiOperation(value = "根据id查询详情")
 	public R getById(@RequestBody Long userId) {
 		return sysUserService.getUserById(userId);
 	}
@@ -83,7 +89,8 @@ public class SysUserController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改用户")
-	@RequestMapping("/update")
+	@PostMapping("/update")
+	@ApiOperation(value = "修改用户")
 	public R update(@RequestBody SysUserEntity user) {
 		return sysUserService.updateUser(user);
 	}
@@ -94,7 +101,8 @@ public class SysUserController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除用户")
-	@RequestMapping("/remove")
+	@PostMapping("/remove")
+	@ApiOperation(value = "删除用户")
 	public R batchRemove(@RequestBody Long[] id) {
 		return sysUserService.batchRemove(id);
 	}
@@ -106,7 +114,8 @@ public class SysUserController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改密码")
-	@RequestMapping("/updatePswd")
+	@PostMapping("/updatePswd")
+	@ApiOperation(value = "用户修改密码")
 	public R updatePswdByUser(String pswd, String newPswd) {
 		SysUserEntity user = getUser();
 		user.setPassword(pswd);//原密码
@@ -120,7 +129,8 @@ public class SysUserController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("启用账户")
-	@RequestMapping("/enable")
+	@PostMapping("/enable")
+	@ApiOperation(value = "启用账户")
 	public R updateUserEnable(@RequestBody Long[] id) {
 		return sysUserService.updateUserEnable(id);
 	}
@@ -131,7 +141,8 @@ public class SysUserController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("禁用账户")
-	@RequestMapping("/disable")
+	@PostMapping("/disable")
+	@ApiOperation(value = "禁用账户")
 	public R updateUserDisable(@RequestBody Long[] id) {
 		return sysUserService.updateUserDisable(id);
 	}
@@ -142,7 +153,8 @@ public class SysUserController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("重置密码")
-	@RequestMapping("/reset")
+	@PostMapping("/reset")
+	@ApiOperation(value = "重置密码")
 	public R updatePswd(@RequestBody SysUserEntity user) {
 		return sysUserService.updatePswd(user);
 	}

@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.sys.service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 
 import java.util.List;
@@ -25,28 +26,28 @@ public interface SysRoleService {
 	 * @param role
 	 * @return
 	 */
-	R saveRole(SysRoleEntity role);
+	Resp<Integer> saveRole(SysRoleEntity role);
 
 	/**
 	 * 根据id查询角色
 	 * @param id
 	 * @return
 	 */
-	R getRoleById(Long id);
+	Resp<SysRoleEntity> getRoleById(Long id);
 
 	/**
 	 * 修改角色
 	 * @param role
 	 * @return
 	 */
-	R updateRole(SysRoleEntity role);
+	Resp<Integer> updateRole(SysRoleEntity role);
 
 	/**
 	 * 删除角色
 	 * @param id
 	 * @return
 	 */
-	R batchRemove(Long[] id);
+	Resp batchRemove(Long[] id);
 
 	/**
 	 * 所有角色集合：用户角色选择数据源
@@ -59,13 +60,13 @@ public interface SysRoleService {
 	 * @param role
 	 * @return
 	 */
-	R updateRoleOptAuthorization(SysRoleEntity role);
+	Resp<Integer> updateRoleOptAuthorization(SysRoleEntity role);
 
 	/**
 	 * 数据权限
 	 * @param role
 	 * @return
 	 */
-	R updateRoleDataAuthorization(SysRoleEntity role);
+	Resp<Integer> updateRoleDataAuthorization(SysRoleEntity role);
 	
 }

@@ -114,6 +114,10 @@ public class CommonUtils {
 	public static R msgNotCheckNull(Object data) {
 		return R.ok().put(SystemConstant.DATA_ROWS, data);
 	}
+
+	public static <T> Resp<T> msgRespNotCheckNull(List<T> rows) {
+		return Resp.ok(rows);
+	}
 	
 	/**
 	 * 删除提示

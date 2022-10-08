@@ -3,13 +3,11 @@ package net.chenlin.dp.modules.sys.controller;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysAreaEntity;
 import net.chenlin.dp.modules.sys.service.SysAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -33,8 +31,8 @@ public class SysAreaController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
-	public R list(@RequestBody Map<String, Object> params) {
+	@GetMapping("/list")
+	public Resp list(@RequestBody Map<String, Object> params) {
 		return sysAreaService.listAreaByParentCode(params);
 	}
 	
@@ -42,7 +40,7 @@ public class SysAreaController extends AbstractController {
 	 * 根据父级code查询子节点，树形目录
 	 * @return
 	 */
-	@RequestMapping("/select")
+	@GetMapping("/select")
 	public List<SysAreaEntity> select(@RequestParam String areaCode) {
 		return sysAreaService.listAreaByParentCode(areaCode);
 	}
@@ -53,8 +51,8 @@ public class SysAreaController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增区域")
-	@RequestMapping("/save")
-	public R save(@RequestBody SysAreaEntity area) {
+	@PostMapping("/save")
+	public Resp save(@RequestBody SysAreaEntity area) {
 		return sysAreaService.saveArea(area);
 	}
 	
@@ -63,8 +61,8 @@ public class SysAreaController extends AbstractController {
 	 * @param areaId
 	 * @return
 	 */
-	@RequestMapping("/info")
-	public R info(@RequestBody Long areaId) {
+	@GetMapping("/info")
+	public Resp info(@RequestBody Long areaId) {
 		return sysAreaService.getAreaById(areaId);
 	}
 	
@@ -74,8 +72,8 @@ public class SysAreaController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改区域")
-	@RequestMapping("/update")
-	public R update(@RequestBody SysAreaEntity area) {
+	@PostMapping("/update")
+	public Resp update(@RequestBody SysAreaEntity area) {
 		return sysAreaService.updateArea(area);
 	}
 	
@@ -85,8 +83,8 @@ public class SysAreaController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除区域")
-	@RequestMapping("/remove")
-	public R remove(@RequestBody Long[] id) {
+	@PostMapping("/remove")
+	public Resp remove(@RequestBody Long[] id) {
 		return sysAreaService.batchRemoveArea(id);
 	}
 	

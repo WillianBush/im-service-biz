@@ -1,6 +1,7 @@
 package net.chenlin.dp.modules.sys.service;
 
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysMenuEntity;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface SysMenuService {
 	 * @param userId
 	 * @return
 	 */
-	R listUserMenu(Long userId);
+	Resp<SysMenuEntity> listUserMenu(Long userId);
 
 	List<SysMenuEntity> getAllMenuList(Long userId);
 
@@ -32,34 +33,34 @@ public interface SysMenuService {
 	 * 查询目录和菜单
 	 * @return
 	 */
-	R listNotButton();
+	Resp<SysMenuEntity> listNotButton();
 
 	/**
 	 * 新增菜单
 	 * @param menu
 	 * @return
 	 */
-	R saveMenu(SysMenuEntity menu);
+	Resp<Integer> saveMenu(SysMenuEntity menu);
 
 	/**
 	 * 根据id查询菜单
 	 * @param id
 	 * @return
 	 */
-	R getMenuById(Long id);
+	Resp<SysMenuEntity> getMenuById(Long id);
 
 	/**
 	 * 修改菜单
 	 * @param menu
 	 * @return
 	 */
-	R updateMenu(SysMenuEntity menu);
+	Resp<Integer> updateMenu(SysMenuEntity menu);
 
 	/**
 	 * 删除菜单
 	 * @param id
 	 * @return
 	 */
-	R batchRemove(Long[] id);
+	Resp batchRemove(Long[] id);
 
 }

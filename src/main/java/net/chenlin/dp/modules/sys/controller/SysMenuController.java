@@ -1,13 +1,13 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysMenuEntity;
 import net.chenlin.dp.modules.sys.service.SysMenuService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,17 +19,16 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/sys/menu")
+@Api(tags = "系统菜单")
 public class SysMenuController extends AbstractController {
 
 	@Resource
 	private SysMenuService sysMenuService;
 	
-	/**
-	 * 用户菜单
-	 * @return
-	 */
-	@RequestMapping("/user")
-	public R user(){
+
+	@GetMapping("/user")
+	@ApiOperation(value = "查询用户权限菜单")
+	public Resp<SysMenuEntity> user(){
 		return sysMenuService.listUserMenu(getUserId());
 	}
 	
@@ -38,7 +37,8 @@ public class SysMenuController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
+	@ApiOperation(value = "菜单列表")
 	public List<SysMenuEntity> listMenu(@RequestParam Map<String, Object> params) {
 		return sysMenuService.listMenu(params);
 	}
@@ -47,8 +47,9 @@ public class SysMenuController extends AbstractController {
 	 * 选择菜单(添加、修改)
 	 * @return
 	 */
-	@RequestMapping("/select")
-	public R select() {
+	@GetMapping("/select")
+	@ApiOperation(value = "选择菜单(添加、修改)")
+	public Resp<SysMenuEntity> select() {
 		return sysMenuService.listNotButton();
 	}
 	
@@ -58,8 +59,9 @@ public class SysMenuController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增菜单")
-	@RequestMapping("/save")
-	public R save(@RequestBody SysMenuEntity menu) {
+	@PostMapping("/save")
+	@ApiOperation(value = "新增菜单")
+	public Resp<Integer> save(@RequestBody SysMenuEntity menu) {
 		return sysMenuService.saveMenu(menu);
 	}
 
@@ -68,8 +70,9 @@ public class SysMenuController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/info")
-	public R info(@RequestBody Long id) {
+	@GetMapping("/info")
+	@ApiOperation(value = "查询详情")
+	public Resp<SysMenuEntity> info(@RequestBody Long id) {
 		return sysMenuService.getMenuById(id);
 	}
 	
@@ -79,8 +82,9 @@ public class SysMenuController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改菜单")
-	@RequestMapping("/update")
-	public R update(@RequestBody SysMenuEntity menu) {
+	@PostMapping("/update")
+	@ApiOperation(value = "修改菜单")
+	public Resp<Integer> update(@RequestBody SysMenuEntity menu) {
 		return sysMenuService.updateMenu(menu);
 	}
 	
@@ -90,8 +94,9 @@ public class SysMenuController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除菜单")
-	@RequestMapping("/remove")
-	public R remove(@RequestBody Long[] id) {
+	@PostMapping("/remove")
+	@ApiOperation(value = "删除菜单")
+	public Resp remove(@RequestBody Long[] id) {
 		return sysMenuService.batchRemove(id);
 	}
 	

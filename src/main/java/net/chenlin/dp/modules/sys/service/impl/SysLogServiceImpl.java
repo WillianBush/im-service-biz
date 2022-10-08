@@ -1,8 +1,10 @@
 package net.chenlin.dp.modules.sys.service.impl;
 
+import io.swagger.models.auth.In;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.dao.SysLogMapper;
 import net.chenlin.dp.modules.sys.entity.SysLogEntity;
@@ -41,9 +43,9 @@ public class SysLogServiceImpl implements SysLogService {
      * @return
      */
     @Override
-    public R batchRemove(Long[] id) {
+    public Resp batchRemove(Long[] id) {
         int count = sysLogMapper.batchRemove(id);
-        return CommonUtils.msg(id, count);
+        return CommonUtils.msgResp(id, count);
     }
 
     /**
@@ -51,9 +53,9 @@ public class SysLogServiceImpl implements SysLogService {
      * @return
      */
     @Override
-    public R batchRemoveAll() {
+    public Resp<Integer> batchRemoveAll() {
         int count = sysLogMapper.batchRemoveAll();
-        return CommonUtils.msg(count);
+        return CommonUtils.msgResp(count);
     }
 
 }

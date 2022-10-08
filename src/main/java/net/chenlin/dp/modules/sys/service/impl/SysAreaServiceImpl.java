@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.sys.service.impl;
 import net.chenlin.dp.common.constant.MsgConstant;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.dao.SysAreaMapper;
 import net.chenlin.dp.modules.sys.entity.SysAreaEntity;
@@ -45,9 +46,9 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R saveArea(SysAreaEntity area) {
+	public Resp saveArea(SysAreaEntity area) {
 		int count = sysAreaMapper.save(area);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -56,10 +57,10 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R getAreaById(Long areaId) {
+	public Resp getAreaById(Long areaId) {
 		SysAreaEntity area = sysAreaMapper.getObjectById(areaId);
 		area.checkParentName();
-		return CommonUtils.msg(area);
+		return CommonUtils.msgResp(area);
 	}
 
 	/**
@@ -68,9 +69,9 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R updateArea(SysAreaEntity area) {
+	public Resp updateArea(SysAreaEntity area) {
 		int count = sysAreaMapper.update(area);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R batchRemoveArea(Long[] id) {
+	public Resp batchRemoveArea(Long[] id) {
 		boolean children = false;
 		for(Long typeId : id) {
 			int count = sysAreaMapper.countAreaChildren(typeId);
@@ -88,10 +89,10 @@ public class SysAreaServiceImpl implements SysAreaService {
 			}
 		}
 		if(children) {
-			return R.error(MsgConstant.MSG_HAS_CHILD);
+			return Resp.error(MsgConstant.MSG_HAS_CHILD);
 		}
 		int count = sysAreaMapper.batchRemove(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 	/**
@@ -100,10 +101,10 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R listAreaByParentCode(Map<String, Object> params) {
+	public Resp listAreaByParentCode(Map<String, Object> params) {
 		Query query = new Query(params);
 		List<SysAreaEntity> areas = sysAreaMapper.listAreaByParentCode(query);
-		return CommonUtils.msg(areas);
+		return CommonUtils.msgResp(areas);
 	}
 
 }

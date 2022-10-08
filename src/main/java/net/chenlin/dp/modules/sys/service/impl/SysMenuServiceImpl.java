@@ -4,6 +4,7 @@ import net.chenlin.dp.common.constant.MsgConstant;
 import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.dao.SysMenuMapper;
 import net.chenlin.dp.modules.sys.dao.SysRoleMenuMapper;
@@ -39,9 +40,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R listUserMenu(Long userId) {
+	public Resp<SysMenuEntity> listUserMenu(Long userId) {
 		List<Long> menuIdList = sysUserMapper.listAllMenuId(userId);
-		return R.ok().put("menuList", getAllMenuList(menuIdList));
+		return Resp.ok(getAllMenuList(menuIdList));
 	}
 
 	@Override
@@ -121,7 +122,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R listNotButton() {
+	public Resp<SysMenuEntity> listNotButton() {
 		List<SysMenuEntity> menuList = sysMenuMapper.listNotButton();
 		SysMenuEntity root = new SysMenuEntity();
 		root.setMenuId(0L);
@@ -129,7 +130,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		root.setParentId(-1L);
 		root.setOpen(true);
 		menuList.add(root);
-		return CommonUtils.msgNotCheckNull(menuList);
+		return CommonUtils.msgRespNotCheckNull(menuList);
 	}
 
 	/**
@@ -138,10 +139,10 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R saveMenu(SysMenuEntity menu) {
+	public Resp<Integer> saveMenu(SysMenuEntity menu) {
 		int count = sysMenuMapper.save(menu);
 		// 刷新权限链
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -150,9 +151,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R getMenuById(Long id) {
+	public Resp<SysMenuEntity> getMenuById(Long id) {
 		SysMenuEntity menu = sysMenuMapper.getObjectById(id);
-		return CommonUtils.msg(menu);
+		return CommonUtils.msgResp(menu);
 	}
 
 	/**
@@ -161,11 +162,11 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R updateMenu(SysMenuEntity menu) {
+	public Resp<Integer> updateMenu(SysMenuEntity menu) {
 		int count = sysMenuMapper.update(menu);
 		// 刷新权限链
 
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -174,16 +175,16 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		boolean children = this.hasChildren(id);
 		if(children) {
-			return R.error(MsgConstant.MSG_HAS_CHILD);
+			return Resp.error(MsgConstant.MSG_HAS_CHILD);
 		}
 		int count = sysMenuMapper.batchRemove(id);
 		sysRoleMenuMapper.batchRemoveByMenuId(id);
 		// 刷新权限链
 
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 	/**

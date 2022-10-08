@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.sys.service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysLogEntity;
 
 import java.util.Map;
@@ -24,12 +25,12 @@ public interface SysLogService {
      * @param id
      * @return
      */
-    R batchRemove(Long[] id);
+    Resp batchRemove(Long[] id);
 
     /**
      * 清空日志
      * @return
      */
-    R batchRemoveAll();
+    Resp<Integer> batchRemoveAll();
 
 }

@@ -1,6 +1,7 @@
 package net.chenlin.dp.modules.sys.service;
 
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysAreaEntity;
 
 import java.util.List;
@@ -24,34 +25,34 @@ public interface SysAreaService {
 	 * @param params
 	 * @return
 	 */
-	R listAreaByParentCode(Map<String, Object> params);
+	Resp listAreaByParentCode(Map<String, Object> params);
 
 	/**
 	 * 新增区域
 	 * @param area
 	 * @return
 	 */
-	R saveArea(SysAreaEntity area);
+	Resp saveArea(SysAreaEntity area);
 
 	/**
 	 * 根据id查询区域
 	 * @param areaId
 	 * @return
 	 */
-	R getAreaById(Long areaId);
+	Resp getAreaById(Long areaId);
 
 	/**
 	 * 修改区域
 	 * @param area
 	 * @return
 	 */
-	R updateArea(SysAreaEntity area);
+	Resp updateArea(SysAreaEntity area);
 
 	/**
 	 * 批量删除区域
 	 * @param id
 	 * @return
 	 */
-	R batchRemoveArea(Long[] id);
+	Resp batchRemoveArea(Long[] id);
 	
 }

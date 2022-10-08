@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.sys.service.impl;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.dao.SysRoleMapper;
 import net.chenlin.dp.modules.sys.dao.SysRoleMenuMapper;
@@ -54,9 +55,9 @@ public class SysRoleServiceImpl implements SysRoleService {
 	 * @return
 	 */
 	@Override
-	public R saveRole(SysRoleEntity role) {
+	public Resp<Integer> saveRole(SysRoleEntity role) {
 		int count = sysRoleMapper.save(role);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -65,13 +66,13 @@ public class SysRoleServiceImpl implements SysRoleService {
 	 * @return
 	 */
 	@Override
-	public R getRoleById(Long id) {
+	public Resp<SysRoleEntity> getRoleById(Long id) {
 		SysRoleEntity role = sysRoleMapper.getObjectById(id);
 		List<Long> menuId = sysRoleMenuMapper.listMenuId(id);
 		List<Long> orgId = sysRoleOrgMapper.listOrgId(id);
 		role.setMenuIdList(menuId);
 		role.setOrgIdList(orgId);
-		return CommonUtils.msg(role);
+		return CommonUtils.msgResp(role);
 	}
 
 	/**
@@ -80,9 +81,9 @@ public class SysRoleServiceImpl implements SysRoleService {
 	 * @return
 	 */
 	@Override
-	public R updateRole(SysRoleEntity role) {
+	public Resp<Integer> updateRole(SysRoleEntity role) {
 		int count = sysRoleMapper.update(role);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -91,12 +92,12 @@ public class SysRoleServiceImpl implements SysRoleService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = sysRoleMapper.batchRemove(id);
 		sysUserRoleMapper.batchRemoveByRoleId(id);
 		sysRoleMenuMapper.batchRemoveByRoleId(id);
 		sysRoleOrgMapper.batchRemoveByRoleId(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 	/**
@@ -114,7 +115,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 	 * @return
 	 */
 	@Override
-	public R updateRoleOptAuthorization(SysRoleEntity role) {
+	public Resp<Integer> updateRoleOptAuthorization(SysRoleEntity role) {
 		Long roleId = role.getRoleId();
 		int count = sysRoleMenuMapper.remove(roleId);
 		Query query = new Query();
@@ -124,7 +125,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 			query.put("menuIdList", role.getMenuIdList());
 			count = sysRoleMenuMapper.save(query);
 		}
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -133,7 +134,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 	 * @return
 	 */
 	@Override
-	public R updateRoleDataAuthorization(SysRoleEntity role) {
+	public  Resp<Integer> updateRoleDataAuthorization(SysRoleEntity role) {
 		Long roleId = role.getRoleId();
 		int count = sysRoleOrgMapper.remove(roleId);
 		Query query = new Query();
@@ -143,7 +144,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 			query.put("orgIdList", role.getOrgIdList());
 			count = sysRoleOrgMapper.save(query);
 		}
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 	
 }

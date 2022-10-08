@@ -89,6 +89,7 @@ public class SysLoginController extends AbstractController {
 	 */
 	@SysLog("退出系统")
 	@PostMapping(value = "/logout")
+	@ApiOperation(value = "退出登录")
 	public Resp logout() {
 		redisCacheManager.del(RedisCacheKeys.LOGIN_REDIS_CACHE + getToken());
 		return  Resp.ok(200,"成功退出");
