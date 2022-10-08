@@ -4,17 +4,16 @@ MAINTAINER zhongxin@gmail.com
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN mkdir -p /springboot-mybatis
-RUN mkdir -p /springboot-mybatis/upload
-RUN mkdir -p /springboot-mybatis/logs
+RUN mkdir -p /im-service-biz
+RUN mkdir -p /im-service-biz/logs
 
-WORKDIR /springboot-mybatis
+WORKDIR /im-service-biz
 
-EXPOSE 8998
+EXPOSE 9001
 
-ADD springboot-mybatis.jar ./
+ADD im-service-biz.jar ./
 
 
-CMD java -Xms1024m -Xmx2048m -Djava.security.egd=file:/dev/./urandom -jar springboot-mybatis.jar
+CMD java -Xms1024m -Xmx2048m -Djava.security.egd=file:/dev/./urandom -jar im-service-biz.jar
 
 

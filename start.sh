@@ -1,5 +1,5 @@
-name=springboot-mybatis
+name=im-service-biz
 docker stop $name
 docker rm $name
-docker build -t $name:prd .
-docker run -d -p 8998:8998 -e "SPRING_PROFILES_ACTIVE=prd" -v /root/docker/springboot-mybatis/logs:/springboot-mybatis/logs:rw -v /root/docker/springboot-mybatis/upload:/springboot-mybatis/upload:rw --name $name $name:prd
+docker build -t $name:uat .
+docker run -d -p 9001:9001 -e "SPRING_PROFILES_ACTIVE=uat" -v /root/docker/im-service-biz/logs:/im-service-biz/logs:rw --name $name $name:uat
