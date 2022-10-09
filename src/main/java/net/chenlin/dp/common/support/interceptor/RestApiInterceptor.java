@@ -10,9 +10,11 @@ import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
@@ -54,6 +56,12 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter {
                 return true;
             }
         }
+
+        if(request.getMethod().equals(HttpMethod.OPTIONS.name())){
+            log.info("OPTIONS直接放行");
+            response.setStatus(HttpStatus.SC_OK);
+            return true;
+        }
         return checkToken(request, response);
     }
 
@@ -65,26 +73,26 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter {
      */
     private boolean checkToken(HttpServletRequest request, HttpServletResponse response) {
         // 登录 或 有效状态校验 请求直接通过
-//        String requestPath = request.getServletPath();
-//        if (RestApiConstant.AUTH_REQUEST.equals(requestPath) || RestApiConstant.AUTH_CHECK.equals(requestPath)) {
-//            return true;
-//        }
-//        // 校验请求是否包含验证信息
-//        String token = getToken(request);
-//        if (StringUtils.isBlank(token)) {
-//            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_NOT_FOUND.getResp()));
-//            return false;
-//        }
-//        try {
-//            SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
-//            if (sysUser == null ) {
-//                WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_EXPIRED.getResp()));
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            log.info("token解析异常：{}", token);
-//            return false;
-//        }
+        String requestPath = request.getServletPath();
+        if (RestApiConstant.AUTH_REQUEST.equals(requestPath) || RestApiConstant.AUTH_CHECK.equals(requestPath) || requestPath.contains("swagger")) {
+            return true;
+        }
+        // 校验请求是否包含验证信息
+        String token = getToken(request);
+        if (StringUtils.isBlank(token)) {
+            WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_NOT_FOUND.getResp()));
+            return false;
+        }
+        try {
+            SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
+            if (sysUser == null ) {
+                WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_EXPIRED.getResp()));
+                return false;
+            }
+        } catch (Exception e) {
+            log.info("token解析异常：{}", token);
+            return false;
+        }
         return true;
     }
 

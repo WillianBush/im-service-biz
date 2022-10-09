@@ -76,7 +76,7 @@ public class SysLogAspect {
 		//设置IP地址
 		sysLog.setIp(WebUtils.getIpAddr());
 		//用户名
-		SysUserEntity currUser = userUtil.getUserEntity();
+		SysUserEntity currUser = userUtil.getUserEntityAspect();
 		if(CommonUtils.isNullOrEmpty(currUser)) {
 			if(CommonUtils.isNullOrEmpty(sysLog.getParams())) {
 				sysLog.setUserId(-1L);

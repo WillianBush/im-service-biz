@@ -31,6 +31,18 @@ public class UserUtil {
         return sysUser;
     }
 
+    public SysUserEntity getUserEntityAspect() {
+        String token = getToken();
+        if (token == null ) {
+           return  null;
+        }
+        SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
+        if (sysUser == null ) {
+            return  null;
+        }
+        return sysUser;
+    }
+
     private String getToken() {
         // 请求头token
         String token =  getHttpServletRequest().getHeader(RestApiConstant.AUTH_TOKEN);
