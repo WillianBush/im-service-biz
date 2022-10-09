@@ -22,7 +22,7 @@ import net.chenlin.dp.modules.biz.yy_ip_list.service.YyIpListService;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/yy_ip_list")
-@Api(tags = "")
+@Api(tags = "运营-ip黑名单/ipweb白名单")
 public class YyIpListController extends AbstractController {
 	
 
