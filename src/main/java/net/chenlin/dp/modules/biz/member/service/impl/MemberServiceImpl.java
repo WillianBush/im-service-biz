@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.member.service.impl;
 
 import java.util.Map;
 
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,9 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
 	@Override
-	public R saveMember(MemberEntity member) {
+	public Resp saveMember(MemberEntity member) {
 		int count = memberMapper.save(member);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -53,9 +54,9 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
 	@Override
-	public R getMemberById(Long id) {
+	public Resp getMemberById(Long id) {
 		MemberEntity member = memberMapper.getObjectById(id);
-		return CommonUtils.msg(member);
+		return CommonUtils.msgResp(member);
 	}
 
     /**
@@ -64,9 +65,9 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
 	@Override
-	public R updateMember(MemberEntity member) {
+	public Resp updateMember(MemberEntity member) {
 		int count = memberMapper.update(member);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -75,9 +76,9 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = memberMapper.batchRemove(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
 
 /**
@@ -24,27 +25,27 @@ public interface FriendsService {
      * @param friends
      * @return
      */
-	R saveFriends(FriendsEntity friends);
+    Resp saveFriends(FriendsEntity friends);
 
     /**
      * 根据id查询
      * @param id
      * @return
      */
-	R getFriendsById(Long id);
+    Resp getFriendsById(Long id);
 
     /**
      * 修改
      * @param friends
      * @return
      */
-	R updateFriends(FriendsEntity friends);
+    Resp updateFriends(FriendsEntity friends);
 
     /**
      * 删除
      * @param id
      * @return
      */
-	R batchRemove(Long[] id);
+    Resp batchRemove(Long[] id);
 	
 }

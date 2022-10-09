@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 
 /**
@@ -24,27 +25,27 @@ public interface MemberService {
      * @param member
      * @return
      */
-	R saveMember(MemberEntity member);
+    Resp saveMember(MemberEntity member);
 
     /**
      * 根据id查询
      * @param id
      * @return
      */
-	R getMemberById(Long id);
+    Resp getMemberById(Long id);
 
     /**
      * 修改
      * @param member
      * @return
      */
-	R updateMember(MemberEntity member);
+    Resp updateMember(MemberEntity member);
 
     /**
      * 删除
      * @param id
      * @return
      */
-	R batchRemove(Long[] id);
+    Resp batchRemove(Long[] id);
 	
 }

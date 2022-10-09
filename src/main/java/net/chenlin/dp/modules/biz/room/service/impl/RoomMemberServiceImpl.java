@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.room.service.impl;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -42,9 +43,9 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      * @return
      */
 	@Override
-	public R saveRoomMember(RoomMemberEntity roomMember) {
+	public Resp saveRoomMember(RoomMemberEntity roomMember) {
 		int count = roomMemberMapper.save(roomMember);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -53,9 +54,9 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      * @return
      */
 	@Override
-	public R getRoomMemberById(Long id) {
+	public Resp getRoomMemberById(Long id) {
 		RoomMemberEntity roomMember = roomMemberMapper.getObjectById(id);
-		return CommonUtils.msg(roomMember);
+		return CommonUtils.msgResp(roomMember);
 	}
 
     /**
@@ -64,9 +65,9 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      * @return
      */
 	@Override
-	public R updateRoomMember(RoomMemberEntity roomMember) {
+	public Resp updateRoomMember(RoomMemberEntity roomMember) {
 		int count = roomMemberMapper.update(roomMember);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -75,9 +76,9 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      * @return
      */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = roomMemberMapper.batchRemove(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,7 @@ public class FriendsController extends AbstractController {
 	@SysLog("新增")
 	@RequestMapping("/save")
 	@ApiOperation(value = "新增用户")
-	public R save(@RequestBody FriendsEntity friends) {
+	public Resp save(@RequestBody FriendsEntity friends) {
 		return friendsService.saveFriends(friends);
 	}
 	
@@ -58,7 +59,7 @@ public class FriendsController extends AbstractController {
 	 */
 	@RequestMapping("/info")
 	@ApiOperation(value = "根据id查询好友")
-	public R getById(@RequestBody Long id) {
+	public Resp getById(@RequestBody Long id) {
 		return friendsService.getFriendsById(id);
 	}
 	
@@ -70,7 +71,7 @@ public class FriendsController extends AbstractController {
 	@SysLog("修改")
 	@RequestMapping("/update")
 	@ApiOperation(value = "修改好友备注")
-	public R update(@RequestBody FriendsEntity friends) {
+	public Resp update(@RequestBody FriendsEntity friends) {
 		return friendsService.updateFriends(friends);
 	}
 	
@@ -82,7 +83,7 @@ public class FriendsController extends AbstractController {
 	@SysLog("删除")
 	@RequestMapping("/remove")
 	@ApiOperation(value = "删除好友")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody Long[] id) {
 		return friendsService.batchRemove(id);
 	}
 	

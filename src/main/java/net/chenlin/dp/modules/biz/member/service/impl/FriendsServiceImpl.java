@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.member.service.impl;
 
 import java.util.Map;
 
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,9 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public R saveFriends(FriendsEntity friends) {
+	public Resp saveFriends(FriendsEntity friends) {
 		int count = friendsMapper.save(friends);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -53,9 +54,9 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public R getFriendsById(Long id) {
+	public Resp getFriendsById(Long id) {
 		FriendsEntity friends = friendsMapper.getObjectById(id);
-		return CommonUtils.msg(friends);
+		return CommonUtils.msgResp(friends);
 	}
 
     /**
@@ -64,9 +65,9 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public R updateFriends(FriendsEntity friends) {
+	public Resp updateFriends(FriendsEntity friends) {
 		int count = friendsMapper.update(friends);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -75,9 +76,9 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = friendsMapper.batchRemove(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 }

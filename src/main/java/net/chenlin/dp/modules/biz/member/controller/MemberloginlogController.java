@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.member.controller;
 import java.util.Map;
 
 import io.swagger.annotations.ApiOperation;
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +46,7 @@ public class MemberloginlogController extends AbstractController {
 	@SysLog("新增")
 	@RequestMapping("/save")
 	@ApiOperation(value = "新增用户")
-	public R save(@RequestBody MemberloginlogEntity memberloginlog) {
+	public Resp save(@RequestBody MemberloginlogEntity memberloginlog) {
 		return memberloginlogService.saveMemberloginlog(memberloginlog);
 	}
 	
@@ -56,7 +57,7 @@ public class MemberloginlogController extends AbstractController {
 	 */
 	@RequestMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public R getById(@RequestBody Long id) {
+	public Resp getById(@RequestBody Long id) {
 		return memberloginlogService.getMemberloginlogById(id);
 	}
 	
@@ -68,7 +69,7 @@ public class MemberloginlogController extends AbstractController {
 	@SysLog("修改")
 	@RequestMapping("/update")
 	@ApiOperation(value = "修改用户信息")
-	public R update(@RequestBody MemberloginlogEntity memberloginlog) {
+	public Resp update(@RequestBody MemberloginlogEntity memberloginlog) {
 		return memberloginlogService.updateMemberloginlog(memberloginlog);
 	}
 	
@@ -80,7 +81,7 @@ public class MemberloginlogController extends AbstractController {
 	@SysLog("删除")
 	@RequestMapping("/remove")
 	@ApiOperation(value = "删除用户")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody Long[] id) {
 		return memberloginlogService.batchRemove(id);
 	}
 	

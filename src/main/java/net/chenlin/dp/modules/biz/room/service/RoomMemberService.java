@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
 
 /**
@@ -24,27 +25,27 @@ public interface RoomMemberService {
      * @param roomMember
      * @return
      */
-	R saveRoomMember(RoomMemberEntity roomMember);
+    Resp saveRoomMember(RoomMemberEntity roomMember);
 
     /**
      * 根据id查询
      * @param id
      * @return
      */
-	R getRoomMemberById(Long id);
+    Resp getRoomMemberById(Long id);
 
     /**
      * 修改
      * @param roomMember
      * @return
      */
-	R updateRoomMember(RoomMemberEntity roomMember);
+    Resp updateRoomMember(RoomMemberEntity roomMember);
 
     /**
      * 删除
      * @param id
      * @return
      */
-	R batchRemove(Long[] id);
+    Resp batchRemove(Long[] id);
 	
 }

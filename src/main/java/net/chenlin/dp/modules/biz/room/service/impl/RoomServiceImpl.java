@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.room.service.impl;
 
 import java.util.Map;
 
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,9 +44,9 @@ public class RoomServiceImpl implements RoomService {
      * @return
      */
 	@Override
-	public R saveRoom(RoomEntity room) {
+	public Resp saveRoom(RoomEntity room) {
 		int count = roomMapper.save(room);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -54,9 +55,9 @@ public class RoomServiceImpl implements RoomService {
      * @return
      */
 	@Override
-	public R getRoomById(Long id) {
+	public Resp getRoomById(Long id) {
 		RoomEntity room = roomMapper.getObjectById(id);
-		return CommonUtils.msg(room);
+		return CommonUtils.msgResp(room);
 	}
 
     /**
@@ -65,9 +66,9 @@ public class RoomServiceImpl implements RoomService {
      * @return
      */
 	@Override
-	public R updateRoom(RoomEntity room) {
+	public Resp updateRoom(RoomEntity room) {
 		int count = roomMapper.update(room);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -76,9 +77,9 @@ public class RoomServiceImpl implements RoomService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = roomMapper.batchRemove(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 	/**
@@ -87,8 +88,8 @@ public class RoomServiceImpl implements RoomService {
 	 * @return
 	 */
 	@Override
-	public R getRoomMemberById(String id) {
+	public Resp getRoomMemberById(String id) {
 		RoomMemberEntity room = roomMapper.getRoomMemberById(id);
-		return CommonUtils.msg(room);
+		return CommonUtils.msgResp(room);
 	}
 }

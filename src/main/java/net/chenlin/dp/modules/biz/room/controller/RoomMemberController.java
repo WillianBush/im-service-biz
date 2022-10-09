@@ -2,6 +2,9 @@ package net.chenlin.dp.modules.biz.room.controller;
 
 import java.util.Map;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import net.chenlin.dp.modules.biz.room.service.RoomMemberService;
  */
 @RestController
 @RequestMapping("/mr/roommember")
+@Api(tags = "群组成员管理")
 public class RoomMemberController extends AbstractController {
 	
 	@Autowired
@@ -31,6 +35,7 @@ public class RoomMemberController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping("/list")
+	@ApiOperation(value = "群组成员列表")
 	public Page<RoomMemberEntity> list(@RequestBody Map<String, Object> params) {
 		return roomMemberService.listRoomMember(params);
 	}
@@ -42,7 +47,8 @@ public class RoomMemberController extends AbstractController {
 	 */
 	@SysLog("新增")
 	@RequestMapping("/save")
-	public R save(@RequestBody RoomMemberEntity roomMember) {
+	@ApiOperation(value = "新增群组成员")
+	public Resp save(@RequestBody RoomMemberEntity roomMember) {
 		return roomMemberService.saveRoomMember(roomMember);
 	}
 	
@@ -52,7 +58,8 @@ public class RoomMemberController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping("/info")
-	public R getById(@RequestBody Long id) {
+	@ApiOperation(value = "根据群id查询群组成员")
+	public Resp getById(@RequestBody Long id) {
 		return roomMemberService.getRoomMemberById(id);
 	}
 	
@@ -63,7 +70,7 @@ public class RoomMemberController extends AbstractController {
 	 */
 	@SysLog("修改")
 	@RequestMapping("/update")
-	public R update(@RequestBody RoomMemberEntity roomMember) {
+	public Resp update(@RequestBody RoomMemberEntity roomMember) {
 		return roomMemberService.updateRoomMember(roomMember);
 	}
 	
@@ -74,7 +81,7 @@ public class RoomMemberController extends AbstractController {
 	 */
 	@SysLog("删除")
 	@RequestMapping("/remove")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody Long[] id) {
 		return roomMemberService.batchRemove(id);
 	}
 	

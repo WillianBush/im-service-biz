@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.member.service.impl;
 
 import java.util.Map;
 
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,9 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      * @return
      */
 	@Override
-	public R saveMemberloginlog(MemberloginlogEntity memberloginlog) {
+	public Resp saveMemberloginlog(MemberloginlogEntity memberloginlog) {
 		int count = memberloginlogMapper.save(memberloginlog);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -53,9 +54,9 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      * @return
      */
 	@Override
-	public R getMemberloginlogById(Long id) {
+	public Resp getMemberloginlogById(Long id) {
 		MemberloginlogEntity memberloginlog = memberloginlogMapper.getObjectById(id);
-		return CommonUtils.msg(memberloginlog);
+		return CommonUtils.msgResp(memberloginlog);
 	}
 
     /**
@@ -64,9 +65,9 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      * @return
      */
 	@Override
-	public R updateMemberloginlog(MemberloginlogEntity memberloginlog) {
+	public Resp updateMemberloginlog(MemberloginlogEntity memberloginlog) {
 		int count = memberloginlogMapper.update(memberloginlog);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -75,9 +76,9 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      * @return
      */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = memberloginlogMapper.batchRemove(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,7 @@ public class MemberController extends AbstractController {
 	@SysLog("新增")
 	@RequestMapping("/save")
 	@ApiOperation(value = "新增用户")
-	public R save(@RequestBody MemberEntity member) {
+	public Resp save(@RequestBody MemberEntity member) {
 		return memberService.saveMember(member);
 	}
 	
@@ -58,7 +59,7 @@ public class MemberController extends AbstractController {
 	 */
 	@RequestMapping("/info")
 	@ApiOperation(value = "查询用户详情")
-	public R getById(@RequestBody Long id) {
+	public Resp getById(@RequestBody Long id) {
 		return memberService.getMemberById(id);
 	}
 	
@@ -70,7 +71,7 @@ public class MemberController extends AbstractController {
 	@SysLog("修改")
 	@RequestMapping("/update")
 	@ApiOperation(value = "修改用户信息")
-	public R update(@RequestBody MemberEntity member) {
+	public Resp update(@RequestBody MemberEntity member) {
 		return memberService.updateMember(member);
 	}
 
@@ -82,7 +83,7 @@ public class MemberController extends AbstractController {
 	@SysLog("修改密码")
 	@RequestMapping("/updatePassword")
 	@ApiOperation(value = "修改密码")
-	public R updatePassword(@RequestBody MemberEntity member) {
+	public Resp updatePassword(@RequestBody MemberEntity member) {
 		//todo 加密
 		String password=member.getPassword();
 		return  memberService.updateMember(member);
@@ -96,7 +97,7 @@ public class MemberController extends AbstractController {
 	@SysLog("冻结解冻登录")
 	@RequestMapping("/updateStatus")
 	@ApiOperation(value = "冻结解冻登录")
-	public R updateStatus(@RequestBody MemberEntity member) {
+	public Resp updateStatus(@RequestBody MemberEntity member) {
 		MemberEntity memberEntity=new MemberEntity();
 		memberEntity.setId(member.getId());
 		memberEntity.setStatus(member.getStatus());
@@ -111,7 +112,7 @@ public class MemberController extends AbstractController {
 	@SysLog("删除")
 	@RequestMapping("/remove")
 	@ApiOperation(value = "删除用户")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody Long[] id) {
 		return memberService.batchRemove(id);
 	}
 
@@ -122,7 +123,7 @@ public class MemberController extends AbstractController {
 	 */
 	@SysLog("清空聊天记录")
 	@RequestMapping("/removeMsgAll")
-	public R removeMsgAll(@RequestBody String uid) {
+	public Resp removeMsgAll(@RequestBody String uid) {
 
 		return null;
 	}
