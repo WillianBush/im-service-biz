@@ -1,10 +1,10 @@
-package net.chenlin.dp.modules.biz.functioncfg.service;
+package net.chenlin.dp.modules.biz.site.service;
 
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
-import net.chenlin.dp.modules.biz.functioncfg.entity.FunctionConfigEntity;
+import net.chenlin.dp.modules.biz.site.entity.FunctionConfigEntity;
 
 /**
  * 

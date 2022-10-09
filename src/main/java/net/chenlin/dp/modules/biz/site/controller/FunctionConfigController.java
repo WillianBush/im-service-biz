@@ -1,19 +1,18 @@
-package net.chenlin.dp.modules.biz.functioncfg.controller;
+package net.chenlin.dp.modules.biz.site.controller;
 
 import java.util.Map;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
-import net.chenlin.dp.modules.biz.functioncfg.entity.FunctionConfigEntity;
-import net.chenlin.dp.modules.biz.functioncfg.service.FunctionConfigService;
+import net.chenlin.dp.modules.biz.site.entity.FunctionConfigEntity;
+import net.chenlin.dp.modules.biz.site.service.FunctionConfigService;
 
 /**
  * 
@@ -21,7 +20,7 @@ import net.chenlin.dp.modules.biz.functioncfg.service.FunctionConfigService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/fc/functioncfg")
+@RequestMapping("/site/functioncfg")
 @Api(tags = "功能配置")
 public class FunctionConfigController extends AbstractController {
 	

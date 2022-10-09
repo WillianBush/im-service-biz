@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.site.dao.DefaultPortraitMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultPortraitEntity">
+		SELECT
+			`id`, 
+			`img_addres`, 
+			`up_time`
+		FROM
+			default_portrait
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="img_addres != null"> and `img_addres` = #{img_addres} </if>
+		<if test="up_time != null"> and `up_time` = #{up_time} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO default_portrait (
+			`id`, 
+			`img_addres`, 
+			`up_time`
+		)
+		VALUES (
+			#{id}, 
+			#{img_addres}, 
+			#{up_time}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultPortraitEntity">
+		SELECT
+			`id`, 
+			`img_addres`, 
+			`up_time`
+		FROM
+			default_portrait
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE default_portrait
+	 	<set>
+			<if test="img_addres != null">`img_addres` = #{img_addres}, </if>
+			<if test="up_time != null">`up_time` = #{up_time}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			default_portrait
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

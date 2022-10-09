@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.site.dao.DefaultFriendMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultFriendEntity">
+		SELECT
+			`id`, 
+			`friend_id`, 
+			`note`, 
+			`send_hello_msg`
+		FROM
+			default_friend
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="friend_id != null"> and `friend_id` = #{friend_id} </if>
+		<if test="note != null"> and `note` = #{note} </if>
+		<if test="send_hello_msg != null"> and `send_hello_msg` = #{send_hello_msg} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO default_friend (
+			`id`, 
+			`friend_id`, 
+			`note`, 
+			`send_hello_msg`
+		)
+		VALUES (
+			#{id}, 
+			#{friend_id}, 
+			#{note}, 
+			#{send_hello_msg}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultFriendEntity">
+		SELECT
+			`id`, 
+			`friend_id`, 
+			`note`, 
+			`send_hello_msg`
+		FROM
+			default_friend
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE default_friend
+	 	<set>
+			<if test="friend_id != null">`friend_id` = #{friend_id}, </if>
+			<if test="note != null">`note` = #{note}, </if>
+			<if test="send_hello_msg != null">`send_hello_msg` = #{send_hello_msg}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			default_friend
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

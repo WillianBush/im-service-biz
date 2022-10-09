@@ -1,10 +1,10 @@
-package net.chenlin.dp.modules.biz.functioncfg.entity;
+package net.chenlin.dp.modules.biz.site.entity;
 
 import lombok.*;
 
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

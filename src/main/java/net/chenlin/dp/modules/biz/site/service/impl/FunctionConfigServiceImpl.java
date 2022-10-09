@@ -1,4 +1,4 @@
-package net.chenlin.dp.modules.biz.functioncfg.service.impl;
+package net.chenlin.dp.modules.biz.site.service.impl;
 
 import java.util.Map;
 
@@ -9,9 +9,9 @@ import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
-import net.chenlin.dp.modules.biz.functioncfg.entity.FunctionConfigEntity;
-import net.chenlin.dp.modules.biz.functioncfg.dao.FunctionConfigMapper;
-import net.chenlin.dp.modules.biz.functioncfg.service.FunctionConfigService;
+import net.chenlin.dp.modules.biz.site.entity.FunctionConfigEntity;
+import net.chenlin.dp.modules.biz.site.dao.FunctionConfigMapper;
+import net.chenlin.dp.modules.biz.site.service.FunctionConfigService;
 
 /**
  * 
