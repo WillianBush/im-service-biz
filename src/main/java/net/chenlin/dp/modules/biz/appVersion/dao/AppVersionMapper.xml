@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.appVersion.dao.AppVersionMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.appVersion.entity.AppVersionEntity">
+		SELECT
+			`id`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`version`, 
+			`descript`, 
+			`site_id`, 
+			`os`, 
+			`down_url`, 
+			`force_update`, 
+			`show`, 
+			`app_id`, 
+			`app_name`
+		FROM
+			app_version
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="gmt_create != null"> and `gmt_create` = #{gmt_create} </if>
+		<if test="gmt_modified != null"> and `gmt_modified` = #{gmt_modified} </if>
+		<if test="version != null"> and `version` = #{version} </if>
+		<if test="descript != null"> and `descript` = #{descript} </if>
+		<if test="site_id != null"> and `site_id` = #{site_id} </if>
+		<if test="os != null"> and `os` = #{os} </if>
+		<if test="down_url != null"> and `down_url` = #{down_url} </if>
+		<if test="force_update != null"> and `force_update` = #{force_update} </if>
+		<if test="show != null"> and `show` = #{show} </if>
+		<if test="app_id != null"> and `app_id` = #{app_id} </if>
+		<if test="app_name != null"> and `app_name` = #{app_name} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save" useGeneratedKeys="true"  keyProperty="id" >
+		INSERT INTO app_version (
+			`gmt_create`, 
+			`gmt_modified`, 
+			`version`, 
+			`descript`, 
+			`site_id`, 
+			`os`, 
+			`down_url`, 
+			`force_update`, 
+			`show`, 
+			`app_id`, 
+			`app_name`
+		)
+		VALUES (
+			#{gmt_create}, 
+			#{gmt_modified}, 
+			#{version}, 
+			#{descript}, 
+			#{site_id}, 
+			#{os}, 
+			#{down_url}, 
+			#{force_update}, 
+			#{show}, 
+			#{app_id}, 
+			#{app_name}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.appVersion.entity.AppVersionEntity">
+		SELECT
+			`id`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`version`, 
+			`descript`, 
+			`site_id`, 
+			`os`, 
+			`down_url`, 
+			`force_update`, 
+			`show`, 
+			`app_id`, 
+			`app_name`
+		FROM
+			app_version
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update" useGeneratedKeys="true"  keyProperty="id">
+		UPDATE app_version
+	 	<set>
+			<if test="gmt_create != null">`gmt_create` = #{gmt_create}, </if>
+			<if test="gmt_modified != null">`gmt_modified` = #{gmt_modified}, </if>
+			<if test="version != null">`version` = #{version}, </if>
+			<if test="descript != null">`descript` = #{descript}, </if>
+			<if test="site_id != null">`site_id` = #{site_id}, </if>
+			<if test="os != null">`os` = #{os}, </if>
+			<if test="down_url != null">`down_url` = #{down_url}, </if>
+			<if test="force_update != null">`force_update` = #{force_update}, </if>
+			<if test="show != null">`show` = #{show}, </if>
+			<if test="app_id != null">`app_id` = #{app_id}, </if>
+			<if test="app_name != null">`app_name` = #{app_name}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			app_version
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<delete id="remove">
+		DELETE
+		FROM
+			app_version
+		WHERE
+			id = #{id}
+	</delete>
+
+</mapper>
