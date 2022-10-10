@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -68,6 +69,18 @@ public class WebConfig implements WebMvcConfigurer {
         return registration;
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        String mapping = "/**";
+        String origins = "*"; //写成String origins = "*"; 错误，这时候需要指定明确的域
+        String methods = "*";
+        Boolean allowCredentials = true; // 表示是否允许携带cookie  //解决Session问题
+        registry
+                .addMapping(mapping)
+                .allowedOrigins(origins)
+                .allowedMethods(methods)
+                .allowCredentials(allowCredentials);
+    }
 
     /**
      * 验证码生成相关

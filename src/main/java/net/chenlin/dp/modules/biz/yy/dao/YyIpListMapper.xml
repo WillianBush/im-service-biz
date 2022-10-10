@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.yy.dao.YyIpListMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.yy.entity.YyIpListEntity">
+		SELECT
+			`id`, 
+			`ip_address`, 
+			`note`, 
+			`type`, 
+			`stauts`
+		FROM
+			yy_ip_list
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="ip_address != null"> and `ip_address` = #{ip_address} </if>
+		<if test="note != null"> and `note` = #{note} </if>
+		<if test="type != null"> and `type` = #{type} </if>
+		<if test="stauts != null"> and `stauts` = #{stauts} </if>
+		ORDER BY
+			ip_address DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO yy_ip_list (
+			`id`, 
+			`ip_address`, 
+			`note`, 
+			`type`, 
+			`stauts`
+		)
+		VALUES (
+			#{id}, 
+			#{ip_address}, 
+			#{note}, 
+			#{type}, 
+			#{stauts}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.yy.entity.YyIpListEntity">
+		SELECT
+			`id`, 
+			`ip_address`, 
+			`note`, 
+			`type`, 
+			`stauts`
+		FROM
+			yy_ip_list
+		WHERE
+			ip_address = #{ip_address}
+	</select>
+	
+	<update id="update">
+		UPDATE yy_ip_list
+	 	<set>
+			<if test="id != null">`id` = #{id}, </if>
+			<if test="note != null">`note` = #{note}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="stauts != null">`stauts` = #{stauts}</if>
+		</set>
+		WHERE
+			ip_address = #{ip_address}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			yy_ip_list
+		WHERE
+			ip_address IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

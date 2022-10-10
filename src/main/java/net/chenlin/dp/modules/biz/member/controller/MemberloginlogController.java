@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.member.controller;
 import java.util.Map;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,9 +23,9 @@ import net.chenlin.dp.modules.biz.member.service.MemberloginlogService;
  */
 @RestController
 @RequestMapping("/rm/memberloginlog")
+@AllArgsConstructor
 public class MemberloginlogController extends AbstractController {
 	
-	@Autowired
 	private MemberloginlogService memberloginlogService;
 	
 	/**
