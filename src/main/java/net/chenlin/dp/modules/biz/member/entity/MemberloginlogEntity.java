@@ -56,7 +56,16 @@ public class MemberloginlogEntity implements Serializable {
 	 * 
 	 */
 	private String mtel;
-	
+
+	/**
+	* 用户终端类型
+	* */
+	private int type;
+
+	/**
+	 * 用户头像
+	 * */
+	private String mheadPic;
 
 
 }
