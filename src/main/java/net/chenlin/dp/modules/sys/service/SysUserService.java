@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.sys.service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserTokenEntity;
@@ -28,28 +29,28 @@ public interface SysUserService {
 	 * @param user
 	 * @return
 	 */
-	R saveUser(SysUserEntity user);
+	Resp saveUser(SysUserEntity user);
 
 	/**
 	 * 根据id查询用户
 	 * @param userId
 	 * @return
 	 */
-	R getUserById(Long userId);
+	Resp<SysUserEntity> getUserById(Long userId);
 
 	/**
 	 * 修改用户
 	 * @param user
 	 * @return
 	 */
-	R updateUser(SysUserEntity user);
+	Resp updateUser(SysUserEntity user);
 
 	/**
 	 * 删除用户
 	 * @param id
 	 * @return
 	 */
-	R batchRemove(Long[] id);
+	Resp batchRemove(Long[] id);
 
 	/**
 	 * 查询用户权限集合
@@ -72,28 +73,28 @@ public interface SysUserService {
 	 * @param user
 	 * @return
 	 */
-	R updatePswdByUser(SysUserEntity user);
+	Resp updatePswdByUser(SysUserEntity user);
 
 	/**
 	 * 启用用户
 	 * @param id
 	 * @return
 	 */
-	R updateUserEnable(Long[] id);
+	Resp updateUserEnable(Long[] id);
 
 	/**
 	 * 禁用用户
 	 * @param id
 	 * @return
 	 */
-	R updateUserDisable(Long[] id);
+	Resp updateUserDisable(Long[] id);
 
 	/**
 	 * 重置用户密码
 	 * @param user
 	 * @return
 	 */
-	R updatePswd(SysUserEntity user);
+	Resp updatePswd(SysUserEntity user);
 
 	/**
 	 * 根据用户名查询用户信息
@@ -138,4 +139,11 @@ public interface SysUserService {
 	SysUserEntity getUserByIdForToken(Long userId);
 
     SysUserEntity login(String username, String password);
+
+
+	Resp updateGoogleKaptcha(Long userId, String username, long kaptcha);
+
+	Resp<String> getGoogleKaptcha(Long userId, String username);
+
+	boolean checkGoogleKaptcha(String username, long kaptcha);
 }

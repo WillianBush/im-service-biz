@@ -33,7 +33,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @AllArgsConstructor
-@Api(tags = "用户登录登出")
+@Api(tags = "管理后台登陆")
 public class SysLoginController extends AbstractController {
 
 	private SysUserService sysUserService;
@@ -67,8 +67,17 @@ public class SysLoginController extends AbstractController {
 				return Resp.error(1001,"该账号已经禁用");
 			}
 
+			if( userEntity.getEnableGoogleKaptcha().equals(1) ){
+
+				if (user.getGoogleCode() == null || !sysUserService.checkGoogleKaptcha(user.getUsername(),user.getGoogleCode())) {
+					return  Resp.error(500,"谷歌验证码错误");
+				}
+			}
+
 			SysLoginResp resp = new SysLoginResp();
 			userEntity.setPassword("");
+			userEntity.setGoogleKaptchaKey("");
+			userEntity.setEnableGoogleKaptcha(null);
 			resp.setSysUserEntity(userEntity);
 			String token = TokenUtils.generateValue(userEntity.getUsername());
 			List<SysRoleEntity>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));

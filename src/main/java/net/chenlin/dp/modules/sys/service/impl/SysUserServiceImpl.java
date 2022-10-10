@@ -8,9 +8,11 @@ import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.support.properties.JwtProperties;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.CommonUtils;
+import net.chenlin.dp.common.utils.GoogleGenerator;
 import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.modules.sys.dao.*;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
@@ -20,6 +22,7 @@ import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -85,14 +88,14 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R saveUser(SysUserEntity user) {
+	public Resp saveUser(SysUserEntity user) {
 		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
 		int count = sysUserMapper.save(user);
 		Query query = new Query();
 		query.put("userId", user.getUserId());
 		query.put("roleIdList", user.getRoleIdList());
 		sysUserRoleMapper.save(query);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -101,10 +104,10 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R getUserById(Long userId) {
+	public Resp<SysUserEntity> getUserById(Long userId) {
 		SysUserEntity user = sysUserMapper.getObjectById(userId);
 		user.setRoleIdList(sysUserRoleMapper.listUserRoleId(userId));
-		return CommonUtils.msg(user);
+		return CommonUtils.msgResp(user);
 	}
 
 	/**
@@ -113,7 +116,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updateUser(SysUserEntity user) {
+	public Resp updateUser(SysUserEntity user) {
 		int count = sysUserMapper.update(user);
 		Long userId = user.getUserId();
 		sysUserRoleMapper.remove(userId);
@@ -121,7 +124,7 @@ public class SysUserServiceImpl implements SysUserService {
 		query.put("userId", userId);
 		query.put("roleIdList", user.getRoleIdList());
 		sysUserRoleMapper.save(query);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -130,10 +133,10 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = sysUserMapper.batchRemove(id);
 		sysUserRoleMapper.batchRemoveByUserId(id);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -181,7 +184,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updatePswdByUser(SysUserEntity user) {
+	public Resp updatePswdByUser(SysUserEntity user) {
 		String username = user.getUsername();
 		String pswd = user.getPassword();
 		String newPswd = user.getEmail();
@@ -193,9 +196,9 @@ public class SysUserServiceImpl implements SysUserService {
 		query.put("newPswd", newPswd);
 		int count = sysUserMapper.updatePswdByUser(query);
 		if(!CommonUtils.isIntThanZero(count)) {
-			return R.error("原密码错误");
+			return Resp.error("原密码错误");
 		}
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -204,12 +207,12 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updateUserEnable(Long[] id) {
+	public Resp updateUserEnable(Long[] id) {
 		Query query = new Query();
 		query.put("status", SystemConstant.StatusType.ENABLE.getValue());
 		query.put("id", id);
 		int count = sysUserMapper.updateUserStatus(query);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 	/**
@@ -218,12 +221,12 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updateUserDisable(Long[] id) {
+	public Resp updateUserDisable(Long[] id) {
 		Query query = new Query();
 		query.put("status", SystemConstant.StatusType.DISABLE.getValue());
 		query.put("id", id);
 		int count = sysUserMapper.updateUserStatus(query);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 	/**
@@ -232,11 +235,11 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updatePswd(SysUserEntity user) {
+	public Resp updatePswd(SysUserEntity user) {
 		SysUserEntity currUser = sysUserMapper.getObjectById(user.getUserId());
 		user.setPassword(MD5Utils.encrypt(currUser.getUsername(), user.getPassword()));
 		int count = sysUserMapper.updatePswd(user);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
 	/**
@@ -296,5 +299,47 @@ public class SysUserServiceImpl implements SysUserService {
 	public SysUserEntity login(String username, String password) {
 		log.info("login, username:{};password:{}",username,password);
 		return sysUserMapper.getByUserNameAndPassword(username,password);
+	}
+
+	@Override
+	public Resp<String> getGoogleKaptcha(Long userId, String username) {
+		SysUserEntity userEntity = sysUserMapper.getByUserName(username);
+		if(userEntity.getEnableGoogleKaptcha() == null || userEntity.getEnableGoogleKaptcha().equals(0)){
+			String googleSecure = GoogleGenerator.generateSecretKey();
+			String url = GoogleGenerator.getQRBarcode(userEntity.getUsername(),googleSecure);
+			SysUserEntity user = new SysUserEntity();
+			user.setUserId(userId);
+			user.setGoogleKaptchaKey(googleSecure);
+			int count = sysUserMapper.update(user);
+			if(count > 0) {
+				log.info("生成谷歌验证成功,username:{},sercure:{}",username,googleSecure);
+				return CommonUtils.msgResp(url);
+			}
+		}else if(userEntity.getEnableGoogleKaptcha() != null && userEntity.getEnableGoogleKaptcha().equals(1)){
+			String url = GoogleGenerator.getQRBarcode(userEntity.getUsername(),userEntity.getGoogleKaptchaKey());
+			return CommonUtils.msgResp(url);
+		}
+		return Resp.error("生成二维码失败");
+	}
+	@Override
+	@Transactional
+	public Resp updateGoogleKaptcha(Long userId,String username , long kaptcha) {
+		SysUserEntity userEntity = sysUserMapper.getByUserName(username);
+		String googleSecure = userEntity.getGoogleKaptchaKey();
+		if( GoogleGenerator.check_code(googleSecure,kaptcha,System.currentTimeMillis())){
+			SysUserEntity user = new SysUserEntity();
+			user.setUserId(userId);
+			user.setEnableGoogleKaptcha(1);
+			int count = sysUserMapper.update(user);
+			return Resp.ok();
+		}
+		return Resp.error("绑定谷歌验证失败");
+	}
+
+	@Override
+	public boolean checkGoogleKaptcha(String username, long kaptcha) {
+		SysUserEntity userEntity = sysUserMapper.getByUserName(username);
+		String googleSecure = userEntity.getGoogleKaptchaKey();
+		return GoogleGenerator.check_code(googleSecure,kaptcha,System.currentTimeMillis());
 	}
 }

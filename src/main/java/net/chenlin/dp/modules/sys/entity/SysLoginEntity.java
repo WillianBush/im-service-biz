@@ -18,5 +18,7 @@ public class SysLoginEntity implements Serializable {
 
     @ApiModelProperty(value = "密码")
     private String password;
-//    private String kaptcha;
+
+    @ApiModelProperty(value = "谷歌验证码")
+    private Long googleCode;
 }

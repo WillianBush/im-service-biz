@@ -7,12 +7,14 @@ import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -46,8 +48,8 @@ public class SysUserController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "获取登录的用户信息")
-	public R info(){
-		return R.ok().put("user", getUser());
+	public Resp info(){
+		return Resp.ok(getUser());
 	}
 	
 	/**
@@ -56,8 +58,8 @@ public class SysUserController extends AbstractController {
 	 */
 	@GetMapping("/perms")
 	@ApiOperation(value = "用户权限")
-	public R listUserPerms() {
-		return CommonUtils.msgNotCheckNull(sysUserService.listUserPerms(getUserId()));
+	public Resp listUserPerms() {
+		return CommonUtils.msgRespNotCheckNull(Arrays.asList(sysUserService.listUserPerms(getUserId()).toArray()));
 	}
 	
 	/**
@@ -68,7 +70,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("新增用户")
 	@PostMapping("/save")
 	@ApiOperation(value = "新增用户")
-	public R save(@RequestBody SysUserEntity user) {
+	public Resp save(@RequestBody SysUserEntity user) {
 		user.setUserIdCreate(getUserId());
 		return sysUserService.saveUser(user);
 	}
@@ -80,7 +82,7 @@ public class SysUserController extends AbstractController {
 	 */
 	@GetMapping("/infoUser")
 	@ApiOperation(value = "根据id查询详情")
-	public R getById(@RequestBody Long userId) {
+	public Resp<SysUserEntity> getById(@RequestBody Long userId) {
 		return sysUserService.getUserById(userId);
 	}
 	
@@ -92,7 +94,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("修改用户")
 	@PostMapping("/update")
 	@ApiOperation(value = "修改用户")
-	public R update(@RequestBody SysUserEntity user) {
+	public Resp update(@RequestBody SysUserEntity user) {
 		return sysUserService.updateUser(user);
 	}
 	
@@ -104,7 +106,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("删除用户")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除用户")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody Long[] id) {
 		return sysUserService.batchRemove(id);
 	}
 	
@@ -117,7 +119,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("修改密码")
 	@PostMapping("/updatePswd")
 	@ApiOperation(value = "用户修改密码")
-	public R updatePswdByUser(String pswd, String newPswd) {
+	public Resp updatePswdByUser(String pswd, String newPswd) {
 		SysUserEntity user = getUser();
 		user.setPassword(pswd);//原密码
 		user.setEmail(newPswd);//邮箱临时存储新密码
@@ -132,7 +134,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("启用账户")
 	@PostMapping("/enable")
 	@ApiOperation(value = "启用账户")
-	public R updateUserEnable(@RequestBody Long[] id) {
+	public Resp updateUserEnable(@RequestBody Long[] id) {
 		return sysUserService.updateUserEnable(id);
 	}
 	
@@ -144,7 +146,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("禁用账户")
 	@PostMapping("/disable")
 	@ApiOperation(value = "禁用账户")
-	public R updateUserDisable(@RequestBody Long[] id) {
+	public Resp updateUserDisable(@RequestBody Long[] id) {
 		return sysUserService.updateUserDisable(id);
 	}
 	
@@ -156,7 +158,23 @@ public class SysUserController extends AbstractController {
 	@SysLog("重置密码")
 	@PostMapping("/reset")
 	@ApiOperation(value = "重置密码")
-	public R updatePswd(@RequestBody SysUserEntity user) {
+	public Resp updatePswd(@RequestBody SysUserEntity user) {
 		return sysUserService.updatePswd(user);
+	}
+
+	@SysLog("绑定Googley验证码")
+	@PostMapping("/updateGoogleKaptcha")
+	@ApiOperation(value = "绑定Googley验证码")
+	public Resp updateGoogleKaptcha(@RequestParam("kaptcha") Long kaptcha) {
+		SysUserEntity user = getUser();
+		return sysUserService.updateGoogleKaptcha(user.getUserId(),user.getUsername(),kaptcha);
+	}
+
+	@SysLog("获取Googley验证二维码")
+	@GetMapping("/getGoogleKaptcha")
+	@ApiOperation(value = "获取Googley验证二维码")
+	public Resp<String> getGoogleKaptcha() {
+		SysUserEntity user = getUser();
+		return sysUserService.getGoogleKaptcha(user.getUserId(),user.getUsername());
 	}
 }

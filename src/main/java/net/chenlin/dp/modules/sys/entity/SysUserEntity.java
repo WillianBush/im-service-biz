@@ -113,5 +113,9 @@ public class SysUserEntity implements Serializable {
 	@ApiModelProperty(value = "角色列表")
 	private List<SysRoleEntity> roleList;
 
+	@ApiModelProperty(value = "谷歌验证码key")
+	private String googleKaptchaKey;
 
+	@ApiModelProperty(value = "是否开启谷歌验证码")
+	private Integer enableGoogleKaptcha;
 }
