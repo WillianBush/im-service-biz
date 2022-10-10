@@ -70,7 +70,7 @@ public class SysLoginController extends AbstractController {
 			if( userEntity.getEnableGoogleKaptcha().equals(1) ){
 
 				if (user.getGoogleCode() == null || !sysUserService.checkGoogleKaptcha(user.getUsername(),user.getGoogleCode())) {
-					return  Resp.error(500,"谷歌验证码错误");
+					return  Resp.error(1001,"谷歌验证码错误");
 				}
 			}
 
@@ -85,11 +85,11 @@ public class SysLoginController extends AbstractController {
 			sysUserService.saveOrUpdateToken(userEntity,token);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
 			resp.setToken(token);
-			return Resp.ok(200,"验证成功",resp);
+			return Resp.ok("验证成功",resp);
 		} catch (Exception e) {
 			log.error("login, 登录异常 user:{}",user,e);
 		}
-		return  Resp.error(500,"登录服务异常");
+		return  Resp.error(1001,"登录服务异常");
 	}
 
 	

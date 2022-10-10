@@ -69,6 +69,10 @@ public class Resp<T> {
 	public static <E> Resp<E> ok(String msg,E data,List<E> dataRows) {
 		return  Resp.ok(ok,msg,data,dataRows);
 	}
+
+	public static <E> Resp<E> ok(String msg,E data) {
+		return  Resp.ok(ok,msg,data);
+	}
 	
 	public static Resp error(String msg) {
 		return error(error, msg);
