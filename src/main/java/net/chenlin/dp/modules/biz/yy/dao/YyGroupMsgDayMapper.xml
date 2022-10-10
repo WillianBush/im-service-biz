@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="net.chenlin.dp.modules.biz.yy_group_msg_day.dao.YyGroupMsgDayMapper">
+<mapper namespace="net.chenlin.dp.modules.biz.yy.dao.YyGroupMsgDayMapper">
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.yy.entity.YyGroupMsgDayEntity">
 		SELECT
