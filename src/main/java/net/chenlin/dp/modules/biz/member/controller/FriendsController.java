@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
@@ -34,7 +32,7 @@ public class FriendsController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@ApiOperation(value = "用户列表")
 	public Page<FriendsEntity> list(@RequestBody Map<String, Object> params) {
 		return friendsService.listFriends(params);
@@ -46,7 +44,7 @@ public class FriendsController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@RequestMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增用户")
 	public Resp save(@RequestBody FriendsEntity friends) {
 		return friendsService.saveFriends(friends);
@@ -57,7 +55,7 @@ public class FriendsController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/info")
+	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询好友")
 	public Resp getById(@RequestBody String id) {
 		return friendsService.getFriendsById(id);
@@ -69,7 +67,7 @@ public class FriendsController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改")
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation(value = "修改好友备注")
 	public Resp update(@RequestBody FriendsEntity friends) {
 		return friendsService.updateFriends(friends);
@@ -81,7 +79,7 @@ public class FriendsController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除")
-	@RequestMapping("/remove")
+	@PostMapping("/remove")
 	@ApiOperation(value = "删除好友")
 	public Resp batchRemove(@RequestBody String[] id) {
 		return friendsService.batchRemove(id);
