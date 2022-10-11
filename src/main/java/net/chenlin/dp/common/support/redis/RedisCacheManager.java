@@ -164,9 +164,9 @@ public class RedisCacheManager {
      *            值
      * @return true成功 false失败
      */
-    public boolean set(String key, Object value) {
+    public boolean set(String key, Object jsonStr) {
         try {
-            redisTemplate.opsForValue().set(key, JSONObject.toJSONString(value));
+            redisTemplate.opsForValue().set(key, JSONObject.toJSONString(jsonStr));
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,18 +180,18 @@ public class RedisCacheManager {
      *
      * @param key
      *            键
-     * @param value
+     * @param jsonStr
      *            值
      * @param time
      *            时间(秒) time要大于0 如果time小于等于0 将设置无限期
      * @return true成功 false 失败
      */
-    public boolean set(String key, Object value, long time) {
+    public boolean set(String key, Object jsonStr, long time) {
         try {
             if (time > 0) {
-                redisTemplate.opsForValue().set(key, JSONObject.toJSONString(value), time, TimeUnit.SECONDS);
+                redisTemplate.opsForValue().set(key, JSONObject.toJSONString(jsonStr), time, TimeUnit.SECONDS);
             } else {
-                set(key, value);
+                set(key, jsonStr);
             }
             return true;
         } catch (Exception e) {
