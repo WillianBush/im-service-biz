@@ -2,6 +2,7 @@ package net.chenlin.dp.common.support.redis;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,6 +25,7 @@ import java.util.concurrent.TimeUnit;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Component("redisCacheManager")
+@Slf4j
 public class RedisCacheManager {
 
     private final RedisTemplate<String, Object> redisTemplate;
@@ -66,12 +68,14 @@ public class RedisCacheManager {
     public <T> List<T> getJsonListFromJsonString(String key, Class<T> tClass) {
         Object jsonStr = get(key);
         if (!ObjectUtils.isEmpty(jsonStr)) return null;
+        log.info("getJsonListFromJsonString,jsonStr:{}",jsonStr);
         return JSONArray.parse(jsonStr.toString()).toList(tClass);
     }
 
     public <T> T getJsonObjectFromJsonString(String key, Class<T> tClass) {
         Object jsonStr = get(key);
         if (ObjectUtils.isEmpty(jsonStr)) return null;
+
         return JSONObject.parseObject(jsonStr.toString(), tClass);
     }
 
