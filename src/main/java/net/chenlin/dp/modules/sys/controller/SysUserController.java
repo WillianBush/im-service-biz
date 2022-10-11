@@ -165,9 +165,9 @@ public class SysUserController extends AbstractController {
 	}
 
 	@SysLog("绑定Googley验证码")
-	@PostMapping("/updateGoogleKaptcha")
+	@GetMapping("/updateGoogleKaptcha")
 	@ApiOperation(value = "绑定Googley验证码")
-	public Resp updateGoogleKaptcha(@RequestParam("kaptcha") Long kaptcha) {
+	public Resp updateGoogleKaptcha(@RequestParam("kaptcha") String kaptcha) {
 		SysUserEntity user = getUser();
 		return sysUserService.updateGoogleKaptcha(user.getUserId(),user.getUsername(),kaptcha);
 	}

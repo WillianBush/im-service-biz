@@ -20,5 +20,5 @@ public class SysLoginEntity implements Serializable {
     private String password;
 
     @ApiModelProperty(value = "谷歌验证码")
-    private Long googleCode;
+    private String googleCode;
 }

@@ -71,7 +71,7 @@ public class SysLoginController extends AbstractController {
 
 			if( userEntity.getEnableGoogleKaptcha().equals(1) ){
 
-				if (user.getGoogleCode() == null || !sysUserService.checkGoogleKaptcha(user.getUsername(),user.getGoogleCode())) {
+				if ( StringUtils.isEmpty(user.getGoogleCode()) || !sysUserService.checkGoogleKaptcha(user.getUsername(),user.getGoogleCode())) {
 					return  Resp.error(1001,"谷歌验证码错误");
 				}
 			}

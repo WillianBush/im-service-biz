@@ -141,9 +141,9 @@ public interface SysUserService {
     SysUserEntity login(String username, String password);
 
 
-	Resp updateGoogleKaptcha(Long userId, String username, long kaptcha);
+	Resp updateGoogleKaptcha(Long userId, String username, String kaptcha);
 
 	Resp<String> getGoogleKaptcha(Long userId, String username);
 
-	boolean checkGoogleKaptcha(String username, long kaptcha);
+	boolean checkGoogleKaptcha(String username, String kaptcha);
 }

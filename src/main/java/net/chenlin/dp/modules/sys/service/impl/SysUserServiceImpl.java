@@ -321,12 +321,13 @@ public class SysUserServiceImpl implements SysUserService {
 		}
 		return Resp.error("生成二维码失败");
 	}
+
 	@Override
 	@Transactional
-	public Resp updateGoogleKaptcha(Long userId,String username , long kaptcha) {
+	public Resp updateGoogleKaptcha(Long userId,String username , String kaptcha) {
 		SysUserEntity userEntity = sysUserMapper.getByUserName(username);
 		String googleSecure = userEntity.getGoogleKaptchaKey();
-		if( GoogleGenerator.check_code(googleSecure,kaptcha,System.currentTimeMillis())){
+		if( GoogleGenerator.check_code(googleSecure,Long.getLong(kaptcha),System.currentTimeMillis())){
 			SysUserEntity user = new SysUserEntity();
 			user.setUserId(userId);
 			user.setEnableGoogleKaptcha(1);
@@ -337,9 +338,9 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Override
-	public boolean checkGoogleKaptcha(String username, long kaptcha) {
+	public boolean checkGoogleKaptcha(String username, String kaptcha) {
 		SysUserEntity userEntity = sysUserMapper.getByUserName(username);
 		String googleSecure = userEntity.getGoogleKaptchaKey();
-		return GoogleGenerator.check_code(googleSecure,kaptcha,System.currentTimeMillis());
+		return GoogleGenerator.check_code(googleSecure,Long.getLong(kaptcha),System.currentTimeMillis());
 	}
 }
