@@ -44,7 +44,7 @@ public class YySendGroupMsgController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增运营-消息群发")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<YySendGroupMsgEntity> save(@RequestBody YySendGroupMsgEntity yySendGroupMsg) {
 		return yySendGroupMsgService.saveYySendGroupMsg(yySendGroupMsg);

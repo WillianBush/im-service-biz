@@ -107,13 +107,12 @@ public class AppVersionServiceImpl implements AppVersionService {
 
 	@Override
 	public AppVersionEntity selectByUniqueKey(String version, Integer siteId, String os, String appId) {
-		appVersionMapper.select(AppVersionEntity.builder()
+		return	appVersionMapper.selectOne(AppVersionEntity.builder()
 						.version(version)
 						.site_id(siteId)
 						.os(os)
 						.app_id(appId)
 				.build());
-		return null;
 	}
 
 }
