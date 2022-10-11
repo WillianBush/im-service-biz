@@ -3,7 +3,7 @@ package net.chenlin.dp.modules.biz.employee.service;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 
 /**
@@ -24,27 +24,27 @@ public interface EmployeeService {
      * @param employee
      * @return
      */
-	R saveEmployee(EmployeeEntity employee);
+	Resp<EmployeeEntity> saveEmployee(EmployeeEntity employee);
 
     /**
      * 根据id查询
      * @param id
      * @return
      */
-	R getEmployeeById(Long id);
+	Resp<EmployeeEntity> getEmployeeById(Long id);
 
     /**
      * 修改
      * @param employee
      * @return
      */
-	R updateEmployee(EmployeeEntity employee);
+	Resp<Integer> updateEmployee(EmployeeEntity employee);
 
     /**
      * 删除
      * @param id
      * @return
      */
-	R batchRemove(Long[] id);
+	Resp batchRemove(Long[] id);
 	
 }

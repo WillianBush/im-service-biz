@@ -17,11 +17,11 @@
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="createdate != null"> and `createDate` = #{createdate} </if>
-		<if test="modifydate != null"> and `modifyDate` = #{modifydate} </if>
-		<if test="invitecode != null"> and `inviteCode` = #{invitecode} </if>
-		<if test="member_Id != null"> and `member_id` = #{member_Id} </if>
-		<if test="member_Uuid != null"> and `member_uuid` = #{member_Uuid} </if>
+		<if test="createDate != null"> and `createDate` = #{createDate} </if>
+		<if test="modifyDate != null"> and `modifyDate` = #{modifyDate} </if>
+		<if test="inviteCode != null"> and `inviteCode` = #{inviteCode} </if>
+		<if test="member_id != null"> and `member_id` = #{member_id} </if>
+		<if test="member_uuid != null"> and `member_uuid` = #{member_uuid} </if>
 		<if test="name != null"> and `name` = #{name} </if>
 		ORDER BY
 			id DESC
@@ -39,11 +39,11 @@
 		)
 		VALUES (
 			#{id}, 
-			#{createdate}, 
-			#{modifydate}, 
-			#{invitecode}, 
-			#{member_Id}, 
-			#{member_Uuid}, 
+			#{createDate}, 
+			#{modifyDate}, 
+			#{inviteCode}, 
+			#{member_id}, 
+			#{member_uuid}, 
 			#{name}
 		)
 	</insert>
@@ -66,11 +66,11 @@
 	<update id="update">
 		UPDATE employee
 	 	<set>
-			<if test="createdate != null">`createDate` = #{createdate}, </if>
-			<if test="modifydate != null">`modifyDate` = #{modifydate}, </if>
-			<if test="invitecode != null">`inviteCode` = #{invitecode}, </if>
-			<if test="member_Id != null">`member_id` = #{member_Id}, </if>
-			<if test="member_Uuid != null">`member_uuid` = #{member_Uuid}, </if>
+			<if test="createDate != null">`createDate` = #{createDate}, </if>
+			<if test="modifyDate != null">`modifyDate` = #{modifyDate}, </if>
+			<if test="inviteCode != null">`inviteCode` = #{inviteCode}, </if>
+			<if test="member_id != null">`member_id` = #{member_id}, </if>
+			<if test="member_uuid != null">`member_uuid` = #{member_uuid}, </if>
 			<if test="name != null">`name` = #{name}</if>
 		</set>
 		WHERE

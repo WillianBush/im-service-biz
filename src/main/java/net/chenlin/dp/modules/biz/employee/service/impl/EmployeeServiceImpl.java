@@ -1,16 +1,19 @@
 package net.chenlin.dp.modules.biz.employee.service.impl;
 
+import java.util.Map;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
-import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.Query;
-import net.chenlin.dp.common.entity.R;
-import net.chenlin.dp.common.utils.CommonUtils;
-import net.chenlin.dp.modules.biz.employee.dao.EmployeeMapper;
-import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
-import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import net.chenlin.dp.common.entity.Page;
+import net.chenlin.dp.common.entity.Query;
+import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.common.utils.CommonUtils;
+import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
+import net.chenlin.dp.modules.biz.employee.dao.EmployeeMapper;
+import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
+
 
 /**
  * 
@@ -31,18 +34,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Page<EmployeeEntity> listEmployee(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<EmployeeEntity> page = new Page<>(query);
-		page.setRows(employeeMapper.listForPage(page, query));
-
-//		EmployeeEntity employee = employeeMapper.selectOne(EmployeeEntity.builder()
-//						.name("admin")
-//				.build());
-//		Example example = Example.builder(EmployeeEntity.class)
-//				.select("id","name")
-//				.where(Sqls.custom().andEqualTo("name", "admin")
-//						.andLike("name", "%admin%"))
-//				.orderByDesc("count","name")
-//				.build();
-//		List<EmployeeEntity> employeeEntities = employeeMapper.selectByExample(example);
+		List<EmployeeEntity> resp= employeeMapper.listForPage(page, query);
+		page.setRows(resp);
 		return page;
 	}
 
@@ -52,9 +45,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
 	@Override
-	public R saveEmployee(EmployeeEntity employee) {
+	public Resp<EmployeeEntity> saveEmployee(EmployeeEntity employee) {
 		int count = employeeMapper.save(employee);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -63,9 +56,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
 	@Override
-	public R getEmployeeById(Long id) {
+	public Resp<EmployeeEntity> getEmployeeById(Long id) {
 		EmployeeEntity employee = employeeMapper.getObjectById(id);
-		return CommonUtils.msg(employee);
+		return CommonUtils.msgResp(employee);
 	}
 
     /**
@@ -74,9 +67,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
 	@Override
-	public R updateEmployee(EmployeeEntity employee) {
+	public Resp<Integer> updateEmployee(EmployeeEntity employee) {
 		int count = employeeMapper.update(employee);
-		return CommonUtils.msg(count);
+		return CommonUtils.msgResp(count);
 	}
 
     /**
@@ -85,9 +78,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Resp batchRemove(Long[] id) {
 		int count = employeeMapper.batchRemove(id);
-		return CommonUtils.msg(id, count);
+		return CommonUtils.msgResp(id, count);
 	}
 
 }

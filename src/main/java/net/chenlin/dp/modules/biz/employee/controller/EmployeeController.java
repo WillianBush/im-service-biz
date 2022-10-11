@@ -2,15 +2,16 @@ package net.chenlin.dp.modules.biz.employee.controller;
 
 import java.util.Map;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
 
@@ -19,10 +20,12 @@ import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
  * @author wang<fangyuan.co@outlook.com>
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/employee")
+@Api(tags = "")
 public class EmployeeController extends AbstractController {
 	
-	@Autowired
+
 	private EmployeeService employeeService;
 	
 	/**
@@ -30,7 +33,8 @@ public class EmployeeController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@PostMapping("/list")
+	@ApiOperation(value = "列表")
 	public Page<EmployeeEntity> list(@RequestBody Map<String, Object> params) {
 		return employeeService.listEmployee(params);
 	}
@@ -41,8 +45,9 @@ public class EmployeeController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@RequestMapping("/save")
-	public R save(@RequestBody EmployeeEntity employee) {
+	@PostMapping("/save")
+	@ApiOperation(value = "新增")
+	public Resp<EmployeeEntity> save(@RequestBody EmployeeEntity employee) {
 		return employeeService.saveEmployee(employee);
 	}
 	
@@ -51,8 +56,9 @@ public class EmployeeController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/info")
-	public R getById(@RequestBody Long id) {
+	@GetMapping("/info")
+	@ApiOperation(value = "根据id查询详情")
+	public Resp<EmployeeEntity> getById(@RequestBody Long id) {
 		return employeeService.getEmployeeById(id);
 	}
 	
@@ -62,8 +68,9 @@ public class EmployeeController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改")
-	@RequestMapping("/update")
-	public R update(@RequestBody EmployeeEntity employee) {
+	@PostMapping("/update")
+	@ApiOperation(value = "修改")
+	public Resp<Integer> update(@RequestBody EmployeeEntity employee) {
 		return employeeService.updateEmployee(employee);
 	}
 	
@@ -73,8 +80,9 @@ public class EmployeeController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除")
-	@RequestMapping("/remove")
-	public R batchRemove(@RequestBody Long[] id) {
+	@PostMapping("/remove")
+	@ApiOperation(value = "删除")
+	public Resp batchRemove(@RequestBody Long[] id) {
 		return employeeService.batchRemove(id);
 	}
 	

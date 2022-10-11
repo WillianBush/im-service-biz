@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 
 
@@ -18,43 +20,30 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ApiModel
 public class EmployeeEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * 
-	 */
+	@ApiModelProperty(value = "")
 	private String id;
 	
-	/**
-	 * 
-	 */
-	private Date createdate;
+	@ApiModelProperty(value = "")
+	private Date createDate;
 	
-	/**
-	 * 
-	 */
-	private Date modifydate;
+	@ApiModelProperty(value = "")
+	private Date modifyDate;
 	
-	/**
-	 * 
-	 */
-	private String invitecode;
+	@ApiModelProperty(value = "")
+	private String inviteCode;
 	
-	/**
-	 * 
-	 */
-	private String member_Id;
+	@ApiModelProperty(value = "")
+	private String member_id;
 	
-	/**
-	 * 
-	 */
-	private String member_Uuid;
+	@ApiModelProperty(value = "")
+	private String member_uuid;
 	
-	/**
-	 * 
-	 */
+	@ApiModelProperty(value = "")
 	private String name;
 	
 
