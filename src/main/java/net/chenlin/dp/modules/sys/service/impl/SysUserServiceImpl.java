@@ -327,7 +327,7 @@ public class SysUserServiceImpl implements SysUserService {
 	public Resp updateGoogleKaptcha(Long userId,String username , String kaptcha) {
 		SysUserEntity userEntity = sysUserMapper.getByUserName(username);
 		String googleSecure = userEntity.getGoogleKaptchaKey();
-		if( GoogleGenerator.check_code(googleSecure,Long.getLong(kaptcha),System.currentTimeMillis())){
+		if( GoogleGenerator.check_code(googleSecure,Long.parseLong(kaptcha),System.currentTimeMillis())){
 			SysUserEntity user = new SysUserEntity();
 			user.setUserId(userId);
 			user.setEnableGoogleKaptcha(1);
@@ -341,6 +341,6 @@ public class SysUserServiceImpl implements SysUserService {
 	public boolean checkGoogleKaptcha(String username, String kaptcha) {
 		SysUserEntity userEntity = sysUserMapper.getByUserName(username);
 		String googleSecure = userEntity.getGoogleKaptchaKey();
-		return GoogleGenerator.check_code(googleSecure,Long.getLong(kaptcha),System.currentTimeMillis());
+		return GoogleGenerator.check_code(googleSecure,Long.parseLong(kaptcha),System.currentTimeMillis());
 	}
 }
