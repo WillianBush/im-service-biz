@@ -83,4 +83,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return CommonUtils.msgResp(id, count);
 	}
 
+	@Override
+	public Resp<Integer> employeeBindIp(EmployeeEntity employee) {
+		if (employee.getMember_id().isEmpty() || null == employee.getMember_id()) {
+			return Resp.error("用户ID未空");
+		}
+
+		int count = employeeMapper.bindIP(employee);
+		return CommonUtils.msgResp(count);
+	}
+
 }

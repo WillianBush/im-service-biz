@@ -11,7 +11,8 @@
 			`inviteCode`, 
 			`member_id`, 
 			`member_uuid`, 
-			`name`
+			`name`,
+			`ip_white`
 		FROM
 			employee
 		where
@@ -23,6 +24,7 @@
 		<if test="member_id != null"> and `member_id` = #{member_id} </if>
 		<if test="member_uuid != null"> and `member_uuid` = #{member_uuid} </if>
 		<if test="name != null"> and `name` = #{name} </if>
+		<if test="ip_white != null"> and `ip_white` = #{ip_white} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -35,7 +37,8 @@
 			`inviteCode`, 
 			`member_id`, 
 			`member_uuid`, 
-			`name`
+			`name`,
+			`ip_white`
 		)
 		VALUES (
 			#{id}, 
@@ -44,7 +47,8 @@
 			#{inviteCode}, 
 			#{member_id}, 
 			#{member_uuid}, 
-			#{name}
+			#{name},
+			#{ip_white}
 		)
 	</insert>
 	
@@ -56,7 +60,8 @@
 			`inviteCode`, 
 			`member_id`, 
 			`member_uuid`, 
-			`name`
+			`name`,
+			`ip_white`
 		FROM
 			employee
 		WHERE
@@ -72,6 +77,7 @@
 			<if test="member_id != null">`member_id` = #{member_id}, </if>
 			<if test="member_uuid != null">`member_uuid` = #{member_uuid}, </if>
 			<if test="name != null">`name` = #{name}</if>
+			<if test="ip_white != null">`ip_white` = #{ip_white}</if>
 		</set>
 		WHERE
 			id = #{id}
@@ -87,5 +93,16 @@
 			#{id}
 		</foreach>
 	</delete>
+
+	<update id="bindIP">
+		UPDATE employee
+		<set>
+			<if test="createDate != null">`createDate` = #{createDate}, </if>
+			<if test="modifyDate != null">`modifyDate` = #{modifyDate}, </if>
+			<if test="ip_white != null">`ip_white` = #{ip_white}</if>
+		</set>
+		WHERE
+		member_id = #{member_id}
+	</update>
 
 </mapper>

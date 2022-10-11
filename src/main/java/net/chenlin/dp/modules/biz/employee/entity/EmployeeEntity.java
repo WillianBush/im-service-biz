@@ -34,7 +34,7 @@ public class EmployeeEntity implements Serializable {
 	@ApiModelProperty(value = "")
 	private Date modifyDate;
 	
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "邀请码")
 	private String inviteCode;
 	
 	@ApiModelProperty(value = "")
@@ -43,9 +43,11 @@ public class EmployeeEntity implements Serializable {
 	@ApiModelProperty(value = "")
 	private String member_uuid;
 	
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "昵称")
 	private String name;
-	
+
+	@ApiModelProperty(value = "绑定白名单")
+	private String ip_white;
 
 
 }

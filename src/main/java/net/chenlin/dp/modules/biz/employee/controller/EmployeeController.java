@@ -90,5 +90,17 @@ public class EmployeeController extends AbstractController {
 	public Resp batchRemove(@RequestBody Long[] id) {
 		return employeeService.batchRemove(id);
 	}
-	
+
+
+	/**
+	 * 删除
+	 * @param
+	 * @return
+	 */
+	@SysLog("删除")
+	@PostMapping("/remove")
+	@ApiOperation(value = "删除")
+	public Resp bindIP(@RequestBody EmployeeEntity employee) {
+		return employeeService.employeeBindIp(employee);
+	}
 }
