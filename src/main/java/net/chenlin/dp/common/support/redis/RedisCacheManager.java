@@ -75,7 +75,7 @@ public class RedisCacheManager {
     public <T> T getJsonObjectFromJsonString(String key, Class<T> tClass) {
         Object jsonStr = get(key);
         if (ObjectUtils.isEmpty(jsonStr)) return null;
-
+        log.info("getJsonListFromJsonString,jsonStr:{}",jsonStr);
         return JSONObject.parseObject(jsonStr.toString(), tClass);
     }
 
