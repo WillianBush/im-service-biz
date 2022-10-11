@@ -6,11 +6,13 @@ import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Component
+@DependsOn("springContextUtils")
 public class UserUtil {
 
     private final  RedisCacheManager redisCacheManager = (RedisCacheManager) SpringContextUtils.getBean("redisCacheManager");
