@@ -4,24 +4,15 @@ import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import net.chenlin.dp.common.support.interceptor.RestApiInterceptor;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
-import net.chenlin.dp.common.xss.XssFilter;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.ErrorPage;
-import org.springframework.boot.web.server.ErrorPageRegistrar;
-import org.springframework.boot.web.server.ErrorPageRegistry;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.io.File;
 import java.util.Properties;
 
 /**
@@ -59,15 +50,15 @@ public class WebConfig implements WebMvcConfigurer {
      * xssFilter注册
      * @return
      */
-    @Bean
-    public FilterRegistrationBean xssFilterRegistration() {
-        XssFilter xssFilter = new XssFilter();
-//        xssFilter.setUrlExclusion(Arrays.asList("/rest/testAnon"));
-        FilterRegistrationBean registration = new FilterRegistrationBean(xssFilter);
-        registration.setOrder(Integer.MAX_VALUE);
-        registration.addUrlPatterns("/*");
-        return registration;
-    }
+//    @Bean
+//    public FilterRegistrationBean xssFilterRegistration() {
+//        XssFilter xssFilter = new XssFilter();
+////        xssFilter.setUrlExclusion(Arrays.asList("/rest/testAnon"));
+//        FilterRegistrationBean registration = new FilterRegistrationBean(xssFilter);
+//        registration.setOrder(Integer.MAX_VALUE);
+//        registration.addUrlPatterns("/*");
+//        return registration;
+//    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
