@@ -44,7 +44,7 @@ public class YyMOnlineDayController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增运营-每日用户在线统计")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<YyMOnlineDayEntity> save(@RequestBody YyMOnlineDayEntity yyMOnlineDay) {
 		return yyMOnlineDayService.saveYyMOnlineDay(yyMOnlineDay);

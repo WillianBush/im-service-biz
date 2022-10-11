@@ -44,7 +44,7 @@ public class YyPersonalMsgDayController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增运营-每次私发消息统计")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<YyPersonalMsgDayEntity> save(@RequestBody YyPersonalMsgDayEntity yyPersonalMsgDay) {
 		return yyPersonalMsgDayService.saveYyPersonalMsgDay(yyPersonalMsgDay);

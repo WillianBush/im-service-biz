@@ -44,7 +44,7 @@ public class YyMRegisterDayController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增运营-每日注册数据")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<YyMRegisterDayEntity> save(@RequestBody YyMRegisterDayEntity yyMRegisterDay) {
 		return yyMRegisterDayService.saveYyMRegisterDay(yyMRegisterDay);

@@ -44,7 +44,7 @@ public class YyIpListController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<YyIpListEntity> save(@RequestBody YyIpListEntity yyIpList) {
 		return yyIpListService.saveYyIpList(yyIpList);
