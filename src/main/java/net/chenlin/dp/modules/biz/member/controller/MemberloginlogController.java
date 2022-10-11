@@ -6,9 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
@@ -33,7 +31,7 @@ public class MemberloginlogController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@ApiOperation(value = "用户列表")
 	public Page<MemberloginlogEntity> list(@RequestBody Map<String, Object> params) {
 		return memberloginlogService.listMemberloginlog(params);
@@ -45,7 +43,7 @@ public class MemberloginlogController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@RequestMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增用户")
 	public Resp save(@RequestBody MemberloginlogEntity memberloginlog) {
 		return memberloginlogService.saveMemberloginlog(memberloginlog);
@@ -56,7 +54,7 @@ public class MemberloginlogController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/info")
+	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
 	public Resp getById(@RequestBody String id) {
 		return memberloginlogService.getMemberloginlogById(id);
@@ -68,7 +66,7 @@ public class MemberloginlogController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改")
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation(value = "修改用户信息")
 	public Resp update(@RequestBody MemberloginlogEntity memberloginlog) {
 		return memberloginlogService.updateMemberloginlog(memberloginlog);
@@ -80,7 +78,7 @@ public class MemberloginlogController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除")
-	@RequestMapping("/remove")
+	@PostMapping("/remove")
 	@ApiOperation(value = "删除用户")
 	public Resp batchRemove(@RequestBody String[] id) {
 		return memberloginlogService.batchRemove(id);

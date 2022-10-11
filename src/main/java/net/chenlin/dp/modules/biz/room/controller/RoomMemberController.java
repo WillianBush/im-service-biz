@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
@@ -34,7 +32,7 @@ public class RoomMemberController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@ApiOperation(value = "群组成员列表")
 	public Page<RoomMemberEntity> list(@RequestBody Map<String, Object> params) {
 		return roomMemberService.listRoomMember(params);
@@ -46,7 +44,7 @@ public class RoomMemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@RequestMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增群组成员")
 	public Resp save(@RequestBody RoomMemberEntity roomMember) {
 		return roomMemberService.saveRoomMember(roomMember);
@@ -57,7 +55,7 @@ public class RoomMemberController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/info")
+	@GetMapping("/info")
 	@ApiOperation(value = "根据群id查询群组成员")
 	public Resp getById(@RequestBody String id) {
 		return roomMemberService.getRoomMemberById(id);
@@ -69,7 +67,8 @@ public class RoomMemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改")
-	@RequestMapping("/update")
+	@PostMapping("/update")
+	@ApiOperation(value = "修改")
 	public Resp update(@RequestBody RoomMemberEntity roomMember) {
 		return roomMemberService.updateRoomMember(roomMember);
 	}
@@ -80,7 +79,8 @@ public class RoomMemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除")
-	@RequestMapping("/remove")
+	@PostMapping("/remove")
+	@ApiOperation(value = "删除")
 	public Resp batchRemove(@RequestBody String[] id) {
 		return roomMemberService.batchRemove(id);
 	}

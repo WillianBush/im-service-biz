@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
@@ -34,7 +32,7 @@ public class MemberController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@ApiOperation(value = "用户列表")
 	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
 		return memberService.listMember(params);
@@ -46,7 +44,7 @@ public class MemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@RequestMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增用户")
 	public Resp save(@RequestBody MemberEntity member) {
 		return memberService.saveMember(member);
@@ -57,7 +55,7 @@ public class MemberController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/info")
+	@GetMapping("/info")
 	@ApiOperation(value = "查询用户详情")
 	public Resp getById(@RequestBody String id) {
 		return memberService.getMemberById(id);
@@ -69,7 +67,7 @@ public class MemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改")
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation(value = "修改用户信息")
 	public Resp update(@RequestBody MemberEntity member) {
 		return memberService.updateMember(member);
@@ -81,7 +79,7 @@ public class MemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("修改密码")
-	@RequestMapping("/updatePassword")
+	@PostMapping("/updatePassword")
 	@ApiOperation(value = "修改密码")
 	public Resp updatePassword(@RequestBody MemberEntity member) {
 		//todo 加密
@@ -95,7 +93,7 @@ public class MemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("冻结解冻登录")
-	@RequestMapping("/updateStatus")
+	@PostMapping("/updateStatus")
 	@ApiOperation(value = "冻结解冻登录")
 	public Resp updateStatus(@RequestBody MemberEntity member) {
 		MemberEntity memberEntity=new MemberEntity();
@@ -110,7 +108,7 @@ public class MemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除")
-	@RequestMapping("/remove")
+	@PostMapping("/remove")
 	@ApiOperation(value = "删除用户")
 	public Resp batchRemove(@RequestBody String[] id) {
 		return memberService.batchRemove(id);
@@ -122,7 +120,7 @@ public class MemberController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("清空聊天记录")
-	@RequestMapping("/removeMsgAll")
+	@PostMapping("/removeMsgAll")
 	public Resp removeMsgAll(@RequestBody String uid) {
 
 		return null;
