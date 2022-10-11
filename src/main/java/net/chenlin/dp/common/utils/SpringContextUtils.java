@@ -3,6 +3,7 @@ package net.chenlin.dp.common.utils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
  * 2.确保在此之前 SpringContextUtils 类已加载
  * @author wang<fangyuan.co@outlook.com>
  */
-@Component
+@Configuration
 public class SpringContextUtils implements ApplicationContextAware {
 	
 	private static ApplicationContext applicationContext;
