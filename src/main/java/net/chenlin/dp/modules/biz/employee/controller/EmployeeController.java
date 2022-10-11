@@ -5,6 +5,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.bussiness.service.YyIpListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,8 @@ public class EmployeeController extends AbstractController {
 	
 
 	private EmployeeService employeeService;
+
+	private YyIpListService yyIpListService;
 	
 	/**
 	 * 列表

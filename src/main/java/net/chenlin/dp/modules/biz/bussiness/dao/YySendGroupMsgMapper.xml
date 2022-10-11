@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.bussiness.dao.YySendGroupMsgMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YySendGroupMsgEntity">
+		SELECT
+			`id`, 
+			`send_member_ids`, 
+			`msg_type`, 
+			`message`, 
+			`picture`, 
+			`create_time`
+		FROM
+			yy_send_group_msg
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="send_member_ids != null"> and `send_member_ids` = #{send_member_ids} </if>
+		<if test="msg_type != null"> and `msg_type` = #{msg_type} </if>
+		<if test="message != null"> and `message` = #{message} </if>
+		<if test="picture != null"> and `picture` = #{picture} </if>
+		<if test="create_time != null"> and `create_time` = #{create_time} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO yy_send_group_msg (
+			`id`, 
+			`send_member_ids`, 
+			`msg_type`, 
+			`message`, 
+			`picture`, 
+			`create_time`
+		)
+		VALUES (
+			#{id}, 
+			#{send_member_ids}, 
+			#{msg_type}, 
+			#{message}, 
+			#{picture}, 
+			#{create_time}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YySendGroupMsgEntity">
+		SELECT
+			`id`, 
+			`send_member_ids`, 
+			`msg_type`, 
+			`message`, 
+			`picture`, 
+			`create_time`
+		FROM
+			yy_send_group_msg
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE yy_send_group_msg
+	 	<set>
+			<if test="send_member_ids != null">`send_member_ids` = #{send_member_ids}, </if>
+			<if test="msg_type != null">`msg_type` = #{msg_type}, </if>
+			<if test="message != null">`message` = #{message}, </if>
+			<if test="picture != null">`picture` = #{picture}, </if>
+			<if test="create_time != null">`create_time` = #{create_time}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			yy_send_group_msg
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

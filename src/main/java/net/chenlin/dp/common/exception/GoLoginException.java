@@ -12,6 +12,7 @@ public class GoLoginException extends RuntimeException {
 
     private String msg;
 
+	//登录错误
     private int code = 1001;
 
     public GoLoginException(String msg) {
