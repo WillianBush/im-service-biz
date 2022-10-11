@@ -32,7 +32,7 @@ public interface FriendsService {
      * @param id
      * @return
      */
-    Resp getFriendsById(Long id);
+    Resp getFriendsById(String id);
 
     /**
      * 修改
@@ -46,6 +46,6 @@ public interface FriendsService {
      * @param id
      * @return
      */
-    Resp batchRemove(Long[] id);
+    Resp batchRemove(String[] id);
 	
 }

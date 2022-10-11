@@ -58,7 +58,7 @@ public class DefaultEmoticonController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp<DefaultEmoticonEntity> getById(@RequestBody Long id) {
+	public Resp<DefaultEmoticonEntity> getById(@RequestBody String id) {
 		return defaultEmoticonService.getDefaultEmoticonById(id);
 	}
 	
@@ -82,7 +82,7 @@ public class DefaultEmoticonController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return defaultEmoticonService.batchRemove(id);
 	}
 	

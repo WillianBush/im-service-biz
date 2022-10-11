@@ -54,7 +54,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      * @return
      */
 	@Override
-	public Resp getMemberloginlogById(Long id) {
+	public Resp getMemberloginlogById(String id) {
 		MemberloginlogEntity memberloginlog = memberloginlogMapper.getObjectById(id);
 		return CommonUtils.msgResp(memberloginlog);
 	}
@@ -76,7 +76,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = memberloginlogMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

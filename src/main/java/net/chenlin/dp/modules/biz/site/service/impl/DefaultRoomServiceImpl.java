@@ -56,7 +56,7 @@ public class DefaultRoomServiceImpl implements DefaultRoomService {
      * @return
      */
 	@Override
-	public Resp<DefaultRoomEntity> getDefaultRoomById(Long id) {
+	public Resp<DefaultRoomEntity> getDefaultRoomById(String id) {
 		DefaultRoomEntity defaultRoom = defaultRoomMapper.getObjectById(id);
 		return CommonUtils.msgResp(defaultRoom);
 	}
@@ -78,7 +78,7 @@ public class DefaultRoomServiceImpl implements DefaultRoomService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = defaultRoomMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

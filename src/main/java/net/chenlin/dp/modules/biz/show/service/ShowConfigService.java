@@ -31,7 +31,7 @@ public interface ShowConfigService {
      * @param id
      * @return
      */
-	Resp<ShowConfigEntity> getShowConfigById(Long id);
+	Resp<ShowConfigEntity> getShowConfigById(String id);
 
     /**
      * 修改
@@ -45,6 +45,6 @@ public interface ShowConfigService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
 	
 }

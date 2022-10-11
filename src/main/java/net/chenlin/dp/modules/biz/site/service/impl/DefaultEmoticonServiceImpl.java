@@ -56,7 +56,7 @@ public class DefaultEmoticonServiceImpl implements DefaultEmoticonService {
      * @return
      */
 	@Override
-	public Resp<DefaultEmoticonEntity> getDefaultEmoticonById(Long id) {
+	public Resp<DefaultEmoticonEntity> getDefaultEmoticonById(String id) {
 		DefaultEmoticonEntity defaultEmoticon = defaultEmoticonMapper.getObjectById(id);
 		return CommonUtils.msgResp(defaultEmoticon);
 	}
@@ -78,7 +78,7 @@ public class DefaultEmoticonServiceImpl implements DefaultEmoticonService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = defaultEmoticonMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

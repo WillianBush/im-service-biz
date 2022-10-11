@@ -31,7 +31,7 @@ public interface DefaultPortraitService {
      * @param id
      * @return
      */
-	Resp<DefaultPortraitEntity> getDefaultPortraitById(Long id);
+	Resp<DefaultPortraitEntity> getDefaultPortraitById(String id);
 
     /**
      * 修改
@@ -45,6 +45,6 @@ public interface DefaultPortraitService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
 	
 }

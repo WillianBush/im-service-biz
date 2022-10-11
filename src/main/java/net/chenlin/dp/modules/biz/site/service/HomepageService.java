@@ -31,7 +31,7 @@ public interface HomepageService {
      * @param id
      * @return
      */
-	Resp<HomepageEntity> getHomepageById(Long id);
+	Resp<HomepageEntity> getHomepageById(String id);
 
     /**
      * 修改
@@ -45,6 +45,6 @@ public interface HomepageService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
 	
 }

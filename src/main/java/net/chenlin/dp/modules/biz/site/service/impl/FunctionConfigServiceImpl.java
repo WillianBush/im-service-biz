@@ -53,7 +53,7 @@ public class FunctionConfigServiceImpl implements FunctionConfigService {
      * @return
      */
 	@Override
-	public Resp<FunctionConfigEntity> getFunctionConfigById(Long id) {
+	public Resp<FunctionConfigEntity> getFunctionConfigById(String id) {
 		FunctionConfigEntity functionConfig = functionConfigMapper.getObjectById(id);
 		return CommonUtils.msgResp(functionConfig);
 	}

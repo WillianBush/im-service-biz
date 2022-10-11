@@ -54,7 +54,7 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public Resp getFriendsById(Long id) {
+	public Resp getFriendsById(String id) {
 		FriendsEntity friends = friendsMapper.getObjectById(id);
 		return CommonUtils.msgResp(friends);
 	}
@@ -66,6 +66,7 @@ public class FriendsServiceImpl implements FriendsService {
      */
 	@Override
 	public Resp updateFriends(FriendsEntity friends) {
+
 		int count = friendsMapper.update(friends);
 		return CommonUtils.msgResp(count);
 	}
@@ -76,7 +77,7 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = friendsMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

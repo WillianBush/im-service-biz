@@ -56,7 +56,7 @@ public class HomepageServiceImpl implements HomepageService {
      * @return
      */
 	@Override
-	public Resp<HomepageEntity> getHomepageById(Long id) {
+	public Resp<HomepageEntity> getHomepageById(String id) {
 		HomepageEntity homepage = homepageMapper.getObjectById(id);
 		return CommonUtils.msgResp(homepage);
 	}
@@ -78,7 +78,7 @@ public class HomepageServiceImpl implements HomepageService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = homepageMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

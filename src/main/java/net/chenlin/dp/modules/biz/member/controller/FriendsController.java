@@ -59,7 +59,7 @@ public class FriendsController extends AbstractController {
 	 */
 	@RequestMapping("/info")
 	@ApiOperation(value = "根据id查询好友")
-	public Resp getById(@RequestBody Long id) {
+	public Resp getById(@RequestBody String id) {
 		return friendsService.getFriendsById(id);
 	}
 	
@@ -83,7 +83,7 @@ public class FriendsController extends AbstractController {
 	@SysLog("删除")
 	@RequestMapping("/remove")
 	@ApiOperation(value = "删除好友")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return friendsService.batchRemove(id);
 	}
 	

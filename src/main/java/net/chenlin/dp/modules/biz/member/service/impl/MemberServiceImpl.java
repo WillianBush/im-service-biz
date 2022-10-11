@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
 	@Override
-	public Resp getMemberById(Long id) {
+	public Resp getMemberById(String id) {
 		MemberEntity member = memberMapper.getObjectById(id);
 		return CommonUtils.msgResp(member);
 	}
@@ -76,7 +76,7 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = memberMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

@@ -31,7 +31,7 @@ public interface DefaultFriendService {
      * @param id
      * @return
      */
-	Resp<DefaultFriendEntity> getDefaultFriendById(Long id);
+	Resp<DefaultFriendEntity> getDefaultFriendById(String id);
 
     /**
      * 修改
@@ -45,6 +45,6 @@ public interface DefaultFriendService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
 	
 }

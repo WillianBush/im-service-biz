@@ -58,7 +58,7 @@ public class DefaultPortraitController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp<DefaultPortraitEntity> getById(@RequestBody Long id) {
+	public Resp<DefaultPortraitEntity> getById(@RequestBody String id) {
 		return defaultPortraitService.getDefaultPortraitById(id);
 	}
 	
@@ -82,7 +82,7 @@ public class DefaultPortraitController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return defaultPortraitService.batchRemove(id);
 	}
 	

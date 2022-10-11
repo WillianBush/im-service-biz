@@ -32,7 +32,7 @@ public interface RoomService {
      * @param id
      * @return
      */
-    Resp getRoomById(Long id);
+    Resp getRoomById(String id);
 
     /**
      * 修改
@@ -46,7 +46,7 @@ public interface RoomService {
      * @param id
      * @return
      */
-    Resp batchRemove(Long[] id);
+    Resp batchRemove(String[] id);
 
     /**
      * 根据ID查询房间

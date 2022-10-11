@@ -58,7 +58,7 @@ public class MemberloginlogController extends AbstractController {
 	 */
 	@RequestMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp getById(@RequestBody Long id) {
+	public Resp getById(@RequestBody String id) {
 		return memberloginlogService.getMemberloginlogById(id);
 	}
 	
@@ -82,7 +82,7 @@ public class MemberloginlogController extends AbstractController {
 	@SysLog("删除")
 	@RequestMapping("/remove")
 	@ApiOperation(value = "删除用户")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return memberloginlogService.batchRemove(id);
 	}
 	

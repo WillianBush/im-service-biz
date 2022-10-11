@@ -32,7 +32,7 @@ public interface MemberService {
      * @param id
      * @return
      */
-    Resp getMemberById(Long id);
+    Resp getMemberById(String id);
 
     /**
      * 修改
@@ -46,6 +46,6 @@ public interface MemberService {
      * @param id
      * @return
      */
-    Resp batchRemove(Long[] id);
+    Resp batchRemove(String[] id);
 	
 }

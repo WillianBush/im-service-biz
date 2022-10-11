@@ -56,7 +56,7 @@ public class DefaultPortraitServiceImpl implements DefaultPortraitService {
      * @return
      */
 	@Override
-	public Resp<DefaultPortraitEntity> getDefaultPortraitById(Long id) {
+	public Resp<DefaultPortraitEntity> getDefaultPortraitById(String id) {
 		DefaultPortraitEntity defaultPortrait = defaultPortraitMapper.getObjectById(id);
 		return CommonUtils.msgResp(defaultPortrait);
 	}
@@ -78,7 +78,7 @@ public class DefaultPortraitServiceImpl implements DefaultPortraitService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = defaultPortraitMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

@@ -56,7 +56,7 @@ public class DefaultFriendServiceImpl implements DefaultFriendService {
      * @return
      */
 	@Override
-	public Resp<DefaultFriendEntity> getDefaultFriendById(Long id) {
+	public Resp<DefaultFriendEntity> getDefaultFriendById(String id) {
 		DefaultFriendEntity defaultFriend = defaultFriendMapper.getObjectById(id);
 		return CommonUtils.msgResp(defaultFriend);
 	}
@@ -78,7 +78,7 @@ public class DefaultFriendServiceImpl implements DefaultFriendService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = defaultFriendMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

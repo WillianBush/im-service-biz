@@ -31,7 +31,7 @@ public interface FunctionConfigService {
      * @param id
      * @return
      */
-	Resp<FunctionConfigEntity> getFunctionConfigById(Long id);
+	Resp<FunctionConfigEntity> getFunctionConfigById(String id);
 
     /**
      * 修改

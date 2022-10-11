@@ -59,7 +59,7 @@ public class MemberController extends AbstractController {
 	 */
 	@RequestMapping("/info")
 	@ApiOperation(value = "查询用户详情")
-	public Resp getById(@RequestBody Long id) {
+	public Resp getById(@RequestBody String id) {
 		return memberService.getMemberById(id);
 	}
 	
@@ -112,7 +112,7 @@ public class MemberController extends AbstractController {
 	@SysLog("删除")
 	@RequestMapping("/remove")
 	@ApiOperation(value = "删除用户")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return memberService.batchRemove(id);
 	}
 

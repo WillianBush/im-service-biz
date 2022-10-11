@@ -56,7 +56,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
      * @return
      */
 	@Override
-	public Resp<ShowConfigEntity> getShowConfigById(Long id) {
+	public Resp<ShowConfigEntity> getShowConfigById(String id) {
 		ShowConfigEntity showConfig = showConfigMapper.getObjectById(id);
 		return CommonUtils.msgResp(showConfig);
 	}
@@ -78,7 +78,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = showConfigMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

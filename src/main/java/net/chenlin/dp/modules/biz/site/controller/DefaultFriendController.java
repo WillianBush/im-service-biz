@@ -58,7 +58,7 @@ public class DefaultFriendController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp<DefaultFriendEntity> getById(@RequestBody Long id) {
+	public Resp<DefaultFriendEntity> getById(@RequestBody String id) {
 		return defaultFriendService.getDefaultFriendById(id);
 	}
 	
@@ -82,7 +82,7 @@ public class DefaultFriendController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return defaultFriendService.batchRemove(id);
 	}
 	

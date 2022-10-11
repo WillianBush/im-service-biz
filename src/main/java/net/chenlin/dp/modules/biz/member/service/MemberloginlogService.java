@@ -32,7 +32,7 @@ public interface MemberloginlogService {
      * @param id
      * @return
      */
-    Resp getMemberloginlogById(Long id);
+    Resp getMemberloginlogById(String id);
 
     /**
      * 修改
@@ -46,6 +46,6 @@ public interface MemberloginlogService {
      * @param id
      * @return
      */
-    Resp batchRemove(Long[] id);
+    Resp batchRemove(String[] id);
 	
 }

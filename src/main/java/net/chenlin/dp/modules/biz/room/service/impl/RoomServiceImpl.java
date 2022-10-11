@@ -55,7 +55,7 @@ public class RoomServiceImpl implements RoomService {
      * @return
      */
 	@Override
-	public Resp getRoomById(Long id) {
+	public Resp getRoomById(String id) {
 		RoomEntity room = roomMapper.getObjectById(id);
 		return CommonUtils.msgResp(room);
 	}
@@ -77,7 +77,7 @@ public class RoomServiceImpl implements RoomService {
 	 * @return
 	 */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = roomMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

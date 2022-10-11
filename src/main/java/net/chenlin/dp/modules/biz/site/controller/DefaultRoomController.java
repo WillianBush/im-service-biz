@@ -58,7 +58,7 @@ public class DefaultRoomController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp<DefaultRoomEntity> getById(@RequestBody Long id) {
+	public Resp<DefaultRoomEntity> getById(@RequestBody String id) {
 		return defaultRoomService.getDefaultRoomById(id);
 	}
 	
@@ -82,7 +82,7 @@ public class DefaultRoomController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return defaultRoomService.batchRemove(id);
 	}
 	

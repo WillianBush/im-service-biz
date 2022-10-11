@@ -57,7 +57,7 @@ public class FunctionConfigController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp<FunctionConfigEntity> getById(@RequestBody Long id) {
+	public Resp<FunctionConfigEntity> getById(@RequestBody String id) {
 		return functionConfigService.getFunctionConfigById(id);
 	}
 	

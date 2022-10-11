@@ -31,7 +31,7 @@ public interface DefaultEmoticonService {
      * @param id
      * @return
      */
-	Resp<DefaultEmoticonEntity> getDefaultEmoticonById(Long id);
+	Resp<DefaultEmoticonEntity> getDefaultEmoticonById(String id);
 
     /**
      * 修改
@@ -45,6 +45,6 @@ public interface DefaultEmoticonService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
 	
 }

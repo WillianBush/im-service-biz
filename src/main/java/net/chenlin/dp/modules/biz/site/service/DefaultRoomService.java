@@ -31,7 +31,7 @@ public interface DefaultRoomService {
      * @param id
      * @return
      */
-	Resp<DefaultRoomEntity> getDefaultRoomById(Long id);
+	Resp<DefaultRoomEntity> getDefaultRoomById(String id);
 
     /**
      * 修改
@@ -45,6 +45,6 @@ public interface DefaultRoomService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
 	
 }
