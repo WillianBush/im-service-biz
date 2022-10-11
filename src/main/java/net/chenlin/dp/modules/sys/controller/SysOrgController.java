@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.sys.entity.SysOrgEntity;
@@ -17,9 +18,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sys/org")
+@AllArgsConstructor
 public class SysOrgController extends AbstractController {
 
-	@Autowired
 	private SysOrgService sysOrgService;
 	
 	/**

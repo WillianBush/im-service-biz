@@ -1,21 +1,17 @@
 package net.chenlin.dp.modules.sys.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.constant.RestApiConstant;
 import net.chenlin.dp.common.constant.SystemConstant;
 import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
-import net.chenlin.dp.common.utils.JSONUtils;
 import net.chenlin.dp.common.utils.SpringContextUtils;
 import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
-import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +22,7 @@ import javax.servlet.http.HttpSession;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Slf4j
+@DependsOn("springContextUtils")
 public abstract class AbstractController {
 
 
