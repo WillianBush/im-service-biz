@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -22,7 +23,8 @@ import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/employee")
-@Api(tags = "")
+@Api(tags = "特权用户")
+@DependsOn("springContextUtils")
 public class EmployeeController extends AbstractController {
 	
 
