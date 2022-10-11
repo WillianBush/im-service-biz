@@ -162,7 +162,7 @@ public class RedisCacheManager {
      */
     public boolean set(String key, Object value) {
         try {
-            redisTemplate.opsForValue().set(key, value);
+            redisTemplate.opsForValue().set(key, JSONObject.toJSONString(value));
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,7 +185,7 @@ public class RedisCacheManager {
     public boolean set(String key, Object value, long time) {
         try {
             if (time > 0) {
-                redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);
+                redisTemplate.opsForValue().set(key, JSONObject.toJSONString(value), time, TimeUnit.SECONDS);
             } else {
                 set(key, value);
             }
