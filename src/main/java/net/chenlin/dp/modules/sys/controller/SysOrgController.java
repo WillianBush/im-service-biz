@@ -6,6 +6,7 @@ import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.sys.entity.SysOrgEntity;
 import net.chenlin.dp.modules.sys.service.SysOrgService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/sys/org")
 @AllArgsConstructor
+@DependsOn("springContextUtils")
 public class SysOrgController extends AbstractController {
 
 	private SysOrgService sysOrgService;

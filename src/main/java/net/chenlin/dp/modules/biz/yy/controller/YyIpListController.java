@@ -5,6 +5,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -22,6 +23,7 @@ import net.chenlin.dp.modules.biz.yy.service.YyIpListService;
 @AllArgsConstructor
 @RequestMapping("/yy_ip_list")
 @Api(tags = "运营-ip黑名单/ipweb白名单")
+@DependsOn("springContextUtils")
 public class YyIpListController extends AbstractController {
 	
 

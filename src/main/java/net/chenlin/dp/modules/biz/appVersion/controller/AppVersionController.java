@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -24,6 +25,7 @@ import net.chenlin.dp.modules.biz.appVersion.service.AppVersionService;
 @AllArgsConstructor
 @RequestMapping("/appVersion")
 @Api(tags = "app版本升级")
+@DependsOn("springContextUtils")
 public class AppVersionController extends AbstractController {
 	
 

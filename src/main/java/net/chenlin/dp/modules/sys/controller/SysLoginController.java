@@ -18,6 +18,7 @@ import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @Api(tags = "管理后台登陆")
+@DependsOn("springContextUtils")
 public class SysLoginController extends AbstractController {
 
 	private SysUserService sysUserService;

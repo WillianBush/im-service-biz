@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -23,6 +24,7 @@ import net.chenlin.dp.modules.biz.site.service.DefaultEmoticonService;
 @AllArgsConstructor
 @RequestMapping("/site/defaultemoticon")
 @Api(tags = "默认表情")
+@DependsOn("springContextUtils")
 public class DefaultEmoticonController extends AbstractController {
 	
 

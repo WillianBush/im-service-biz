@@ -5,6 +5,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -22,6 +23,7 @@ import net.chenlin.dp.modules.biz.yy.service.YyPersonalMsgDayService;
 @AllArgsConstructor
 @RequestMapping("/yy_personal_msg_day")
 @Api(tags = "运营-每次私发消息统计")
+@DependsOn("springContextUtils")
 public class YyPersonalMsgDayController extends AbstractController {
 	
 

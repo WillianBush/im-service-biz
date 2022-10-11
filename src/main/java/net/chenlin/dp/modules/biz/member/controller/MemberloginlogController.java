@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -22,6 +23,7 @@ import net.chenlin.dp.modules.biz.member.service.MemberloginlogService;
 @RestController
 @RequestMapping("/rm/memberloginlog")
 @AllArgsConstructor
+@DependsOn("springContextUtils")
 public class MemberloginlogController extends AbstractController {
 	
 	private MemberloginlogService memberloginlogService;

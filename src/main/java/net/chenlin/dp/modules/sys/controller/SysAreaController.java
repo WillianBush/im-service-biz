@@ -7,6 +7,7 @@ import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysAreaEntity;
 import net.chenlin.dp.modules.sys.service.SysAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/area")
 @AllArgsConstructor
+@DependsOn("springContextUtils")
 public class SysAreaController extends AbstractController {
 
 

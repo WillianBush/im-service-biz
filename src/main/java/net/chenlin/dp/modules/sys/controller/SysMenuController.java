@@ -7,6 +7,7 @@ import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysMenuEntity;
 import net.chenlin.dp.modules.sys.service.SysMenuService;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/menu")
 @Api(tags = "系统菜单")
+@DependsOn("springContextUtils")
 public class SysMenuController extends AbstractController {
 
 	@Resource

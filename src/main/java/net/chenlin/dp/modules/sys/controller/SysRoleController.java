@@ -13,6 +13,7 @@ import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.Map;
 @RequestMapping("/sys/role")
 @Api(tags = "系统角色")
 @AllArgsConstructor
+@DependsOn("springContextUtils")
 public class SysRoleController extends AbstractController {
 
 	private SysRoleService sysRoleService;

@@ -5,6 +5,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -22,6 +23,7 @@ import net.chenlin.dp.modules.biz.yy.service.YySendGroupMsgService;
 @AllArgsConstructor
 @RequestMapping("/yy_send_group_msg")
 @Api(tags = "运营-消息群发")
+@DependsOn("springContextUtils")
 public class YySendGroupMsgController extends AbstractController {
 	
 

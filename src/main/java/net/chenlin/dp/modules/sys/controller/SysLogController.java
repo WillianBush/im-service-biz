@@ -11,6 +11,7 @@ import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.SysLogEntity;
 import net.chenlin.dp.modules.sys.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -24,6 +25,7 @@ import java.util.Map;
 @Slf4j
 @AllArgsConstructor
 @Api(tags = "系统日志")
+@DependsOn("springContextUtils")
 public class SysLogController extends AbstractController {
 
 	private SysLogService sysLogService;

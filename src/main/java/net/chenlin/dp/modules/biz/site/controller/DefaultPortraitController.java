@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -23,6 +24,7 @@ import net.chenlin.dp.modules.biz.site.service.DefaultPortraitService;
 @AllArgsConstructor
 @RequestMapping("//site/defaultportrait")
 @Api(tags = "默认头像")
+@DependsOn("springContextUtils")
 public class DefaultPortraitController extends AbstractController {
 	
 

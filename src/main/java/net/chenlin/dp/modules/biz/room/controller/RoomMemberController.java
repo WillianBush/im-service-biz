@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -22,6 +23,7 @@ import net.chenlin.dp.modules.biz.room.service.RoomMemberService;
 @RestController
 @RequestMapping("/mr/roommember")
 @Api(tags = "群组成员管理")
+@DependsOn("springContextUtils")
 public class RoomMemberController extends AbstractController {
 	
 	@Autowired

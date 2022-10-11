@@ -5,6 +5,7 @@ import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.sys.entity.SysMacroEntity;
 import net.chenlin.dp.modules.sys.service.SysMacroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sys/macro")
+@DependsOn("springContextUtils")
 public class SysMacroController extends AbstractController {
 
 	@Autowired

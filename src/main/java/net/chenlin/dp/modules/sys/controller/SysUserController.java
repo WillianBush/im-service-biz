@@ -12,6 +12,7 @@ import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import net.chenlin.dp.modules.sys.service.SysUserService;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -25,6 +26,7 @@ import java.util.Map;
 @RequestMapping("/sys/user")
 @AllArgsConstructor
 @Api(tags = "后台管理员")
+@DependsOn("springContextUtils")
 public class SysUserController extends AbstractController {
 
 	private SysUserService sysUserService;
