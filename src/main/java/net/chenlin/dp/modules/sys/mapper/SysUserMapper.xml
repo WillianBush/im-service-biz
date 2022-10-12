@@ -32,7 +32,9 @@
 			u.mobile,
 			u.status,
 			u.remark,
-			u.gmt_create gmtCreate
+			u.gmt_create gmtCreate,
+			u.last_login_ip,
+			u.last_login_time
 		FROM
 			sys_user u
 		<where>
@@ -58,7 +60,9 @@
 			mobile,
 			status,
 			google_kaptcha_key googleKaptchaKey,
-			enable_google_kaptcha enableGoogleKaptcha
+			enable_google_kaptcha enableGoogleKaptcha,
+			last_login_ip,
+			last_login_time
 		FROM
 			sys_user
 		WHERE
@@ -76,7 +80,9 @@
 			status,
 			org_id orgId,
 			google_kaptcha_key googleKaptchaKey,
-			enable_google_kaptcha enableGoogleKaptcha
+			enable_google_kaptcha enableGoogleKaptcha,
+			last_login_ip,
+			last_login_time
 		FROM
 			sys_user
 		WHERE
@@ -114,6 +120,7 @@
 			org_id,
 			gmt_create,
 			enable_google_kaptcha,
+			last_login_ip
 		)
 		VALUES (
 			#{username},
@@ -124,7 +131,8 @@
 			#{userIdCreate},
 			#{orgId},
 			NOW(),
-		        0
+		        0,
+		        ''
 		)
 	</insert>
 	
@@ -145,7 +153,9 @@
 			u.email,
 			u.mobile,
 			u.remark,
-			u.status
+			u.status,
+			u.last_login_ip,
+			u.last_login_time
 		FROM 
 			sys_user u
 		WHERE
@@ -154,7 +164,7 @@
 	
 	<update id="update">
 		UPDATE sys_user
-		<set> 
+		<set>
 			<if test="username != null">username = #{username}, </if>
 			<if test="email != null">email = #{email}, </if>
 			<if test="mobile != null">mobile = #{mobile}, </if>
@@ -163,6 +173,8 @@
 			<if test="remark != null">remark = #{remark}, </if>
 			<if test="enableGoogleKaptcha != null">enable_google_kaptcha = #{enableGoogleKaptcha},</if>
 			<if test="googleKaptchaKey != null">google_kaptcha_key = #{googleKaptchaKey},</if>
+			<if test="last_login_ip != null">last_login_ip = #{last_login_ip},</if>
+			<if test="last_login_time != null">last_login_time = #{last_login_time},</if>
 			gmt_modified = NOW()
 		</set>
 		where user_id = #{userId}

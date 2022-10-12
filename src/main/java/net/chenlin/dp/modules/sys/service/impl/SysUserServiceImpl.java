@@ -58,7 +58,13 @@ public class SysUserServiceImpl implements SysUserService {
 		Query form = new Query(params);
 		Page<SysUserEntity> page = new Page<>(form);
 		List<SysUserEntity> userEntities = sysUserMapper.listForPage(page, form);
-		page.setRows(userEntities);
+		List<SysUserEntity> userEntities2 = new ArrayList<>();
+		for (SysUserEntity sysUser : userEntities){
+			List<SysRoleEntity> sysRoleEntities =listUserRoleList(sysUser.getUserId());
+			sysUser.setRoleList(sysRoleEntities);
+			userEntities2.add(sysUser);
+		}
+		page.setRows(userEntities2);
 		return page;
 	}
 
@@ -261,6 +267,12 @@ public class SysUserServiceImpl implements SysUserService {
 		if (count == 0) {
 			return sysUserTokenMapper.save(sysUserTokenEntity);
 		}
+		SysUserEntity update = new SysUserEntity();
+		update.setUserId(sysUser.getUserId());
+		update.setLast_login_time(now);
+		update.setLast_login_ip(sysUser.getLast_login_ip());
+		sysUser.setLast_login_time(now);
+		sysUserMapper.update(update);
 		redisCacheManager.set(RedisCacheKeys.LOGIN_REDIS_CACHE +token, sysUser,jwtProperties.getExpiration());
 		return count;
 	}

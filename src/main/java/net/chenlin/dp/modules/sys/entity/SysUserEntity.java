@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -101,6 +102,14 @@ public class SysUserEntity implements Serializable {
 	 */
 	@ApiModelProperty(value = "修改时间")
 	private Timestamp gmtModified;
+
+
+	@ApiModelProperty(value = "最后登陆ip")
+	private String last_login_ip;
+
+
+	@ApiModelProperty(value = "最后登陆时间")
+	private Date last_login_time;
 	
 	/**
 	 * 角色id列表
