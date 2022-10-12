@@ -98,7 +98,7 @@ public class EmployeeController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("删除")
-	@PostMapping("/remove")
+	@PostMapping("/bindIP")
 	@ApiOperation(value = "删除")
 	public Resp bindIP(@RequestBody EmployeeEntity employee) {
 		return employeeService.employeeBindIp(employee);
