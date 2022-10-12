@@ -46,5 +46,14 @@ public interface YyIpListService {
      * @return
      */
 	Resp batchRemove(Long[] id);
-	
+
+
+    /**
+     * 删除
+     * @param ip
+     * @param type
+     * @return
+     */
+    YyIpListEntity getByIP(String ip, int type);
+
 }

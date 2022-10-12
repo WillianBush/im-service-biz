@@ -5,8 +5,9 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.exception.GoLoginException;
+import net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity;
 import net.chenlin.dp.modules.biz.bussiness.service.YyIpListService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
@@ -93,14 +94,21 @@ public class EmployeeController extends AbstractController {
 
 
 	/**
-	 * 删除
+	 * 绑定ip白名单
 	 * @param
 	 * @return
 	 */
-	@SysLog("删除")
+	@SysLog("绑定ip白名单")
 	@PostMapping("/bindIP")
-	@ApiOperation(value = "删除")
+	@ApiOperation(value = "绑定ip白名单")
 	public Resp bindIP(@RequestBody EmployeeEntity employee) {
+		if (employee.getIp_white().isEmpty() || null == employee.getIp_white()) {
+			throw new GoLoginException("ip_white参数为空");
+		}
+		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIp_white(), 0);
+		if (yyIpListEntity.getIp_address().isEmpty()) {
+			throw new GoLoginException("IP_white参数不存在");
+		}
 		return employeeService.employeeBindIp(employee);
 	}
 }

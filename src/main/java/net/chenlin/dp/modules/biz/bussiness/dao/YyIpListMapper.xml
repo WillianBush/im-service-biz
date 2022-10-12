@@ -50,7 +50,7 @@
 		FROM
 			yy_ip_list
 		WHERE
-			ip_address = #{ip_address}
+			id = #{id}
 	</select>
 	
 	<update id="update">
@@ -76,5 +76,18 @@
 			#{id}
 		</foreach>
 	</delete>
+
+	<select id="getObjectByIp" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity">
+		SELECT
+			`id`,
+			`ip_address`,
+			`note`,
+			`type`,
+			`stauts`
+		FROM
+			yy_ip_list
+		WHERE
+			ip_address = #{ip_address} and type = #{type}
+	</select>
 
 </mapper>
