@@ -38,7 +38,7 @@ public class SysUserController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "管理员列表")
-	public Page<SysUserEntity> list(@RequestBody Map<String, Object> params) {
+	public Page<SysUserEntity> list(@RequestBody(required = false) Map<String, Object> params) {
 		if (!isSuperAdmin()) {
 			params.put("userIdCreate", getUserId());
 		}

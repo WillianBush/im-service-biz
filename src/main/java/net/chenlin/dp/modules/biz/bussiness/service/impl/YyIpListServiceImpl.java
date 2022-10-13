@@ -82,4 +82,9 @@ public class YyIpListServiceImpl implements YyIpListService {
 		return CommonUtils.msgResp(id, count);
 	}
 
+	@Override
+	public YyIpListEntity getByIP(String ip, int type) {
+		return yyIpListMapper.getObjectByIp(ip, type);
+	}
+
 }

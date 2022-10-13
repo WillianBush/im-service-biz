@@ -11,6 +11,7 @@ import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.common.utils.TokenUtils;
+import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.dao.SysUserRoleMapper;
 import net.chenlin.dp.modules.sys.entity.SysLoginEntity;
 import net.chenlin.dp.modules.sys.entity.SysLoginResp;
@@ -84,6 +85,7 @@ public class SysLoginController extends AbstractController {
 			String token = TokenUtils.generateValue(userEntity.getUsername());
 			List<SysRoleEntity>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));
 			userEntity.setRoleList(roleSigns);
+			userEntity.setLast_login_ip(WebUtils.getIpAddr());
 			sysUserService.saveOrUpdateToken(userEntity,token);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
 			resp.setToken(token);

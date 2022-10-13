@@ -113,4 +113,11 @@ public interface BaseMapper<T> {
 
 	int bindIP(EmployeeEntity employee);
 
+	/**
+	 * 根据ip查询详情
+	 * @param ip
+	 * @return
+	 */
+	T getObjectByIp(Object ip, Object type);
+
 }
