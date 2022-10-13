@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.room.entity.MessageHistoryEntity">
+		SELECT
+			`id`, 
+			`uuid`, 
+			`date`, 
+			`fromHeadpic`, 
+			`oldTxt`, 
+			`toUid`, 
+			`chatid`, 
+			`psr`, 
+			`txt`, 
+			`aite`, 
+			`fromUid`, 
+			`fromName`, 
+			`simple_content`, 
+			`createDate`, 
+			`modifyDate`
+		FROM
+			message_history
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="uuid != null"> and `uuid` = #{uuid} </if>
+		<if test="date != null"> and `date` = #{date} </if>
+		<if test="fromHeadpic != null"> and `fromHeadpic` = #{fromHeadpic} </if>
+		<if test="oldTxt != null"> and `oldTxt` = #{oldTxt} </if>
+		<if test="toUid != null"> and `toUid` = #{toUid} </if>
+		<if test="chatid != null"> and `chatid` = #{chatid} </if>
+		<if test="psr != null"> and `psr` = #{psr} </if>
+		<if test="txt != null"> and `txt` = #{txt} </if>
+		<if test="aite != null"> and `aite` = #{aite} </if>
+		<if test="fromUid != null"> and `fromUid` = #{fromUid} </if>
+		<if test="fromName != null"> and `fromName` = #{fromName} </if>
+		<if test="simple_content != null"> and `simple_content` = #{simple_content} </if>
+		<if test="createDate != null"> and `createDate` = #{createDate} </if>
+		<if test="modifyDate != null"> and `modifyDate` = #{modifyDate} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO message_history (
+			`id`, 
+			`uuid`, 
+			`date`, 
+			`fromHeadpic`, 
+			`oldTxt`, 
+			`toUid`, 
+			`chatid`, 
+			`psr`, 
+			`txt`, 
+			`aite`, 
+			`fromUid`, 
+			`fromName`, 
+			`simple_content`, 
+			`createDate`, 
+			`modifyDate`
+		)
+		VALUES (
+			#{id}, 
+			#{uuid}, 
+			#{date}, 
+			#{fromHeadpic}, 
+			#{oldTxt}, 
+			#{toUid}, 
+			#{chatid}, 
+			#{psr}, 
+			#{txt}, 
+			#{aite}, 
+			#{fromUid}, 
+			#{fromName}, 
+			#{simple_content}, 
+			#{createDate}, 
+			#{modifyDate}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.room.entity.MessageHistoryEntity">
+		SELECT
+			`id`, 
+			`uuid`, 
+			`date`, 
+			`fromHeadpic`, 
+			`oldTxt`, 
+			`toUid`, 
+			`chatid`, 
+			`psr`, 
+			`txt`, 
+			`aite`, 
+			`fromUid`, 
+			`fromName`, 
+			`simple_content`, 
+			`createDate`, 
+			`modifyDate`
+		FROM
+			message_history
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE message_history
+	 	<set>
+			<if test="uuid != null">`uuid` = #{uuid}, </if>
+			<if test="date != null">`date` = #{date}, </if>
+			<if test="fromHeadpic != null">`fromHeadpic` = #{fromHeadpic}, </if>
+			<if test="oldTxt != null">`oldTxt` = #{oldTxt}, </if>
+			<if test="toUid != null">`toUid` = #{toUid}, </if>
+			<if test="chatid != null">`chatid` = #{chatid}, </if>
+			<if test="psr != null">`psr` = #{psr}, </if>
+			<if test="txt != null">`txt` = #{txt}, </if>
+			<if test="aite != null">`aite` = #{aite}, </if>
+			<if test="fromUid != null">`fromUid` = #{fromUid}, </if>
+			<if test="fromName != null">`fromName` = #{fromName}, </if>
+			<if test="simple_content != null">`simple_content` = #{simple_content}, </if>
+			<if test="createDate != null">`createDate` = #{createDate}, </if>
+			<if test="modifyDate != null">`modifyDate` = #{modifyDate}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			message_history
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
