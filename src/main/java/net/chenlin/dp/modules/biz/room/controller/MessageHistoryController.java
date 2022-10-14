@@ -83,7 +83,19 @@ public class MessageHistoryController extends AbstractController {
     @SysLog("删除")
     @PostMapping("/remove")
     @ApiOperation(value = "删除")
-    public Resp batchRemove(@RequestBody Long[] id) {
+    public Resp batchRemove(@RequestBody String[] id) {
+        return messageHistoryService.batchRemove(id);
+    }
+
+    /**
+     * 删除群聊记录
+     * @param id
+     * @return
+     */
+    @SysLog("删除群聊记录")
+    @PostMapping("/removeRoomMsg")
+    @ApiOperation(value = "删除")
+    public Resp batchRemoveRoomMsg(@RequestBody String[] id) {
         return messageHistoryService.batchRemove(id);
     }
 

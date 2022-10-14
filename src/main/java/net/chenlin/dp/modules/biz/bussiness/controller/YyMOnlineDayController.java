@@ -5,6 +5,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class YyMOnlineDayController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public Page<YyMOnlineDayEntity> list(@RequestBody Map<String, Object> params) {
+	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
 		return yyMOnlineDayService.listYyMOnlineDay(params);
 	}
 		

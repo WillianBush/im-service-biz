@@ -5,6 +5,7 @@ import java.util.Map;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 
 /**
  * 运营-每日用户在线统计
@@ -17,7 +18,7 @@ public interface YyMOnlineDayService {
      * @param params
      * @return
      */
-	Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params);
+	Page<MemberEntity> listYyMOnlineDay(Map<String, Object> params);
 
     /**
      * 新增

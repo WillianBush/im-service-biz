@@ -45,6 +45,13 @@ public interface MessageHistoryService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
+
+    /**
+     * 删除群聊记录
+     * @param id
+     * @return
+     */
+    Resp batchRemoveRoomMsg(String[] id);
 	
 }

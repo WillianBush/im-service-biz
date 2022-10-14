@@ -11,5 +11,6 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
  */
 @Mapper
 public interface MessageHistoryMapper extends TkBaseMapper<MessageHistoryEntity> {
-	
+
+    public int batchRemoveRoomMsg(String[] id);
 }

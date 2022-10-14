@@ -1,9 +1,17 @@
 package net.chenlin.dp.modules.biz.bussiness.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.constant.RedisCacheKeys;
+import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -25,19 +33,37 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 
     private YyMOnlineDayMapper yyMOnlineDayMapper;
 
+    private RedisTemplate redisTemplate;
+
+    private MemberMapper memberMapper;
+
     /**
      * 分页查询
      * @param params
      * @return
      */
 	@Override
-	public Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
+	public Page<MemberEntity> listYyMOnlineDay(Map<String, Object> params) {
+		Map map=  redisTemplate.opsForHash().entries(RedisCacheKeys.ONLINE_MEMBER);
+		List<String> ids=new ArrayList<>();
+		map.keySet().stream().forEach(k-> {
+			String key = k.toString();
+			if (params.get("device") != null) {
+				if (key.indexOf(params.get("device").toString()) >= 0) {
+					ids.add(key.substring(0, key.indexOf("#")));
+				}
+			} else {
+				ids.add(key.substring(0, key.indexOf("#")));
+			}
+		});
+		params.put("ids",ids);
 		Query query = new Query(params);
-		Page<YyMOnlineDayEntity> page = new Page<>(query);
-		List<YyMOnlineDayEntity> resp= yyMOnlineDayMapper.listForPage(page, query);
+		Page<MemberEntity> page = new Page<>(query);
+		List<MemberEntity> resp= memberMapper.listForPage(page, query);
 		page.setRows(resp);
 		return page;
 	}
+
 
     /**
      * 新增

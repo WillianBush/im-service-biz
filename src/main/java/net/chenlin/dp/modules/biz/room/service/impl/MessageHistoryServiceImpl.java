@@ -78,9 +78,19 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = messageHistoryMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}
 
+	/**
+	 * 删除群聊记录
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public Resp batchRemoveRoomMsg(String[] id){
+		int count = messageHistoryMapper.batchRemoveRoomMsg(id);
+		return CommonUtils.msgResp(id, count);
+	}
 }

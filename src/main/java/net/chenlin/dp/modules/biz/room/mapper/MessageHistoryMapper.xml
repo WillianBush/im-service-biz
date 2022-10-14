@@ -136,4 +136,15 @@
 		</foreach>
 	</delete>
 
+	<delete id="batchRemoveRoomMsg">
+		DELETE
+		FROM
+		message_history
+		WHERE
+		toGroupid IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
 </mapper>

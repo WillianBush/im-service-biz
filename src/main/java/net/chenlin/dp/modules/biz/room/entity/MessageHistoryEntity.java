@@ -42,6 +42,9 @@ public class MessageHistoryEntity implements Serializable {
 	
 	@ApiModelProperty(value = "接收对象的ID")
 	private String toUid;
+
+	@ApiModelProperty(value = "接收群组的ID")
+	private String toGroupid;
 	
 	@ApiModelProperty(value = "")
 	private String chatid;

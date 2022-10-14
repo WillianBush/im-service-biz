@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.member.controller;
 
 import java.util.Map;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
@@ -24,6 +25,7 @@ import net.chenlin.dp.modules.biz.member.service.MemberloginlogService;
 @RequestMapping("/rm/memberloginlog")
 @AllArgsConstructor
 @DependsOn("springContextUtils")
+@Api(tags = "用户登录日志")
 public class MemberloginlogController extends AbstractController {
 	
 	private MemberloginlogService memberloginlogService;
@@ -34,7 +36,7 @@ public class MemberloginlogController extends AbstractController {
 	 * @return
 	 */
 	@GetMapping("/list")
-	@ApiOperation(value = "用户列表")
+	@ApiOperation(value = "登录日志")
 	public Page<MemberloginlogEntity> list(@RequestBody Map<String, Object> params) {
 		return memberloginlogService.listMemberloginlog(params);
 	}
