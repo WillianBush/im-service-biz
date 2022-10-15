@@ -17,13 +17,14 @@
 		FROM
 			sys_log
 		<where>
-			<if test=" startDate != null and startDate != '' and endDate != null and endDate != '' ">
-				AND DATE_FORMAT( gmt_create, '%Y-%m-%d') BETWEEN #{startDate} AND #{endDate}
+			<if test=" gmtCreateStart != null and gmtCreateStart != '' and gmtCreateEnd != null and gmtCreateEnd != '' ">
+				AND DATE_FORMAT( gmt_create, '%Y-%m-%d') BETWEEN #{gmtCreateStart} AND #{gmtCreateEnd}
 			</if>
 			<if test="username != null and username.trim() != ''">
 				AND username LIKE concat('%',#{username},'%')
 				OR operation LIKE concat('%',#{username},'%')
 			</if>
+
 		</where>
 		ORDER BY
 			gmt_create DESC

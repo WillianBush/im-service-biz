@@ -12,6 +12,7 @@ import net.chenlin.dp.modules.sys.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,13 @@ public class SysLogServiceImpl implements SysLogService {
      */
     @Override
     public Page<SysLogEntity> listLog(Map<String, Object> params) {
+        if (null != params && !params.isEmpty()){
+            List<String> lastLogin= (ArrayList<String>)params.get("gmtCreate");
+            if (lastLogin != null && lastLogin.size() == 2){
+                params.put("gmtCreateStart",lastLogin.get(0));
+                params.put("gmtCreateEnd",lastLogin.get(1));
+            }
+        }
         Query query = new Query(params);
         Page<SysLogEntity> page = new Page<>(query);
         List<SysLogEntity> resp= sysLogMapper.listForPage(page, query);
