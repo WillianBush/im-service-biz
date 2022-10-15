@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.member.service.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Resp;
@@ -44,6 +45,13 @@ public class MemberServiceImpl implements MemberService {
      */
 	@Override
 	public Resp saveMember(MemberEntity member) {
+		//根据username查询是否存在
+		Map para=new HashMap();
+		para.put("username",member.getUsername());
+		Page<MemberEntity> rsPage=listMember(para);
+		if(rsPage.getRows().size()>0){
+			return Resp.error(Resp.error,"用户已经存在");
+		}
 		int count = memberMapper.save(member);
 		return CommonUtils.msgResp(count);
 	}
