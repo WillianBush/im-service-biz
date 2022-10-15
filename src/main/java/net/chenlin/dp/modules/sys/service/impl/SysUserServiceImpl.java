@@ -55,6 +55,13 @@ public class SysUserServiceImpl implements SysUserService {
 	 */
 	@Override
 	public Page<SysUserEntity> listUser(Map<String, Object> params) {
+		if (null != params && !params.isEmpty()){
+			List<String> lastLogin= (ArrayList<String>)params.get("last_login_time");
+			if (lastLogin != null && lastLogin.size() == 2){
+				params.put("lastLoginTimeStart",lastLogin.get(0));
+				params.put("lastLoginTimeEnd",lastLogin.get(1));
+			}
+		}
 		Query form = new Query(params);
 		Page<SysUserEntity> page = new Page<>(form);
 		List<SysUserEntity> userEntities = sysUserMapper.listForPage(page, form);
