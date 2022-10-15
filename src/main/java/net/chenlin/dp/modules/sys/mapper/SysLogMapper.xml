@@ -30,7 +30,9 @@
 			<if test="operation != null and operation.trim() != ''">
 				AND operation LIKE concat('%',#{operation},'%')
 			</if>
-
+			<if test="ip != null and ip.trim() != ''">
+				AND ip LIKE concat('%',#{ip},'%')
+			</if>
 		</where>
 		ORDER BY
 			gmt_create DESC
