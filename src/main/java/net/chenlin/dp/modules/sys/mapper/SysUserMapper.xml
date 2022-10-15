@@ -37,15 +37,34 @@
 			u.last_login_time
 		FROM
 			sys_user u
+		<if test="roleName != null and roleName.trim() != ''">
+			inner join 	sys_user_role sur on u.user_id = sur.user_id
+			inner join 	sys_role sr on sr.role_id =sur.role_id and sr.role_name = #{roleName}
+		</if >
 		<where>
 			<if test="userIdCreate != null">
 				AND u.user_id_create = #{userIdCreate} 
 			</if>
 			<if test="username != null and username.trim() != ''">
-				AND u.username LIKE concat('%',#{username},'%') 
-				OR u.email LIKE concat('%',#{username},'%') 
-				OR u.mobile LIKE concat('%',#{username},'%') 
+				AND u.username LIKE concat('%',#{username},'%')
 			</if>
+
+			<if test="username != null and username.trim() != ''">
+				AND u.username LIKE concat('%',#{username},'%')
+				OR u.email LIKE concat('%',#{username},'%')
+				OR u.mobile LIKE concat('%',#{username},'%')
+			</if>
+
+			<if test="userId != null and userId.trim() != ''">
+				AND u.user_id = #{userId}
+			</if>
+			<if test="lastLoginTimeStart != null and lastLoginTimeStart.trim() != ''">
+				AND u.last_login_time &gt;= #{lastLoginTimeStart}
+			</if>
+			<if test="lastLoginTimeEnd != null and lastLoginTimeEnd.trim() != ''">
+				AND u.last_login_time &lt; #{lastLoginTimeEnd}
+			</if>
+
 		</where>
 		ORDER BY 
 			u.user_id DESC
