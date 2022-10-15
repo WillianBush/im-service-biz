@@ -22,7 +22,13 @@
 			</if>
 			<if test="username != null and username.trim() != ''">
 				AND username LIKE concat('%',#{username},'%')
-				OR operation LIKE concat('%',#{username},'%')
+			</if>
+
+			<if test="userId != null and userId.trim() != ''">
+				AND user_id =#{userId}
+			</if>
+			<if test="operation != null and operation.trim() != ''">
+				AND operation LIKE concat('%',#{operation},'%')
 			</if>
 
 		</where>
