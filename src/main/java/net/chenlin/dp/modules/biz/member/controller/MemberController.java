@@ -34,7 +34,7 @@ public class MemberController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "用户列表")
 	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
 		return memberService.listMember(params);

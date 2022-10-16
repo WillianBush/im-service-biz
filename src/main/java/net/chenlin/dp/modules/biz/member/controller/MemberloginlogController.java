@@ -35,7 +35,7 @@ public class MemberloginlogController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "登录日志")
 	public Page<MemberloginlogEntity> list(@RequestBody Map<String, Object> params) {
 		return memberloginlogService.listMemberloginlog(params);
