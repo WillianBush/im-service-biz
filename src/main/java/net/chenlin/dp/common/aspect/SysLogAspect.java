@@ -79,8 +79,8 @@ public class SysLogAspect {
 		SysUserEntity currUser = userUtil.getUserEntityAspect();
 		if(CommonUtils.isNullOrEmpty(currUser)) {
 			if(CommonUtils.isNullOrEmpty(sysLog.getParams())) {
-				sysLog.setUserId(-1L);
-				sysLog.setUsername(sysLog.getParams());
+				sysLog.setUserId(currUser.getUserId());
+				sysLog.setUsername(currUser.getUsername());
 			} else {
 				sysLog.setUserId(-1L);
 				sysLog.setUsername("获取用户信息为空");
