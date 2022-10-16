@@ -41,11 +41,12 @@ mybatis:
 
 aliyun:
   oss:
-    endpoint: hit-on.oss-cn-hongkong.aliyuncs.com
+    endpoint: 360-im.oss-cn-hongkong.aliyuncs.com
     appPoint: oss-cn-hongkong.aliyuncs.com
-    accessKeyId: LTAI5t7mJ7X6HfMCrxmr4GKt
-    accessKeySecret: qpmAZ9rsmgbxvMKXSelmNq8sWhpTCZ
-    bucketname: hit-on
+    accessKeyId: LTAI5t7EtrT6UDs1LyhCurQm
+    accessKeySecret: 7JOKPC0ZpbuC6nSn0x4aFfKbdG664A
+    bucketname: 360-im
+    domain: https://360-im.oss-cn-hongkong.aliyuncs.com
 
 log:
   level:

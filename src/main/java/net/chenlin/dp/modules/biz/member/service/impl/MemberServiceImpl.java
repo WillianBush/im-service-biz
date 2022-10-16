@@ -1,15 +1,16 @@
 package net.chenlin.dp.modules.biz.member.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import net.chenlin.dp.common.entity.Resp;
+import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.entity.*;
+import net.chenlin.dp.common.support.properties.GlobalProperties;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.Query;
-import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
@@ -20,10 +21,12 @@ import net.chenlin.dp.modules.biz.member.service.MemberService;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Service("memberService")
+@AllArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-	@Autowired
     private MemberMapper memberMapper;
+
+	private OSSModel ossModel;
 
     /**
      * 分页查询
@@ -34,7 +37,15 @@ public class MemberServiceImpl implements MemberService {
 	public Page<MemberEntity> listMember(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<MemberEntity> page = new Page<>(query);
-		page.setRows(memberMapper.listForPage(page, query));
+		List<MemberEntity>  list = memberMapper.listForPage(page, query);
+		for (MemberEntity m : list) {
+			if (StringUtils.isEmpty(m.getHeadpic())){
+				m.setHeadpic("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+			}else {
+				m.setHeadpic("https://"+ossModel.getEndpoint() +m.getHeadpic());
+			}
+		}
+		page.setRows(list);
 		return page;
 	}
 
