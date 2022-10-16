@@ -67,7 +67,7 @@
 			r.`yaoqingAble`,
 			r.`yaoqingAuditAble`,
 			r.`useCustomHeadpic`,
-			m.nickName owwerName
+			m.nickName ownerName
 		FROM
 			room r left join member m on r.owner_UUID=m.id
 		where
@@ -77,7 +77,7 @@
 		<if test="modifydate != null"> and `modifyDate` = #{modifydate} </if>
 		<if test="descri != null"> and `descri` = #{descri} </if>
 		<if test="headimg != null"> and `headImg` = #{headimg} </if>
-		<if test="name != null"> and `name` = #{name} </if>
+		<if test="name != null and name != ''"> and `name` = #{name} </if>
 		<if test="openerprice != null"> and `openerPrice` = #{openerprice} </if>
 		<if test="sendprice != null"> and `sendPrice` = #{sendprice} </if>
 		<if test="status != null"> and `status` = #{status} </if>
@@ -122,6 +122,7 @@
 		<if test="yaoqingable != null"> and `yaoqingAble` = #{yaoqingable} </if>
 		<if test="yaoqingauditable != null"> and `yaoqingAuditAble` = #{yaoqingauditable} </if>
 		<if test="usecustomheadpic != null"> and `useCustomHeadpic` = #{usecustomheadpic} </if>
+		<if test="ownerName != null and ownerName != ''"> and m.nickName = #{ownerName} </if>
 		ORDER BY
 			id DESC
 	</select>

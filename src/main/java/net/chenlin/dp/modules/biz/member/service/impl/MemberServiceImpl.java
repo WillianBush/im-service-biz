@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.member.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,13 @@ public class MemberServiceImpl implements MemberService {
      */
 	@Override
 	public Page<MemberEntity> listMember(Map<String, Object> params) {
+		if (null != params && !params.isEmpty()){
+			List<String> lastLogin= (ArrayList<String>)params.get("createdate");
+			if (lastLogin != null && lastLogin.size() == 2){
+				params.put("createdateStart",lastLogin.get(0));
+				params.put("createdateEnd",lastLogin.get(1));
+			}
+		}
 		Query query = new Query(params);
 		Page<MemberEntity> page = new Page<>(query);
 		List<MemberEntity>  list = memberMapper.listForPage(page, query);

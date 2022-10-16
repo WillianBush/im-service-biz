@@ -113,6 +113,12 @@
 				</foreach>
 			</if>
 		</if>
+		<if test="startTime != null and startTime.trim() != ''">
+			AND createDate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null and endTime.trim() != ''">
+			AND createDate &lt; #{endTime}
+		</if>
 		ORDER BY
 			id DESC
 	</select>

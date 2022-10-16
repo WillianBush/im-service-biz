@@ -34,7 +34,7 @@ public class RoomController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "群组列表")
 	public Page<RoomEntity> list(@RequestBody Map<String, Object> params) {
 		return roomService.listRoom(params);

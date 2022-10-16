@@ -1,15 +1,15 @@
 package net.chenlin.dp.modules.biz.room.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
-import net.chenlin.dp.common.entity.Resp;
+import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.Query;
-import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
 import net.chenlin.dp.modules.biz.room.dao.RoomMapper;
@@ -20,10 +20,13 @@ import net.chenlin.dp.modules.biz.room.service.RoomService;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Service("roomService")
+@AllArgsConstructor
 public class RoomServiceImpl implements RoomService {
 
-	@Autowired
     private RoomMapper roomMapper;
+
+
+	private OSSModel ossModel;
 
     /**
      * 分页查询
@@ -34,7 +37,15 @@ public class RoomServiceImpl implements RoomService {
 	public Page<RoomEntity> listRoom(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<RoomEntity> page = new Page<>(query);
-		page.setRows(roomMapper.listForPage(page, query));
+		List<RoomEntity> roomEntityList = roomMapper.listForPage(page, query);
+		for (RoomEntity room : roomEntityList) {
+			if (StringUtils.isEmpty(room.getHeadimg())){
+				room.setHeadimg("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+			}else {
+				room.setHeadimg("https://"+ossModel.getEndpoint() +room.getHeadimg());
+			}
+		}
+		page.setRows(roomEntityList);
 		return page;
 	}
 
