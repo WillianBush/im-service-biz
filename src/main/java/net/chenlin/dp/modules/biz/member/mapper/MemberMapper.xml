@@ -348,4 +348,64 @@
 		</foreach>
 	</delete>
 
+
+	<select id="getByIds" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
+		SELECT
+		`id`,
+		`createDate`,
+		`modifyDate`,
+		`headpic`,
+		`lastLoginDate`,
+		`lastLoginIp`,
+		`money`,
+		`nickName`,
+		`parent`,
+		`parentPath`,
+		`password`,
+		`registIp`,
+		`status`,
+		`telphone`,
+		`txMoney`,
+		`txMoneyIng`,
+		`memberId`,
+		`losePriceSum`,
+		`openRedCount`,
+		`openRedPriceSum`,
+		`rechargePriceSum`,
+		`sendRedCount`,
+		`sendRedPriceSum`,
+		`txPriceSum`,
+		`winPriceSum`,
+		`username`,
+		`qrCodeImg`,
+		`tichenPriceSum`,
+		`preTxImg`,
+		`preTxPay`,
+		`memberType`,
+		`parentmid`,
+		`one_level_count`,
+		`rechargePrice_today`,
+		`tichenPrice_today`,
+		`txPrice_today`,
+		`preBank_addr`,
+		`preBank_belonger`,
+		`preBank_code`,
+		`preBank_name`,
+		`wxOpenId`,
+		`qqOpenId`,
+		`sex`,
+		`pay_pwd`,
+		`sendTransferCount`,
+		`sendTransferPriceSum`,
+		`shimingStatus`,
+		`sysGenerate`
+		FROM
+		member
+		WHERE
+		id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+
 </mapper>

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
@@ -24,9 +25,9 @@ import net.chenlin.dp.modules.biz.member.service.MemberService;
 @RequestMapping("/mr/member")
 @Api(tags = "用户管理")
 @DependsOn("springContextUtils")
+@AllArgsConstructor
 public class MemberController extends AbstractController {
-	
-	@Autowired
+
 	private MemberService memberService;
 	
 	/**

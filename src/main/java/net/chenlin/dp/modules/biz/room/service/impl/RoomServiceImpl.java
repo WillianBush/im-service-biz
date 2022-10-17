@@ -1,10 +1,14 @@
 package net.chenlin.dp.modules.biz.room.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.*;
+import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.biz.room.dao.RoomMemberMapper;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,11 @@ public class RoomServiceImpl implements RoomService {
 
 	private OSSModel ossModel;
 
+	private RoomMemberMapper roomMemberMapper;
+
+
+	private MemberMapper memberMapper;
+
     /**
      * 分页查询
      * @param params
@@ -39,12 +48,19 @@ public class RoomServiceImpl implements RoomService {
 		Page<RoomEntity> page = new Page<>(query);
 		List<RoomEntity> roomEntityList = roomMapper.listForPage(page, query);
 		for (RoomEntity room : roomEntityList) {
-			if (StringUtils.isEmpty(room.getHeadimg())){
-				room.setHeadimg("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+			getRoomHeadImg(room);
+
+			List<RoomMemberEntity> roomMemberEntities =roomMemberMapper.select(RoomMemberEntity.builder()
+					.room_id(room.getId())
+					.build());
+			if (!roomMemberEntities.isEmpty()) {
+				List<MemberEntity> memberEntities = memberMapper.getByIds(roomMemberEntities.stream().map(RoomMemberEntity::getMember_id).toArray());
+				room.setMembers(memberEntities);
 			}else {
-				room.setHeadimg("https://"+ossModel.getEndpoint() +room.getHeadimg());
+				room.setMembers(Collections.emptyList());
 			}
 		}
+
 		page.setRows(roomEntityList);
 		return page;
 	}
@@ -102,5 +118,13 @@ public class RoomServiceImpl implements RoomService {
 	public Resp getRoomMemberById(String id) {
 		RoomMemberEntity room = roomMapper.getRoomMemberById(id);
 		return CommonUtils.msgResp(room);
+	}
+
+	private void getRoomHeadImg(RoomEntity room){
+		if (StringUtils.isEmpty(room.getHeadimg())){
+			room.setHeadimg("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+		}else {
+			room.setHeadimg("https://"+ossModel.getEndpoint() +room.getHeadimg());
+		}
 	}
 }
