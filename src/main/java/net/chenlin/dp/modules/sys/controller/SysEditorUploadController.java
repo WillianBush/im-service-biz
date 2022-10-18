@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.sys.controller;
 import net.chenlin.dp.common.utils.UploadUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -38,4 +39,32 @@ public class SysEditorUploadController {
         return results;
     }
 
+
+    @RequestMapping("/uploadHeadPic")
+    public Map<String, Object> editorUploadHeadPic(HttpServletRequest request, MultipartFile file) {
+        // 大部分场景下，每次仅上传一张图片
+        Map<String, Object> results = new HashMap<>(1);
+        results.put("errno", 0);
+        try {
+            String path = UploadUtils.uploadMemberHeadpic(request, file);
+            results.put("data", path);
+        } catch (Exception e) {
+            results.put("errno", 500);
+        }
+        return results;
+    }
+
+    @RequestMapping("/uploadRoomHeadPic")
+    public Map<String, Object> editorUploadRoomHeadPic(HttpServletRequest request, MultipartFile file) {
+        // 大部分场景下，每次仅上传一张图片
+        Map<String, Object> results = new HashMap<>(1);
+        results.put("errno", 0);
+        try {
+            String path = UploadUtils.uploadRoomHeadpic(request, file);
+            results.put("data", path);
+        } catch (Exception e) {
+            results.put("errno", 500);
+        }
+        return results;
+    }
 }

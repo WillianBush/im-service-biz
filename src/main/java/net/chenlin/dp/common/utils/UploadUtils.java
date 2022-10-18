@@ -34,7 +34,7 @@ import java.util.UUID;
 public class UploadUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger(UploadUtils.class);
-    private OssUtil ossUtil;
+    private static OssUtil ossUtil;
 
     private static final GlobalProperties globalProperties = SpringContextUtils.getBean("globalProperties", GlobalProperties.class);
 
@@ -110,7 +110,7 @@ public class UploadUtils {
         return fileNames;
     }
 
-    public String uploadRoomHeadpic(HttpServletRequest request, MultipartFile file) {
+    public static String uploadRoomHeadpic(HttpServletRequest request, MultipartFile file) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
         String ossPath = "img_sys/upload/room";
@@ -147,7 +147,7 @@ public class UploadUtils {
     }
 
 
-    public String uploadMemberHeadpic(HttpServletRequest request, MultipartFile file) {
+    public static String uploadMemberHeadpic(HttpServletRequest request, MultipartFile file) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
         String ossPath = "img_sys/upload/member";
