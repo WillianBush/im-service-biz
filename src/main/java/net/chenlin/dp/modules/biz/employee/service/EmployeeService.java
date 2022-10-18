@@ -45,7 +45,7 @@ public interface EmployeeService {
      * @param id
      * @return
      */
-	Resp batchRemove(Long[] id);
+	Resp batchRemove(String[] id);
 
     Resp<Integer> employeeBindIp(EmployeeEntity employee);
 

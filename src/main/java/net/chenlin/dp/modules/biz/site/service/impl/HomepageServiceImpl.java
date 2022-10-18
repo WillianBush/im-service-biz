@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.entity.OSSModel;
+import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -25,6 +28,7 @@ public class HomepageServiceImpl implements HomepageService {
 
     private HomepageMapper homepageMapper;
 
+	private OSSModel ossModel;
     /**
      * 分页查询
      * @param params
@@ -35,6 +39,9 @@ public class HomepageServiceImpl implements HomepageService {
 		Query query = new Query(params);
 		Page<HomepageEntity> page = new Page<>(query);
 		List<HomepageEntity> resp= homepageMapper.listForPage(page, query);
+		for (HomepageEntity homepage:resp ) {
+			getHomepageIcon(homepage);
+		}
 		page.setRows(resp);
 		return page;
 	}
@@ -81,6 +88,14 @@ public class HomepageServiceImpl implements HomepageService {
 	public Resp batchRemove(String[] id) {
 		int count = homepageMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
+	}
+
+	private void getHomepageIcon(HomepageEntity homepage){
+		if (StringUtils.isEmpty(homepage.getIcon())){
+			homepage.setIcon("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+		}else {
+			homepage.setIcon("https://"+ossModel.getEndpoint() +homepage.getIcon());
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.employee.entity;
 import lombok.*;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 import io.swagger.annotations.ApiModel;
@@ -49,5 +50,12 @@ public class EmployeeEntity implements Serializable {
 	@ApiModelProperty(value = "绑定白名单")
 	private String ip_white;
 
+	@Transient
+	private String nickName;
 
+	@Transient
+	private String username;
+
+	@Transient
+	private String lastLoginIp;
 }

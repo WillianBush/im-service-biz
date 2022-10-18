@@ -78,7 +78,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(String[] id) {
 		int count = employeeMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}

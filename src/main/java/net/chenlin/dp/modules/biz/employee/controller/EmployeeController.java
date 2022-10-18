@@ -88,7 +88,7 @@ public class EmployeeController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody String[] id) {
 		return employeeService.batchRemove(id);
 	}
 

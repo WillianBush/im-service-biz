@@ -5,16 +5,20 @@
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity">
 		SELECT
-			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`inviteCode`, 
-			`member_id`, 
-			`member_uuid`, 
-			`name`,
-			`ip_white`
+		employee.`id` id,
+		employee.`createDate` createDate,
+		employee.`modifyDate` modifyDate,
+		employee.`inviteCode` inviteCode,
+		employee.`member_id` member_id,
+		employee.`member_uuid` member_uuid,
+		employee.`name` name,
+		employee.`ip_white` ip_white,
+			member.nickName nickName,
+			member.username username,
+			member.lastLoginIp lastLoginIp
 		FROM
 			employee
+		left join member on member.memberId = employee.member_id
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>

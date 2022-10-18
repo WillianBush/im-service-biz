@@ -34,7 +34,7 @@ public class FunctionConfigController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "功能点")
 	public Page<FunctionConfigEntity> list(@RequestBody Map<String, Object> params) {
 		return functionConfigService.listFunctionConfig(params);
