@@ -35,10 +35,10 @@ public class YyIpListEntity implements Serializable {
 	private String note;
 	
 	@ApiModelProperty(value = "IP名单类型：0->ipweb白名单；1->ip黑名单")
-	private Integer type;
+	private String type;
 	
 	@ApiModelProperty(value = "状态：0-正常；1-删除")
-	private Integer stauts;
+	private String stauts;
 	
 
 

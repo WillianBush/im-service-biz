@@ -57,13 +57,15 @@ public class YyIpListController extends AbstractController {
 			throw new GoLoginException("IP地址为空", 5002);
 		}
 
-		if (null == yyIpList.getType() || yyIpList.getType() > 1 ) {
+		if (null == yyIpList.getType() || yyIpList.getType().isEmpty() ) {
 			throw new GoLoginException("IP类型参数错误", 5003);
 		}
 
-		if (null == yyIpList.getStauts() || yyIpList.getStauts() > 1 ) {
+		if (null == yyIpList.getStauts() || yyIpList.getStauts().isEmpty() ) {
 			throw new GoLoginException("IP状态参数错误", 5004);
 		}
+
+
 
 		return yyIpListService.saveYyIpList(yyIpList);
 	}
