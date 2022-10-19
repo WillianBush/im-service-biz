@@ -21,6 +21,7 @@ public class RRExceptionHandler {
 	 */
 	@ExceptionHandler(RRException.class)
 	public R handleRRException(RRException e){
+		logger.error(e.getMessage(), e);
 		R r = new R();
 		r.put("code", e.getCode());
 		r.put("msg", e.getMessage());
@@ -32,6 +33,7 @@ public class RRExceptionHandler {
 	 */
 	@ExceptionHandler({GoLoginException.class})
 	public R handleGoLoginException(GoLoginException e){
+		logger.error(e.getMessage(), e);
 		R r = new R();
 		r.put("code", e.getCode());
 		r.put("msg", e.getMessage());
