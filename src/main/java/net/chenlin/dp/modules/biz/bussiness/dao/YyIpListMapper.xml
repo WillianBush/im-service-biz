@@ -25,14 +25,12 @@
 	
 	<insert id="save">
 		INSERT INTO yy_ip_list (
-			`id`, 
 			`ip_address`, 
 			`note`, 
 			`type`, 
 			`stauts`
 		)
 		VALUES (
-			#{id}, 
 			#{ip_address}, 
 			#{note}, 
 			#{type}, 

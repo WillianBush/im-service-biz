@@ -47,7 +47,6 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList) {
-		yyIpList.setId(IdGenerate.generateUUID());
 		int count = yyIpListMapper.save(yyIpList);
 		return CommonUtils.msgResp(count);
 	}

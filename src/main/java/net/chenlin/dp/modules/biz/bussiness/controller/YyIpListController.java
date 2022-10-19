@@ -62,7 +62,6 @@ public class YyIpListController extends AbstractController {
 		}
 
 
-
 		return yyIpListService.saveYyIpList(yyIpList);
 	}
 	
@@ -89,7 +88,7 @@ public class YyIpListController extends AbstractController {
 	@PostMapping("/update")
 	@ApiOperation(value = "修改")
 	public Resp<Integer> update(@RequestBody YyIpListEntity yyIpList) {
-		if (null == yyIpList.getId() || yyIpList.getId().isEmpty()) {
+		if (null == yyIpList.getId()) {
 			throw new GoLoginException("id参数不能为空", 5006);
 		}
 		return yyIpListService.updateYyIpList(yyIpList);

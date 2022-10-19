@@ -26,7 +26,7 @@ public class YyIpListEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ApiModelProperty(value = "")
-	private String id;
+	private Long id;
 	
 	@ApiModelProperty(value = "IP地址")
 	private String ip_address;
