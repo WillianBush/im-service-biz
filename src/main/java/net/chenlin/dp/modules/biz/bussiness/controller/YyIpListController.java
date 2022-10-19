@@ -107,15 +107,12 @@ public class YyIpListController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
-	public Resp batchRemove(@RequestBody Long id) {
-		if (null == id) {
+	public Resp batchRemove(@RequestBody Long[] id) {
+		if (0 == id.length) {
 			throw new GoLoginException("id不能为空", 5005);
 		}
-		Resp<YyIpListEntity> resp = yyIpListService.getYyIpListById(id);
-		YyIpListEntity yyIpListEntity = resp.getData();
-		yyIpListEntity.setStauts("1");
-		//逻辑删除
-		return yyIpListService.updateYyIpList(yyIpListEntity);
+
+		return  yyIpListService.batchRemove(id);
 	}
 	
 }
