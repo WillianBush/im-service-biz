@@ -43,7 +43,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      * @return
      */
 	@Override
-	public Page<MemberEntity> listYyMOnlineDay(Map<String, Object> params) {
+	public Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
 		Map map=  redisTemplate.opsForHash().entries(RedisCacheKeys.ONLINE_MEMBER);
 		List<String> ids=new ArrayList<>();
 		map.keySet().stream().forEach(k-> {
@@ -58,8 +58,8 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 		});
 		params.put("ids",ids);
 		Query query = new Query(params);
-		Page<MemberEntity> page = new Page<>(query);
-		List<MemberEntity> resp= memberMapper.listForPage(page, query);
+		Page<YyMOnlineDayEntity> page = new Page<>(query);
+		List<YyMOnlineDayEntity> resp= yyMOnlineDayMapper.listForPage(page, query);
 		page.setRows(resp);
 		return page;
 	}

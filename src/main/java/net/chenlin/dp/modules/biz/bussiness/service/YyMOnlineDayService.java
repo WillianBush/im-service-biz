@@ -18,7 +18,7 @@ public interface YyMOnlineDayService {
      * @param params
      * @return
      */
-	Page<MemberEntity> listYyMOnlineDay(Map<String, Object> params);
+	Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params);
 
     /**
      * 新增
