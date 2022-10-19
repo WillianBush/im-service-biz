@@ -2,8 +2,10 @@ package net.chenlin.dp.modules.biz.bussiness.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.utils.IdGenerate;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -45,6 +47,7 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList) {
+		yyIpList.setId(IdGenerate.generateUUID());
 		int count = yyIpListMapper.save(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
