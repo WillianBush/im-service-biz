@@ -35,7 +35,7 @@ public class YyIpListController extends AbstractController {
 	 * @param params
 	 * @return
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Page<YyIpListEntity> list(@RequestBody Map<String, Object> params) {
 		if (null == params.get("type") || params.get("type") == "") {
@@ -107,11 +107,15 @@ public class YyIpListController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
-	public Resp batchRemove(@RequestBody Long[] id) {
+	public Resp batchRemove(@RequestBody Long id) {
 		if (null == id) {
 			throw new GoLoginException("id不能为空", 5005);
 		}
-		return yyIpListService.batchRemove(id);
+		Resp<YyIpListEntity> resp = yyIpListService.getYyIpListById(id);
+		YyIpListEntity yyIpListEntity = resp.getData();
+		yyIpListEntity.setStauts("1");
+		//逻辑删除
+		return yyIpListService.updateYyIpList(yyIpListEntity);
 	}
 	
 }

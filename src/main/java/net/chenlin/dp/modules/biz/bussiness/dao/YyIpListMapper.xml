@@ -18,7 +18,7 @@
 		<if test="ip_address != null"> and `ip_address` = #{ip_address} </if>
 		<if test="note != null"> and `note` = #{note} </if>
 		<if test="type != null"> and `type` = #{type} </if>
-		<if test="stauts != null"> and `stauts` = #{stauts} </if>
+		<if test="stauts != null"> and `stauts` = 0 </if>
 		ORDER BY
 			ip_address DESC
 	</select>
