@@ -60,7 +60,7 @@ public class MemberloginlogEntity implements Serializable {
 	/**
 	* 用户终端类型
 	* */
-	private int type;
+	private String type;
 
 	/**
 	 * 用户头像
