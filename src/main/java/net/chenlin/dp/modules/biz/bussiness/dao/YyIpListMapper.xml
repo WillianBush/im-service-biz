@@ -71,7 +71,7 @@
 		FROM
 			yy_ip_list
 		WHERE
-			ip_address id IN
+			id IN
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>
