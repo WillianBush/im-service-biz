@@ -32,7 +32,7 @@ public class YySendGroupMsgEntity implements Serializable {
 	private String send_member_ids;
 	
 	@ApiModelProperty(value = "消息类型：0-文字；1-图片")
-	private Integer msg_type;
+	private String msg_type;
 	
 	@ApiModelProperty(value = "文字消息")
 	private String message;
