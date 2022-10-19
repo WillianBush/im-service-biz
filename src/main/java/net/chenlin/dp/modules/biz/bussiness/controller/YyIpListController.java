@@ -61,10 +61,6 @@ public class YyIpListController extends AbstractController {
 			throw new GoLoginException("IP类型参数错误", 5003);
 		}
 
-		if (null == yyIpList.getStauts() || yyIpList.getStauts().isEmpty() ) {
-			throw new GoLoginException("IP状态参数错误", 5004);
-		}
-
 
 
 		return yyIpListService.saveYyIpList(yyIpList);
