@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
+import net.chenlin.dp.modules.biz.member.dao.MemberloginlogMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +37,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 
     private RedisTemplate redisTemplate;
 
-    private MemberMapper memberMapper;
-
+	private MemberloginlogMapper memberloginlogMapper;
     /**
      * 分页查询
      * @param params
@@ -44,19 +45,6 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      */
 	@Override
 	public Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
-		Map map=  redisTemplate.opsForHash().entries(RedisCacheKeys.ONLINE_MEMBER);
-		List<String> ids=new ArrayList<>();
-		map.keySet().stream().forEach(k-> {
-			String key = k.toString();
-			if (params.get("device") != null) {
-				if (key.indexOf(params.get("device").toString()) >= 0) {
-					ids.add(key.substring(0, key.indexOf("#")));
-				}
-			} else {
-				ids.add(key.substring(0, key.indexOf("#")));
-			}
-		});
-		params.put("ids",ids);
 		Query query = new Query(params);
 		Page<YyMOnlineDayEntity> page = new Page<>(query);
 		List<YyMOnlineDayEntity> resp= yyMOnlineDayMapper.listForPage(page, query);
@@ -107,6 +95,33 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	public Resp batchRemove(Long[] id) {
 		int count = yyMOnlineDayMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
+	}
+
+	/**
+	 * 获取当日在线用户数据
+	 * @param params
+	 * @return
+	 * */
+	@Override
+	public Page<MemberloginlogEntity> getYyMOnline(Map<String, Object> params) {
+		Map map=  redisTemplate.opsForHash().entries(RedisCacheKeys.ONLINE_MEMBER);
+		List<String> ids=new ArrayList<>();
+		map.keySet().stream().forEach(k-> {
+			String key = k.toString();
+			if (params.get("device") != null) {
+				if (key.indexOf(params.get("device").toString()) >= 0) {
+					ids.add(key.substring(0, key.indexOf("#")));
+				}
+			} else {
+				ids.add(key.substring(0, key.indexOf("#")));
+			}
+		});
+		params.put("ids",ids);
+		Query query = new Query(params);
+		Page<MemberloginlogEntity> page = new Page<>(query);
+		List<MemberloginlogEntity> resp = memberloginlogMapper.listForPage(page, query);
+		page.setRows(resp);
+		return page;
 	}
 
 }

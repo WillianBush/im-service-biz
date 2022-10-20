@@ -6,6 +6,7 @@ import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity;
 
 /**
  * 运营-每日用户在线统计
@@ -47,5 +48,12 @@ public interface YyMOnlineDayService {
      * @return
      */
 	Resp batchRemove(Long[] id);
+
+    /**
+     * 根据id查询
+     * @param params
+     * @return
+     */
+    Page<MemberloginlogEntity> getYyMOnline(Map<String, Object> params);
 	
 }

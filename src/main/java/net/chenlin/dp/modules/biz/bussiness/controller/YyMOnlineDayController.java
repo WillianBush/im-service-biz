@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,5 +88,15 @@ public class YyMOnlineDayController extends AbstractController {
 	public Resp batchRemove(@RequestBody Long[] id) {
 		return yyMOnlineDayService.batchRemove(id);
 	}
-	
+
+	/**
+	 * 列表
+	 * @param params
+	 * @return
+	 */
+	@PostMapping("/onlineList")
+	@ApiOperation(value = "列表")
+	public Page<MemberloginlogEntity> onlineList(@RequestBody Map<String, Object> params) {
+		return yyMOnlineDayService.getYyMOnline(params);
+	}
 }
