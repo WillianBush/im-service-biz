@@ -47,7 +47,7 @@ public class ShowConfigController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<ShowConfigEntity> save(@RequestBody ShowConfigEntity showConfig) {
 		return showConfigService.saveShowConfig(showConfig);
@@ -58,7 +58,7 @@ public class ShowConfigController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/info")
+	@PostMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
 	public Resp<ShowConfigEntity> getById(@RequestBody String id) {
 		return showConfigService.getShowConfigById(id);

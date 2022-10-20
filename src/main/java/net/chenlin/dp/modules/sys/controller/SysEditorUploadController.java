@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.sys.controller;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.UploadUtils;
@@ -7,6 +8,7 @@ import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
 import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
 import net.chenlin.dp.modules.biz.room.service.RoomService;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +38,8 @@ public class SysEditorUploadController {
      * @param request
      * @return
      */
-    @RequestMapping("/upload")
+    @PostMapping("/upload")
+    @ApiOperation("上传图片")
     public Map<String, Object> editorUpload(HttpServletRequest request) {
         // 大部分场景下，每次仅上传一张图片
         Map<String, Object> results = new HashMap<>(1);
@@ -51,7 +54,8 @@ public class SysEditorUploadController {
     }
 
 
-    @RequestMapping("/uploadHeadPic")
+    @PostMapping("/uploadHeadPic")
+    @ApiOperation("上传头像")
     public Map<String, Object> editorUploadHeadPic(HttpServletRequest request, MultipartFile file) {
         Map<String, Object> results = new HashMap<>(1);
         results.put("errno", 0);
@@ -69,7 +73,8 @@ public class SysEditorUploadController {
         return results;
     }
 
-    @RequestMapping("/uploadRoomHeadPic")
+    @PostMapping("/uploadRoomHeadPic")
+    @ApiOperation("上传聊天室头像")
     public Map<String, Object> editorUploadRoomHeadPic(HttpServletRequest request, MultipartFile file) {
         Map<String, Object> results = new HashMap<>(1);
         results.put("errno", 0);
