@@ -1,13 +1,13 @@
 package net.chenlin.dp.modules.biz.member.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
+import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
+import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
+import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +28,8 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
 
 	private OSSModel ossModel;
+
+	private FriendsMapper friendsMapper;
 
     /**
      * 分页查询
@@ -64,6 +66,7 @@ public class MemberServiceImpl implements MemberService {
      */
 	@Override
 	public Resp saveMember(MemberEntity member) {
+		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
 		//根据username查询是否存在
 		Map para=new HashMap();
 		para.put("username",member.getUsername());
@@ -71,7 +74,20 @@ public class MemberServiceImpl implements MemberService {
 		if(rsPage.getRows().size()>0){
 			return Resp.error(Resp.error,"用户已经存在");
 		}
+		member.setId(sw.createId());
 		int count = memberMapper.save(member);
+		if(count>0) {
+			/***
+			 * 添加官方团队给用户
+			 */
+			FriendsEntity f = new FriendsEntity();
+			f.setId(sw.createId());
+			f.setCreatedate(new Date());
+			//官方团队ID：-1
+			f.setFriendid("-1");
+			f.setMid(member.getId());
+			friendsMapper.save(f);
+		}
 		return CommonUtils.msgResp(count);
 	}
 

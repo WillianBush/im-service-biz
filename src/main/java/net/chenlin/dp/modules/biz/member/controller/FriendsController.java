@@ -35,7 +35,7 @@ public class FriendsController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping("/list")
-	@ApiOperation(value = "用户列表")
+	@ApiOperation(value = "好友列表")
 	public Page<FriendsEntity> list(@RequestBody Map<String, Object> params) {
 		return friendsService.listFriends(params);
 	}
