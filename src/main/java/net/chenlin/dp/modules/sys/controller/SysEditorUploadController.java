@@ -64,7 +64,7 @@ public class SysEditorUploadController {
 
     @ApiOperation("上传头像")
     @RequestMapping(value = {"/uploadPic"}, method = {RequestMethod.POST})
-    public String editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file) {
+    public Map<String, Object> editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
         String ossPath = "editor";
@@ -76,13 +76,13 @@ public class SysEditorUploadController {
                 String iconName = now + fileExtension;
 
                 OSSUploadResp resp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
-                return removeDomain(resp.getFilePath());
+                return Map.of("uri", removeDomain(resp.getFilePath()));
             } catch (Exception e) {
                 log.error("上传失败", e);
-                return "上传失败";
+                return Map.of("error", 500);
             }
         } else {
-            return "文件类型不支持，上传失败";
+            return Map.of("error",500);
         }
     }
 
