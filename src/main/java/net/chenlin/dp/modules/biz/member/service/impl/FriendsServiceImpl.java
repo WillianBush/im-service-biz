@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.member.service.impl;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,8 @@ public class FriendsServiceImpl implements FriendsService {
      */
 	@Override
 	public Resp saveFriends(FriendsEntity friends) {
+		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
+		friends.setId(sw.createId());
 		int count = friendsMapper.save(friends);
 		return CommonUtils.msgResp(count);
 	}
