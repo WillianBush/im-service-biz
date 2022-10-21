@@ -106,7 +106,7 @@
 		<if test="shimingstatus != null"> and `shimingStatus` = #{shimingstatus} </if>
 		<if test="sysgenerate != null"> and `sysGenerate` = #{sysgenerate} </if>
 		<if test="ids != null">
-			<if test="ids.size>0">
+			<if test="ids.size()>0">
 				and id in
 				<foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
 					#{id}
