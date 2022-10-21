@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.sys.controller;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.UploadUtils;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
@@ -25,6 +26,7 @@ import static net.chenlin.dp.common.utils.UploadUtils.removeDomain;
 @RestController
 @RequestMapping("/editor")
 @AllArgsConstructor
+@Slf4j
 public class SysEditorUploadController {
 
     private static final String EDITOR_IMG_UPLOAD_DIR = "editor/";
@@ -46,6 +48,7 @@ public class SysEditorUploadController {
             List<String> pathList = UploadUtils.uploadFile(request, EDITOR_IMG_UPLOAD_DIR);
             results.put("data", pathList);
         } catch (Exception e) {
+            log.error("upload",e);
             results.put("errno", 500);
         }
         return results;
@@ -66,6 +69,7 @@ public class SysEditorUploadController {
             memberService.updateMember(member);
             results.put("data", path);
         } catch (Exception e) {
+            log.error("uploadHeadPic",e);
             results.put("errno", 500);
         }
         return results;
@@ -86,6 +90,7 @@ public class SysEditorUploadController {
             roomService.updateRoom(room);
             results.put("data", path);
         } catch (Exception e) {
+            log.error("uploadRoomHeadPic",e);
             results.put("errno", 500);
         }
         return results;
