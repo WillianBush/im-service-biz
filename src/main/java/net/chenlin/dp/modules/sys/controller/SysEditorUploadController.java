@@ -64,16 +64,16 @@ public class SysEditorUploadController {
 
     @ApiOperation("上传头像")
     @RequestMapping(value = {"/uploadPic"}, method = {RequestMethod.POST})
-    public String editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file, HttpServletRequest request) {
+    public String editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-        String ossPath = "img_sys/upload/editor/";
+        String ossPath = "editor";
 
         if (".jpeg".equalsIgnoreCase(fileExtension) || ".jpg".equalsIgnoreCase(fileExtension) || ".png".equalsIgnoreCase(fileExtension)) {
             try {
                 SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
                 String now = format.format(System.currentTimeMillis());
-                String iconName = "editor" + now + fileExtension;
+                String iconName = now + fileExtension;
 
                 OSSUploadResp resp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
                 return removeDomain(resp.getFilePath());
@@ -81,7 +81,7 @@ public class SysEditorUploadController {
                 log.error("上传失败", e);
                 return "上传失败";
             }
-        }else {
+        } else {
             return "文件类型不支持，上传失败";
         }
     }
@@ -91,7 +91,7 @@ public class SysEditorUploadController {
     public String editorUploadHeadPic(@RequestParam(value = "file", required = true) MultipartFile file, String uid, HttpServletRequest request) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-        String ossPath = "img_sys/upload/member/";
+        String ossPath = "img_sys/upload/member";
 
         if (".jpeg".equalsIgnoreCase(fileExtension) || ".jpg".equalsIgnoreCase(fileExtension) || ".png".equalsIgnoreCase(fileExtension)) {
             try {
@@ -113,7 +113,7 @@ public class SysEditorUploadController {
                 log.error("上传失败", e);
                 return "上传失败";
             }
-        }else {
+        } else {
             return "文件类型不支持，上传失败";
         }
     }
@@ -137,11 +137,11 @@ public class SysEditorUploadController {
                 room.setHeadimg(removeDomain(resp.getFilePath()));
                 roomService.updateRoom(room);
                 return removeDomain(resp.getFilePath());
-            }catch (Exception e) {
+            } catch (Exception e) {
                 log.error("上传失败", e);
                 return "上传失败";
             }
-        }else {
+        } else {
             return "文件类型不支持，上传失败";
         }
     }
