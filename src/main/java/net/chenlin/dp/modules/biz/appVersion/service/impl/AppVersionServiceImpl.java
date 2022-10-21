@@ -84,8 +84,8 @@ public class AppVersionServiceImpl implements AppVersionService {
     public Resp<Integer> updateAppVersion(AppVersionEntity appVersion) {
         int id = appVersionMapper.update(appVersion);
         appVersion = appVersionMapper.getObjectById(id);
-        String redisKey = RedisCacheKeys.appLastVersion(appVersion.getOs(), appVersion.getSite_id(), appVersion.getApp_id());
-        redisCacheManager.set(redisKey, appVersion);
+//        String redisKey = RedisCacheKeys.appLastVersion(appVersion.getOs(), appVersion.getSite_id(), appVersion.getApp_id());
+//        redisCacheManager.set(redisKey, appVersion);
         return CommonUtils.msgResp(id);
     }
 
