@@ -41,42 +41,6 @@ public class UploadUtils {
     /**
      * 上传文件处理(支持批量)
      */
-    public static List<String> uploadFile(HttpServletRequest request) {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-                request.getSession().getServletContext());
-        List<String> fileNames = new ArrayList<>();
-        if (multipartResolver.isMultipart(request)) {
-            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-            File dirFile = new File(globalProperties.getUploadLocation());
-            if (!dirFile.isDirectory()) {
-                dirFile.mkdirs();
-            }
-            for (Iterator<String> iterator = multiRequest.getFileNames(); iterator.hasNext(); ) {
-                String key = iterator.next();
-                MultipartFile multipartFile = multiRequest.getFile(key);
-                if (multipartFile != null) {
-                    String name = multipartFile.getOriginalFilename();
-                    String uuid = UUID.randomUUID().toString();
-                    String postFix = name.substring(name.lastIndexOf(".")).toLowerCase();
-                    String fileName = uuid + postFix;
-                    String filePath = globalProperties.getUploadLocation() + fileName;
-                    File file = new File(filePath);
-                    file.setWritable(true, false);
-                    try {
-                        multipartFile.transferTo(file);
-                        fileNames.add(globalProperties.getUploadMapping().concat(fileName));
-                    } catch (Exception e) {
-                        LOG.error(name + "保存失败", e);
-                    }
-                }
-            }
-        }
-        return fileNames;
-    }
-
-    /**
-     * 上传文件处理(支持批量)
-     */
     public static List<String> uploadFile(HttpServletRequest request, String path) {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
                 request.getSession().getServletContext());
@@ -108,79 +72,6 @@ public class UploadUtils {
             }
         }
         return fileNames;
-    }
-
-    public static String uploadRoomHeadpic(HttpServletRequest request, MultipartFile file) {
-        String fileName = file.getOriginalFilename();  // 文件名
-        String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-        String ossPath = "img_sys/upload/room";
-        String roomid = request.getHeader("x-access-roomid");
-
-        if (".jpeg".equalsIgnoreCase(fileExtension) || ".jpg".equalsIgnoreCase(fileExtension) || ".png".equalsIgnoreCase(fileExtension)) {
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-                String now = format.format(System.currentTimeMillis());
-                String iconName = roomid + "-" + now + fileExtension;
-                //上传room 头像
-                OSSUploadResp ossUploadResp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
-                return ossUploadResp.getFilePath();
-
-//                try {
-//                    //TODO 获取redis中room信息
-////                    ossUtil.deleteFile(roomBeanCache.getImg());
-//                } catch (Exception e) {
-//                    LOG.error("删除图片失败", e);
-//                }
-//
-//                roomBeanCache.setImg(removeDomain(resp.getFilePath()));
-//                roomBeanCache.setUseCustomHeadpic(1);
-//                roomService.update(BeanUtils.roomBeanTransferToRoomSimple(roomBeanCache));
-//                accessRecordService.updateByEid(roomid, new String[]{"img"}, new String[]{roomBeanCache.getImg()});
-//                ResponseUtils.json(response, 200, removeDomain(resp.getFilePath()), null);
-            } catch (Exception e) {
-                LOG.error("上传失败", e);
-                return "上传失败";
-            }
-        } else {
-            return "文件格式不正确";
-        }
-    }
-
-
-    public static String uploadMemberHeadpic(HttpServletRequest request, MultipartFile file) {
-        String fileName = file.getOriginalFilename();  // 文件名
-        String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-        String ossPath = "img_sys/upload/member";
-        String MEMBERID = (String) request.getSession().getAttribute("$MEMBERIDSESSION");
-
-        if (".jpeg".equalsIgnoreCase(fileExtension) || ".jpg".equalsIgnoreCase(fileExtension) || ".png".equalsIgnoreCase(fileExtension)) {
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-                String now = format.format(System.currentTimeMillis());
-                String iconName = MEMBERID + "-" + now + fileExtension;
-                //上传room 头像
-                OSSUploadResp ossUploadResp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
-                return ossUploadResp.getFilePath();
-
-//                try {
-//                    //TODO 获取redis中room信息
-////                    ossUtil.deleteFile(roomBeanCache.getImg());
-//                } catch (Exception e) {
-//                    LOG.error("删除图片失败", e);
-//                }
-//
-//                roomBeanCache.setImg(removeDomain(resp.getFilePath()));
-//                roomBeanCache.setUseCustomHeadpic(1);
-//                roomService.update(BeanUtils.roomBeanTransferToRoomSimple(roomBeanCache));
-//                accessRecordService.updateByEid(roomid, new String[]{"img"}, new String[]{roomBeanCache.getImg()});
-//                ResponseUtils.json(response, 200, removeDomain(resp.getFilePath()), null);
-            } catch (Exception e) {
-                LOG.error("上传失败", e);
-                return "上传失败";
-            }
-        } else {
-            return "文件格式不正确";
-        }
     }
 
 
