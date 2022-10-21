@@ -8,9 +8,7 @@ import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
 import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
 import net.chenlin.dp.modules.biz.room.service.RoomService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,9 +52,9 @@ public class SysEditorUploadController {
     }
 
 
-    @PostMapping("/uploadHeadPic")
+    @RequestMapping(value = {"/uploadHeadPic"}, method = {RequestMethod.POST})
     @ApiOperation("上传头像")
-    public Map<String, Object> editorUploadHeadPic(HttpServletRequest request, MultipartFile file) {
+    public Map<String, Object> editorUploadHeadPic(@RequestParam(value = "file", required = true) MultipartFile file, HttpServletRequest request) {
         Map<String, Object> results = new HashMap<>(1);
         results.put("errno", 0);
         String MEMBERID = (String) request.getSession().getAttribute("$MEMBERIDSESSION");
@@ -73,9 +71,9 @@ public class SysEditorUploadController {
         return results;
     }
 
-    @PostMapping("/uploadRoomHeadPic")
+    @RequestMapping(value = {"/uploadRoomHeadPic"}, method = {RequestMethod.POST})
     @ApiOperation("上传聊天室头像")
-    public Map<String, Object> editorUploadRoomHeadPic(HttpServletRequest request, MultipartFile file) {
+    public Map<String, Object> editorUploadRoomHeadPic(@RequestParam(value = "file", required = true) MultipartFile file, HttpServletRequest request) {
         Map<String, Object> results = new HashMap<>(1);
         results.put("errno", 0);
         String roomid = request.getHeader("x-access-roomid");
