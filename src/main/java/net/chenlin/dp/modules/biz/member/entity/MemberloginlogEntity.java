@@ -67,5 +67,10 @@ public class MemberloginlogEntity implements Serializable {
 	 * */
 	private String mheadPic;
 
+	/**
+	 * 账号
+	 * */
+	private String username;
+
 
 }

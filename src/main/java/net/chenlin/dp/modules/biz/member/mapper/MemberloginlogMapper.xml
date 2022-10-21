@@ -13,7 +13,8 @@
         `mnickName`,
         `mtel`,
         `type`,
-        `mheadPic`
+        `mheadPic`,
+        `username`
         FROM
         memberloginlog
         where
@@ -27,6 +28,7 @@
         <if test="mtel != null">and `mtel` = #{mtel}</if>
         <if test="type != null">and `type` = #{type}</if>
         <if test="mheadPic != null">and `mheadPic` = #{mheadPic}</if>
+        <if test="username != null">and `username` = #{username}</if>
         ORDER BY
         id DESC
     </select>
@@ -40,7 +42,8 @@
                                     `mnickName`,
                                     `mtel`,
 									`type`,
-									`mheadPic`)
+									`mheadPic`,
+									`username`)
         VALUES (#{id},
                 #{createdate},
                 #{modifydate},
@@ -50,6 +53,7 @@
                 #{mtel},
 				#{type},
 				#{mheadPic})
+				#{username})
     </insert>
 
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
@@ -61,7 +65,8 @@
                `mnickName`,
                `mtel`,
 			   `type`,
-			   `mheadPic`
+			   `mheadPic`,
+               `username`
         FROM memberloginlog
         WHERE id = #{id}
     </select>
@@ -77,6 +82,7 @@
             <if test="mtel != null">`mtel` = #{mtel}</if>
             <if test="type != null">`type` = #{type}</if>
             <if test="mheadPic != null">`mheadPic` = #{mheadPic}</if>
+            <if test="username != null">`username` = #{username}</if>
         </set>
         WHERE
         id = #{id}
