@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.bussiness.service;
 
+import java.util.List;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
@@ -19,7 +20,7 @@ public interface YyMOnlineDayService {
      * @param params
      * @return
      */
-	Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params);
+    List<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params);
 
     /**
      * 新增

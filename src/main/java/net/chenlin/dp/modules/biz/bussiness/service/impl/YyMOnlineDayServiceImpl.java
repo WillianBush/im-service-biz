@@ -44,12 +44,11 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      * @return
      */
 	@Override
-	public Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
+	public List<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
 		Query query = new Query(params);
-		Page<YyMOnlineDayEntity> page = new Page<>(query);
-		List<YyMOnlineDayEntity> resp= yyMOnlineDayMapper.listForPage(page, query);
-		page.setRows(resp);
-		return page;
+//		Page<MemberloginlogEntity> page = new Page<>(query);
+		List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
+		return resp;
 	}
 
 
@@ -105,7 +104,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	@Override
 	public Page<MemberloginlogEntity> getYyMOnline(Map<String, Object> params) {
 		Map map=  redisTemplate.opsForHash().entries(RedisCacheKeys.ONLINE_MEMBER);
-		List<String> ids=new ArrayList<>();
+		List<String> ids = new ArrayList<>();
 		map.keySet().stream().forEach(k-> {
 			String key = k.toString();
 			if (params.get("device") != null) {
@@ -116,6 +115,9 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 				ids.add(key.substring(0, key.indexOf("#")));
 			}
 		});
+		if (ids.isEmpty()) {
+			return new Page<>();
+		}
 		params.put("ids",ids);
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);

@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -24,6 +25,7 @@ import net.chenlin.dp.modules.biz.bussiness.service.YyMRegisterDayService;
 public class YyMRegisterDayServiceImpl implements YyMRegisterDayService {
 
     private YyMRegisterDayMapper yyMRegisterDayMapper;
+	private MemberMapper memberMapper;
 
     /**
      * 分页查询
@@ -31,12 +33,10 @@ public class YyMRegisterDayServiceImpl implements YyMRegisterDayService {
      * @return
      */
 	@Override
-	public Page<YyMRegisterDayEntity> listYyMRegisterDay(Map<String, Object> params) {
+	public List<YyMRegisterDayEntity> listYyMRegisterDay(Map<String, Object> params) {
 		Query query = new Query(params);
-		Page<YyMRegisterDayEntity> page = new Page<>(query);
-		List<YyMRegisterDayEntity> resp= yyMRegisterDayMapper.listForPage(page, query);
-		page.setRows(resp);
-		return page;
+		List<YyMRegisterDayEntity> resp= memberMapper.getObjectGroupByDate(query);
+		return resp;
 	}
 
     /**

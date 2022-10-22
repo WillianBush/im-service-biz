@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.bussiness.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -38,7 +39,7 @@ public class YyMOnlineDayController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public Page<YyMOnlineDayEntity> list(@RequestBody Map<String, Object> params) {
+	public List<YyMOnlineDayEntity> list(@RequestBody Map<String, Object> params) {
 		return yyMOnlineDayService.listYyMOnlineDay(params);
 	}
 		

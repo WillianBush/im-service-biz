@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.bussiness.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -36,7 +37,11 @@ public class YyPersonalMsgDayController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public Page<YyPersonalMsgDayEntity> list(@RequestBody Map<String, Object> params) {
+	public List<YyPersonalMsgDayEntity> list(@RequestBody Map<String, Object> params) {
+		String type = (String) params.get("type");
+		if (type.isEmpty()) {
+			return (List<YyPersonalMsgDayEntity>) Resp.error("参数错误");
+		}
 		return yyPersonalMsgDayService.listYyPersonalMsgDay(params);
 	}
 		
