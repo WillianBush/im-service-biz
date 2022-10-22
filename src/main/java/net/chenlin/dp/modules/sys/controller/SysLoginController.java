@@ -61,8 +61,7 @@ public class SysLoginController extends AbstractController {
 				throw  new GoLoginException("密码不能为空",1001);
 			}
 			String password = MD5Utils.encrypt(user.getUsername(), user.getPassword());
-//			SysUserEntity userEntity = sysUserService.login(user.getUsername(),password);
-			SysUserEntity userEntity = sysUserService.getByUserName(user.getUsername());
+			SysUserEntity userEntity = sysUserService.login(user.getUsername(),password);
 			if (userEntity == null ) {
 				return Resp.error(1001,"账号或密码错误");
 			}
@@ -71,12 +70,12 @@ public class SysLoginController extends AbstractController {
 				return Resp.error(1001,"该账号已经禁用");
 			}
 
-//			if( userEntity.getEnableGoogleKaptcha().equals(1) ){
-//
-//				if ( StringUtils.isEmpty(user.getGoogleCode()) || !sysUserService.checkGoogleKaptcha(user.getUsername(),user.getGoogleCode())) {
-//					return  Resp.error(1001,"谷歌验证码错误");
-//				}
-//			}
+			if( userEntity.getEnableGoogleKaptcha().equals(1) ){
+
+				if ( StringUtils.isEmpty(user.getGoogleCode()) || !sysUserService.checkGoogleKaptcha(user.getUsername(),user.getGoogleCode())) {
+					return  Resp.error(1001,"谷歌验证码错误");
+				}
+			}
 
 			SysLoginResp resp = new SysLoginResp();
 			userEntity.setPassword("");
@@ -97,7 +96,7 @@ public class SysLoginController extends AbstractController {
 		return  Resp.error(1001,"登录服务异常");
 	}
 
-	
+
 	/**
 	 * 退出
 	 */
@@ -122,5 +121,5 @@ public class SysLoginController extends AbstractController {
 		}
 		return token;
 	}
-	
+
 }
