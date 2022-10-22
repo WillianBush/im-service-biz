@@ -67,13 +67,13 @@ public class SysEditorUploadController {
     public String editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-        String ossPath = "editor";
+        String ossPath = "img_sys/upload";
 
         if (".jpeg".equalsIgnoreCase(fileExtension) || ".jpg".equalsIgnoreCase(fileExtension) || ".png".equalsIgnoreCase(fileExtension)) {
             try {
                 SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
                 String now = format.format(System.currentTimeMillis());
-                String iconName = now + fileExtension;
+                String iconName = "APP" + now + fileExtension;
 
                 OSSUploadResp resp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
                 return  removeDomain(resp.getFilePath());
