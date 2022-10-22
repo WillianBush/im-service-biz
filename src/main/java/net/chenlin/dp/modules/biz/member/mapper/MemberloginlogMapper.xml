@@ -12,7 +12,8 @@
         `mid`,
         `mnickName`,
         `mtel`,
-        `type`,
+        `deviceType`,
+        `deviceVersion`,
         `mheadPic`,
         `username`
         FROM
@@ -26,7 +27,8 @@
         <if test="mid != null">and `mid` = #{mid}</if>
         <if test="mnickname != null">and `mnickName` = #{mnickname}</if>
         <if test="mtel != null">and `mtel` = #{mtel}</if>
-        <if test="type != null">and `type` = #{type}</if>
+        <if test="deviceType != null">and `deviceType` = #{deviceType}</if>
+        <if test="deviceVersion != null">and `deviceVersion` = #{deviceVersion}</if>
         <if test="mheadPic != null">and `mheadPic` = #{mheadPic}</if>
         <if test="username != null">and `username` = #{username}</if>
         ORDER BY
@@ -41,7 +43,8 @@
                                     `mid`,
                                     `mnickName`,
                                     `mtel`,
-									`type`,
+									`deviceType`,
+									`deviceVersion`,
 									`mheadPic`,
 									`username`)
         VALUES (#{id},
@@ -51,7 +54,8 @@
                 #{mid},
                 #{mnickname},
                 #{mtel},
-				#{type},
+				#{deviceType},
+				#{deviceVersion},
 				#{mheadPic})
 				#{username})
     </insert>
@@ -64,7 +68,8 @@
                `mid`,
                `mnickName`,
                `mtel`,
-			   `type`,
+			   `deviceType`,
+			   `deviceVersion`,
 			   `mheadPic`,
                `username`
         FROM memberloginlog
@@ -80,7 +85,8 @@
             <if test="mid != null">`mid` = #{mid},</if>
             <if test="mnickname != null">`mnickName` = #{mnickname},</if>
             <if test="mtel != null">`mtel` = #{mtel}</if>
-            <if test="type != null">`type` = #{type}</if>
+            <if test="deviceType != null">`deviceType` = #{deviceType}</if>
+            <if test="deviceVersion != null">`deviceVersion` = #{deviceVersion}</if>
             <if test="mheadPic != null">`mheadPic` = #{mheadPic}</if>
             <if test="username != null">`username` = #{username}</if>
         </set>
