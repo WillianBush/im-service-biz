@@ -159,7 +159,7 @@ public class OssUtil {
             PutObjectResult putResult = ossClient.putObject(bucketName, folder+"/" + fileName, inputStream, metadata);
             //解析结果
             resultStr = putResult.getETag();
-            ossFilePath = ossModel.getEndpoint() + "/"+folder+"/" + fileName;
+            ossFilePath = "https://" + ossModel.getEndpoint() + "/"+folder+"/" + fileName;
             inputStream.close();
         } catch (Exception e) {
             log.error("上传阿里云OSS服务器异常." + e.getMessage(), e);
