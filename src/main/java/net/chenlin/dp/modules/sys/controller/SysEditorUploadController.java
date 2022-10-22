@@ -46,7 +46,7 @@ public class SysEditorUploadController {
      * @return
      */
     @PostMapping("/upload")
-    @ApiOperation("上传图片")
+    @ApiOperation("系统内上传图片")
     public Map<String, Object> editorUpload(HttpServletRequest request) {
         // 大部分场景下，每次仅上传一张图片
         Map<String, Object> results = new HashMap<>(1);
@@ -62,9 +62,9 @@ public class SysEditorUploadController {
     }
 
 
-    @ApiOperation("上传头像")
+    @ApiOperation("上传图片")
     @RequestMapping(value = {"/uploadPic"}, method = {RequestMethod.POST})
-    public Map<String, Object> editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file) {
+    public String editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
         String ossPath = "editor";
@@ -76,13 +76,13 @@ public class SysEditorUploadController {
                 String iconName = now + fileExtension;
 
                 OSSUploadResp resp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
-                return Map.of("uri", removeDomain(resp.getFilePath()));
+                return  removeDomain(resp.getFilePath());
             } catch (Exception e) {
                 log.error("上传失败", e);
-                return Map.of("error", 500);
+                return "上传失败";
             }
         } else {
-            return Map.of("error",500);
+            return "上传失败，文件类型错误";
         }
     }
 
