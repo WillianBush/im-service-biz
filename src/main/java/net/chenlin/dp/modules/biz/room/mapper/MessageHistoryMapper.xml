@@ -147,4 +147,25 @@
 		</foreach>
 	</delete>
 
+
+	<select id="getObjectGroupMessageGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyGroupMsgDayEntity">
+		SELECT date_format(createdate, '%Y-%m-%d') as create_time,
+			   count(toGroupid) as group_message_total
+		FROM message_history
+		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
+		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+		  and toGroupid is not null
+		group by date_format(createdate, '%Y-%m-%d')
+	</select>
+
+	<select id="getObjectPersonalMessageGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity">
+		SELECT date_format(createdate, '%Y-%m-%d') as create_time,
+			   count(toUid) as personal_message_total
+		FROM message_history
+		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
+		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+		  and toUid is not null
+		group by date_format(createdate, '%Y-%m-%d')
+	</select>
+
 </mapper>

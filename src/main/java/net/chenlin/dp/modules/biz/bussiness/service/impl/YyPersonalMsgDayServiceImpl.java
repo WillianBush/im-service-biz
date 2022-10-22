@@ -2,11 +2,13 @@ package net.chenlin.dp.modules.biz.bussiness.service.impl;
 
 import java.util.Map;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
+import net.chenlin.dp.modules.biz.room.entity.MessageHistoryEntity;
 import org.springframework.stereotype.Service;
 
-import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
@@ -24,6 +26,7 @@ import net.chenlin.dp.modules.biz.bussiness.service.YyPersonalMsgDayService;
 public class YyPersonalMsgDayServiceImpl implements YyPersonalMsgDayService {
 
     private YyPersonalMsgDayMapper yyPersonalMsgDayMapper;
+	private MessageHistoryMapper messageHistoryMapper;
 
     /**
      * 分页查询
@@ -31,12 +34,17 @@ public class YyPersonalMsgDayServiceImpl implements YyPersonalMsgDayService {
      * @return
      */
 	@Override
-	public Page<YyPersonalMsgDayEntity> listYyPersonalMsgDay(Map<String, Object> params) {
+	public List<YyPersonalMsgDayEntity> listYyPersonalMsgDay(Map<String, Object> params) {
 		Query query = new Query(params);
-		Page<YyPersonalMsgDayEntity> page = new Page<>(query);
-		List<YyPersonalMsgDayEntity> resp= yyPersonalMsgDayMapper.listForPage(page, query);
-		page.setRows(resp);
-		return page;
+		String type = (String) params.get("type");
+		if (Objects.equals(type, "personal")) {
+			return messageHistoryMapper.getObjectPersonalMessageGroupByDate(query);
+		} else if (Objects.equals(type, "group")) {
+			return messageHistoryMapper.getObjectGroupMessageGroupByDate(query);
+		} else {
+		return null;
+		}
+
 	}
 
     /**
