@@ -59,7 +59,7 @@ public class RoomController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "群组详情")
-	public Resp getById(@RequestBody String id) {
+	public Resp getById(@RequestParam String id) {
 		return roomService.getRoomById(id);
 	}
 	

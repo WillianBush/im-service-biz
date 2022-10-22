@@ -11,5 +11,6 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
  */
 @Mapper
 public interface RoomMemberMapper extends TkBaseMapper<RoomMemberEntity> {
-	
+
+
 }

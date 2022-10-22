@@ -73,7 +73,7 @@
 			   `mheadPic`,
                `username`
         FROM memberloginlog
-        WHERE id = #{id}
+        WHERE mid = #{id}
     </select>
 
     <update id="update">

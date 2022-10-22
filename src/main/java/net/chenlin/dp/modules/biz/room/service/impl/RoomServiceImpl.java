@@ -1,8 +1,6 @@
 package net.chenlin.dp.modules.biz.room.service.impl;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.*;
@@ -49,18 +47,8 @@ public class RoomServiceImpl implements RoomService {
 		List<RoomEntity> roomEntityList = roomMapper.listForPage(page, query);
 		for (RoomEntity room : roomEntityList) {
 			getRoomHeadImg(room);
-
-			List<RoomMemberEntity> roomMemberEntities =roomMemberMapper.select(RoomMemberEntity.builder()
-					.room_id(room.getId())
-					.build());
-			if (!roomMemberEntities.isEmpty()) {
-				List<MemberEntity> memberEntities = memberMapper.getByIds(roomMemberEntities.stream().map(RoomMemberEntity::getMember_id).toArray());
-				room.setMembers(memberEntities);
-			}else {
-				room.setMembers(Collections.emptyList());
-			}
+			getMembersByRoom(room);
 		}
-
 		page.setRows(roomEntityList);
 		return page;
 	}
@@ -84,6 +72,7 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public Resp getRoomById(String id) {
 		RoomEntity room = roomMapper.getObjectById(id);
+		getMembersByRoom(room);
 		return CommonUtils.msgResp(room);
 	}
 
@@ -126,5 +115,22 @@ public class RoomServiceImpl implements RoomService {
 		}else {
 			room.setHeadimg("https://"+ossModel.getEndpoint() +room.getHeadimg());
 		}
+	}
+
+	/**
+	 * 获取群组成员
+	 * @return
+	 */
+	private RoomEntity getMembersByRoom(RoomEntity room){
+		List<RoomMemberEntity> roomMemberEntities =roomMemberMapper.select(RoomMemberEntity.builder()
+				.room_id(room.getId())
+				.build());
+		if (!roomMemberEntities.isEmpty()) {
+			List<MemberEntity> memberEntities = memberMapper.getByIds(roomMemberEntities.stream().map(RoomMemberEntity::getMember_id).toArray());
+			room.setMembers(memberEntities);
+		}else {
+			room.setMembers(Collections.emptyList());
+		}
+		return room;
 	}
 }

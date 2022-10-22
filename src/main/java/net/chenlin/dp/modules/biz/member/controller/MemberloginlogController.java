@@ -40,41 +40,7 @@ public class MemberloginlogController extends AbstractController {
 	public Page<MemberloginlogEntity> list(@RequestBody Map<String, Object> params) {
 		return memberloginlogService.listMemberloginlog(params);
 	}
-		
-	/**
-	 * 新增
-	 * @param memberloginlog
-	 * @return
-	 */
-	@SysLog("新增")
-	@PostMapping("/save")
-	@ApiOperation(value = "新增用户")
-	public Resp save(@RequestBody MemberloginlogEntity memberloginlog) {
-		return memberloginlogService.saveMemberloginlog(memberloginlog);
-	}
-	
-	/**
-	 * 根据id查询详情
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("/info")
-	@ApiOperation(value = "根据id查询详情")
-	public Resp getById(@RequestBody String id) {
-		return memberloginlogService.getMemberloginlogById(id);
-	}
-	
-	/**
-	 * 修改
-	 * @param memberloginlog
-	 * @return
-	 */
-	@SysLog("修改")
-	@PostMapping("/update")
-	@ApiOperation(value = "修改用户信息")
-	public Resp update(@RequestBody MemberloginlogEntity memberloginlog) {
-		return memberloginlogService.updateMemberloginlog(memberloginlog);
-	}
+
 	
 	/**
 	 * 删除
@@ -83,7 +49,7 @@ public class MemberloginlogController extends AbstractController {
 	 */
 	@SysLog("删除")
 	@PostMapping("/remove")
-	@ApiOperation(value = "删除用户")
+	@ApiOperation(value = "删除聊天记录")
 	public Resp batchRemove(@RequestBody String[] id) {
 		return memberloginlogService.batchRemove(id);
 	}

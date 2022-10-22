@@ -59,7 +59,7 @@ public class FriendsController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询好友")
-	public Resp getById(@RequestBody String id) {
+	public Resp getById(@RequestParam String id) {
 		return friendsService.getFriendsById(id);
 	}
 	

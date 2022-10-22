@@ -59,20 +59,8 @@ public class MessageHistoryController extends AbstractController {
      */
     @GetMapping("/info")
     @ApiOperation(value = "根据id查询详情")
-    public Resp<MessageHistoryEntity> getById(@RequestBody Long id) {
+    public Resp<MessageHistoryEntity> getById(@RequestParam Long id) {
         return messageHistoryService.getMessageHistoryById(id);
-    }
-
-    /**
-     * 修改
-     * @param messageHistory
-     * @return
-     */
-    @SysLog("修改")
-    @PostMapping("/update")
-    @ApiOperation(value = "修改")
-    public Resp<Integer> update(@RequestBody MessageHistoryEntity messageHistory) {
-        return messageHistoryService.updateMessageHistory(messageHistory);
     }
 
     /**
@@ -96,7 +84,7 @@ public class MessageHistoryController extends AbstractController {
     @PostMapping("/removeRoomMsg")
     @ApiOperation(value = "删除")
     public Resp batchRemoveRoomMsg(@RequestBody String[] id) {
-        return messageHistoryService.batchRemove(id);
+        return messageHistoryService.batchRemoveRoomMsg(id);
     }
 
 }

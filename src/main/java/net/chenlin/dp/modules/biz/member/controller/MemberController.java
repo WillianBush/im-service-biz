@@ -60,7 +60,7 @@ public class MemberController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "查询用户详情")
-	public Resp getById(@RequestBody String id) {
+	public Resp getById(@RequestParam String id) {
 		return memberService.getMemberById(id);
 	}
 	
@@ -124,6 +124,7 @@ public class MemberController extends AbstractController {
 	 */
 	@SysLog("清空聊天记录")
 	@PostMapping("/removeMsgAll")
+	@ApiOperation(value = "清空聊天记录")
 	public Resp removeMsgAll(@RequestBody String uid) {
 
 		return null;
