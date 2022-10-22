@@ -63,8 +63,8 @@ public class SysEditorUploadController {
 
 
     @ApiOperation("上传图片")
-    @RequestMapping(value = {"/uploadPic"}, method = {RequestMethod.POST})
-    public String editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file) {
+    @RequestMapping(value = {"/uploadPic"}, method = {RequestMethod.POST, RequestMethod.OPTIONS})
+    public String editorUploadPic(@RequestParam(value = "file", required = true) MultipartFile file, HttpServletRequest request) {
         String fileName = file.getOriginalFilename();  // 文件名
         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
         String ossPath = "img_sys/upload";
