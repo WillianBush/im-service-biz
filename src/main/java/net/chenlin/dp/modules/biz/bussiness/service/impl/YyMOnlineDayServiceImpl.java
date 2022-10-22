@@ -44,12 +44,11 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      * @return
      */
 	@Override
-	public Page<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
+	public List<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
 		Query query = new Query(params);
-		Page<YyMOnlineDayEntity> page = new Page<>(query);
-		List<YyMOnlineDayEntity> resp= yyMOnlineDayMapper.listForPage(page, query);
-		page.setRows(resp);
-		return page;
+//		Page<MemberloginlogEntity> page = new Page<>(query);
+		List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
+		return resp;
 	}
 
 

@@ -105,4 +105,12 @@
         </foreach>
     </delete>
 
+    <select id="getObjectGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity">
+        SELECT date_format(createdate, '%Y-%m-%d') as create_time,
+               count(distinct mid) as m_online_number
+        FROM memberloginlog
+        where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d') and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+        group by date_format(createdate, '%Y-%m-%d')
+    </select>
+
 </mapper>
