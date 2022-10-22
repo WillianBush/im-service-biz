@@ -109,7 +109,7 @@ public class SysEditorUploadController {
                 MemberEntity member = respMember.getData();
                 member.setHeadpic(removeDomain(resp.getFilePath()));
                 memberService.updateMember(member);
-
+                log.info(removeDomain(resp.getFilePath()));
                 return removeDomain(resp.getFilePath());
             } catch (Exception e) {
                 log.error("上传失败", e);
