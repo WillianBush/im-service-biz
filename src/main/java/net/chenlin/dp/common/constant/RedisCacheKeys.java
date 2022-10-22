@@ -6,7 +6,7 @@ public class RedisCacheKeys {
 
     private final static String APP_LAST_VERSION = "app:last:version";
 
-    public static final String ONLINE_MEMBER="websocket:userid:address";
+    public static final String ONLINE_MEMBER="online:member";
 
 
     public static String appLastVersion(String os,Integer siteId,String appId) {
