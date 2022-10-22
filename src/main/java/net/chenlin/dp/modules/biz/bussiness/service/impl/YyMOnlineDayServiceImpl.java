@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
+import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.dao.MemberloginlogMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
@@ -35,7 +36,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 
     private YyMOnlineDayMapper yyMOnlineDayMapper;
 
-    private RedisTemplate redisTemplate;
+    private RedisCacheManager redisCacheManager;
 
 	private MemberloginlogMapper memberloginlogMapper;
     /**
@@ -103,7 +104,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	 * */
 	@Override
 	public Page<MemberloginlogEntity> getYyMOnline(Map<String, Object> params) {
-		Map map=  redisTemplate.opsForHash().entries(RedisCacheKeys.ONLINE_MEMBER);
+		Map map=  redisCacheManager.hmget(RedisCacheKeys.ONLINE_MEMBER);
 		List<String> ids = new ArrayList<>();
 		map.keySet().stream().forEach(k-> {
 			String key = k.toString();
