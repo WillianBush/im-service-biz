@@ -47,5 +47,12 @@ public interface MemberService {
      * @return
      */
     Resp batchRemove(String[] id);
+
+    /**
+     * 根据用户ID删除所有的聊天记录
+     *  @param uid
+     * @return
+     */
+    Resp removeAllHistoryMsgByUid(String uid);
 	
 }

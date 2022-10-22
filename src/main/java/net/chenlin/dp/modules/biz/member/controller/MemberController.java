@@ -125,9 +125,8 @@ public class MemberController extends AbstractController {
 	@SysLog("清空聊天记录")
 	@PostMapping("/removeMsgAll")
 	@ApiOperation(value = "清空聊天记录")
-	public Resp removeMsgAll(@RequestBody String uid) {
-
-		return null;
+	public Resp removeMsgAll(@RequestParam String uid) {
+		return memberService.removeAllHistoryMsgByUid(uid);
 	}
 	
 }

@@ -8,6 +8,7 @@ import net.chenlin.dp.common.support.properties.GlobalProperties;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
 import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
+import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,8 @@ public class MemberServiceImpl implements MemberService {
 	private OSSModel ossModel;
 
 	private FriendsMapper friendsMapper;
+
+	private MessageHistoryMapper messageHistoryMapper;
 
     /**
      * 分页查询
@@ -126,4 +129,13 @@ public class MemberServiceImpl implements MemberService {
 		return CommonUtils.msgResp(id, count);
 	}
 
+	/**
+	 * 根据用户ID删除所有的聊天记录
+	 * @return
+	 */
+	@Override
+	public Resp removeAllHistoryMsgByUid(String uid){
+		int count=messageHistoryMapper.deleteByFromUid(uid);
+		return CommonUtils.msgResp(count);
+	}
 }

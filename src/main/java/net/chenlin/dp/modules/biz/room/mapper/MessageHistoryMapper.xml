@@ -168,4 +168,13 @@
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
 
+	<delete id="deleteByFromUid">
+        DELETE
+        FROM
+        message_history
+        WHERE
+        fromUid= #{uid}
+        or toUid= #{uid}
+    </delete>
+
 </mapper>

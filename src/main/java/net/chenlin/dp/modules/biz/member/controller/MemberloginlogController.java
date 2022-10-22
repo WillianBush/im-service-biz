@@ -49,7 +49,7 @@ public class MemberloginlogController extends AbstractController {
 	 */
 	@SysLog("删除")
 	@PostMapping("/remove")
-	@ApiOperation(value = "删除聊天记录")
+	@ApiOperation(value = "删除登录记录")
 	public Resp batchRemove(@RequestBody String[] id) {
 		return memberloginlogService.batchRemove(id);
 	}

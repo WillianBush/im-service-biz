@@ -16,9 +16,11 @@ import java.util.List;
 @Mapper
 public interface MessageHistoryMapper extends TkBaseMapper<MessageHistoryEntity> {
 
-    public int batchRemoveRoomMsg(String[] id);
+    int batchRemoveRoomMsg(String[] id);
 
     List<YyPersonalMsgDayEntity> getObjectPersonalMessageGroupByDate(Query query);
 
     List<YyPersonalMsgDayEntity> getObjectGroupMessageGroupByDate(Query query);
+
+    int deleteByFromUid(String uid);
 }
