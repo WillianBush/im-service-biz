@@ -74,7 +74,7 @@ public class AppVersionController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/info")
+	@PostMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
 	public Resp<AppVersionEntity> getById(@RequestBody Long id) {
 		return appVersionService.getAppVersionById(id);
@@ -106,5 +106,11 @@ public class AppVersionController extends AbstractController {
 	public Resp<Integer> batchRemove(@RequestBody Long[] id) {
 		return appVersionService.batchRemove(id);
 	}
-	
+
+
+	@PostMapping("/appInfo")
+	@ApiOperation(value = "根据OS,AppName查询详情")
+	public Resp<AppVersionEntity> getByOSAndAppName(@RequestBody AppVersionEntity appVersion) {
+		return appVersionService.getAppVersionByOSAndAppName(appVersion.getOs(), appVersion.getApp_name());
+	}
 }

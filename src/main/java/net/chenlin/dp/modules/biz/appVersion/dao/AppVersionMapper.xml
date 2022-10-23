@@ -127,4 +127,24 @@
 			id = #{id}
 	</delete>
 
+	<select id="getObjectByOSAndAppName" resultType="net.chenlin.dp.modules.biz.appVersion.entity.AppVersionEntity">
+		SELECT
+			`id`,
+			`gmt_create`,
+			`gmt_modified`,
+			`version`,
+			`descript`,
+			`site_id`,
+			`os`,
+			`down_url`,
+			`force_update`,
+			`is_show`,
+			`app_id`,
+			`app_name`
+		FROM
+			app_version
+		WHERE
+			os = #{os} and app_name = ${app_name}
+	</select>
+
 </mapper>

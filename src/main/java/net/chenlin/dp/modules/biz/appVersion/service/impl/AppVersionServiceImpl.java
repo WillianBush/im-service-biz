@@ -120,4 +120,17 @@ public class AppVersionServiceImpl implements AppVersionService {
                 .build());
     }
 
+    /**
+     * 根据id查询
+     *
+     * @param os
+     * @param appName
+     * @return
+     */
+    @Override
+    public Resp<AppVersionEntity> getAppVersionByOSAndAppName(String os, String appName) {
+        AppVersionEntity appVersion = appVersionMapper.getObjectByOSAndAppName(os, appName);
+        return CommonUtils.msgResp(appVersion);
+    }
+
 }

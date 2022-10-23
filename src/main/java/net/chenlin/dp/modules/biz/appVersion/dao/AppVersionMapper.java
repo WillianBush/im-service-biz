@@ -11,5 +11,6 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
  */
 @Mapper
 public interface AppVersionMapper extends TkBaseMapper<AppVersionEntity> {
-	
+
+    AppVersionEntity getObjectByOSAndAppName(String os, String appName);
 }

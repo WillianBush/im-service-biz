@@ -48,5 +48,6 @@ public interface AppVersionService {
     Resp<Integer> batchRemove(Long[] ids);
 
     AppVersionEntity selectByUniqueKey(String version,Integer siteId,String os ,String appId);
-	
+
+    Resp<AppVersionEntity> getAppVersionByOSAndAppName(String os, String appName);
 }
