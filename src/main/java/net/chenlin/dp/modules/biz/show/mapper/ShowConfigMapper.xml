@@ -6,7 +6,7 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.show.entity.ShowConfigEntity">
 		SELECT
 			`id`, 
-			`site_id`, 
+			`orgid`,
 			`contact`, 
 			`app_start_img`, 
 			`icon`, 
@@ -16,7 +16,7 @@
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="site_id != null"> and `site_id` = #{site_id} </if>
+		<if test="orgid != null"> and `orgid` = #{orgid} </if>
 		<if test="contact != null"> and `contact` = #{contact} </if>
 		<if test="app_start_img != null"> and `app_start_img` = #{app_start_img} </if>
 		<if test="icon != null"> and `icon` = #{icon} </if>
@@ -28,7 +28,7 @@
 	<insert id="save">
 		INSERT INTO show_config (
 			`id`, 
-			`site_id`, 
+			`orgid`,
 			`contact`, 
 			`app_start_img`, 
 			`icon`, 
@@ -36,7 +36,7 @@
 		)
 		VALUES (
 			#{id}, 
-			#{site_id}, 
+			#{orgid},
 			#{contact}, 
 			#{app_start_img}, 
 			#{icon}, 
@@ -47,7 +47,7 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.show.entity.ShowConfigEntity">
 		SELECT
 			`id`, 
-			`site_id`, 
+			`orgid`,
 			`contact`, 
 			`app_start_img`, 
 			`icon`, 
@@ -61,14 +61,13 @@
 	<update id="update">
 		UPDATE show_config
 	 	<set>
-			<if test="site_id != null">`site_id` = #{site_id}, </if>
 			<if test="contact != null">`contact` = #{contact}, </if>
 			<if test="app_start_img != null">`app_start_img` = #{app_start_img}, </if>
 			<if test="icon != null">`icon` = #{icon}, </if>
 			<if test="logo != null">`logo` = #{logo}</if>
 		</set>
 		WHERE
-			id = #{id}
+		orgid = #{orgid}
 	</update>
 	
 	<delete id="batchRemove">
