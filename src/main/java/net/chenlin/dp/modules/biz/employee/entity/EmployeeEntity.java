@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.biz.employee.entity;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
@@ -30,12 +31,15 @@ public class EmployeeEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "")
+	@Column(name = "createDate")
 	private Date createDate;
 	
 	@ApiModelProperty(value = "")
+	@Column(name = "modifyDate")
 	private Date modifyDate;
 	
 	@ApiModelProperty(value = "邀请码")
+	@Column(name = "inviteCode")
 	private String inviteCode;
 	
 	@ApiModelProperty(value = "")
