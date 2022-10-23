@@ -3,13 +3,16 @@ package net.chenlin.dp.modules.biz.member.service.impl;
 import java.util.*;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
+import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
 import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
 import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
 import org.apache.commons.lang.StringUtils;
+import org.bouncycastle.jcajce.provider.digest.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,7 @@ import net.chenlin.dp.modules.biz.member.service.MemberService;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
+@Slf4j
 @Service("memberService")
 @AllArgsConstructor
 public class MemberServiceImpl implements MemberService {
@@ -136,6 +140,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Resp removeAllHistoryMsgByUid(String uid){
 		int count=messageHistoryMapper.deleteByFromUid(uid);
+		return CommonUtils.msgResp(count);
+	}
+
+	@Override
+	public Resp updateMemberPass(MemberEntity member) {
+		MemberEntity me = new MemberEntity();
+		me.setId(member.getId());
+		me.setPassword(MD5Utils.MD5Encode(member.getPassword()));
+		int count =memberMapper.update(me);
 		return CommonUtils.msgResp(count);
 	}
 }

@@ -6,14 +6,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
-
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
 
@@ -85,9 +82,7 @@ public class MemberController extends AbstractController {
 	@PostMapping("/updatePassword")
 	@ApiOperation(value = "修改密码")
 	public Resp updatePassword(@RequestBody MemberEntity member) {
-		//todo 加密
-		String password=member.getPassword();
-		return  memberService.updateMember(member);
+		return  memberService.updateMemberPass(member);
 	}
 
 	/**

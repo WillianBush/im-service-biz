@@ -54,5 +54,11 @@ public interface MemberService {
      * @return
      */
     Resp removeAllHistoryMsgByUid(String uid);
-	
+
+    /**
+     * 修改密码
+     * @param member
+     * @return
+     */
+    Resp updateMemberPass(MemberEntity member);
 }
