@@ -63,9 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeEntity getMemberUUID(String memberUUID) {
-		return employeeMapper.selectOne(EmployeeEntity.builder()
-						.member_uuid(memberUUID)
-				.build());
+		return employeeMapper.getMemberUUID(memberUUID);
 	}
 
 	/**
