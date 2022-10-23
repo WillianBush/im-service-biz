@@ -1,20 +1,18 @@
 package net.chenlin.dp.modules.biz.site.controller;
 
-import java.util.Map;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.web.bind.annotation.*;
-
 import net.chenlin.dp.common.annotation.SysLog;
-import net.chenlin.dp.modules.sys.controller.AbstractController;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.site.entity.HomepageEntity;
 import net.chenlin.dp.modules.biz.site.service.HomepageService;
+import net.chenlin.dp.modules.sys.controller.AbstractController;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 
@@ -29,6 +27,7 @@ public class HomepageController extends AbstractController {
 	
 
 	private HomepageService homepageService;
+
 	
 	/**
 	 * 列表
