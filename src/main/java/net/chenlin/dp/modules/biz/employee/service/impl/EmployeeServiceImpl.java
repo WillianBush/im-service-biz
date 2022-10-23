@@ -61,7 +61,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return CommonUtils.msgResp(employee);
 	}
 
-    /**
+	@Override
+	public EmployeeEntity getMemberUUID(String memberUUID) {
+		return employeeMapper.selectOne(EmployeeEntity.builder()
+						.member_uuid(memberUUID)
+				.build());
+	}
+
+	/**
      * 修改
      * @param employee
      * @return

@@ -32,7 +32,7 @@ public interface MemberService {
      * @param id
      * @return
      */
-    Resp getMemberById(String id);
+    Resp<MemberEntity> getMemberById(String id);
 
     /**
      * 修改

@@ -104,7 +104,7 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
 	@Override
-	public Resp getMemberById(String id) {
+	public Resp<MemberEntity> getMemberById(String id) {
 		MemberEntity member = memberMapper.getObjectById(id);
 		return CommonUtils.msgResp(member);
 	}

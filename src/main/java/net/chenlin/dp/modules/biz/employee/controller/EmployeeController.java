@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.employee.controller;
 
+import java.util.Date;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -8,6 +9,9 @@ import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.exception.GoLoginException;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity;
 import net.chenlin.dp.modules.biz.bussiness.service.YyIpListService;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.biz.member.service.MemberService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +37,8 @@ public class EmployeeController extends AbstractController {
 	private EmployeeService employeeService;
 
 	private YyIpListService yyIpListService;
+
+	private MemberService memberService;
 	
 	/**
 	 * 列表
@@ -54,6 +60,22 @@ public class EmployeeController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<EmployeeEntity> save(@RequestBody EmployeeEntity employee) {
+		if (employee == null || StringUtils.isEmpty(employee.getMember_uuid())){
+			return Resp.error("参数错误");
+		}
+		Resp<MemberEntity> memberResp = memberService.getMemberById(employee.getMember_uuid());
+		MemberEntity member= memberResp.getData();
+		if (member == null){
+			return Resp.error("用户不存在");
+		}
+		EmployeeEntity employeeEntity =employeeService.getMemberUUID(employee.getMember_uuid());
+		if (employeeEntity != null){
+			return Resp.error("用户已经是特权用户");
+		}
+		employee.setMember_id(member.getMemberid());
+		employee.setLastLoginIp(member.getLastloginip());
+		employee.setCreateDate(new Date());
+		employee.setName(member.getNickname());
 		return employeeService.saveEmployee(employee);
 	}
 	

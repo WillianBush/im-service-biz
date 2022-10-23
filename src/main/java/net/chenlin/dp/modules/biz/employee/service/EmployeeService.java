@@ -33,6 +33,8 @@ public interface EmployeeService {
      */
 	Resp<EmployeeEntity> getEmployeeById(Long id);
 
+    EmployeeEntity getMemberUUID(String memberUUID);
+
     /**
      * 修改
      * @param employee
