@@ -426,4 +426,13 @@
 		from friends f left join member m on f.friendid=m.id
 		where f.mid = #{mid}
 	</select>
+
+	<select id="getMemberByMid" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
+		SELECT
+			m.id,
+			nickName,
+			headpic
+		from member m
+		where memberId = #{memberId}
+	</select>
 </mapper>

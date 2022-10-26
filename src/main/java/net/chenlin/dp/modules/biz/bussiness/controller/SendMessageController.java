@@ -29,7 +29,7 @@ public class SendMessageController {
     @SysLog("群发好友")
     @PostMapping("/sendFriends")
     @ApiOperation(value = "群发好友")
-    public Resp sendMsgToFriends(@RequestParam String userId,@RequestParam String txt,@RequestParam String imgPatch) {
-        return sendMessageService.sendMsgToFriends(userId,txt,imgPatch);
+    public Resp sendMsgToFriends(@RequestParam String memberId,@RequestParam String txt,@RequestParam String imgPatch) {
+        return sendMessageService.sendMsgToFriends(memberId,txt,imgPatch);
     }
 }

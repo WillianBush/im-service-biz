@@ -12,5 +12,5 @@ public interface SendMessageService {
      * @param imgPatch
      * @return
      */
-    Resp sendMsgToFriends(String userId,String txt,String imgPatch);
+    Resp sendMsgToFriends(String memberId,String txt,String imgPatch);
 }

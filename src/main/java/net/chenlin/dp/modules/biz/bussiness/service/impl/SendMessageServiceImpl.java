@@ -37,13 +37,13 @@ public class SendMessageServiceImpl implements SendMessageService {
 
 
     @Override
-    public Resp sendMsgToFriends(String userId, String txt, String imgPatch) {
+    public Resp sendMsgToFriends(String memberId, String txt, String imgPatch) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm");
         /**获取发送人信息*/
-        MemberEntity fromMember=memberMapper.getObjectById(userId);
+        MemberEntity fromMember=memberMapper.getMemberByMid(memberId);
         if(null==fromMember){return Resp.error("发送人不存在");}
         /**获取发送人所有的好友，排除掉官方团队*/
-        List<MemberEntity> listFriend=memberMapper.getFriendsByMid(userId);
+        List<MemberEntity> listFriend=memberMapper.getFriendsByMid(fromMember.getId());
         listFriend.forEach(memberEntity -> {
             //排除掉官方团队
             if(!"-1".equals(memberEntity.getId())) {
@@ -75,6 +75,7 @@ public class SendMessageServiceImpl implements SendMessageService {
     public void saveWaitSendMsg(ChatMsgEntity cme){
         SnowFlakeIdWorker sfw=new SnowFlakeIdWorker(1);
         WaitsendmessageEntity wsm=JSON.parseObject(JSON.toJSONString(cme),WaitsendmessageEntity.class);
+        wsm.setChatid(cme.getFromUid());
         wsm.setOldContent(cme.getOldTxt());
         wsm.setHeadpic(cme.getFromHeadpic());
         wsm.setName(cme.getFromName());
