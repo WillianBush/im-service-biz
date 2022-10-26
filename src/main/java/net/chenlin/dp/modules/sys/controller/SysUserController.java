@@ -121,7 +121,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("修改密码")
 	@PostMapping("/updatePswd")
 	@ApiOperation(value = "用户修改密码")
-	public Resp updatePswdByUser(@RequestParam("pswd") String pswd,@RequestParam("newPswd")  String newPswd) {
+	public Resp updatePswdByUser(@RequestParam("pswd") String pswd,@ModelAttribute @RequestParam("newPswd")  String newPswd) {
 		SysUserEntity user = getUser();
 		user.setPassword(pswd);//原密码
 		user.setEmail(newPswd);//邮箱临时存储新密码
