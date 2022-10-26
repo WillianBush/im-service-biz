@@ -11,6 +11,7 @@ import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
 import net.chenlin.dp.modules.sys.entity.SysUserEntity;
+import net.chenlin.dp.modules.sys.entity.UserUpdatePassword;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
@@ -114,17 +115,16 @@ public class SysUserController extends AbstractController {
 	
 	/**
 	 * 用户修改密码
-	 * @param pswd
-	 * @param newPswd
+	 * @param password
 	 * @return
 	 */
 	@SysLog("修改密码")
 	@PostMapping("/updatePswd")
 	@ApiOperation(value = "用户修改密码")
-	public Resp updatePswdByUser(@RequestParam("pswd") String pswd,@ModelAttribute @RequestParam("newPswd")  String newPswd) {
+	public Resp updatePswdByUser(@RequestBody UserUpdatePassword password) {
 		SysUserEntity user = getUser();
-		user.setPassword(pswd);//原密码
-		user.setEmail(newPswd);//邮箱临时存储新密码
+		user.setPassword(password.getPswd());//原密码
+		user.setEmail(password.getNewPswd());//邮箱临时存储新密码
 		return sysUserService.updatePswdByUser(user);
 	}
 	
