@@ -1,5 +1,6 @@
 package net.chenlin.dp.common.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.constant.RestApiConstant;
 import net.chenlin.dp.common.exception.GoLoginException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 @DependsOn("springContextUtils")
+@Slf4j
 public class UserUtil {
 
     private final  RedisCacheManager redisCacheManager = (RedisCacheManager) SpringContextUtils.getBean("redisCacheManager");
@@ -36,10 +38,12 @@ public class UserUtil {
     public SysUserEntity getUserEntityAspect() {
         String token = getToken();
         if (token == null ) {
+            log.error("getUserEntityAspect,token为空");
            return  null;
         }
         SysUserEntity sysUser = redisCacheManager.getJsonObjectFromJsonString(RedisCacheKeys.LOGIN_REDIS_CACHE+token, SysUserEntity.class);
         if (sysUser == null ) {
+            log.error("getUserEntityAspect,sysUser为空,token:{}",token);
             return  null;
         }
         return sysUser;
