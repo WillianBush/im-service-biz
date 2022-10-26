@@ -5,34 +5,37 @@
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.employeedefaultmessage.entity.EmployeeDefaultMessageEntity">
 		SELECT
-			`employee_id`, 
-			`member_id`, 
-			`msg_1`, 
-			`msg_2`, 
-			`msg_3`, 
-			`picture_1`, 
-			`picture_2`, 
-			`picture_3`, 
-			`picture_4`, 
-			`picture_5`, 
-			`id`, 
-			`invite_code`
+		edm.`employee_id`,
+		edm.`member_id`,
+		edm.`msg_1`,
+		edm.`msg_2`,
+		edm.`msg_3`,
+		edm.`picture_1`,
+		edm.`picture_2`,
+		edm.`picture_3`,
+		edm.`picture_4`,
+		edm.`picture_5`,
+		edm.`id`,
+		edm.`invite_code`,
+		m.nickName
 		FROM
-			employee_default_message
+			employee_default_message edm
+		left join member m on edm.memberId = edm.member_id
 		where
 		1=1
-		<if test="employee_id != null"> and `employee_id` = #{employee_id} </if>
-		<if test="member_id != null"> and `member_id` = #{member_id} </if>
-		<if test="msg_1 != null"> and `msg_1` = #{msg_1} </if>
-		<if test="msg_2 != null"> and `msg_2` = #{msg_2} </if>
-		<if test="msg_3 != null"> and `msg_3` = #{msg_3} </if>
-		<if test="picture_1 != null"> and `picture_1` = #{picture_1} </if>
-		<if test="picture_2 != null"> and `picture_2` = #{picture_2} </if>
-		<if test="picture_3 != null"> and `picture_3` = #{picture_3} </if>
-		<if test="picture_4 != null"> and `picture_4` = #{picture_4} </if>
-		<if test="picture_5 != null"> and `picture_5` = #{picture_5} </if>
-		<if test="id != null"> and `id` = #{id} </if>
-		<if test="invite_code != null"> and `invite_code` = #{invite_code} </if>
+		<if test="employee_id != null"> and edm.`employee_id` = #{employee_id} </if>
+		<if test="member_id != null"> and edm.`member_id` = #{member_id} </if>
+		<if test="msg_1 != null"> and edm.`msg_1` = #{msg_1} </if>
+		<if test="msg_2 != null"> and edm.`msg_2` = #{msg_2} </if>
+		<if test="msg_3 != null"> and edm.`msg_3` = #{msg_3} </if>
+		<if test="picture_1 != null"> and edm.`picture_1` = #{picture_1} </if>
+		<if test="picture_2 != null"> and edm.`picture_2` = #{picture_2} </if>
+		<if test="picture_3 != null"> and edm.`picture_3` = #{picture_3} </if>
+		<if test="picture_4 != null"> and edm.`picture_4` = #{picture_4} </if>
+		<if test="picture_5 != null"> and edm.`picture_5` = #{picture_5} </if>
+		<if test="id != null"> and edm.`id` = #{id} </if>
+		<if test="invite_code != null"> and edm.`invite_code` = #{invite_code} </if>
+		<if test="invite_code != null"> and m.`nickName` = #{nickName} </if>
 		ORDER BY
 			id DESC
 	</select>
