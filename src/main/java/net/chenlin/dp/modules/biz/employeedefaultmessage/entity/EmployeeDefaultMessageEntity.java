@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.employeedefaultmessage.entity;
 import lombok.*;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 import io.swagger.annotations.ApiModel;
@@ -60,6 +61,9 @@ public class EmployeeDefaultMessageEntity implements Serializable {
 	
 	@ApiModelProperty(value = "邀请码")
 	private String invite_code;
+
+	@Transient
+	private String nickName;
 	
 
 
