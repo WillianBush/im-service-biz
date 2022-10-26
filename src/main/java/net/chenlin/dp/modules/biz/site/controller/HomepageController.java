@@ -24,7 +24,6 @@ import java.util.Map;
 @Api(tags = "主页")
 @DependsOn("springContextUtils")
 public class HomepageController extends AbstractController {
-	
 
 	private HomepageService homepageService;
 
