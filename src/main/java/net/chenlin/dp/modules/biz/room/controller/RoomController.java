@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.room.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -86,18 +87,4 @@ public class RoomController extends AbstractController {
 	public Resp batchRemove(@RequestBody String[] id) {
 		return roomService.batchRemove(id);
 	}
-
-	/**
-	 * 添加成员
-	 * @param room
-	 * @return
-	 */
-	@SysLog("添加成员")
-	@PostMapping("/addMember")
-	@ApiOperation(value = "添加成员")
-	public Resp addMember(@RequestBody RoomEntity room) {
-		return roomService.updateRoom(room);
-	}
-
-
 }

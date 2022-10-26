@@ -418,4 +418,12 @@
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
 
+	<select id="getFriendsByMid" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
+		SELECT
+			m.id,
+			nickName,
+			headpic
+		from friends f left join member m on f.friendid=m.id
+		where f.mid = #{mid}
+	</select>
 </mapper>

@@ -6,7 +6,11 @@ public class RedisCacheKeys {
 
     private final static String APP_LAST_VERSION = "app:last:version";
 
+    /**在线用户*/
     public static final String ONLINE_MEMBER="online:member";
+
+    /**redis中存放已经生成websocket的user所在服务器地址信息，提供远程调用*/
+    public static final String REDIS_WSS_KEY="websocket:userid:address";
 
 
     public static String appLastVersion(String os,Integer siteId,String appId) {

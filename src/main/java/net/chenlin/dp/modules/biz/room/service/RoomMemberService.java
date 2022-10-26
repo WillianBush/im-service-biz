@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.room.service;
 
+import java.util.List;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
@@ -47,5 +48,12 @@ public interface RoomMemberService {
      * @return
      */
     Resp batchRemove(String[] id);
+
+    /**
+     * 新增
+     * @param roomMember
+     * @return
+     */
+    Resp batchSaveRoomMember(List<RoomMemberEntity> roomMember);
 	
 }

@@ -95,6 +95,10 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public Resp batchRemove(String[] id) {
 		int count = roomMapper.batchRemove(id);
+		/**删除中间表数据*/
+		if(count>0){
+			roomMemberMapper.batchRemoveByRoomId(id);
+		}
 		return CommonUtils.msgResp(id, count);
 	}
 

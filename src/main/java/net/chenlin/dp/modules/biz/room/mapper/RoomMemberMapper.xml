@@ -70,4 +70,15 @@
 		</foreach>
 	</delete>
 
+	<delete id="batchRemoveByRoomId">
+		DELETE
+		FROM
+		room_member
+		WHERE
+		room_id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
 </mapper>

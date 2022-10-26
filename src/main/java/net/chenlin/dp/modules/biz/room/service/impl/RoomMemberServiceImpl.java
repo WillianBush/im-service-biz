@@ -1,9 +1,12 @@
 package net.chenlin.dp.modules.biz.room.service.impl;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -44,6 +47,9 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      */
 	@Override
 	public Resp saveRoomMember(RoomMemberEntity roomMember) {
+		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
+		roomMember.setId(sw.createId());
+		roomMember.setCreateDate(new Date());
 		int count = roomMemberMapper.save(roomMember);
 		return CommonUtils.msgResp(count);
 	}
@@ -66,6 +72,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      */
 	@Override
 	public Resp updateRoomMember(RoomMemberEntity roomMember) {
+		roomMember.setModifyDate(new Date());
 		int count = roomMemberMapper.update(roomMember);
 		return CommonUtils.msgResp(count);
 	}
@@ -79,6 +86,14 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 	public Resp batchRemove(String[] id) {
 		int count = roomMemberMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
+	}
+
+	@Override
+	public Resp batchSaveRoomMember(List<RoomMemberEntity> roomMembers) {
+		roomMembers.forEach(rm->{
+			saveRoomMember(rm);
+		});
+		return Resp.ok();
 	}
 
 }

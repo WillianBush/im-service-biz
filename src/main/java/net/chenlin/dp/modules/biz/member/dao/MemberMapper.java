@@ -19,4 +19,6 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
     List<MemberEntity> getByIds(Object[] id);
 
     List<YyMRegisterDayEntity> getObjectGroupByDate(Query query);
+
+    List<MemberEntity> getFriendsByMid(String mid);
 }

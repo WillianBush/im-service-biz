@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.room.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -51,6 +52,19 @@ public class RoomMemberController extends AbstractController {
 	public Resp save(@RequestBody RoomMemberEntity roomMember) {
 		return roomMemberService.saveRoomMember(roomMember);
 	}
+
+
+	/**
+	 * 批量添加成员
+	 * @param room
+	 * @return
+	 */
+	@SysLog("批量添加成员")
+	@PostMapping("/batchAddMember")
+	@ApiOperation(value = "批量添加成员")
+	public Resp batchAddMember(@RequestBody List<RoomMemberEntity> room) {
+		return roomMemberService.batchSaveRoomMember(room);
+	}
 	
 	/**
 	 * 根据id查询详情
@@ -86,5 +100,18 @@ public class RoomMemberController extends AbstractController {
 	public Resp batchRemove(@RequestBody String[] id) {
 		return roomMemberService.batchRemove(id);
 	}
-	
+
+	/**
+	 * 设为管理员
+	 * @param room
+	 * @return
+	 */
+	@SysLog("设为管理员")
+	@PostMapping("/addRoomMgr")
+	@ApiOperation(value = "设为管理员")
+	public Resp addRoomMgr(@RequestBody RoomMemberEntity room) {
+		/**状态1位管理员*/
+		room.setIs_manager(1);
+		return roomMemberService.updateRoomMember(room);
+	}
 }

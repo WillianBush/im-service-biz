@@ -41,7 +41,15 @@ public class RoomMemberEntity implements Serializable {
 	 * 是否管理员：0否，1是
 	 */
 	private Integer is_manager;
-	
 
+	/**
+	 * 创建日期
+	 */
+	private Date createDate;
+
+	/**
+	 * 修改日期
+	 */
+	private Date modifyDate;
 
 }
