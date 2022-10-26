@@ -46,7 +46,7 @@ public class HomepageController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<HomepageEntity> save(@RequestBody HomepageEntity homepage) {
 		return homepageService.saveHomepage(homepage);
@@ -57,7 +57,7 @@ public class HomepageController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/info")
+	@PostMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
 	public Resp<HomepageEntity> getById(@RequestBody String id) {
 		return homepageService.getHomepageById(id);
