@@ -114,4 +114,19 @@ public class RoomMemberController extends AbstractController {
 		room.setIs_manager(1);
 		return roomMemberService.updateRoomMember(room);
 	}
+
+
+	/**
+	 * 是否禁言
+	 * @param room
+	 * @return
+	 */
+	@SysLog("设置禁言")
+	@PostMapping("/setStopSpeaker")
+	@ApiOperation(value = "设置禁言")
+	public Resp setStopSpeaker(@RequestBody RoomMemberEntity room) {
+		/**状态1位管理员*/
+		room.setStop_speaker(1);
+		return roomMemberService.updateRoomMember(room);
+	}
 }

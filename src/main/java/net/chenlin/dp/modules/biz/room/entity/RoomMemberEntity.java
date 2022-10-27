@@ -52,4 +52,9 @@ public class RoomMemberEntity implements Serializable {
 	 */
 	private Date modifyDate;
 
+	/**
+	 * 是否管理员：0否，1是
+	 */
+	private Integer stop_speaker;
+
 }
