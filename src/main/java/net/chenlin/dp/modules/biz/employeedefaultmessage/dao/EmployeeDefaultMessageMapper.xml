@@ -115,10 +115,10 @@
 		FROM
 			employee_default_message
 		WHERE
-			id IN
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
+			id = #{id}
+<!--		<foreach item="id" collection="array" open="(" separator="," close=")">-->
+<!--			#{id}-->
+<!--		</foreach>-->
 	</delete>
 
 </mapper>
