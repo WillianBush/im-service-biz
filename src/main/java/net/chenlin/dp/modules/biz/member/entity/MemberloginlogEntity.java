@@ -77,4 +77,8 @@ public class MemberloginlogEntity implements Serializable {
 	 * */
 	private String deviceVersion;
 
+	/**
+	 *IP归属地
+	 */
+	private String ipAddr;
 }

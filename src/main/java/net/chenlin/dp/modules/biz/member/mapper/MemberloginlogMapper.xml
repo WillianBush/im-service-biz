@@ -15,7 +15,8 @@
         `deviceType`,
         `deviceVersion`,
         `mheadPic`,
-        `username`
+        `username`,
+        `ipAddr`
         FROM
         memberloginlog
         where
@@ -31,6 +32,7 @@
         <if test="deviceVersion != null">and `deviceVersion` = #{deviceVersion}</if>
         <if test="mheadPic != null">and `mheadPic` = #{mheadPic}</if>
         <if test="username != null">and `username` = #{username}</if>
+        <if test="ipAddr != null">and `ipAddr` = #{ipAddr}</if>
         ORDER BY
         id DESC
     </select>
@@ -46,7 +48,8 @@
 									`deviceType`,
 									`deviceVersion`,
 									`mheadPic`,
-									`username`)
+									`username`,
+									`ipAddr`)
         VALUES (#{id},
                 #{createdate},
                 #{modifydate},
@@ -58,6 +61,7 @@
 				#{deviceVersion},
 				#{mheadPic})
 				#{username})
+				#{ipAddr})
     </insert>
 
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
@@ -71,7 +75,8 @@
 			   `deviceType`,
 			   `deviceVersion`,
 			   `mheadPic`,
-               `username`
+               `username`,
+               `ipAddr`
         FROM memberloginlog
         WHERE mid = #{id}
     </select>
@@ -89,6 +94,7 @@
             <if test="deviceVersion != null">`deviceVersion` = #{deviceVersion}</if>
             <if test="mheadPic != null">`mheadPic` = #{mheadPic}</if>
             <if test="username != null">`username` = #{username}</if>
+            <if test="ipAddr != null">`ipAddr` = #{ipAddr}</if>
         </set>
         WHERE
         id = #{id}
