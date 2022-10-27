@@ -8,7 +8,9 @@ import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.mq.RabbitmqConfig;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
+import net.chenlin.dp.modules.biz.bussiness.dao.AdminSendmsgLogMapper;
 import net.chenlin.dp.modules.biz.bussiness.dao.WaitsendmessageMapper;
+import net.chenlin.dp.modules.biz.bussiness.entity.AdminSendmsgLogEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.ChatMsgEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.WaitsendmessageEntity;
 import net.chenlin.dp.modules.biz.bussiness.service.SendMessageService;
@@ -34,6 +36,8 @@ public class SendMessageServiceImpl implements SendMessageService {
     private MemberMapper memberMapper;
 
     private WaitsendmessageMapper waitsendmessageMapper;
+
+    private AdminSendmsgLogMapper adminSendmsgLogMapper;
 
 
     @Override
@@ -105,5 +109,28 @@ public class SendMessageServiceImpl implements SendMessageService {
                 return Boolean.TRUE;
         }
         return Boolean.FALSE;
+    }
+
+    /**
+     * 保存日志
+     * @param chatMsgEntity
+     * @param receiverName
+     * @param adminId
+     */
+    public void saveLog(ChatMsgEntity chatMsgEntity,String receiverName,String adminId){
+        SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
+        AdminSendmsgLogEntity aslog=new AdminSendmsgLogEntity();
+        aslog.setId(sw.createId());
+        aslog.setCreateDate(new Date());
+        aslog.setTxt(chatMsgEntity.getTxt());
+        aslog.setReceiverId(chatMsgEntity.getToUid());
+        aslog.setReceiverName(receiverName);
+        adminSendmsgLogMapper.save(aslog);
+    }
+
+    public void sengImag(ChatMsgEntity bean,String imagePath) {
+        String image =	"<img  style='max-width: 120px;max-height:120px;width:100%;' class='face' src='"+imagePath+"'>";
+        bean.setTxt(image);
+        bean.setPsr("uparse");
     }
 }

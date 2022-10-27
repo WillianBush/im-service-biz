@@ -42,14 +42,13 @@ public class FriendsController extends AbstractController {
 		
 	/**
 	 * 新增
-	 * @param friends
 	 * @return
 	 */
 	@SysLog("新增")
 	@PostMapping("/save")
 	@ApiOperation(value = "新增好友")
-	public Resp save(@RequestBody FriendsEntity friends) {
-		return friendsService.saveFriends(friends);
+	public Resp save(@RequestParam String mid,@RequestParam String friendId) {
+		return friendsService.saveFriends(mid,friendId);
 	}
 	
 	/**
@@ -65,16 +64,15 @@ public class FriendsController extends AbstractController {
 	
 	/**
 	 * 修改
-	 * @param friends
 	 * @return
 	 */
 	@SysLog("修改")
 	@PostMapping("/update")
 	@ApiOperation(value = "修改好友备注")
-	public Resp update(@RequestBody FriendsEntity friends) {
-		return friendsService.updateFriends(friends);
+	public Resp update(@RequestParam String mid,@RequestParam String friendId,@RequestParam String friendName) {
+		return friendsService.updateFriendsNote(mid,friendId,friendName);
 	}
-	
+
 	/**
 	 * 删除
 	 * @param id
@@ -86,5 +84,5 @@ public class FriendsController extends AbstractController {
 	public Resp batchRemove(@RequestBody String[] id) {
 		return friendsService.batchRemove(id);
 	}
-	
+
 }

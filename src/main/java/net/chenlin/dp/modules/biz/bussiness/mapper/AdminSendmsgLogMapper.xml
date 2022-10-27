@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.asd.dao.AdminSendmsgLogMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.asd.entity.AdminSendmsgLogEntity">
+		SELECT
+			`id`, 
+			`sendAdminId`, 
+			`txt`, 
+			`createDate`, 
+			`receiverId`, 
+			`receiverName`
+		FROM
+			admin_sendmsg_log
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="sendAdminId != null"> and `sendAdminId` = #{sendAdminId} </if>
+		<if test="txt != null"> and `txt` = #{txt} </if>
+		<if test="createDate != null"> and `createDate` = #{createDate} </if>
+		<if test="receiverId != null"> and `receiverId` = #{receiverId} </if>
+		<if test="receiverName != null"> and `receiverName` = #{receiverName} </if>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO admin_sendmsg_log (
+			`id`, 
+			`sendAdminId`, 
+			`txt`, 
+			`createDate`, 
+			`receiverId`, 
+			`receiverName`
+		)
+		VALUES (
+			#{id}, 
+			#{sendAdminId}, 
+			#{txt}, 
+			#{createDate}, 
+			#{receiverId}, 
+			#{receiverName}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.asd.entity.AdminSendmsgLogEntity">
+		SELECT
+			`id`, 
+			`sendAdminId`, 
+			`txt`, 
+			`createDate`, 
+			`receiverId`, 
+			`receiverName`
+		FROM
+			admin_sendmsg_log
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE admin_sendmsg_log
+	 	<set>
+			<if test="sendAdminId != null">`sendAdminId` = #{sendAdminId}, </if>
+			<if test="txt != null">`txt` = #{txt}, </if>
+			<if test="createDate != null">`createDate` = #{createDate}, </if>
+			<if test="receiverId != null">`receiverId` = #{receiverId}, </if>
+			<if test="receiverName != null">`receiverName` = #{receiverName}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			admin_sendmsg_log
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

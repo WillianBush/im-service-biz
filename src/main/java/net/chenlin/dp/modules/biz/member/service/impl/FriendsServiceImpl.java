@@ -2,8 +2,11 @@ package net.chenlin.dp.modules.biz.member.service.impl;
 
 import java.util.Map;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
+import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +23,11 @@ import net.chenlin.dp.modules.biz.member.service.FriendsService;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Service("friendsService")
+@AllArgsConstructor
 public class FriendsServiceImpl implements FriendsService {
 
-	@Autowired
     private FriendsMapper friendsMapper;
-
+	private MemberMapper memberMapper;
     /**
      * 分页查询
      * @param params
@@ -40,12 +43,16 @@ public class FriendsServiceImpl implements FriendsService {
 
     /**
      * 新增
-     * @param friends
      * @return
      */
 	@Override
-	public Resp saveFriends(FriendsEntity friends) {
+	public Resp saveFriends(String mid,String friendId) {
+		FriendsEntity friends=new FriendsEntity();
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
+		friends.setMid(mid);
+		/*** 根据memberId 查询 member 得到 id */
+		MemberEntity memberEntity=memberMapper.getMemberByMid(friendId);
+		friends.setMid(memberEntity.getId());
 		friends.setId(sw.createId());
 		int count = friendsMapper.save(friends);
 		return CommonUtils.msgResp(count);
@@ -83,6 +90,11 @@ public class FriendsServiceImpl implements FriendsService {
 	public Resp batchRemove(String[] id) {
 		int count = friendsMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
+	}
+
+	@Override
+	public Resp updateFriendsNote(String mid, String friendId, String friendName) {
+		return null;
 	}
 
 }

@@ -22,10 +22,9 @@ public interface FriendsService {
 
     /**
      * 新增
-     * @param friends
      * @return
      */
-    Resp saveFriends(FriendsEntity friends);
+    Resp saveFriends(String mid,String friendId);
 
     /**
      * 根据id查询
@@ -47,5 +46,12 @@ public interface FriendsService {
      * @return
      */
     Resp batchRemove(String[] id);
+
+
+    /**
+     * 修改
+     * @return
+     */
+    Resp updateFriendsNote(String mid,String friendId,String friendName);
 	
 }

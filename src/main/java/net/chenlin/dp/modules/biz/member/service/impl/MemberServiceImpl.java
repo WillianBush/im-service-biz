@@ -139,8 +139,8 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public Resp removeAllHistoryMsgByUid(String uid){
-		int count=messageHistoryMapper.deleteByFromUid(uid);
-		return CommonUtils.msgResp(count);
+		messageHistoryMapper.deleteByFromUid(uid);
+		return Resp.ok();
 	}
 
 	@Override

@@ -7,6 +7,8 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
+import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -26,6 +28,7 @@ import net.chenlin.dp.modules.biz.room.service.RoomMemberService;
 public class RoomMemberServiceImpl implements RoomMemberService {
 
     private RoomMemberMapper roomMemberMapper;
+    private MemberMapper memberMapper;
 
     /**
      * 分页查询
@@ -50,6 +53,9 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
 		roomMember.setId(sw.createId());
 		roomMember.setCreateDate(new Date());
+		/*** 根据memberId 查询 member 得到 id */
+		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMember_id());
+		roomMember.setMember_id(memberEntity.getId());
 		int count = roomMemberMapper.save(roomMember);
 		return CommonUtils.msgResp(count);
 	}
