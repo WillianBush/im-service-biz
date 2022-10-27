@@ -107,7 +107,9 @@ public class ShowConfigServiceImpl implements ShowConfigService {
 		try {
 			byte[] encryptBytes =  showConfigEntity.toString().getBytes(StandardCharsets.UTF_8);
 			InputStream in = new ByteArrayInputStream(encryptBytes);
-			OSSUploadResp resp =  ossUtil.uploadObjectToOSS(in, OssConstant.OSS_SHOW_FILE_NAME,OssConstant.OSS_CONFIG_PATH, (long) in.available());
+			String fileName = "show_config" + showConfigEntity.getOrgid() + "proc.txt" ;
+//			OSSUploadResp resp =  ossUtil.uploadObjectToOSS(in, OssConstant.OSS_SHOW_FILE_NAME,OssConstant.OSS_CONFIG_PATH, (long) in.available());
+			OSSUploadResp resp =  ossUtil.uploadObjectToOSS(in, fileName, OssConstant.OSS_CONFIG_PATH, (long) in.available());
 			log.debug("oss上传结束:{}", JSONObject.toJSONString(resp));
 		} catch (Exception e) {
 			log.error("ShowConfigServiceImpl:{}",e);

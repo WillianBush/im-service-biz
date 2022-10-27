@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.OSSModel;
+import net.chenlin.dp.common.utils.IdGenerate;
 import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,7 @@ public class HomepageServiceImpl implements HomepageService {
      */
 	@Override
 	public Resp<HomepageEntity> saveHomepage(HomepageEntity homepage) {
+		homepage.setId(IdGenerate.generateUUID());
 		int count = homepageMapper.save(homepage);
 		return CommonUtils.msgResp(count);
 	}

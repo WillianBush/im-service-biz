@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.chenlin.dp.common.utils.IdGenerate;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -21,6 +23,7 @@ import net.chenlin.dp.modules.biz.employeedefaultmessage.service.EmployeeDefault
  */
 @Service("employeeDefaultMessageService")
 @AllArgsConstructor
+@Slf4j
 public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessageService {
 
     private EmployeeDefaultMessageMapper employeeDefaultMessageMapper;
@@ -46,6 +49,7 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
      */
 	@Override
 	public Resp<EmployeeDefaultMessageEntity> saveEmployeeDefaultMessage(EmployeeDefaultMessageEntity employeeDefaultMessage) {
+		employeeDefaultMessage.setId(IdGenerate.generateUUID());
 		int count = employeeDefaultMessageMapper.save(employeeDefaultMessage);
 		return CommonUtils.msgResp(count);
 	}
@@ -78,8 +82,10 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(Object[] id) {
 		int count = employeeDefaultMessageMapper.batchRemove(id);
+		log.info("batchRemove-id.length:{}", id.length);
+		log.info("batchRemove-count:{}", count);
 		return CommonUtils.msgResp(id, count);
 	}
 

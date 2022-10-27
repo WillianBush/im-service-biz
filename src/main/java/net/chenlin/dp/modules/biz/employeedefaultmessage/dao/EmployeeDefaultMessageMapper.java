@@ -11,5 +11,5 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
  */
 @Mapper
 public interface EmployeeDefaultMessageMapper extends TkBaseMapper<EmployeeDefaultMessageEntity> {
-	
+
 }
