@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.utils.IdGenerate;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -46,6 +47,7 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
      */
 	@Override
 	public Resp<EmployeeDefaultMessageEntity> saveEmployeeDefaultMessage(EmployeeDefaultMessageEntity employeeDefaultMessage) {
+		employeeDefaultMessage.setId(IdGenerate.generateUUID());
 		int count = employeeDefaultMessageMapper.save(employeeDefaultMessage);
 		return CommonUtils.msgResp(count);
 	}
