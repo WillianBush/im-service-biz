@@ -45,6 +45,6 @@ public interface EmployeeDefaultMessageService {
      * @param id
      * @return
      */
-	Resp batchRemove(Object id);
+	Resp batchRemove(Object[] id);
 	
 }

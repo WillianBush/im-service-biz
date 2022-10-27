@@ -74,7 +74,7 @@ public interface BaseMapper<T> {
 	 * @param id
 	 * @return
 	 */
-	int batchRemove(Object id);
+	int batchRemove(Object[] id);
 
 	/**
 	 * 批量逻辑删除
