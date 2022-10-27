@@ -137,12 +137,12 @@ public class CommonUtils {
 		}
 	}
 
-	public static Resp msgResp(Object total, int count) {
-		if(count == (Integer) total){
+	public static Resp msgResp(Object[] total, int count) {
+		if(total.length == count){
 			return Resp.ok(MsgConstant.MSG_OPERATION_SUCCESS);
 		}else{
 			if(isIntThanZero(count)){
-				return Resp.error(MsgConstant.removeFailed((Integer) total, count));
+				return Resp.error(MsgConstant.removeFailed(total.length, count));
 			}else{
 				return Resp.error(MsgConstant.MSG_OPERATION_FAILED);
 			}
