@@ -80,7 +80,7 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
      * @return
      */
 	@Override
-	public Resp batchRemove(Long[] id) {
+	public Resp batchRemove(Object id) {
 		int count = employeeDefaultMessageMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
 	}
