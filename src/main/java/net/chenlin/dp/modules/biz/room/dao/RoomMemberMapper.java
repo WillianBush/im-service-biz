@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
 import net.chenlin.dp.common.mapper.TkBaseMapper;
 
+import java.util.List;
+
 /**
  * 
  * @author wang<fangyuan.co@outlook.com>
@@ -13,4 +15,6 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
 public interface RoomMemberMapper extends TkBaseMapper<RoomMemberEntity> {
 
     int batchRemoveByRoomId(Object[] id);
+
+    List<RoomMemberEntity> getRoomMembersById(String roomId);
 }

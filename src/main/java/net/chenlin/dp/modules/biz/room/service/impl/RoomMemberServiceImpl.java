@@ -60,16 +60,6 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 		return CommonUtils.msgResp(count);
 	}
 
-    /**
-     * 根据id查询
-     * @param id
-     * @return
-     */
-	@Override
-	public Resp getRoomMemberById(String id) {
-		RoomMemberEntity roomMember = roomMemberMapper.getObjectById(id);
-		return CommonUtils.msgResp(roomMember);
-	}
 
     /**
      * 修改

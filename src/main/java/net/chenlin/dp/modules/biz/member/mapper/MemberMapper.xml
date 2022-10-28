@@ -435,4 +435,17 @@
 		from member m
 		where memberId = #{memberId}
 	</select>
+
+
+	<select id="gettMemberByRoomIdForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
+		SELECT
+			m.*
+		FROM
+		member m left join room_member rm on m.id=rm.member_id
+		where
+		rm.room_id=#{roomId}
+		<if test="nickname != null"> and `nickName` like  concat('%',#{nickname},'%') </if>
+		ORDER BY
+		id DESC
+	</select>
 </mapper>

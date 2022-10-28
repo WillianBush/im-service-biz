@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -123,5 +124,27 @@ public class MemberController extends AbstractController {
 	public Resp removeMsgAll(@RequestBody String uid) {
 		return memberService.removeAllHistoryMsgByUid(uid);
 	}
-	
+
+
+	/**
+	 * 根据群id查询群组成员
+	 * @return
+	 */
+	@PostMapping("/listMemberByRoomId")
+	@ApiOperation(value = "根据群id查询群组成员")
+	public Page<MemberEntity> gettMemberByRoomId(@RequestBody Map<String, Object> params) {
+		return memberService.gettMemberByRoomId(params);
+	}
+
+	/**
+	 * 新增
+	 * @param member
+	 * @return
+	 */
+	@SysLog("新增")
+	@PostMapping("/batchSave")
+	@ApiOperation(value = "批量新增用户")
+	public Resp batchSave(@RequestBody List<MemberEntity> member) {
+		return memberService.batchSaveMember(member);
+	}
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
 
 /**
@@ -28,12 +29,6 @@ public interface RoomMemberService {
      */
     Resp saveRoomMember(RoomMemberEntity roomMember);
 
-    /**
-     * 根据id查询
-     * @param id
-     * @return
-     */
-    Resp getRoomMemberById(String id);
 
     /**
      * 修改

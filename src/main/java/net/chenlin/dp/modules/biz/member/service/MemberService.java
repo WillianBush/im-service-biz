@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.member.service;
 
+import java.util.List;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
@@ -26,6 +27,7 @@ public interface MemberService {
      * @return
      */
     Resp saveMember(MemberEntity member);
+    Resp batchSaveMember(List<MemberEntity> member);
 
     /**
      * 根据id查询
@@ -61,4 +63,11 @@ public interface MemberService {
      * @return
      */
     Resp updateMemberPass(MemberEntity member);
+
+    /**
+     * 根据群组ID 分页查询成员
+     * @param params
+     * @return
+     */
+    Page<MemberEntity> gettMemberByRoomId(Map<String, Object> params);
 }

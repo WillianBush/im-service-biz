@@ -36,7 +36,7 @@
 		)
 	</insert>
 	
-	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
+	<select id="getRoomMembersById" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
 		SELECT
 			`id`, 
 			`room_id`, 
@@ -45,7 +45,7 @@
 		FROM
 			room_member
 		WHERE
-			id = #{id}
+			room_id = #{roomId}
 	</select>
 	
 	<update id="update">

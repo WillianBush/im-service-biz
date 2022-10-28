@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.member.dao;
 
+import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyMRegisterDayEntity;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,6 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
     List<MemberEntity> getFriendsByMid(String mid);
     
     MemberEntity getMemberByMid(String mid);
+
+    List<MemberEntity> gettMemberByRoomIdForPage(Page<MemberEntity> page,Query query);
 }

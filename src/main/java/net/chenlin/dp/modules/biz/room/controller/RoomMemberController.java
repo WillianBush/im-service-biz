@@ -6,6 +6,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
@@ -65,17 +66,7 @@ public class RoomMemberController extends AbstractController {
 	public Resp batchAddMember(@RequestBody List<RoomMemberEntity> room) {
 		return roomMemberService.batchSaveRoomMember(room);
 	}
-	
-	/**
-	 * 根据id查询详情
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("/info")
-	@ApiOperation(value = "根据群id查询群组成员")
-	public Resp getById(@RequestParam String id) {
-		return roomMemberService.getRoomMemberById(id);
-	}
+
 	
 	/**
 	 * 修改

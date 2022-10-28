@@ -98,7 +98,15 @@ public class MemberServiceImpl implements MemberService {
 		return CommonUtils.msgResp(count);
 	}
 
-    /**
+	@Override
+	public Resp batchSaveMember(List<MemberEntity> members) {
+		members.forEach(memberEntity -> {
+			saveMember(memberEntity);
+		});
+		return Resp.ok();
+	}
+
+	/**
      * 根据id查询
      * @param id
      * @return
@@ -150,5 +158,13 @@ public class MemberServiceImpl implements MemberService {
 		me.setPassword(MD5Utils.MD5Encode(member.getPassword()));
 		int count =memberMapper.update(me);
 		return CommonUtils.msgResp(count);
+	}
+
+	@Override
+	public Page<MemberEntity> gettMemberByRoomId(Map<String, Object> params) {
+		Query query = new Query(params);
+		Page<MemberEntity> page = new Page<>(query);
+		page.setRows(memberMapper.gettMemberByRoomIdForPage(page, query));
+		return page;
 	}
 }
