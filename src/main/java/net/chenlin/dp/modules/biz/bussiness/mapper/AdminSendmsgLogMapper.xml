@@ -3,7 +3,7 @@
 
 <mapper namespace="net.chenlin.dp.modules.asd.dao.AdminSendmsgLogMapper">
 	
-	<select id="listForPage" resultType="net.chenlin.dp.modules.asd.entity.AdminSendmsgLogEntity">
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.AdminSendmsgLogEntity">
 		SELECT
 			`id`, 
 			`sendAdminId`, 
@@ -44,7 +44,7 @@
 		)
 	</insert>
 	
-	<select id="getObjectById" resultType="net.chenlin.dp.modules.asd.entity.AdminSendmsgLogEntity">
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.AdminSendmsgLogEntity">
 		SELECT
 			`id`, 
 			`sendAdminId`, 
