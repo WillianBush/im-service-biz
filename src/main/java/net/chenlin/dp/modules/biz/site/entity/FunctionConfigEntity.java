@@ -63,6 +63,15 @@ public class FunctionConfigEntity implements Serializable {
 	
 	@ApiModelProperty(value = "隐藏群主/群管理的管理消息（禁言、撤回消息等）0否1是")
 	private Integer miss_room_maneger_msg;
+
+	@ApiModelProperty(value = "安全登陆：是否使用账号冻结功能 o:否;1:是")
+	private Integer is_frozen;
+
+	@ApiModelProperty(value = "安全登陆：是否使用IP黑名单功能 o:否;1:是")
+	private Integer ip_black;
+
+	@ApiModelProperty(value = "安全登陆：是否使用IP Web白名单功能 0否1是")
+	private Integer ip_white;
 	
 
 
