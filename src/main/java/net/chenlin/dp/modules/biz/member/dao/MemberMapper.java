@@ -26,4 +26,6 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
     MemberEntity getMemberByMid(String mid);
 
     List<MemberEntity> gettMemberByRoomIdForPage(Page<MemberEntity> page,Query query);
+
+    List<MemberEntity> listForPageByFriend(Page<MemberEntity> page,Query query);
 }

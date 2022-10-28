@@ -6,6 +6,7 @@ import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 
 /**
  * 
@@ -13,12 +14,6 @@ import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
  */
 public interface FriendsService {
 
-    /**
-     * 分页查询
-     * @param params
-     * @return
-     */
-	Page<FriendsEntity> listFriends(Map<String, Object> params);
 
     /**
      * 新增

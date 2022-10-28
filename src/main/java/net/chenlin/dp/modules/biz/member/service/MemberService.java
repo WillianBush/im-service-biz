@@ -70,4 +70,12 @@ public interface MemberService {
      * @return
      */
     Page<MemberEntity> gettMemberByRoomId(Map<String, Object> params);
+
+    /**
+     * 分页查询
+     * @param params
+     * @return
+     */
+    Page<MemberEntity> listFriends(Map<String, Object> params);
+
 }

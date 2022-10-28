@@ -28,18 +28,6 @@ public class FriendsServiceImpl implements FriendsService {
 
     private FriendsMapper friendsMapper;
 	private MemberMapper memberMapper;
-    /**
-     * 分页查询
-     * @param params
-     * @return
-     */
-	@Override
-	public Page<FriendsEntity> listFriends(Map<String, Object> params) {
-		Query query = new Query(params);
-		Page<FriendsEntity> page = new Page<>(query);
-		page.setRows(friendsMapper.listForPage(page, query));
-		return page;
-	}
 
     /**
      * 新增

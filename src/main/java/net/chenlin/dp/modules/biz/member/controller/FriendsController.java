@@ -4,7 +4,10 @@ import java.util.Map;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.biz.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +27,11 @@ import net.chenlin.dp.modules.biz.member.service.FriendsService;
 @RequestMapping("/mr/friends")
 @Api(tags = "好友管理")
 @DependsOn("springContextUtils")
+@AllArgsConstructor
 public class FriendsController extends AbstractController {
-	
-	@Autowired
+
 	private FriendsService friendsService;
+	private MemberService memberService;
 	
 	/**
 	 * 列表
@@ -36,8 +40,8 @@ public class FriendsController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "好友列表")
-	public Page<FriendsEntity> list(@RequestBody Map<String, Object> params) {
-		return friendsService.listFriends(params);
+	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
+		return memberService.listFriends(params);
 	}
 		
 	/**

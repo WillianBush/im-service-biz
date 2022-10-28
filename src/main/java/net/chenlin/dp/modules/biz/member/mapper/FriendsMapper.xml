@@ -15,13 +15,9 @@
 	</resultMap>
 
 	
-	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.member.entity.FriendsEntity">
+	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
-			f.`id`,
-			`createDate`, 
-			`modifyDate`, 
-			`friendid`, 
-			`mid`
+			m.*
 		FROM
 			friends f left join member m on f.friendid=m.id
 		where

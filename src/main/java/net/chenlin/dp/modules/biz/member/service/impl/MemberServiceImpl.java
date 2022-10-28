@@ -167,4 +167,17 @@ public class MemberServiceImpl implements MemberService {
 		page.setRows(memberMapper.gettMemberByRoomIdForPage(page, query));
 		return page;
 	}
+
+	/**
+	 * 分页查询
+	 * @param params
+	 * @return
+	 */
+	@Override
+	public Page<MemberEntity> listFriends(Map<String, Object> params) {
+		Query query = new Query(params);
+		Page<MemberEntity> page = new Page<>(query);
+		page.setRows(memberMapper.listForPageByFriend(page, query));
+		return page;
+	}
 }
