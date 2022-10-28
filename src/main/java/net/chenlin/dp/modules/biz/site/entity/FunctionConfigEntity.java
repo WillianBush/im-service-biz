@@ -29,7 +29,7 @@ public class FunctionConfigEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "站点ID")
-	private String site_id;
+	private String org_id;
 	
 	@ApiModelProperty(value = "禁止网页/客户端注册 0否1是")
 	private Integer web_app_regist;

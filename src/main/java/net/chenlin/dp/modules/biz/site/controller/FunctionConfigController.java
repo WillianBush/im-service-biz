@@ -46,7 +46,7 @@ public class FunctionConfigController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增")
-	@GetMapping("/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "新增站点配置")
 	public Resp<FunctionConfigEntity> save(@RequestBody FunctionConfigEntity functionConfig) {
 		return functionConfigService.saveFunctionConfig(functionConfig);
@@ -57,7 +57,7 @@ public class FunctionConfigController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/info")
+	@PostMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
 	public Resp<FunctionConfigEntity> getById(@RequestBody String id) {
 		return functionConfigService.getFunctionConfigById(id);

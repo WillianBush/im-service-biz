@@ -6,7 +6,7 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.FunctionConfigEntity">
 		SELECT
 			`id`, 
-			`site_id`, 
+			`org_id`,
 			`web_app_regist`, 
 			`web_app_ip_show`, 
 			`max_login_counts`, 
@@ -23,7 +23,7 @@
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="site_id != null"> and `site_id` = #{site_id} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		<if test="web_app_regist != null"> and `web_app_regist` = #{web_app_regist} </if>
 		<if test="web_app_ip_show != null"> and `web_app_ip_show` = #{web_app_ip_show} </if>
 		<if test="max_login_counts != null"> and `max_login_counts` = #{max_login_counts} </if>
@@ -42,7 +42,7 @@
 	<insert id="save">
 		INSERT INTO function_config (
 			`id`, 
-			`site_id`, 
+			`org_id`,
 			`web_app_regist`, 
 			`web_app_ip_show`, 
 			`max_login_counts`, 
@@ -57,7 +57,7 @@
 		)
 		VALUES (
 			#{id}, 
-			#{site_id}, 
+			#{org_id},
 			#{web_app_regist}, 
 			#{web_app_ip_show}, 
 			#{max_login_counts}, 
@@ -75,7 +75,7 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.FunctionConfigEntity">
 		SELECT
 			`id`, 
-			`site_id`, 
+			`org_id`,
 			`web_app_regist`, 
 			`web_app_ip_show`, 
 			`max_login_counts`, 
@@ -96,7 +96,7 @@
 	<update id="update">
 		UPDATE function_config
 	 	<set>
-			<if test="site_id != null">`site_id` = #{site_id}, </if>
+			<if test="org_id != null">`org_id` = #{org_id}, </if>
 			<if test="web_app_regist != null">`web_app_regist` = #{web_app_regist}, </if>
 			<if test="web_app_ip_show != null">`web_app_ip_show` = #{web_app_ip_show}, </if>
 			<if test="max_login_counts != null">`max_login_counts` = #{max_login_counts}, </if>
