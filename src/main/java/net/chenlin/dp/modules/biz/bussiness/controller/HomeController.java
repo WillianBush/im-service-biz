@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/home_page_data")
 @Api(tags = "首页-第一行统计数据")
 @DependsOn("springContextUtils")
-public class HomePageController {
+public class HomeController {
 
     private MemberService memberService;
 
@@ -59,7 +59,7 @@ public class HomePageController {
      */
     @SysLog("首页-群组消息总量")
     @PostMapping("/getGroupMessageSum")
-    @ApiOperation(value = "用户消息总量")
+    @ApiOperation(value = "群组消息总量")
     public Resp<Long> getGroupMessageSum() {
         return Resp.ok(messageHistoryService.getGroupMessageTotal());
     }
