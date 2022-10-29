@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.site.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
@@ -33,10 +34,9 @@ public class FunctionConfigServiceImpl implements FunctionConfigService {
 	@Override
 	public Page<FunctionConfigEntity> listFunctionConfig(Map<String, Object> params) {
 		Query query = new Query(params);
-		log.info("functionConfigSelectPatamsSize:{}", params.size());
 		Page<FunctionConfigEntity> page = new Page<>(query);
-		functionConfigMapper.listForPage(page, query);
-		log.info("functionConfigSelect:{}", page.getFirst());
+		List<FunctionConfigEntity> res = functionConfigMapper.listForPage(page, query);
+		page.setRows(res);
 		return page;
 	}
 
