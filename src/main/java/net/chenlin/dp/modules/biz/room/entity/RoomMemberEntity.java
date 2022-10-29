@@ -55,6 +55,6 @@ public class RoomMemberEntity implements Serializable {
 	/**
 	 * 是否管理员：0否，1是
 	 */
-	private Integer stop_speaker;
+	private Integer is_stop_speaker;
 
 }
