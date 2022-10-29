@@ -5,6 +5,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +55,14 @@ public class EmployeeDefaultMessageController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<EmployeeDefaultMessageEntity> save(@RequestBody EmployeeDefaultMessageEntity employeeDefaultMessage) {
-		if (employeeDefaultMessage == null || employeeDefaultMessage.getEmployee_id() == null || StringUtils.isEmpty(employeeDefaultMessage.getInvite_code())){
+		if (employeeDefaultMessage == null || employeeDefaultMessage.getEmployee_id() == null || StringUtils.isEmpty(employeeDefaultMessage.getInvite_code())|| StringUtils.isEmpty(employeeDefaultMessage.getMember_id())){
 			return Resp.error("参数错误");
 		}
-
+		EmployeeEntity employee = employeeService.getByMemberId(employeeDefaultMessage.getMember_id());
+		if (employee == null){
+			return Resp.error("参数错误");
+		}
+		employeeDefaultMessage.setEmployee_id(employee.getId());
 		return employeeDefaultMessageService.saveEmployeeDefaultMessage(employeeDefaultMessage);
 	}
 	

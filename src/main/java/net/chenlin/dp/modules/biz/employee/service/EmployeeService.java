@@ -35,7 +35,10 @@ public interface EmployeeService {
 
     EmployeeEntity getMemberUUID(String memberUUID);
 
-    /**
+    EmployeeEntity getByMemberId(String memberId);
+
+
+    /*
      * 修改
      * @param employee
      * @return

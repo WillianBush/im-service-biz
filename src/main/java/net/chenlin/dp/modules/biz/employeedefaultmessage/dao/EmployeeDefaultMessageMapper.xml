@@ -35,7 +35,7 @@
 		<if test="picture_5 != null"> and edm.`picture_5` = #{picture_5} </if>
 		<if test="id != null"> and edm.`id` = #{id} </if>
 		<if test="invite_code != null"> and edm.`invite_code` = #{invite_code} </if>
-		<if test="invite_code != null"> and m.`nickName` = #{nickName} </if>
+		<if test="nickName != null"> and m.`nickName` = #{nickName} </if>
 		ORDER BY
 			id DESC
 	</select>

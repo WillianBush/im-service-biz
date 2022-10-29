@@ -68,6 +68,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeMapper.getMemberUUID(memberUUID);
 	}
 
+
+	@Override
+	public EmployeeEntity getByMemberId(String memberId) {
+		return employeeMapper.getByMemberId(memberId);
+	}
+
 	/**
      * 修改
      * @param employee

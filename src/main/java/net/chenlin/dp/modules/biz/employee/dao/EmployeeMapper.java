@@ -14,4 +14,6 @@ import org.apache.ibatis.annotations.Param;
 public interface EmployeeMapper extends TkBaseMapper<EmployeeEntity> {
 
     EmployeeEntity getMemberUUID(@Param("memberUUID") String memberUUID);
+
+    EmployeeEntity getByMemberId(@Param("memberId") String memberId);
 }
