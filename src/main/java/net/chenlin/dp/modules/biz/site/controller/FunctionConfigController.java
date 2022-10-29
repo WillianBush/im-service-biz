@@ -77,7 +77,6 @@ public class FunctionConfigController extends AbstractController {
 	@ApiOperation(value = "修改功能配置")
 	public Resp<Integer> update(@RequestBody FunctionConfigEntity functionConfig) {
 		log.info("functionConfigJsonToString:{}", JSON.toJSONString(functionConfig));
-		log.info("functionConfig:{}", functionConfig.getId());
 		return functionConfigService.updateFunctionConfig(functionConfig);
 	}
 

@@ -53,5 +53,19 @@ public interface MessageHistoryService {
      * @return
      */
     Resp batchRemoveRoomMsg(String[] id);
+
+    /**
+     * 获取私人消息总数
+     * @param
+     * @return
+     */
+    Long getPersonalMessageTotal();
+
+    /**
+     * 获取私人消息总数
+     * @param
+     * @return
+     */
+    Long getGroupMessageTotal();
 	
 }

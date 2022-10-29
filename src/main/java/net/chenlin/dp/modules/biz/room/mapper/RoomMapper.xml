@@ -6,7 +6,7 @@
 	<resultMap id="roomMmemberResult" type="net.chenlin.dp.modules.biz.room.entity.RoomEntity">
 		<id column="id" property="id" />
 		<id column="name" property="name" />
-		<id column="owwerName" property="owwerName" />
+		<id column="ownerName" property="ownerName" />
 		<!-- 一对多的关系 -->
 		<!-- property: 指的是集合属性的值,对应类中的属性名 ofType：指的是集合中元素的类型 -->
 		<collection property="members" ofType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
@@ -419,4 +419,11 @@
 			id = #{id}
 	</select>
 
+
+	<select id="getRoomSum" resultType="java.lang.Long">
+		SELECT
+			count(1)
+		FROM
+			room
+	</select>
 </mapper>

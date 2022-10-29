@@ -54,4 +54,11 @@ public interface RoomService {
      * @return
      */
     Resp getRoomMemberById(String id);
+
+    /**
+     * 获取房间数量
+     * @param
+     * @return
+     */
+    Long getTotal();
 }

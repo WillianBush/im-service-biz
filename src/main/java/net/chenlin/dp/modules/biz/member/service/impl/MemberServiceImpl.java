@@ -180,4 +180,9 @@ public class MemberServiceImpl implements MemberService {
 		page.setRows(memberMapper.listForPageByFriend(page, query));
 		return page;
 	}
+
+	@Override
+	public Resp<Double> getTotalNumber() {
+		return CommonUtils.msgResp(memberMapper.getTotal());
+	}
 }

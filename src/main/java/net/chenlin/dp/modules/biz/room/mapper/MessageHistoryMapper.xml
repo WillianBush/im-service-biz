@@ -177,4 +177,22 @@
         or toUid= #{uid}
     </delete>
 
+	<select id="getGroupMessageTotal" resultType="java.lang.Long">
+		SELECT
+			count(toGroupid)
+		FROM
+			message_history
+		where
+			toGroupid is not null
+	</select>
+
+	<select id="getPersonalMessageTotal" resultType="java.lang.Long">
+		SELECT
+			   count(toUid)
+		FROM
+		     message_history
+		where
+			toUid is not null
+	</select>
+
 </mapper>
