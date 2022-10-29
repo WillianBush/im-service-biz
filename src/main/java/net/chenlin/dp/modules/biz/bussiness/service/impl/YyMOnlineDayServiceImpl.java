@@ -47,6 +47,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	@Override
 	public List<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
 		Query query = new Query(params);
+
 //		Page<MemberloginlogEntity> page = new Page<>(query);
 		List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
 		return resp;
@@ -119,7 +120,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 		if (ids.isEmpty()) {
 			return new Page<>();
 		}
-		params.put("ids",ids);
+		params.put("ids",ids.toArray());
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
 		List<MemberloginlogEntity> resp = memberloginlogMapper.listForPage(page, query);

@@ -33,6 +33,9 @@
         <if test="mheadPic != null">and `mheadPic` = #{mheadPic}</if>
         <if test="username != null">and `username` = #{username}</if>
         <if test="ipAddr != null">and `ipAddr` = #{ipAddr}</if>
+        <foreach item="ids" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
         ORDER BY
         id DESC
     </select>
