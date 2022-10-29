@@ -34,13 +34,13 @@
         <if test="username != null">and `username` = #{username}</if>
         <if test="ipAddr != null">and `ipAddr` = #{ipAddr}</if>
         <if test="ids != null">
-          and `mid`  IN
+            and `mid` IN
             <foreach item="id" collection="ids" open="(" separator="," close=")">
                 #{id}
-            </foreach></if>
+            </foreach>
+        </if>
 
-        ORDER BY
-        id DESC
+        ORDER BY id DESC g
     </select>
 
     <insert id="save">
@@ -51,11 +51,11 @@
                                     `mid`,
                                     `mnickName`,
                                     `mtel`,
-									`deviceType`,
-									`deviceVersion`,
-									`mheadPic`,
-									`username`,
-									`ipAddr`)
+                                    `deviceType`,
+                                    `deviceVersion`,
+                                    `mheadPic`,
+                                    `username`,
+                                    `ipAddr`)
         VALUES (#{id},
                 #{createdate},
                 #{modifydate},
@@ -63,11 +63,9 @@
                 #{mid},
                 #{mnickname},
                 #{mtel},
-				#{deviceType},
-				#{deviceVersion},
-				#{mheadPic})
-				#{username})
-				#{ipAddr})
+                #{deviceType},
+                #{deviceVersion},
+                #{mheadPic}) #{username}) #{ipAddr})
     </insert>
 
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
@@ -78,13 +76,13 @@
                `mid`,
                `mnickName`,
                `mtel`,
-			   `deviceType`,
-			   `deviceVersion`,
-			   `mheadPic`,
+               `deviceType`,
+               `deviceVersion`,
+               `mheadPic`,
                `username`,
                `ipAddr`
         FROM memberloginlog
-        WHERE mid = #{id}
+        WHERE id = #{id}
     </select>
 
     <update id="update">
@@ -119,10 +117,36 @@
 
     <select id="getObjectGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity">
         SELECT date_format(createdate, '%Y-%m-%d') as create_time,
-               count(distinct mid) as m_online_number
+               count(distinct mid)                 as m_online_number
         FROM memberloginlog
-        where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d') and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+        where createdate &gt;= str_to_date(#{startdate}, '%Y-%m-%d')
+          and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'), INTERVAL 1 day)
         group by date_format(createdate, '%Y-%m-%d')
+    </select>
+
+    <select id="getLastLoginDate" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
+        SELECT `id`,
+        `createDate`,
+        `modifyDate`,
+        `ip`,
+        `mid`,
+        `mnickName`,
+        `mtel`,
+        `deviceType`,
+        `deviceVersion`,
+        `mheadPic`,
+        `username`,
+        `ipAddr`
+        FROM memberloginlog
+        WHERE mid = #{memberId}
+        <if test="mnickname != null">and `mnickName` = #{mnickname}</if>
+        <if test="username != null">and `username` = #{username}</if>
+        <if test="ip != null">and `ip` = #{ip}</if>
+        <if test="startdate != null and enddate != null">
+            createdate &gt;= str_to_date(#{startdate}, '%Y-%m-%d') and createdate &lt; date_add(str_to_date(#{enddate},
+            '%Y-%m-%d'), INTERVAL 1 day)
+        </if>
+        order by createDate desc limit 1
     </select>
 
 </mapper>
