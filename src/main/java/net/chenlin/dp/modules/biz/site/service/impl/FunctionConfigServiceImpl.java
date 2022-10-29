@@ -36,7 +36,7 @@ public class FunctionConfigServiceImpl implements FunctionConfigService {
 		log.info("functionConfigSelectPatamsSize:{}", params.size());
 		Page<FunctionConfigEntity> page = new Page<>(query);
 		functionConfigMapper.listForPage(page, query);
-		log.info("functionConfigSelect:{}", page);
+		log.info("functionConfigSelect:{}", page.getFirst());
 		return page;
 	}
 
