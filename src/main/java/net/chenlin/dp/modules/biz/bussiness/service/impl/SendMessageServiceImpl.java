@@ -16,6 +16,7 @@ import net.chenlin.dp.modules.biz.bussiness.entity.WaitsendmessageEntity;
 import net.chenlin.dp.modules.biz.bussiness.service.SendMessageService;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.sys.entity.SysUserEntity;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class SendMessageServiceImpl implements SendMessageService {
 
 
     @Override
-    public Resp sendMsgToFriends(String memberId, String txt, String imgPatch) {
+    public Resp sendMsgToFriends(String memberId, String txt, String imgPatch,SysUserEntity sysUserEntity) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm");
         /**获取发送人信息*/
         MemberEntity fromMember=memberMapper.getMemberByMid(memberId);
@@ -67,6 +68,7 @@ public class SendMessageServiceImpl implements SendMessageService {
                 if(!processRemoteUser(chatMsgEntity)){
                     saveWaitSendMsg(chatMsgEntity);
                 }
+                saveLog(chatMsgEntity,memberEntity,sysUserEntity);
             }
         });
         return null;
@@ -114,17 +116,19 @@ public class SendMessageServiceImpl implements SendMessageService {
     /**
      * 保存日志
      * @param chatMsgEntity
-     * @param receiverName
-     * @param adminId
+     * @param receiver
+     * @param sysUserEntity
      */
-    public void saveLog(ChatMsgEntity chatMsgEntity,String receiverName,String adminId){
+    public void saveLog(ChatMsgEntity chatMsgEntity, MemberEntity receiver, SysUserEntity sysUserEntity){
         SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
         AdminSendmsgLogEntity aslog=new AdminSendmsgLogEntity();
         aslog.setId(sw.createId());
         aslog.setCreateDate(new Date());
         aslog.setTxt(chatMsgEntity.getTxt());
         aslog.setReceiverId(chatMsgEntity.getToUid());
-        aslog.setReceiverName(receiverName);
+        aslog.setReceiverName(receiver.getNickname());
+        aslog.setSendAdminId(sysUserEntity.getUserId()+"");
+        aslog.setSendAdminName(sysUserEntity.getUsername());
         adminSendmsgLogMapper.save(aslog);
     }
 

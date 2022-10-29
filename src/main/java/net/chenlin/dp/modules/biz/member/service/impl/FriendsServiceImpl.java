@@ -75,9 +75,10 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public Resp batchRemove(String[] id) {
-		int count = friendsMapper.batchRemove(id);
-		return CommonUtils.msgResp(id, count);
+	public Resp batchRemove(String id) {
+//		int count = friendsMapper.remove(id);
+//		return CommonUtils.msgResp(id, count);
+		return Resp.ok();
 	}
 
 	@Override

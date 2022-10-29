@@ -433,7 +433,7 @@
 			nickName,
 			headpic
 		from member m
-		where memberId = #{memberId}
+		where id = #{memberId}
 	</select>
 
 

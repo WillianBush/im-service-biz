@@ -181,6 +181,19 @@ public class MemberServiceImpl implements MemberService {
 		return page;
 	}
 
+	/**
+	 * 分页查询
+	 * @param params
+	 * @return
+	 */
+	@Override
+	public Page<MemberEntity> gettMemberByRoomIdForPage(Map<String, Object> params) {
+		Query query = new Query(params);
+		Page<MemberEntity> page = new Page<>(query);
+		page.setRows(memberMapper.gettMemberByRoomIdForPage(page, query));
+		return page;
+	}
+
 	@Override
 	public Resp<Double> getTotalNumber() {
 		return CommonUtils.msgResp(memberMapper.getTotal());

@@ -30,7 +30,8 @@ public class AdminSendmsgLogEntity implements Serializable {
 	
 	@ApiModelProperty(value = "发送管理员ID")
 	private String sendAdminId;
-	
+	private String sendAdminName;
+
 	@ApiModelProperty(value = "发送内容")
 	private String txt;
 	

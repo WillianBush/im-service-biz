@@ -8,8 +8,8 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
 /**
  * 
  * @author wang<fangyuan.co@outlook.com>
- */
+        */
 @Mapper
 public interface FriendsMapper extends TkBaseMapper<FriendsEntity> {
-	
+
 }

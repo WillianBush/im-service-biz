@@ -40,7 +40,7 @@ public interface FriendsService {
      * @param id
      * @return
      */
-    Resp batchRemove(String[] id);
+    Resp batchRemove(String id);
 
 
     /**

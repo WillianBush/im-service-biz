@@ -16,6 +16,8 @@ public class RestApiConstant {
 
     /** 授权标识 **/
     public static final String AUTH_TOKEN = "token";
+    /**用户登录信息**/
+    public static final String AUTH_USER = "USER";
 
     /** token过期时间：默认7天 **/
     public static Long TOKEN_EXPIRE = 604800000L;

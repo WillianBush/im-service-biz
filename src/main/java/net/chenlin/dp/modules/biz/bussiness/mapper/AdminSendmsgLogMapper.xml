@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.chenlin.dp.modules.biz.bussiness.dao.AdminSendmsgLogMapper">
-	
+
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.AdminSendmsgLogEntity">
 		SELECT
 			`id`, 
 			`sendAdminId`, 
+			`sendAdminName`, 
 			`txt`, 
 			`createDate`, 
 			`receiverId`, 
@@ -17,6 +18,7 @@
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
 		<if test="sendAdminId != null"> and `sendAdminId` = #{sendAdminId} </if>
+		<if test="sendAdminName != null"> and `sendAdminName` = #{sendAdminName} </if>
 		<if test="txt != null"> and `txt` = #{txt} </if>
 		<if test="createDate != null"> and `createDate` = #{createDate} </if>
 		<if test="receiverId != null"> and `receiverId` = #{receiverId} </if>
@@ -29,6 +31,7 @@
 		INSERT INTO admin_sendmsg_log (
 			`id`, 
 			`sendAdminId`, 
+			`sendAdminName`, 
 			`txt`, 
 			`createDate`, 
 			`receiverId`, 
@@ -37,6 +40,7 @@
 		VALUES (
 			#{id}, 
 			#{sendAdminId}, 
+			#{sendAdminName}, 
 			#{txt}, 
 			#{createDate}, 
 			#{receiverId}, 
@@ -48,6 +52,7 @@
 		SELECT
 			`id`, 
 			`sendAdminId`, 
+			`sendAdminName`, 
 			`txt`, 
 			`createDate`, 
 			`receiverId`, 
@@ -62,6 +67,7 @@
 		UPDATE admin_sendmsg_log
 	 	<set>
 			<if test="sendAdminId != null">`sendAdminId` = #{sendAdminId}, </if>
+			<if test="sendAdminName != null">`sendAdminName` = #{sendAdminName}, </if>
 			<if test="txt != null">`txt` = #{txt}, </if>
 			<if test="createDate != null">`createDate` = #{createDate}, </if>
 			<if test="receiverId != null">`receiverId` = #{receiverId}, </if>

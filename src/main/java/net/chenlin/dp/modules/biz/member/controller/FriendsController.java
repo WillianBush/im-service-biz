@@ -85,7 +85,7 @@ public class FriendsController extends AbstractController {
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除好友")
-	public Resp batchRemove(@RequestBody String[] id) {
+	public Resp batchRemove(@RequestParam String mid,@RequestParam String id) {
 		return friendsService.batchRemove(id);
 	}
 
