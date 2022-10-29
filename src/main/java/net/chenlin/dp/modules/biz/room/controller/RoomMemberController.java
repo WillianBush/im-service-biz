@@ -117,7 +117,7 @@ public class RoomMemberController extends AbstractController {
 	@ApiOperation(value = "设置禁言")
 	public Resp setStopSpeaker(@RequestBody RoomMemberEntity room) {
 		/**状态1位管理员*/
-		room.setStop_speaker(1);
+		room.setIs_stop_speaker(1);
 		return roomMemberService.updateRoomMember(room);
 	}
 }
