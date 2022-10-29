@@ -88,6 +88,7 @@ public class SysLoginController extends AbstractController {
 			userEntity.setLast_login_ip(WebUtils.getIpAddr());
 			sysUserService.saveOrUpdateToken(userEntity,token);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
+			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_USER,userEntity);
 			resp.setToken(token);
 			return Resp.ok("验证成功",resp);
 		} catch (Exception e) {
