@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.site.service.impl;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -19,6 +20,7 @@ import net.chenlin.dp.modules.biz.site.service.FunctionConfigService;
  */
 @Service("functionConfigService")
 @AllArgsConstructor
+@Slf4j
 public class FunctionConfigServiceImpl implements FunctionConfigService {
 
     private FunctionConfigMapper functionConfigMapper;
@@ -31,8 +33,10 @@ public class FunctionConfigServiceImpl implements FunctionConfigService {
 	@Override
 	public Page<FunctionConfigEntity> listFunctionConfig(Map<String, Object> params) {
 		Query query = new Query(params);
+		log.info("functionConfigSelectPatamsSize:{}", params.size());
 		Page<FunctionConfigEntity> page = new Page<>(query);
 		functionConfigMapper.listForPage(page, query);
+		log.info("functionConfigSelect:{}", page);
 		return page;
 	}
 
