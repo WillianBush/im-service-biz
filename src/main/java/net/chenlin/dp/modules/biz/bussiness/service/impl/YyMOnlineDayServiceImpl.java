@@ -8,6 +8,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
@@ -32,6 +33,7 @@ import net.chenlin.dp.modules.biz.bussiness.service.YyMOnlineDayService;
  */
 @Service("yyMOnlineDayService")
 @AllArgsConstructor
+@Slf4j
 public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 
     private YyMOnlineDayMapper yyMOnlineDayMapper;
@@ -106,6 +108,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	@Override
 	public Page<MemberloginlogEntity> getYyMOnline(Map<String, Object> params) {
 		Map<Object,Object> onlineMembersWithDevices=  redisCacheManager.hmget(RedisCacheKeys.ONLINE_MEMBER);
+		log.info("getYyMOnline:{}",onlineMembersWithDevices);
 		List<String> ids = new ArrayList<>();
 		if (!onlineMembersWithDevices.isEmpty()) {
 			for (Object obj : onlineMembersWithDevices.keySet()) {
