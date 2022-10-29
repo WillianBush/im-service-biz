@@ -15,6 +15,7 @@ import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.dao.MemberloginlogMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity;
+import net.chenlin.dp.modules.biz.member.service.MemberService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,8 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
     private RedisCacheManager redisCacheManager;
 
 	private MemberloginlogMapper memberloginlogMapper;
+
+	private MemberService memberService;
     /**
      * 分页查询
      * @param params
@@ -108,23 +111,33 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	@Override
 	public Page<MemberloginlogEntity> getYyMOnline(Map<String, Object> params) {
 		Map<Object,Object> onlineMembersWithDevices=  redisCacheManager.hmget(RedisCacheKeys.ONLINE_MEMBER);
-		log.info("getYyMOnline:{}",onlineMembersWithDevices);
 		List<String> ids = new ArrayList<>();
 		if (!onlineMembersWithDevices.isEmpty()) {
 			for (Object obj : onlineMembersWithDevices.keySet()) {
 				String key = obj.toString();
 				if (params.get("device") != null) {
 					if (key.contains(params.get("device").toString())) {
-						ids.add(key.substring(0, key.indexOf("#")));
+						String memberUUID = key.substring(0, key.indexOf("#"));
+						Resp<MemberEntity> respMember = memberService.getMemberById(memberUUID);
+						if (respMember.getData() == null) {
+							continue;
+						}
+						ids.add(respMember.getData().getMemberid());
 					}
 				} else {
-					ids.add(key.substring(0, key.indexOf("#")));
+					String memberUUID = key.substring(0, key.indexOf("#"));
+					Resp<MemberEntity> respMember = memberService.getMemberById(memberUUID);
+					if (respMember.getData() == null) {
+						continue;
+					}
+					ids.add(respMember.getData().getMemberid());
 				}
 			}
 			params.put("ids",ids.toArray());
 		}
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
+		log.info("ids:{}",ids);
 		List<MemberloginlogEntity> resp = memberloginlogMapper.listForPage(page, query);
 		page.setRows(resp);
 		return page;
