@@ -423,7 +423,7 @@
 			m.id,
 			nickName,
 			headpic
-		from friends f left join member m on f.friendid=m.id
+		from friends f inner join member m on f.friendid=m.id
 		where f.mid = #{mid}
 	</select>
 
