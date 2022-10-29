@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.http.HttpRequest;
+import java.util.Map;
 
 /**
  *
@@ -34,8 +35,8 @@ public class SendMessageController {
     @SysLog("群发好友")
     @PostMapping("/sendFriends")
     @ApiOperation(value = "群发好友")
-    public Resp sendMsgToFriends(@RequestParam String memberId, @RequestParam String txt, @RequestParam String imgPatch, HttpServletRequest request) {
+    public Resp sendMsgToFriends(@RequestBody Map<String, Object> params, HttpServletRequest request) {
         SysUserEntity userEntity= (SysUserEntity) request.getSession().getAttribute(RestApiConstant.AUTH_USER);
-        return sendMessageService.sendMsgToFriends(memberId,txt,imgPatch,userEntity);
+        return sendMessageService.sendMsgToFriends(params.get("memberId").toString(),params.get("txt").toString(),params.get("mgPatch").toString(),userEntity);
     }
 }
