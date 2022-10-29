@@ -105,22 +105,21 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	 * */
 	@Override
 	public Page<MemberloginlogEntity> getYyMOnline(Map<String, Object> params) {
-		Map map=  redisCacheManager.hmget(RedisCacheKeys.ONLINE_MEMBER);
+		Map<Object,Object> onlineMembersWithDevices=  redisCacheManager.hmget(RedisCacheKeys.ONLINE_MEMBER);
 		List<String> ids = new ArrayList<>();
-		map.keySet().stream().forEach(k-> {
-			String key = k.toString();
-			if (params.get("device") != null) {
-				if (key.indexOf(params.get("device").toString()) >= 0) {
+		if (!onlineMembersWithDevices.isEmpty()) {
+			for (Object obj : onlineMembersWithDevices.keySet()) {
+				String key = obj.toString();
+				if (params.get("device") != null) {
+					if (key.contains(params.get("device").toString())) {
+						ids.add(key.substring(0, key.indexOf("#")));
+					}
+				} else {
 					ids.add(key.substring(0, key.indexOf("#")));
 				}
-			} else {
-				ids.add(key.substring(0, key.indexOf("#")));
 			}
-		});
-		if (ids.isEmpty()) {
-			return new Page<>();
+			params.put("ids",ids.toArray());
 		}
-		params.put("ids",ids.toArray());
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
 		List<MemberloginlogEntity> resp = memberloginlogMapper.listForPage(page, query);
