@@ -1,5 +1,8 @@
 package net.chenlin.dp.common.constant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 系统级静态变量
  * @author wang<fangyuan.co@outlook.com>
@@ -15,6 +18,15 @@ public class SystemConstant {
 	 * 数据标识
 	 */
 	public static final String DATA_ROWS = "rows";
+
+
+	public static Map<Integer,String> DEVICE = new HashMap<>();
+
+	static {
+		DEVICE.put(0,"PC");
+		DEVICE.put(1,"android");
+		DEVICE.put(2,"ios");
+	}
 	
 	/**
 	 * 菜单类型
