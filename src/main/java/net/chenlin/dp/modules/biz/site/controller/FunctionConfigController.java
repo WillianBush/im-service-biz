@@ -2,9 +2,12 @@ package net.chenlin.dp.modules.biz.site.controller;
 
 import java.util.Map;
 
+import com.alibaba.fastjson2.JSON;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.chenlin.dp.common.utils.JSONUtils;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +27,7 @@ import net.chenlin.dp.modules.biz.site.service.FunctionConfigService;
 @RequestMapping("/site/functioncfg")
 @Api(tags = "功能配置")
 @DependsOn("springContextUtils")
+@Slf4j
 public class FunctionConfigController extends AbstractController {
 	
 
@@ -72,6 +76,8 @@ public class FunctionConfigController extends AbstractController {
 	@PostMapping("/update")
 	@ApiOperation(value = "修改功能配置")
 	public Resp<Integer> update(@RequestBody FunctionConfigEntity functionConfig) {
+		log.info("functionConfigJsonToString:{}", JSON.toJSONString(functionConfig));
+		log.info("functionConfig:{}", functionConfig.getId());
 		return functionConfigService.updateFunctionConfig(functionConfig);
 	}
 
