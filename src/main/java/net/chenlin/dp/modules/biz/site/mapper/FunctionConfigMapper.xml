@@ -122,9 +122,9 @@
 			<if test="create_room != null">`create_room` = #{create_room}, </if>
 			<if test="phone_verify != null">`phone_verify` = #{phone_verify}, </if>
 			<if test="out_room_del_message != null">`out_room_del_message` = #{out_room_del_message}, </if>
-			<if test="miss_room_maneger_msg != null">`miss_room_maneger_msg` = #{miss_room_maneger_msg}</if>
-			<if test="is_frozen != null">`is_frozen` = #{is_frozen}</if>
-			<if test="ip_black != null">`ip_black` = #{ip_black}</if>
+			<if test="miss_room_maneger_msg != null">`miss_room_maneger_msg` = #{miss_room_maneger_msg},</if>
+			<if test="is_frozen != null">`is_frozen` = #{is_frozen},</if>
+			<if test="ip_black != null">`ip_black` = #{ip_black},</if>
 			<if test="ip_white != null">`ip_white` = #{ip_white}</if>
 		</set>
 		WHERE
