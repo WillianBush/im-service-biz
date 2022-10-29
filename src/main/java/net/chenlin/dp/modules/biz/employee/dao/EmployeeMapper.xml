@@ -87,6 +87,22 @@
 		WHERE
 			member_uuid = #{memberUUID}
 	</select>
+
+	<select id="getByMemberId" resultType="net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity">
+		SELECT
+			`id`,
+			`createDate`,
+			`modifyDate`,
+			`inviteCode`,
+			`member_id`,
+			`member_uuid`,
+			`name`,
+			`ip_white`
+		FROM
+			employee
+		WHERE
+			member_id = #{memberId}
+	</select>
 	
 	<update id="update">
 		UPDATE employee
