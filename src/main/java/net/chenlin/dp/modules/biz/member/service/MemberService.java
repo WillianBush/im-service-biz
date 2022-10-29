@@ -27,6 +27,7 @@ public interface MemberService {
      * @return
      */
     Resp saveMember(MemberEntity member);
+
     Resp batchSaveMember(List<MemberEntity> member);
 
     /**
@@ -77,5 +78,12 @@ public interface MemberService {
      * @return
      */
     Page<MemberEntity> listFriends(Map<String, Object> params);
+
+    /**
+     * 数据总数量
+     * @param
+     * @return
+     */
+    Resp<Double> getTotalNumber();
 
 }

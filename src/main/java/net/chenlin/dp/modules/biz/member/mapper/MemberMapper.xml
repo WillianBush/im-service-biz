@@ -460,4 +460,13 @@
         ORDER BY
         id DESC
     </select>
+
+	<select id="getTotal" resultType="Double">
+		SELECT
+			count(*)
+		FROM
+			member
+		where
+			1=1
+	</select>
 </mapper>

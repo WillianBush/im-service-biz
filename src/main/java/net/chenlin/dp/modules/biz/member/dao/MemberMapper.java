@@ -28,4 +28,6 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
     List<MemberEntity> gettMemberByRoomIdForPage(Page<MemberEntity> page,Query query);
 
     List<MemberEntity> listForPageByFriend(Page<MemberEntity> page,Query query);
+
+    Double getTotal();
 }

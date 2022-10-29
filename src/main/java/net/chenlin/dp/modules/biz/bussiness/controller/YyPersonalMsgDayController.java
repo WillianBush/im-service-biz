@@ -2,10 +2,12 @@ package net.chenlin.dp.modules.biz.bussiness.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.bussiness.entity.YyGroupMsgDayEntity;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,18 +33,33 @@ public class YyPersonalMsgDayController extends AbstractController {
 	private YyPersonalMsgDayService yyPersonalMsgDayService;
 	
 	/**
-	 * 列表
+	 * 私聊消息统计
 	 * @param params
 	 * @return
 	 */
-	@PostMapping("/list")
-	@ApiOperation(value = "列表")
-	public List<YyPersonalMsgDayEntity> list(@RequestBody Map<String, Object> params) {
+	@PostMapping("/personalList")
+	@ApiOperation(value = "二人私发消息汇总")
+	public List<YyPersonalMsgDayEntity> personalList(@RequestBody Map<String, Object> params) {
 		String type = (String) params.get("type");
 		if (type.isEmpty()) {
 			return (List<YyPersonalMsgDayEntity>) Resp.error("参数错误");
 		}
 		return yyPersonalMsgDayService.listYyPersonalMsgDay(params);
+	}
+
+	/**
+	 * 私聊消息统计
+	 * @param params
+	 * @return
+	 */
+	@PostMapping("/groupList")
+	@ApiOperation(value = "群发消息汇总")
+	public List<YyGroupMsgDayEntity> groupList(@RequestBody Map<String, Object> params) {
+		String type = (String) params.get("type");
+		if (type.isEmpty()) {
+			return (List<YyGroupMsgDayEntity>) Resp.error("参数错误");
+		}
+		return yyPersonalMsgDayService.listYyGroupMsgDay(params);
 	}
 		
 	/**

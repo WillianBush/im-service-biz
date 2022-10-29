@@ -1,6 +1,8 @@
 package net.chenlin.dp.modules.biz.room.dao;
 
 import net.chenlin.dp.common.entity.Query;
+import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.modules.biz.bussiness.entity.YyGroupMsgDayEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,7 +22,11 @@ public interface MessageHistoryMapper extends TkBaseMapper<MessageHistoryEntity>
 
     List<YyPersonalMsgDayEntity> getObjectPersonalMessageGroupByDate(Query query);
 
-    List<YyPersonalMsgDayEntity> getObjectGroupMessageGroupByDate(Query query);
+    List<YyGroupMsgDayEntity> getObjectGroupMessageGroupByDate(Query query);
 
     int deleteByFromUid(String uid);
+
+    Long getGroupMessageTotal();
+
+    Long getPersonalMessageTotal();
 }

@@ -30,7 +30,6 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
      * @param params
      * @return
      */
-	@Override
 	public Page<MessageHistoryEntity> listMessageHistory(Map<String, Object> params) {
 		Query query = new Query(params);
 		Page<MessageHistoryEntity> page = new Page<>(query);
@@ -44,7 +43,6 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
      * @param messageHistory
      * @return
      */
-	@Override
 	public Resp<MessageHistoryEntity> saveMessageHistory(MessageHistoryEntity messageHistory) {
 		int count = messageHistoryMapper.save(messageHistory);
 		return CommonUtils.msgResp(count);
@@ -55,7 +53,6 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
      * @param id
      * @return
      */
-	@Override
 	public Resp<MessageHistoryEntity> getMessageHistoryById(Long id) {
 		MessageHistoryEntity messageHistory = messageHistoryMapper.getObjectById(id);
 		return CommonUtils.msgResp(messageHistory);
@@ -66,7 +63,6 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
      * @param messageHistory
      * @return
      */
-	@Override
 	public Resp<Integer> updateMessageHistory(MessageHistoryEntity messageHistory) {
 		int count = messageHistoryMapper.update(messageHistory);
 		return CommonUtils.msgResp(count);
@@ -77,7 +73,6 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
      * @param id
      * @return
      */
-	@Override
 	public Resp batchRemove(String[] id) {
 		int count = messageHistoryMapper.batchRemove(id);
 		return CommonUtils.msgResp(id, count);
@@ -88,9 +83,16 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
 	 * @param id
 	 * @return
 	 */
-	@Override
 	public Resp batchRemoveRoomMsg(String[] id){
 		int count = messageHistoryMapper.batchRemoveRoomMsg(id);
 		return CommonUtils.msgResp(id, count);
+	}
+
+	public Long getPersonalMessageTotal() {
+		return messageHistoryMapper.getPersonalMessageTotal();
+	}
+
+	public Long getGroupMessageTotal() {
+		return messageHistoryMapper.getGroupMessageTotal();
 	}
 }

@@ -113,6 +113,12 @@ public class RoomServiceImpl implements RoomService {
 		return CommonUtils.msgResp(room);
 	}
 
+	
+	@Override
+	public Long getTotal() {
+		return roomMapper.getRoomSum();
+	}
+
 	private void getRoomHeadImg(RoomEntity room){
 		if (StringUtils.isEmpty(room.getHeadimg())){
 			room.setHeadimg("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");

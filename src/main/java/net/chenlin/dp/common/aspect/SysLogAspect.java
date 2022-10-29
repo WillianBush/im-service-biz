@@ -77,17 +77,17 @@ public class SysLogAspect {
 		sysLog.setIp(WebUtils.getIpAddr());
 		//用户名
 		SysUserEntity currUser = userUtil.getUserEntityAspect();
-		if(CommonUtils.isNullOrEmpty(currUser)) {
-			if(CommonUtils.isNullOrEmpty(sysLog.getParams())) {
+		if(null == currUser ) {
+			sysLog.setUserId(-1L);
+			sysLog.setUsername("未知用户");
+		} else {
+			if(sysLog.getParams() != null) {
 				sysLog.setUserId(currUser.getUserId());
 				sysLog.setUsername(currUser.getUsername());
 			} else {
 				sysLog.setUserId(-1L);
 				sysLog.setUsername("获取用户信息为空");
 			}
-		} else {
-			sysLog.setUserId(-1L);
-			sysLog.setUsername("未知用户");
 		}
 		sysLog.setTime(time);
 		//保存系统日志

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.bussiness.entity.YyGroupMsgDayEntity;
 import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
 import net.chenlin.dp.modules.biz.room.entity.MessageHistoryEntity;
 import org.springframework.stereotype.Service;
@@ -36,18 +37,20 @@ public class YyPersonalMsgDayServiceImpl implements YyPersonalMsgDayService {
 	@Override
 	public List<YyPersonalMsgDayEntity> listYyPersonalMsgDay(Map<String, Object> params) {
 		Query query = new Query(params);
-		String type = (String) params.get("type");
-		if (Objects.equals(type, "personal")) {
-			return messageHistoryMapper.getObjectPersonalMessageGroupByDate(query);
-		} else if (Objects.equals(type, "group")) {
-			return messageHistoryMapper.getObjectGroupMessageGroupByDate(query);
-		} else {
-		return null;
-		}
-
+		return messageHistoryMapper.getObjectPersonalMessageGroupByDate(query);
 	}
 
-    /**
+//		if (Objects.equals(type, "group")) {
+//			return messageHistoryMapper.getObjectGroupMessageGroupByDate(query);
+//		} else
+
+	@Override
+	public List<YyGroupMsgDayEntity> listYyGroupMsgDay(Map<String, Object> params) {
+		Query query = new Query(params);
+		return messageHistoryMapper.getObjectGroupMessageGroupByDate(query);
+	}
+
+	/**
      * 新增
      * @param yyPersonalMsgDay
      * @return

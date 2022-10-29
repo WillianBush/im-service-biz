@@ -22,7 +22,7 @@ import net.chenlin.dp.modules.biz.show.service.ShowConfigService;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("//show/config")
+@RequestMapping("/show/config")
 @Api(tags = "界面配置")
 @DependsOn("springContextUtils")
 public class ShowConfigController extends AbstractController {

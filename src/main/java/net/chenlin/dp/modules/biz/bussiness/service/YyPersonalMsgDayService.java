@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.modules.biz.bussiness.entity.YyGroupMsgDayEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity;
 
 /**
@@ -18,6 +19,13 @@ public interface YyPersonalMsgDayService {
      * @return
      */
 	List<YyPersonalMsgDayEntity> listYyPersonalMsgDay(Map<String, Object> params);
+
+    /**
+     * 分页查询
+     * @param params
+     * @return
+     */
+    List<YyGroupMsgDayEntity> listYyGroupMsgDay(Map<String, Object> params);
 
     /**
      * 新增
