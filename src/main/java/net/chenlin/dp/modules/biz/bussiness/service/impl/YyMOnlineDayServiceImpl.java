@@ -143,6 +143,9 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 				}
 				lastLoginDateEntity.setMemberId(respMember.getData().getMemberid());
 				MemberloginlogEntity memberloginlogEntity = memberloginlogMapper.getLastLoginDate(lastLoginDateEntity);
+				if (memberloginlogEntity == null ){
+					continue;
+				}
 				resp.add(memberloginlogEntity);
 			}
 		}
