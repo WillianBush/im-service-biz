@@ -40,7 +40,7 @@
             </foreach>
         </if>
 
-        ORDER BY id DESC g
+        ORDER BY id DESC
     </select>
 
     <insert id="save">
