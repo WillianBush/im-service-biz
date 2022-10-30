@@ -57,4 +57,12 @@ public class RoomMemberEntity implements Serializable {
 	 */
 	private Integer is_stop_speaker;
 
+	public RoomMemberEntity(String id, String room_id, String member_id, Integer is_manager, Integer is_stop_speaker) {
+		this.id = id;
+		this.room_id = room_id;
+		this.member_id = member_id;
+		this.is_manager = is_manager;
+		this.is_stop_speaker = is_stop_speaker;
+	}
+
 }

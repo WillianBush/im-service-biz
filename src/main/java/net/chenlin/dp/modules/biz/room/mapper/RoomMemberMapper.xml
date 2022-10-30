@@ -35,19 +35,7 @@
 			#{is_manager}
 		)
 	</insert>
-	
-	<select id="getRoomMembersById" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
-		SELECT
-			`id`, 
-			`room_id`, 
-			`member_id`, 
-			`is_manager`
-		FROM
-			room_member
-		WHERE
-			room_id = #{roomId}
-	</select>
-	
+
 	<update id="update">
 		UPDATE room_member
 	 	<set>
@@ -80,5 +68,22 @@
 			#{id}
 		</foreach>
 	</delete>
+
+	<insert id="batchAddRobot" parameterType="java.util.List">
+		INSERT INTO room_member (
+			`id`,
+			`room_id`,
+			`member_id`
+		)
+		VALUES
+		<foreach collection ="robotList" item="rm" separator =",">
+			(#{rm.id}, #{rm.room_id}, #{rm.member_id})
+		</foreach >
+	</insert>
+
+	<select id="getRoomMemberIds" resultType="java.lang.String">
+		select group_concat(id separator '#') from room_member
+		where room_id = #{roomId}
+	</select>
 
 </mapper>

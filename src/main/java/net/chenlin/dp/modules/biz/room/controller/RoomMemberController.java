@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.room.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,15 +57,15 @@ public class RoomMemberController extends AbstractController {
 
 
 	/**
-	 * 批量添加成员
-	 * @param room
+	 * 批量添加机器人
+	 * @param para
 	 * @return
 	 */
-	@SysLog("批量添加成员")
+	@SysLog("批量添加机器人")
 	@PostMapping("/batchAddMember")
 	@ApiOperation(value = "批量添加机器人")
-	public Resp batchAddMember(@RequestBody List<RoomMemberEntity> room) {
-		return roomMemberService.batchSaveRoomMember(room);
+	public Resp batchAddMember(@RequestBody HashMap para) {
+		return roomMemberService.batchAddRobot(para);
 	}
 
 	

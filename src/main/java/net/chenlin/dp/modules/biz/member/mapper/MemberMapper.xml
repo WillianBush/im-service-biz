@@ -470,4 +470,11 @@
 		where
 			1=1
 	</select>
+
+	<select id="getRobotList" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
+		select m.* from member m where not exists
+			(select 1 from room_member rm where rm.room_id=#{room_id} and rm.member_id=m.id)
+			and m.memberType=1
+			limit ${count}
+	</select>
 </mapper>

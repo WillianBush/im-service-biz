@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.room.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,5 +51,13 @@ public interface RoomMemberService {
      * @return
      */
     Resp batchSaveRoomMember(List<RoomMemberEntity> roomMember);
+
+    /***
+     * 批量添加机器人到群里
+     * @param para roomId 房间号
+     * @param para count 机器人数量
+     * @return
+     */
+    Resp batchAddRobot(HashMap para);
 	
 }

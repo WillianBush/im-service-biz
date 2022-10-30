@@ -16,5 +16,7 @@ public interface RoomMemberMapper extends TkBaseMapper<RoomMemberEntity> {
 
     int batchRemoveByRoomId(Object[] id);
 
-    List<RoomMemberEntity> getRoomMembersById(String roomId);
+    int batchAddRobot(List<RoomMemberEntity> robotList);
+
+    String getRoomMemberIds(String roomId);
 }
