@@ -433,7 +433,7 @@
 			nickName,
 			headpic
 		from member m
-		where id = #{memberId}
+		where memberId = #{memberId}
 	</select>
 
 
@@ -453,10 +453,11 @@
         SELECT
         m.*
         FROM
-        friends f left join member m on f.friendid=m.id
+        friends f inner join member m on f.friendid=m.id
         where
         1=1
         <if test="mid != null"> and f.`mid` = #{mid} </if>
+		<if test="nickname != null"> and m.`nickName` like  concat('%',#{nickname},'%') </if>
         ORDER BY
         id DESC
     </select>

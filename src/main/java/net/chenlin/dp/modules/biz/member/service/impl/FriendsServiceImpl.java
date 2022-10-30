@@ -34,13 +34,16 @@ public class FriendsServiceImpl implements FriendsService {
      * @return
      */
 	@Override
-	public Resp saveFriends(String mid,String friendId) {
+	public Resp saveFriends(FriendsEntity para) {
 		FriendsEntity friends=new FriendsEntity();
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
-		friends.setMid(mid);
+		friends.setMid(para.getMid());
 		/*** 根据memberId 查询 member 得到 id */
-		MemberEntity memberEntity=memberMapper.getMemberByMid(friendId);
-		friends.setMid(memberEntity.getId());
+		MemberEntity memberEntity=memberMapper.getMemberByMid(para.getFriendid());
+		if(null==memberEntity){
+			return Resp.error("添加好友不存在");
+		}
+		friends.setFriendid(memberEntity.getId());
 		friends.setId(sw.createId());
 		int count = friendsMapper.save(friends);
 		return CommonUtils.msgResp(count);

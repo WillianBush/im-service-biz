@@ -19,7 +19,7 @@ public interface FriendsService {
      * 新增
      * @return
      */
-    Resp saveFriends(String mid,String friendId);
+    Resp saveFriends(FriendsEntity friendsEntity);
 
     /**
      * 根据id查询

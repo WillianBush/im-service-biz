@@ -45,7 +45,7 @@ public class SendMessageServiceImpl implements SendMessageService {
     public Resp sendMsgToFriends(String memberId, String txt, String imgPatch,SysUserEntity sysUserEntity) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm");
         /**获取发送人信息*/
-        MemberEntity fromMember=memberMapper.getMemberByMid(memberId);
+        MemberEntity fromMember=memberMapper.getObjectById(memberId);
         if(null==fromMember){return Resp.error("发送人不存在");}
         /**获取发送人所有的好友，排除掉官方团队*/
         List<MemberEntity> listFriend=memberMapper.getFriendsByMid(fromMember.getId());
@@ -132,7 +132,7 @@ public class SendMessageServiceImpl implements SendMessageService {
         adminSendmsgLogMapper.save(aslog);
     }
 
-    public void sengImag(ChatMsgEntity bean,String imagePath) {
+    public void sendImag(ChatMsgEntity bean,String imagePath) {
         String image =	"<img  style='max-width: 120px;max-height:120px;width:100%;' class='face' src='"+imagePath+"'>";
         bean.setTxt(image);
         bean.setPsr("uparse");

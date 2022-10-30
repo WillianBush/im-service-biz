@@ -51,8 +51,8 @@ public class FriendsController extends AbstractController {
 	@SysLog("新增")
 	@PostMapping("/save")
 	@ApiOperation(value = "新增好友")
-	public Resp save(@RequestParam String mid,@RequestParam String friendId) {
-		return friendsService.saveFriends(mid,friendId);
+	public Resp save(@RequestBody FriendsEntity friendsEntity) {
+		return friendsService.saveFriends(friendsEntity);
 	}
 	
 	/**

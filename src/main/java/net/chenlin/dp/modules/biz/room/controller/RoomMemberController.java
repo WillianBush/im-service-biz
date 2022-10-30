@@ -62,7 +62,7 @@ public class RoomMemberController extends AbstractController {
 	 */
 	@SysLog("批量添加成员")
 	@PostMapping("/batchAddMember")
-	@ApiOperation(value = "批量添加成员")
+	@ApiOperation(value = "批量添加机器人")
 	public Resp batchAddMember(@RequestBody List<RoomMemberEntity> room) {
 		return roomMemberService.batchSaveRoomMember(room);
 	}
