@@ -42,7 +42,7 @@ public class SendMessageServiceImpl implements SendMessageService {
 
 
     @Override
-    public Resp sendMsgToFriends(String memberId, String txt, String imgPatch,SysUserEntity sysUserEntity) {
+    public Resp sendMsgToFriends(String memberId, String txt, String imagePath,SysUserEntity sysUserEntity) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm");
         /**获取发送人信息*/
         MemberEntity fromMember=memberMapper.getObjectById(memberId);
@@ -50,18 +50,25 @@ public class SendMessageServiceImpl implements SendMessageService {
         /**获取发送人所有的好友，排除掉官方团队*/
         List<MemberEntity> listFriend=memberMapper.getFriendsByMid(fromMember.getId());
         listFriend.forEach(memberEntity -> {
+            String imgTxt=txt;
             //排除掉官方团队
             if(!"-1".equals(memberEntity.getId())) {
                 ChatMsgEntity chatMsgEntity = new ChatMsgEntity();
+                chatMsgEntity.setSimple_content(txt);
+                chatMsgEntity.setOldTxt(txt);
+                if(imagePath!=null&&!imagePath.isEmpty()){
+                    imgTxt="<img  style='max-width: 120px;max-height:120px;width:100%;' class='face' src='"+imagePath+"'>";
+                    chatMsgEntity.setSimple_content("[图片]");
+                    chatMsgEntity.setPsr("uparse");
+                }
                 chatMsgEntity.setChatid(memberEntity.getId());
                 chatMsgEntity.setDate(sdf.format(new Date()));
                 chatMsgEntity.setDateTime(System.currentTimeMillis());
                 chatMsgEntity.setFromHeadpic(fromMember.getHeadpic());
                 chatMsgEntity.setFromUid(fromMember.getId());
                 chatMsgEntity.setFromName(fromMember.getNickname());
-                chatMsgEntity.setOldTxt(txt);
-                chatMsgEntity.setSimple_content(txt);
-                chatMsgEntity.setTxt(txt);
+
+                chatMsgEntity.setTxt(imgTxt);
                 chatMsgEntity.setToUid(memberEntity.getId());
                 chatMsgEntity.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
                 /**如果没发送到队列，则保存到数据库*/
@@ -130,11 +137,5 @@ public class SendMessageServiceImpl implements SendMessageService {
         aslog.setSendAdminId(sysUserEntity.getUserId()+"");
         aslog.setSendAdminName(sysUserEntity.getUsername());
         adminSendmsgLogMapper.save(aslog);
-    }
-
-    public void sendImag(ChatMsgEntity bean,String imagePath) {
-        String image =	"<img  style='max-width: 120px;max-height:120px;width:100%;' class='face' src='"+imagePath+"'>";
-        bean.setTxt(image);
-        bean.setPsr("uparse");
     }
 }
