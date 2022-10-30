@@ -64,6 +64,9 @@ public class EmployeeDefaultMessageEntity implements Serializable {
 
 	@Transient
 	private String nickName;
+
+	@Transient
+	private String member_uuid;
 	
 
 
