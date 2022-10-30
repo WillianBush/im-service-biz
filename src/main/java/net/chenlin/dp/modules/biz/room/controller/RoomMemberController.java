@@ -38,7 +38,7 @@ public class RoomMemberController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "群组成员列表")
-	public Page<RoomMemberEntity> list(@RequestBody Map<String, Object> params) {
+	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
 		return roomMemberService.listRoomMember(params);
 	}
 		

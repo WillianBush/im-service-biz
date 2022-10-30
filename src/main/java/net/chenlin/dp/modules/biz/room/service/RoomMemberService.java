@@ -20,7 +20,7 @@ public interface RoomMemberService {
      * @param params
      * @return
      */
-	Page<RoomMemberEntity> listRoomMember(Map<String, Object> params);
+	Page<MemberEntity> listRoomMember(Map<String, Object> params);
 
     /**
      * 新增

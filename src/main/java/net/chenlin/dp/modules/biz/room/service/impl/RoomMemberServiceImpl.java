@@ -36,10 +36,10 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      * @return
      */
 	@Override
-	public Page<RoomMemberEntity> listRoomMember(Map<String, Object> params) {
+	public Page<MemberEntity> listRoomMember(Map<String, Object> params) {
 		Query query = new Query(params);
-		Page<RoomMemberEntity> page = new Page<>(query);
-		page.setRows(roomMemberMapper.listForPage(page, query));
+		Page<MemberEntity> page = new Page<>(query);
+		page.setRows(memberMapper.gettMemberByRoomIdForPage(page, query));
 		return page;
 	}
 

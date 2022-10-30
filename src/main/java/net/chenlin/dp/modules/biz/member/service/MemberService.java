@@ -65,12 +65,6 @@ public interface MemberService {
      */
     Resp updateMemberPass(MemberEntity member);
 
-    /**
-     * 根据群组ID 分页查询成员
-     * @param params
-     * @return
-     */
-    Page<MemberEntity> gettMemberByRoomId(Map<String, Object> params);
 
     /**
      * 分页查询
@@ -79,12 +73,6 @@ public interface MemberService {
      */
     Page<MemberEntity> listFriends(Map<String, Object> params);
 
-    /**
-     * 分页查询
-     * @param params
-     * @return
-     */
-    Page<MemberEntity> gettMemberByRoomIdForPage(Map<String, Object> params);
 
     /**
      * 数据总数量

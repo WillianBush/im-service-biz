@@ -443,7 +443,7 @@
 		FROM
 		member m left join room_member rm on m.id=rm.member_id
 		where
-		rm.room_id=#{roomId}
+		rm.room_id=#{room_id}
 		<if test="nickname != null"> and `nickName` like  concat('%',#{nickname},'%') </if>
 		ORDER BY
 		id DESC

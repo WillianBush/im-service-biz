@@ -126,15 +126,6 @@ public class MemberController extends AbstractController {
 	}
 
 
-	/**
-	 * 根据群id查询群组成员
-	 * @return
-	 */
-	@PostMapping("/listMemberByRoomId")
-	@ApiOperation(value = "根据群id查询群组成员")
-	public Page<MemberEntity> gettMemberByRoomId(@RequestBody Map<String, Object> params) {
-		return memberService.gettMemberByRoomId(params);
-	}
 
 	/**
 	 * 新增
