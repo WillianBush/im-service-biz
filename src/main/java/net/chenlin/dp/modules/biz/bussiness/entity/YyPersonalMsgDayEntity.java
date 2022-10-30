@@ -25,9 +25,6 @@ public class YyPersonalMsgDayEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@ApiModelProperty(value = "")
-	private String id;
-	
 	@ApiModelProperty(value = "每日消息总数")
 	private Double personal_message_total;
 	

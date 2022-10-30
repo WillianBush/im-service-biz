@@ -25,9 +25,6 @@ public class YyGroupMsgDayEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@ApiModelProperty(value = "")
-	private String id;
-	
 	@ApiModelProperty(value = "群消息数量")
 	private Double group_message_total;
 	
