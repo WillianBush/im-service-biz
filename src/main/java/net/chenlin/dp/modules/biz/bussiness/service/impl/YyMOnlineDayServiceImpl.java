@@ -133,7 +133,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 				String key = obj.toString();
 				String memberUUID = key.substring(0, key.indexOf("#"));
 				String device = key.substring( key.indexOf("#"));
-				if (params.get("device") != null && params.get("device").toString().equals(device)) {
+				if (params.get("device") != null && !params.get("device").toString().equals(device)) {
 					continue;
 				}
 				Resp<MemberEntity> respMember = memberService.getMemberById(memberUUID);
