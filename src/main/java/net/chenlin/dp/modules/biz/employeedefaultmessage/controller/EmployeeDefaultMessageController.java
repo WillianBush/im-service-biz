@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.biz.member.service.MemberService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,8 @@ public class EmployeeDefaultMessageController extends AbstractController {
 	private EmployeeDefaultMessageService employeeDefaultMessageService;
 
 	private EmployeeService employeeService;
+
+	private MemberService memberService;
 	
 	/**
 	 * 列表
@@ -55,14 +59,19 @@ public class EmployeeDefaultMessageController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<EmployeeDefaultMessageEntity> save(@RequestBody EmployeeDefaultMessageEntity employeeDefaultMessage) {
-		if (employeeDefaultMessage == null || employeeDefaultMessage.getEmployee_id() == null || StringUtils.isEmpty(employeeDefaultMessage.getInvite_code())|| StringUtils.isEmpty(employeeDefaultMessage.getMember_id())){
+		if (employeeDefaultMessage == null || StringUtils.isEmpty(employeeDefaultMessage.getInvite_code())|| StringUtils.isEmpty(employeeDefaultMessage.getMember_uuid())){
 			return Resp.error("参数错误");
 		}
-		EmployeeEntity employee = employeeService.getByMemberId(employeeDefaultMessage.getMember_id());
+		EmployeeEntity employee = employeeService.getMemberUUID(employeeDefaultMessage.getMember_uuid());
 		if (employee == null){
-			return Resp.error("参数错误");
+			return Resp.error("会员不是特权用户");
+		}
+		Resp<MemberEntity> member =memberService.getMemberById(employeeDefaultMessage.getMember_uuid());
+		if (member.getData() == null) {
+			return Resp.error("会员不存在");
 		}
 		employeeDefaultMessage.setEmployee_id(employee.getId());
+		employeeDefaultMessage.setMember_id(member.getData().getMemberid());
 		return employeeDefaultMessageService.saveEmployeeDefaultMessage(employeeDefaultMessage);
 	}
 	
