@@ -11,7 +11,7 @@
 			`version`, 
 			`descript`, 
 			`site_id`, 
-			`os`, 
+			`device_type`,
 			`down_url`, 
 			`force_update`, 
 			`is_show`,
@@ -27,7 +27,7 @@
 		<if test="version != null"> and `version` = #{version} </if>
 		<if test="descript != null"> and `descript` = #{descript} </if>
 		<if test="site_id != null"> and `site_id` = #{site_id} </if>
-		<if test="os != null"> and `os` = #{os} </if>
+		<if test="device_type != null"> and `device_type` = #{device_type} </if>
 		<if test="down_url != null"> and `down_url` = #{down_url} </if>
 		<if test="force_update != null"> and `force_update` = #{force_update} </if>
 		<if test="is_show != null"> and `is_show` = #{is_show} </if>
@@ -47,7 +47,7 @@
 			`version`, 
 			`descript`, 
 			`site_id`, 
-			`os`, 
+			`device_type`,
 			`down_url`, 
 			`force_update`, 
 			`is_show`,
@@ -60,7 +60,7 @@
 			#{version}, 
 			#{descript}, 
 			#{site_id}, 
-			#{os}, 
+			#{device_type},
 			#{down_url}, 
 			#{force_update}, 
 			#{is_show},
@@ -77,7 +77,7 @@
 			`version`, 
 			`descript`, 
 			`site_id`, 
-			`os`, 
+			`device_type`,
 			`down_url`, 
 			`force_update`, 
 			`is_show`,
@@ -97,7 +97,7 @@
 			<if test="version != null">`version` = #{version}, </if>
 			<if test="descript != null">`descript` = #{descript}, </if>
 			<if test="site_id != null">`site_id` = #{site_id}, </if>
-			<if test="os != null">`os` = #{os}, </if>
+			<if test="device_type != null">`device_type` = #{device_type}, </if>
 			<if test="down_url != null">`down_url` = #{down_url}, </if>
 			<if test="force_update != null">`force_update` = #{force_update}, </if>
 			<if test="is_show != null">`is_show` = #{is_show}, </if>
@@ -135,7 +135,7 @@
 			`version`,
 			`descript`,
 			`site_id`,
-			`os`,
+			`device_type`,
 			`down_url`,
 			`force_update`,
 			`is_show`,
@@ -144,7 +144,7 @@
 		FROM
 			app_version
 		WHERE
-			os = #{os} and app_name = ${app_name}
+			device_type = #{device_type} and app_name = ${app_name}
 	</select>
 
 </mapper>

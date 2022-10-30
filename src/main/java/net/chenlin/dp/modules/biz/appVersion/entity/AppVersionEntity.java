@@ -49,7 +49,7 @@ public class AppVersionEntity implements Serializable {
 	private Integer site_id;
 	
 	@ApiModelProperty(value = "系统(1安卓2为IOS)")
-	private String os;
+	private String device_type;
 	
 	@ApiModelProperty(value = "下载链接")
 	private String down_url;
