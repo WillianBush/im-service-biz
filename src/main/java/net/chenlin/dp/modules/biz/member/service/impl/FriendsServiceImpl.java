@@ -71,14 +71,13 @@ public class FriendsServiceImpl implements FriendsService {
 
     /**
      * 删除
-     * @param id
+     * @param friendsEntity
      * @return
      */
 	@Override
-	public Resp batchRemove(String id) {
-//		int count = friendsMapper.remove(id);
-//		return CommonUtils.msgResp(id, count);
-		return Resp.ok();
+	public Resp removeFriend(FriendsEntity friendsEntity) {
+		int count = friendsMapper.removeFriend(friendsEntity);
+		return CommonUtils.msgResp(count);
 	}
 
 	@Override

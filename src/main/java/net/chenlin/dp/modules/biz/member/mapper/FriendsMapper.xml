@@ -73,15 +73,13 @@
 			id = #{id}
 	</update>
 	
-	<delete id="batchRemove">
+	<delete id="removeFriend">
 		DELETE
 		FROM
 			friends
 		WHERE
-			id IN
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
+			mid =#{id}
+			and friendid = #{friendid}
 	</delete>
 
 </mapper>

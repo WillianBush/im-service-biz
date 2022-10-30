@@ -37,10 +37,10 @@ public interface FriendsService {
 
     /**
      * 删除
-     * @param id
+     * @param friendsEntity
      * @return
      */
-    Resp batchRemove(String id);
+    Resp removeFriend(FriendsEntity friendsEntity) ;
 
 
     /**

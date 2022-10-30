@@ -12,4 +12,5 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
 @Mapper
 public interface FriendsMapper extends TkBaseMapper<FriendsEntity> {
 
+    int removeFriend(FriendsEntity friendsEntity);
 }

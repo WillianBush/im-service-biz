@@ -79,14 +79,14 @@ public class FriendsController extends AbstractController {
 
 	/**
 	 * 删除
-	 * @param id
+	 * @param friendsEntity
 	 * @return
 	 */
 	@SysLog("删除")
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除好友")
-	public Resp batchRemove(@RequestParam String mid,@RequestParam String id) {
-		return friendsService.batchRemove(id);
+	public Resp batchRemove(@RequestBody FriendsEntity friendsEntity) {
+		return friendsService.removeFriend(friendsEntity);
 	}
 
 }
