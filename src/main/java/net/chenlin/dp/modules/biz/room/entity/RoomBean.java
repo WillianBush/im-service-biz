@@ -143,7 +143,6 @@ public class RoomBean {
 	
 	
 	public String getMember_ids() {
-		if(null==member_ids) return "";
 		return member_ids;
 	}
 	public void setMember_ids(String member_ids) {
