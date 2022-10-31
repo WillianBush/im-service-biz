@@ -138,4 +138,16 @@ public class MemberController extends AbstractController {
 	public Resp batchSave(@RequestBody List<MemberEntity> member) {
 		return memberService.batchSaveMember(member);
 	}
+
+	/**
+	 * 根据mid查询用户信息-提供给添加employee使用
+	 * @param mid
+	 * @return
+	 */
+	@SysLog("新增")
+	@GetMapping("/getByMid")
+	@ApiOperation(value = "批量新增用户")
+	public Resp<MemberEntity> getByMid(@RequestParam String mid) {
+		return memberService.getMemberByMid(mid);
+	}
 }

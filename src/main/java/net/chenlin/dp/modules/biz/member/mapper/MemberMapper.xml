@@ -431,7 +431,8 @@
 		SELECT
 			m.id,
 			nickName,
-			headpic
+			headpic,
+		    username
 		from member m
 		where memberId = #{memberId}
 	</select>

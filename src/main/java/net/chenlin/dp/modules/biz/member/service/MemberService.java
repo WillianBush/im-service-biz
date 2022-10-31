@@ -38,6 +38,13 @@ public interface MemberService {
     Resp<MemberEntity> getMemberById(String id);
 
     /**
+     * 根据id查询
+     * @param mid
+     * @return
+     */
+    Resp<MemberEntity> getMemberByMid(String mid);
+
+    /**
      * 修改
      * @param member
      * @return
