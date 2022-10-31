@@ -3,8 +3,11 @@ package net.chenlin.dp.modules.biz.site.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson2.JSON;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.chenlin.dp.common.constant.RedisCacheKeys;
+import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -25,6 +28,7 @@ import net.chenlin.dp.modules.biz.site.service.FunctionConfigService;
 public class FunctionConfigServiceImpl implements FunctionConfigService {
 
     private FunctionConfigMapper functionConfigMapper;
+    private RedisCacheManager redisCacheManager;
 
     /**
      * 分页查询
@@ -70,6 +74,10 @@ public class FunctionConfigServiceImpl implements FunctionConfigService {
 	@Override
 	public Resp<Integer> updateFunctionConfig(FunctionConfigEntity functionConfig) {
 		int count = functionConfigMapper.update(functionConfig);
+		if(count>0){
+			/**更新成功，更新redis**/
+			redisCacheManager.set(RedisCacheKeys.REDIS_KEY_FUNCTION_CONFIG, JSON.toJSON(functionConfigMapper.getObjectById(functionConfig.getId())));
+		}
 		return CommonUtils.msgResp(count);
 	}
 

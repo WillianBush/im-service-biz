@@ -17,6 +17,8 @@ public class RedisCacheKeys {
      */
     public static final String REDIS_KEY_ROOMB_BEAN_MAP="ROOMB_BEAN_MAP";
 
+    public static final String REDIS_KEY_FUNCTION_CONFIG="function:config";
+
 
     public static String appLastVersion(String os,Integer siteId,String appId) {
         return APP_LAST_VERSION +":" +siteId +":"+ os +":"+appId;
