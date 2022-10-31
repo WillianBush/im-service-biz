@@ -60,11 +60,19 @@ public class EmployeeController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<EmployeeEntity> save(@RequestBody EmployeeEntity employee) {
-		if (employee == null || StringUtils.isEmpty(employee.getMember_uuid())){
+		if (employee == null || ( StringUtils.isEmpty(employee.getMember_uuid()) && StringUtils.isEmpty(employee.getUsername()))){
 			return Resp.error("参数错误");
 		}
-		Resp<MemberEntity> memberResp = memberService.getMemberById(employee.getMember_uuid());
-		MemberEntity member= memberResp.getData();
+		MemberEntity member = null ;
+		if (!StringUtils.isEmpty(employee.getUsername())){
+			member = memberService.getByUserName(employee.getUsername());
+		}
+
+		if (!StringUtils.isEmpty(employee.getMember_uuid())){
+			Resp<MemberEntity> memberResp = memberService.getMemberById(employee.getMember_uuid());
+			member = memberResp.getData();
+		}
+
 		if (member == null){
 			return Resp.error("用户不存在");
 		}

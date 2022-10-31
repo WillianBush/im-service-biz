@@ -37,6 +37,9 @@ public interface MemberService {
      */
     Resp<MemberEntity> getMemberById(String id);
 
+
+    MemberEntity getByUserName(String username);
+
     /**
      * 根据id查询
      * @param mid

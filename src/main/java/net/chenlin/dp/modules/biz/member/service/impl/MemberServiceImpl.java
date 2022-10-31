@@ -117,6 +117,11 @@ public class MemberServiceImpl implements MemberService {
 		return CommonUtils.msgResp(member);
 	}
 
+	@Override
+	public MemberEntity getByUserName(String username) {
+		return memberMapper.getByUsername(username);
+	}
+
 	/**
 	 * 根据mid查询
 	 * @param mid
