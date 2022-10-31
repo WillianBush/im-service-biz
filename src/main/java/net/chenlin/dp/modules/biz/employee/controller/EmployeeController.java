@@ -84,6 +84,7 @@ public class EmployeeController extends AbstractController {
 		employee.setLastLoginIp(member.getLastloginip());
 		employee.setCreateDate(new Date());
 		employee.setName(member.getNickname());
+		employee.setMember_uuid(member.getId());
 		return employeeService.saveEmployee(employee);
 	}
 	
