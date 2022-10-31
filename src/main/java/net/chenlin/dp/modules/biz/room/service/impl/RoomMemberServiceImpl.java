@@ -105,7 +105,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 	 */
 	@Override
 	public Resp batchAddRobot(HashMap para) {
-		try {
+//		try {
 			String roomId = para.get("roomId").toString();
 			Integer count = Integer.parseInt(para.get("count").toString());
 			SnowFlakeIdWorker sfw = new SnowFlakeIdWorker(1);
@@ -121,9 +121,9 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 				refreshRedis(roomId);
 			}
 			return CommonUtils.msgResp(counts);
-		} catch (Exception e) {
-			return Resp.error("执行异常：" + e);
-		}
+//		} catch (Exception e) {
+//			return Resp.error("执行异常：" + e);
+//		}
 	}
 
 	/***
