@@ -430,6 +430,7 @@
 	<select id="getMemberByMid" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			m.id,
+		    memberId,
 			nickName,
 			headpic,
 		    username

@@ -125,7 +125,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Resp<MemberEntity> getMemberByMid(String mid) {
 		MemberEntity member = memberMapper.getMemberByMid(mid);
+		if (member == null) {
+			return Resp.error("用户不存在！");
+		} else {
 		return CommonUtils.msgResp(member);
+		}
 	}
 
 
