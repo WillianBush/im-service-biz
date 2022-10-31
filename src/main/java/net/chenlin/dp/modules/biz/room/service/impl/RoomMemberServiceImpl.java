@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.alibaba.fastjson2.JSON;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
@@ -27,6 +28,7 @@ import net.chenlin.dp.modules.biz.room.service.RoomMemberService;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
+@Slf4j
 @Service("roomMemberService")
 @AllArgsConstructor
 public class RoomMemberServiceImpl implements RoomMemberService {
@@ -137,6 +139,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 			if(!roomMemberIds.isEmpty()) {
 				RoomBean roomBean = JSON.parseObject(obj.toString(), RoomBean.class);
 				roomBean.setMember_ids(roomMemberIds+"#");
+				log.error(JSON.toJSONString(roomBean));
 				redisCacheManager.hset(RedisCacheKeys.REDIS_KEY_ROOMB_BEAN_MAP, roomId, JSON.toJSONString(roomBean));
 			}
 		}
