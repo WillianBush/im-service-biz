@@ -137,7 +137,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 			if(!roomMemberIds.isEmpty()) {
 				RoomBean roomBean = JSON.parseObject(obj.toString(), RoomBean.class);
 				roomBean.setMember_ids(roomMemberIds+"#");
-				redisCacheManager.hset(RedisCacheKeys.REDIS_KEY_ROOMB_BEAN_MAP, roomId, roomBean);
+				redisCacheManager.hset(RedisCacheKeys.REDIS_KEY_ROOMB_BEAN_MAP, roomId, JSON.toJSONString(roomBean));
 			}
 		}
 	}
