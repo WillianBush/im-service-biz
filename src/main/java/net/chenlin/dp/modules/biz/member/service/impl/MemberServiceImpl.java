@@ -117,9 +117,23 @@ public class MemberServiceImpl implements MemberService {
 		return CommonUtils.msgResp(member);
 	}
 
+	/**
+	 * 根据mid查询
+	 * @param mid
+	 * @return
+	 */
+	@Override
+	public Resp<MemberEntity> getMemberByMid(String mid) {
+		MemberEntity member = memberMapper.getMemberByMid(mid);
+		if (member == null) {
+			return Resp.error("用户不存在！");
+		} else {
+		return CommonUtils.msgResp(member);
+		}
+	}
 
 
-    /**
+	/**
      * 修改
      * @param member
      * @return

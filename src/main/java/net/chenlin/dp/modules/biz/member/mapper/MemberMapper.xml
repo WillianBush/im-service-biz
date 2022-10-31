@@ -430,8 +430,10 @@
 	<select id="getMemberByMid" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			m.id,
+		    memberId,
 			nickName,
-			headpic
+			headpic,
+		    username
 		from member m
 		where memberId = #{memberId}
 	</select>
