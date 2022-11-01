@@ -79,6 +79,7 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter {
         }
         // 校验请求是否包含验证信息
         String token = getToken(request);
+        log.info("token:{}",token);
         if (StringUtils.isBlank(token)) {
             WebUtils.write(response, JSONUtils.beanToJson(RestApiConstant.TokenErrorEnum.TOKEN_NOT_FOUND.getResp()));
             return false;
