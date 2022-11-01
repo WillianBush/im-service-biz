@@ -471,7 +471,7 @@
 		FROM member
 		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
 		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
-		  and username not regexp '机器人'
+		  and memberType = 0
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
 

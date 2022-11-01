@@ -10,13 +10,11 @@ import com.alibaba.fastjson2.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.OssConstant;
-import net.chenlin.dp.common.entity.OSSUploadResp;
+import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.common.utils.OssUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
-import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.Query;
-import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.show.entity.ShowConfigEntity;
 import net.chenlin.dp.modules.biz.show.dao.ShowConfigMapper;
@@ -34,6 +32,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
 
     private ShowConfigMapper showConfigMapper;
 	private OssUtil ossUtil;
+	private OSSModel ossModel;
 
     /**
      * 分页查询
@@ -45,6 +44,24 @@ public class ShowConfigServiceImpl implements ShowConfigService {
 		Query query = new Query(params);
 		Page<ShowConfigEntity> page = new Page<>(query);
 		List<ShowConfigEntity> resp= showConfigMapper.listForPage(page, query);
+		for (ShowConfigEntity showConfigEntity : resp) {
+			if (StringUtils.isEmpty(showConfigEntity.getIcon())){
+				showConfigEntity.setIcon("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+			}else {
+				showConfigEntity.setIcon("https://"+ossModel.getEndpoint() +showConfigEntity.getIcon());
+			}
+
+			if (StringUtils.isEmpty(showConfigEntity.getApp_start_img())){
+				showConfigEntity.setApp_start_img("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+			}else {
+				showConfigEntity.setApp_start_img("https://"+ossModel.getEndpoint() +showConfigEntity.getApp_start_img());
+			}
+			if (StringUtils.isEmpty(showConfigEntity.getLogo())){
+				showConfigEntity.setLogo("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+			}else {
+				showConfigEntity.setLogo("https://"+ossModel.getEndpoint() +showConfigEntity.getLogo());
+			}
+		}
 		page.setRows(resp);
 		return page;
 	}
