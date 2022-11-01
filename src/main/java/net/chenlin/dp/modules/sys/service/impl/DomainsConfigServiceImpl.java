@@ -47,10 +47,4 @@ public class DomainsConfigServiceImpl implements DomainsConfigService {
         Map<Object, Object> obj=redisCacheManager.hmget(RedisCacheKeys.REDIS_KEY_DOMAINS_CONFIG);
          return Resp.ok(Arrays.asList(obj));
     }
-
-    public static void main(String[] args) {
-        String ss="{\"httpDomains\": [\"1\",\"2\"],\"mediasDomain\": [\"3\",\"4\"],\"websocketDomains\": [\"5\",\"6\"]}";
-        HashMap<String, Object> h=JSON.parseObject(ss, HashMap.class);
-        System.out.println(h);
-    }
 }
