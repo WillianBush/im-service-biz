@@ -35,7 +35,7 @@ public class DomainsConfigServiceImpl implements DomainsConfigService {
             InputStream in = new ByteArrayInputStream(encryptBytes);
             OSSUploadResp resp =  ossUtil.uploadObjectToOSS(in,OssConstant.OSS_DOMAINS_FILE_NAME, OssConstant.OSS_CONFIG_PATH, (long) in.available());
             redisCacheManager.hmset(RedisCacheKeys.REDIS_KEY_DOMAINS_CONFIG,param);
-            Resp.ok();
+           return Resp.ok();
         } catch (Exception e) {
             log.error("===,DomainsConfigServiceImpl.svae:{}",e);
         }
