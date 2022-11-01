@@ -4,8 +4,10 @@ import java.util.*;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
+import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
@@ -37,6 +39,8 @@ public class MemberServiceImpl implements MemberService {
 	private FriendsMapper friendsMapper;
 
 	private MessageHistoryMapper messageHistoryMapper;
+
+	private RedisCacheManager redisCacheManager;
 
     /**
      * 分页查询
@@ -81,20 +85,12 @@ public class MemberServiceImpl implements MemberService {
 		if(rsPage.getRows().size()>0){
 			return Resp.error(Resp.error,"用户已经存在");
 		}
+		Long number = redisCacheManager.incr(RedisCacheKeys.REDIS_KEY_CREATE_MEMBERID, 1L);
 		member.setId(sw.createId());
+		member.setMemberid(number+"");
+		//普通用户
+		member.setMembertype(0);
 		int count = memberMapper.save(member);
-		if(count>0) {
-			/***
-			 * 添加官方团队给用户
-			 */
-			FriendsEntity f = new FriendsEntity();
-			f.setId(sw.createId());
-			f.setCreatedate(new Date());
-			//官方团队ID：-1
-			f.setFriendid("-1");
-			f.setMid(member.getId());
-			friendsMapper.save(f);
-		}
 		return CommonUtils.msgResp(count);
 	}
 
