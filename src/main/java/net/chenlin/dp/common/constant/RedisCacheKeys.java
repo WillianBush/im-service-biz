@@ -19,6 +19,8 @@ public class RedisCacheKeys {
 
     public static final String REDIS_KEY_FUNCTION_CONFIG="function:config";
 
+    public static final String REDIS_KEY_DOMAINS_CONFIG="config:domains";
+
 
     public static String appLastVersion(String os,Integer siteId,String appId) {
         return APP_LAST_VERSION +":" +siteId +":"+ os +":"+appId;
