@@ -3,10 +3,12 @@ package net.chenlin.dp.modules.biz.member.dao;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyMRegisterDayEntity;
+import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.common.mapper.TkBaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -32,4 +34,7 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
     Double getTotal();
 
     List<MemberEntity> getRobotList(String room_id,Integer count);
+
+
+    MemberEntity getByUsername(@Param("username") String username);
 }
