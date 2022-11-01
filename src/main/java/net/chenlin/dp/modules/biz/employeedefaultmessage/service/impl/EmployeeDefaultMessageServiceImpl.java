@@ -5,7 +5,9 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.chenlin.dp.common.entity.OSSModel;
 import net.chenlin.dp.common.utils.IdGenerate;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -27,6 +29,7 @@ import net.chenlin.dp.modules.biz.employeedefaultmessage.service.EmployeeDefault
 public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessageService {
 
     private EmployeeDefaultMessageMapper employeeDefaultMessageMapper;
+	private OSSModel ossModel;
 
     /**
      * 分页查询
@@ -38,6 +41,23 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
 		Query query = new Query(params);
 		Page<EmployeeDefaultMessageEntity> page = new Page<>(query);
 		List<EmployeeDefaultMessageEntity> resp= employeeDefaultMessageMapper.listForPage(page, query);
+		for (EmployeeDefaultMessageEntity employeeDefaultMessage: resp) {
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_1())){
+				employeeDefaultMessage.setPicture_1("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_1());
+			}
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_2())){
+				employeeDefaultMessage.setPicture_2("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_2());
+			}
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_3())){
+				employeeDefaultMessage.setPicture_3("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_3());
+			}
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_4())){
+				employeeDefaultMessage.setPicture_4("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_4());
+			}
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_5())){
+				employeeDefaultMessage.setPicture_5("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_5());
+			}
+		}
 		page.setRows(resp);
 		return page;
 	}
