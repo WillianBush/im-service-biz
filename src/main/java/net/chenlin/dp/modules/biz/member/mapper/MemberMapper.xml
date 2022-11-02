@@ -521,9 +521,9 @@
         id DESC
     </select>
 
-	<select id="getTotal" resultType="Double">
+	<select id="getTotal" resultType="java.lang.Long">
 		SELECT
-			count(*)
+			count(1)
 		FROM
 			member
 		where
@@ -535,5 +535,14 @@
 			(select 1 from room_member rm where rm.room_id=#{room_id} and rm.member_id=m.id)
 			and m.memberType=1
 			limit ${count}
+	</select>
+
+	<select id="isExitByNickname" resultType="java.lang.Long">
+		SELECT
+			count(1)
+		FROM
+			member
+		where
+			nickName = #{nickName}
 	</select>
 </mapper>

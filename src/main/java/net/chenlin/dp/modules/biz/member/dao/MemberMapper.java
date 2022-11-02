@@ -31,10 +31,12 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
 
     List<MemberEntity> listForPageByFriend(Page<MemberEntity> page,Query query);
 
-    Double getTotal();
+    Long getTotal();
 
     List<MemberEntity> getRobotList(String room_id,Integer count);
 
 
     MemberEntity getByUsername(@Param("username") String username);
+
+    Long isExitByNickname(@Param("username") String nickName);
 }
