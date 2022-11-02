@@ -97,11 +97,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Resp batchSaveMember(List<MemberEntity> members) {
 		for (MemberEntity memberEntity: members) {
-			if (memberMapper.isExitByNickname(memberEntity.getNickname()) > 0) {
-				return Resp.error("昵称重复");
+			if (memberMapper.isExitByNickname(memberEntity.getNickname()) > 0L) {
+				return Resp.error(500, "昵称重复");
 			}
 			if (memberMapper.getByUsername(memberEntity.getUsername()) != null) {
-				return Resp.error("手机号重复");
+				return Resp.error(500, "手机号重复");
 			}
 		}
 		members.forEach(memberEntity -> {
