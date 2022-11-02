@@ -101,7 +101,7 @@ public class SysLoginController extends AbstractController {
 	/**
 	 * 退出
 	 */
-	@SysLog("退出系统")
+//	@SysLog("退出系统")
 	@PostMapping(value = "/logout")
 	@ApiOperation(value = "退出登录")
 	public Resp logout() {
