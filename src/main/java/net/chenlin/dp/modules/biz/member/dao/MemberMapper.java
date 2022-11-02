@@ -38,5 +38,5 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
 
     MemberEntity getByUsername(@Param("username") String username);
 
-    Long isExitByNickname(@Param("username") String nickName);
+    Long isExitByNickname(@Param("nickName") String nickName);
 }
