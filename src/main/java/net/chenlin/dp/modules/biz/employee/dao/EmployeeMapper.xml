@@ -29,6 +29,7 @@
 		<if test="member_uuid != null"> and `member_uuid` = #{member_uuid} </if>
 		<if test="name != null"> and `name` = #{name} </if>
 		<if test="ip_white != null"> and `ip_white` = #{ip_white} </if>
+		<if test="username != null"> and member.username = #{username} </if>
 		ORDER BY
 			id DESC
 	</select>
