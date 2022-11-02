@@ -96,6 +96,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Resp batchSaveMember(List<MemberEntity> members) {
+		log.info("批量添加用户---startcheck");
 		for (MemberEntity memberEntity: members) {
 			log.info("批量添加用户---校验用户是否存在");
 			if (memberMapper.isExitByNickname(memberEntity.getNickname()) > 0L) {
