@@ -261,7 +261,11 @@ public class MemberEntity implements Serializable {
 	 * 
 	 */
 	private Integer sysgenerate;
-	
+
+	/**
+	 * 站点ID
+	 */
+	private Integer org_id;
 
 
 }
