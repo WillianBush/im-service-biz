@@ -37,7 +37,7 @@ public class YyMRegisterDayController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public List<YyMRegisterDayEntity> list(@RequestBody Map<String, Object> params) {
+	public Resp<List<YyMRegisterDayEntity>> list(@RequestBody Map<String, Object> params) {
 		return yyMRegisterDayService.listYyMRegisterDay(params);
 	}
 		

@@ -102,7 +102,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 */
 	@Override
 	public Resp saveUser(SysUserEntity user) {
-		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
+//		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
 		user.setStatus(1);
 		int count = sysUserMapper.save(user);
 		Query query = new Query();

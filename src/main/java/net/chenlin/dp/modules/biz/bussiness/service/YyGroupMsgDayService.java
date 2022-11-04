@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.bussiness.service;
 
+import java.util.List;
 import java.util.Map;
 
 import net.chenlin.dp.common.entity.Page;
@@ -17,7 +18,7 @@ public interface YyGroupMsgDayService {
      * @param params
      * @return
      */
-	Page<YyGroupMsgDayEntity> listYyGroupMsgDay(Map<String, Object> params);
+	Resp<List<YyGroupMsgDayEntity>> listYyGroupMsgDay(Map<String, Object> params);
 
     /**
      * 新增

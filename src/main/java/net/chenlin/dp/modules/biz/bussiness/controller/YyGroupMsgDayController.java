@@ -1,10 +1,12 @@
 package net.chenlin.dp.modules.biz.bussiness.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.bussiness.entity.YySendGroupMsgEntity;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +38,7 @@ public class YyGroupMsgDayController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public Page<YyGroupMsgDayEntity> list(@RequestBody Map<String, Object> params) {
+	public Resp<List<YyGroupMsgDayEntity>> list(@RequestBody Map<String, Object> params) {
 		return yyGroupMsgDayService.listYyGroupMsgDay(params);
 	}
 		

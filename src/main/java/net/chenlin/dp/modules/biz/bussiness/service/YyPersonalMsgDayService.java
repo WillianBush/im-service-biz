@@ -18,7 +18,7 @@ public interface YyPersonalMsgDayService {
      * @param params
      * @return
      */
-	List<YyPersonalMsgDayEntity> listYyPersonalMsgDay(Map<String, Object> params);
+	Resp<List<YyPersonalMsgDayEntity>> listYyPersonalMsgDay(Map<String, Object> params);
 
     /**
      * 分页查询

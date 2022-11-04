@@ -39,7 +39,7 @@ public class YyMOnlineDayController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public List<YyMOnlineDayEntity> list(@RequestBody Map<String, Object> params) {
+	public Resp<List<YyMOnlineDayEntity>> list(@RequestBody Map<String, Object> params) {
 		return yyMOnlineDayService.listYyMOnlineDay(params);
 	}
 		

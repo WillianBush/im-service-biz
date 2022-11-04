@@ -51,12 +51,11 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      * @return
      */
 	@Override
-	public List<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
+	public Resp<List<YyMOnlineDayEntity>> listYyMOnlineDay(Map<String, Object> params) {
 		Query query = new Query(params);
 
-//		Page<MemberloginlogEntity> page = new Page<>(query);
 		List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
-		return resp;
+		return Resp.ok(200, "操作成功", resp);
 	}
 
 

@@ -39,10 +39,10 @@ public class YyPersonalMsgDayController extends AbstractController {
 	 */
 	@PostMapping("/personalList")
 	@ApiOperation(value = "二人私发消息汇总")
-	public List<YyPersonalMsgDayEntity> personalList(@RequestBody Map<String, Object> params) {
+	public Resp<List<YyPersonalMsgDayEntity>> personalList(@RequestBody Map<String, Object> params) {
 		String type = (String) params.get("type");
 		if (type.isEmpty()) {
-			return (List<YyPersonalMsgDayEntity>) Resp.error("参数错误");
+			return Resp.error(500, "参数错误");
 		}
 		return yyPersonalMsgDayService.listYyPersonalMsgDay(params);
 	}
