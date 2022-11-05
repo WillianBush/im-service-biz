@@ -39,7 +39,8 @@ public class YyIpListEntity implements Serializable {
 	
 	@ApiModelProperty(value = "状态：0-正常；1-删除")
 	private String stauts;
-	
 
+	@ApiModelProperty(value = "站点")
+	private int org_id;
 
 }

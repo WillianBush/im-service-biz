@@ -74,7 +74,7 @@
 		FROM
 			employee
 		WHERE
-			id = #{id} and org_id = #{org_id}
+			id = #{id}
 	</select>
 
 	<select id="getMemberUUID" resultType="net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity">
@@ -123,7 +123,7 @@
 			<if test="ip_white != null">`ip_white` = #{ip_white},</if>
 		</set>
 		WHERE
-			id = #{id} and org_id = #{org_id}
+			id = #{id}
 	</update>
 	
 	<delete id="batchRemove">
