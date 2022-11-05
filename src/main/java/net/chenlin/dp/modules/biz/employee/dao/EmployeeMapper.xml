@@ -13,9 +13,10 @@
 		employee.`member_uuid` member_uuid,
 		employee.`name` name,
 		employee.`ip_white` ip_white,
-			member.nickName nickName,
-			member.username username,
-			member.lastLoginIp lastLoginIp
+		employee.`org_id` org_id,
+		member.nickName nickName,
+		member.username username,
+		member.lastLoginIp lastLoginIp
 		FROM
 			employee
 		left join member on member.memberId = employee.member_id
