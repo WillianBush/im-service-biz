@@ -137,7 +137,7 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public Resp<MemberEntity> getMemberByMid(String mid) {
-		MemberEntity member = memberMapper.getMemberByMid(mid);
+		MemberEntity member = memberMapper.getMemberByMid(mid, 1);
 		if (member == null) {
 			return Resp.error("用户不存在！");
 		} else {
@@ -194,6 +194,7 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public Page<MemberEntity> listFriends(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 		Page<MemberEntity> page = new Page<>(query);
 		page.setRows(memberMapper.listForPageByFriend(page, query));

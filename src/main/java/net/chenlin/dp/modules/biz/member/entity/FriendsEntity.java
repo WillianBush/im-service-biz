@@ -48,6 +48,15 @@ public class FriendsEntity implements Serializable {
 	 */
 	private String mid;
 
+	/**
+	 * 站点
+	 */
+	private int org_id;
+
+	/**
+	 * 备注
+	 */
+	private String note;
 
 	private List<Member> members;
 

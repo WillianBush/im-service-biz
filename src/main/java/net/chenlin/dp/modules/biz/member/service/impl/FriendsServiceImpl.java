@@ -39,7 +39,7 @@ public class FriendsServiceImpl implements FriendsService {
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
 		friends.setMid(para.getMid());
 		/*** 根据memberId 查询 member 得到 id */
-		MemberEntity memberEntity=memberMapper.getMemberByMid(para.getFriendid());
+		MemberEntity memberEntity=memberMapper.getMemberByMid(para.getFriendid(), 1);
 		if(null==memberEntity){
 			return Resp.error("添加好友不存在");
 		}
@@ -67,7 +67,7 @@ public class FriendsServiceImpl implements FriendsService {
      */
 	@Override
 	public Resp updateFriends(FriendsEntity friends) {
-
+		friends.setOrg_id(1);
 		int count = friendsMapper.update(friends);
 		return CommonUtils.msgResp(count);
 	}
@@ -79,6 +79,7 @@ public class FriendsServiceImpl implements FriendsService {
      */
 	@Override
 	public Resp removeFriend(FriendsEntity friendsEntity) {
+		friendsEntity.setOrg_id(1);
 		int count = friendsMapper.removeFriend(friendsEntity);
 		return CommonUtils.msgResp(count);
 	}

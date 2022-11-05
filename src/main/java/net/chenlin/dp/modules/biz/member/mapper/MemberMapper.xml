@@ -478,8 +478,9 @@
 			   count(distinct memberId) as m_register_number
 		FROM member
 		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
-		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
-		  and memberType = 0
+			and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+			and memberType = 0
+			and org_id = #{org_id}
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
 
@@ -500,17 +501,17 @@
 			headpic,
 		    username
 		from member m
-		where memberId = #{memberId}
+		where memberId = #{memberId} and org_id = #{org_id}
 	</select>
 
 
-	<select id="gettMemberByRoomIdForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
+	<select id="getMemberByRoomIdForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			m.*
 		FROM
 		member m left join room_member rm on m.id=rm.member_id
 		where
-		rm.room_id=#{room_id}
+		rm.room_id=#{room_id} and org_id = #{org_id}
 		<if test="nickname != null"> and `nickName` like  concat('%',#{nickname},'%') </if>
 		ORDER BY
 		id DESC
@@ -524,6 +525,7 @@
         where
         1=1
         <if test="mid != null"> and f.`mid` = #{mid} </if>
+        <if test="org_id != null"> and f.`org_id` = #{org_id} </if>
 		<if test="nickname != null"> and m.`nickName` like  concat('%',#{nickname},'%') </if>
         ORDER BY
         id DESC

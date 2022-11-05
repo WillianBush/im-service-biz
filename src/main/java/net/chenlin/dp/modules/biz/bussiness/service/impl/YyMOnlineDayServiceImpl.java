@@ -52,6 +52,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      */
 	@Override
 	public Resp<List<YyMOnlineDayEntity>> listYyMOnlineDay(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 
 		List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
@@ -141,6 +142,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 					continue;
 				}
 				lastLoginDateEntity.setMemberId(respMember.getData().getMemberid());
+				lastLoginDateEntity.setOrg_id(1);
 				MemberloginlogEntity memberloginlogEntity = memberloginlogMapper.getLastLoginDate(lastLoginDateEntity);
 				if (memberloginlogEntity == null ){
 					continue;
