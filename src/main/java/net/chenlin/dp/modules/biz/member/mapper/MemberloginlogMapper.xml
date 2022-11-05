@@ -106,10 +106,9 @@
             <if test="mheadPic != null">`mheadPic` = #{mheadPic},</if>
             <if test="username != null">`username` = #{username},</if>
             <if test="ipAddr != null">`ipAddr` = #{ipAddr},</if>
-            <if test="org_id != null">`org_id` = #{org_id}</if>
         </set>
         WHERE
-        id = #{id}
+        id = #{id} and org_id = #{org_id}
     </update>
 
     <delete id="batchRemove">

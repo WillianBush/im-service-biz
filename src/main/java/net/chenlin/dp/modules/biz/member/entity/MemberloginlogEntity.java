@@ -81,4 +81,9 @@ public class MemberloginlogEntity implements Serializable {
 	 *IP归属地
 	 */
 	private String ipAddr;
+
+	/**
+	 *站点
+	 */
+	private int org_id;
 }
