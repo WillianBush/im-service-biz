@@ -30,6 +30,7 @@
 		<if test="name != null"> and `name` = #{name} </if>
 		<if test="ip_white != null"> and `ip_white` = #{ip_white} </if>
 		<if test="username != null"> and member.username = #{username} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -43,7 +44,8 @@
 			`member_id`, 
 			`member_uuid`, 
 			`name`,
-			`ip_white`
+			`ip_white`,
+			`org_id`
 		)
 		VALUES (
 			#{id}, 
@@ -53,7 +55,8 @@
 			#{member_id}, 
 			#{member_uuid}, 
 			#{name},
-			#{ip_white}
+			#{ip_white},
+			#{org_id}
 		)
 	</insert>
 	
@@ -66,11 +69,12 @@
 			`member_id`, 
 			`member_uuid`, 
 			`name`,
-			`ip_white`
+			`ip_white`,
+			`org_id`
 		FROM
 			employee
 		WHERE
-			id = #{id}
+			id = #{id} and org_id = #{org_id}
 	</select>
 
 	<select id="getMemberUUID" resultType="net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity">
@@ -82,11 +86,12 @@
 			`member_id`,
 			`member_uuid`,
 			`name`,
-			`ip_white`
+			`ip_white`,
+			`org_id`
 		FROM
 			employee
 		WHERE
-			member_uuid = #{memberUUID}
+			member_uuid = #{memberUUID} and org_id = #{org_id}
 	</select>
 
 	<select id="getByMemberId" resultType="net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity">
@@ -98,11 +103,12 @@
 			`member_id`,
 			`member_uuid`,
 			`name`,
-			`ip_white`
+			`ip_white`,
+			`org_id`
 		FROM
 			employee
 		WHERE
-			member_id = #{memberId}
+			member_id = #{memberId} and org_id = #{org_id}
 	</select>
 	
 	<update id="update">
@@ -117,7 +123,7 @@
 			<if test="ip_white != null">`ip_white` = #{ip_white},</if>
 		</set>
 		WHERE
-			id = #{id}
+			id = #{id} and org_id = #{org_id}
 	</update>
 	
 	<delete id="batchRemove">
@@ -129,6 +135,7 @@
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>
+			and org_id = #{org_id}
 	</delete>
 
 	<update id="bindIP">
@@ -139,7 +146,7 @@
 			<if test="ip_white != null">`ip_white` = #{ip_white},</if>
 		</set>
 		WHERE
-		member_id = #{member_id}
+		member_id = #{member_id} and org_id = #{org_id}
 	</update>
 
 </mapper>
