@@ -7,6 +7,7 @@
 		<id column="id" property="id" />
 		<id column="name" property="name" />
 		<id column="ownerName" property="ownerName" />
+		<id column="org_id" property="org_id" />
 		<!-- 一对多的关系 -->
 		<!-- property: 指的是集合属性的值,对应类中的属性名 ofType：指的是集合中元素的类型 -->
 		<collection property="members" ofType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
@@ -67,6 +68,7 @@
 			r.`yaoqingAble`,
 			r.`yaoqingAuditAble`,
 			r.`useCustomHeadpic`,
+			r.`org_id`,
 			m.nickName ownerName
 		FROM
 			room r left join member m on r.owner_UUID=m.id
@@ -122,6 +124,7 @@
 		<if test="yaoqingable != null"> and `yaoqingAble` = #{yaoqingable} </if>
 		<if test="yaoqingauditable != null"> and `yaoqingAuditAble` = #{yaoqingauditable} </if>
 		<if test="usecustomheadpic != null"> and `useCustomHeadpic` = #{usecustomheadpic} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		<if test="ownerName != null and ownerName != ''"> and m.nickName = #{ownerName} </if>
 		ORDER BY
 			id DESC
@@ -178,7 +181,8 @@
 			`memberMgr_ids`, 
 			`yaoqingAble`, 
 			`yaoqingAuditAble`, 
-			`useCustomHeadpic`
+			`useCustomHeadpic`,
+			`org_id`
 		)
 		VALUES (
 			#{id}, 
@@ -230,7 +234,8 @@
 			#{membermgr_Ids}, 
 			#{yaoqingable}, 
 			#{yaoqingauditable}, 
-			#{usecustomheadpic}
+			#{usecustomheadpic},
+			#{org_id}
 		)
 	</insert>
 	
@@ -285,7 +290,8 @@
 			`memberMgr_ids`, 
 			`yaoqingAble`, 
 			`yaoqingAuditAble`, 
-			`useCustomHeadpic`
+			`useCustomHeadpic`,
+			`org_id`
 		FROM
 			room
 		WHERE
@@ -346,7 +352,7 @@
 			<if test="usecustomheadpic != null">`useCustomHeadpic` = #{usecustomheadpic}</if>
 		</set>
 		WHERE
-			id = #{id}
+			id = #{id} and org_id = #{org_id}
 	</update>
 	
 	<delete id="batchRemove">
@@ -412,11 +418,12 @@
 			`memberMgr_ids`,
 			`yaoqingAble`,
 			`yaoqingAuditAble`,
-			`useCustomHeadpic`
+			`useCustomHeadpic`,
+			`org_id`
 		FROM
 			room
 		WHERE
-			id = #{id}
+			id = #{id} and org_id = #{org_id}
 	</select>
 
 
@@ -425,5 +432,7 @@
 			count(1)
 		FROM
 			room
+		WHERE
+			org_id = #{org_id}
 	</select>
 </mapper>

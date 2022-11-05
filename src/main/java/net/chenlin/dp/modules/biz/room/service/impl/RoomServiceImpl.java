@@ -42,6 +42,7 @@ public class RoomServiceImpl implements RoomService {
      */
 	@Override
 	public Page<RoomEntity> listRoom(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 		Page<RoomEntity> page = new Page<>(query);
 		List<RoomEntity> roomEntityList = roomMapper.listForPage(page, query);
@@ -60,6 +61,7 @@ public class RoomServiceImpl implements RoomService {
      */
 	@Override
 	public Resp saveRoom(RoomEntity room) {
+		room.setOrg_id(1);
 		int count = roomMapper.save(room);
 		return CommonUtils.msgResp(count);
 	}
@@ -83,6 +85,7 @@ public class RoomServiceImpl implements RoomService {
      */
 	@Override
 	public Resp updateRoom(RoomEntity room) {
+		room.setOrg_id(1);
 		int count = roomMapper.update(room);
 		return CommonUtils.msgResp(count);
 	}
@@ -109,14 +112,14 @@ public class RoomServiceImpl implements RoomService {
 	 */
 	@Override
 	public Resp getRoomMemberById(String id) {
-		RoomMemberEntity room = roomMapper.getRoomMemberById(id);
+		RoomMemberEntity room = roomMapper.getRoomMemberById(id, 1);
 		return CommonUtils.msgResp(room);
 	}
 
 	
 	@Override
 	public Long getTotal() {
-		return roomMapper.getRoomSum();
+		return roomMapper.getRoomSum(1);
 	}
 
 	private void getRoomHeadImg(RoomEntity room){
@@ -132,6 +135,7 @@ public class RoomServiceImpl implements RoomService {
 	 * @return
 	 */
 	private RoomEntity getMembersByRoom(RoomEntity room){
+		room.setOrg_id(1);
 		List<RoomMemberEntity> roomMemberEntities =roomMemberMapper.select(RoomMemberEntity.builder()
 				.room_id(room.getId())
 				.build());
