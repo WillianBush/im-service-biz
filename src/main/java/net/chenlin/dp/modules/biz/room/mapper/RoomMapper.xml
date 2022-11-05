@@ -124,7 +124,7 @@
 		<if test="yaoqingable != null"> and `yaoqingAble` = #{yaoqingable} </if>
 		<if test="yaoqingauditable != null"> and `yaoqingAuditAble` = #{yaoqingauditable} </if>
 		<if test="usecustomheadpic != null"> and `useCustomHeadpic` = #{usecustomheadpic} </if>
-		<if test="org_id != null"> and `org_id` = #{org_id} </if>
+		<if test="org_id != null"> and r.org_id = #{org_id} </if>
 		<if test="ownerName != null and ownerName != ''"> and m.nickName = #{ownerName} </if>
 		ORDER BY
 			id DESC
