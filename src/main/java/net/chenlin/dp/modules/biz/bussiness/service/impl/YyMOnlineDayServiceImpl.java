@@ -152,8 +152,8 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 		}
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
+		page.setCode(0);
 //		log.info("ids:{}",ids);
-
 //		List<MemberloginlogEntity> resp = memberloginlogMapper.listForPage(page, query);
 		page.setRows(resp);
 		return page;

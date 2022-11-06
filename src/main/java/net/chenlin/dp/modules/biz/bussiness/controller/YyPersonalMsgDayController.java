@@ -54,12 +54,13 @@ public class YyPersonalMsgDayController extends AbstractController {
 	 */
 	@PostMapping("/groupList")
 	@ApiOperation(value = "群发消息汇总")
-	public List<YyGroupMsgDayEntity> groupList(@RequestBody Map<String, Object> params) {
+	public Resp<YyGroupMsgDayEntity> groupList(@RequestBody Map<String, Object> params) {
 		String type = (String) params.get("type");
 		if (type.isEmpty()) {
-			return (List<YyGroupMsgDayEntity>) Resp.error("参数错误");
+			return Resp.error("参数错误");
 		}
-		return yyPersonalMsgDayService.listYyGroupMsgDay(params);
+		List<YyGroupMsgDayEntity> list = yyPersonalMsgDayService.listYyGroupMsgDay(params);
+		return Resp.ok(list);
 	}
 		
 	/**
