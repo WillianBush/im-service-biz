@@ -58,11 +58,14 @@ public class AppVersionController extends AbstractController {
 		if (StringUtils.isEmpty(appVersion.getApp_id())
 				|| StringUtils.isEmpty(appVersion.getDown_url())
 				|| StringUtils.isEmpty(appVersion.getDevice_type())
-				|| appVersion.getSite_id() == null
 		        || StringUtils.isEmpty(appVersion.getVersion())){
 			return Resp.error("参数异常");
 		}
-		AppVersionEntity appVersionEntity = appVersionService.selectByUniqueKey(appVersion.getVersion(),appVersion.getSite_id(),appVersion.getDevice_type(),appVersion.getApp_id());
+		if (appVersion.getOrg_id() == null){
+			appVersion.setOrg_id(1);
+		}
+
+		AppVersionEntity appVersionEntity = appVersionService.selectByUniqueKey(appVersion.getVersion(),appVersion.getOrg_id(),appVersion.getDevice_type(),appVersion.getApp_id());
 		if (null != appVersionEntity) {
 			return Resp.error("版本已存在，请核对");
 		}
