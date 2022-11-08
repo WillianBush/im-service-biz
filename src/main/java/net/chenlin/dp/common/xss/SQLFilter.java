@@ -2,11 +2,16 @@ package net.chenlin.dp.common.xss;
 
 import net.chenlin.dp.common.exception.RRException;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.annotation.Configuration;
+
+import javax.servlet.annotation.WebFilter;
 
 /**
  * SQL过滤
  * @author wang<fangyuan.co@outlook.com>
  */
+@WebFilter(urlPatterns = "/*", filterName = "sqlFilter")
+@Configuration
 public class SQLFilter {
 
     /**
