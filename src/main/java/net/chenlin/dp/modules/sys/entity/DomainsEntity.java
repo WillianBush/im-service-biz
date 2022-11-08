@@ -2,11 +2,21 @@ package net.chenlin.dp.modules.sys.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 
+@Table(name = "domains")
+@Data
+@Builder
 @ApiModel
-public class Domians implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+public class DomainsEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,30 +24,30 @@ public class Domians implements Serializable {
      * 角色id
      */
     @ApiModelProperty(value = "角色id")
-    private Long domainId;
+    private Long domain_id;
 
     /**
      * 机构id
      */
     @ApiModelProperty(value = "机构id")
-    private Long orgId;
+    private Long org_id;
 
     /**
      * http域名
      */
     @ApiModelProperty(value = "http域名")
-    private String httpDomain;
+    private String http_domain;
 
 
     /**
      * ws域名
      */
     @ApiModelProperty(value = "ws域名")
-    private String wsDomain;
+    private String ws_domain;
 
     /**
      * oss域名
      */
     @ApiModelProperty(value = "oss域名")
-    private String ossDomain;
+    private String oss_domain;
 }

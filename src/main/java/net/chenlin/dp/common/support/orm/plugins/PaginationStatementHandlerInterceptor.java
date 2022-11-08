@@ -1,8 +1,10 @@
 package net.chenlin.dp.common.support.orm.plugins;
 
+import com.aliyun.oss.common.utils.StringUtils;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.support.orm.dialect.Dialect;
 import net.chenlin.dp.common.support.orm.dialect.DialectFactory;
+import net.chenlin.dp.modules.sys.controller.SysLoginController;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
@@ -19,6 +21,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,6 +45,23 @@ public class PaginationStatementHandlerInterceptor implements Interceptor {
         StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
         ParameterHandler parameterHandler = statementHandler.getParameterHandler();
         BoundSql boundSql = statementHandler.getBoundSql();
+        String sql=boundSql.getSql().toLowerCase();
+        String currentSessionId = SysLoginController.currentSessionId.get(Thread.currentThread());
+        if(!StringUtils.isNullOrEmpty(currentSessionId)) {
+            if (sql.startsWith("select")) {
+                /**当存在两个where的时候 下面的逻辑会有误**/
+                if(((sql+" ").split("where")).length>2){
+                if (sql.indexOf("where") > 0) {
+                    sql = sql.replace("where", " where org_id=" + currentSessionId + " and");
+                } else {
+                    sql += " where org_id=" + currentSessionId;
+                }
+                Field field = boundSql.getClass().getDeclaredField("sql");
+                field.setAccessible(true);
+                field.set(boundSql, sql);
+                }
+            }
+        }
 
         MetaObject metaStatementHandler = MetaObject.forObject(statementHandler, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, DEFAULT_REFLECTOR_FACTORY);
         RowBounds rowBounds = (RowBounds) metaStatementHandler.getValue("delegate.rowBounds");

@@ -145,4 +145,8 @@ public abstract class AbstractController {
 		}
 		return token;
 	}
+
+	protected String getServerName(){
+		return WebUtils.getRequest().getServerName();
+	}
 }

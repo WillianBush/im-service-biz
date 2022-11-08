@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.sys.dao.DomainsMapper">
+	
+	<select id="selectObj" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+		SELECT
+			*
+		FROM
+			domains
+			where 1=1
+			<if test="org_id != null ">
+				AND org_id = #{org_id}
+			</if>
+			<if test="http_domain != null and http_domain.trim() != ''">
+				AND http_domain= #{http_domain}
+			</if>
+	</select>
+</mapper>

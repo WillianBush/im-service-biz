@@ -17,11 +17,13 @@ public class RedisCacheKeys {
      */
     public static final String REDIS_KEY_ROOMB_BEAN_MAP="ROOMB_BEAN_MAP";
 
+    /**功能配置*/
     public static final String REDIS_KEY_FUNCTION_CONFIG="function:config";
 
     public static final String REDIS_KEY_DOMAINS_CONFIG="config:domains";
 
-    public static final String REDIS_KEY_CREATE_MEMBERID ="memberId";
+    public static final String REDIS_KEY_CREATE_MEMBERID="memberId";
+
 
 
     public static String appLastVersion(String os,Integer siteId,String appId) {

@@ -13,10 +13,8 @@ import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.common.utils.TokenUtils;
 import net.chenlin.dp.common.utils.WebUtils;
 import net.chenlin.dp.modules.sys.dao.SysUserRoleMapper;
-import net.chenlin.dp.modules.sys.entity.SysLoginEntity;
-import net.chenlin.dp.modules.sys.entity.SysLoginResp;
-import net.chenlin.dp.modules.sys.entity.SysRoleEntity;
-import net.chenlin.dp.modules.sys.entity.SysUserEntity;
+import net.chenlin.dp.modules.sys.entity.*;
+import net.chenlin.dp.modules.sys.service.DomainsService;
 import net.chenlin.dp.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.DependsOn;
@@ -24,8 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -42,6 +43,10 @@ public class SysLoginController extends AbstractController {
 	private SysUserService sysUserService;
 
 	SysUserRoleMapper sysUserRoleMapper;
+
+	private DomainsService domainsService;
+
+	public static Map<Thread,String> currentSessionId = new HashMap<>();
 
 	/**
 	 * 登录
@@ -76,7 +81,8 @@ public class SysLoginController extends AbstractController {
 					return  Resp.error(1001,"谷歌验证码错误");
 				}
 			}
-
+			DomainsEntity domainsEntity=domainsService.getDomainsByUrl(getServerName());
+			currentSessionId.put(Thread.currentThread(),domainsEntity.getOrg_id()+"");
 			SysLoginResp resp = new SysLoginResp();
 			userEntity.setPassword("");
 			userEntity.setGoogleKaptchaKey("");
