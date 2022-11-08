@@ -33,6 +33,7 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Page<YyIpListEntity> listYyIpList(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 		Page<YyIpListEntity> page = new Page<>(query);
 		List<YyIpListEntity> resp=yyIpListMapper.listForPage(page, query);
@@ -47,6 +48,7 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList) {
+		yyIpList.setOrg_id(1);
 		int count = yyIpListMapper.save(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
@@ -69,6 +71,7 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Resp<Integer> updateYyIpList(YyIpListEntity yyIpList) {
+		yyIpList.setOrg_id(1);
 		int count = yyIpListMapper.update(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
@@ -86,7 +89,7 @@ public class YyIpListServiceImpl implements YyIpListService {
 
 	@Override
 	public YyIpListEntity getByIP(String ip, int type) {
-		return yyIpListMapper.getObjectByIp(ip, type);
+		return yyIpListMapper.getObjectByIp(ip, type, 1);
 	}
 
 }

@@ -31,6 +31,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      */
 	@Override
 	public Page<MemberloginlogEntity> listMemberloginlog(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
 		page.setRows(memberloginlogMapper.listForPage(page, query));
@@ -44,6 +45,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      */
 	@Override
 	public Resp saveMemberloginlog(MemberloginlogEntity memberloginlog) {
+		memberloginlog.setOrg_id(1);
 		int count = memberloginlogMapper.save(memberloginlog);
 		return CommonUtils.msgResp(count);
 	}
@@ -66,6 +68,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      */
 	@Override
 	public Resp updateMemberloginlog(MemberloginlogEntity memberloginlog) {
+		memberloginlog.setOrg_id(1);
 		int count = memberloginlogMapper.update(memberloginlog);
 		return CommonUtils.msgResp(count);
 	}

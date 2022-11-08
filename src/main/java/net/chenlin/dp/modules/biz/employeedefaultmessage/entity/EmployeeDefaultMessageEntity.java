@@ -62,6 +62,9 @@ public class EmployeeDefaultMessageEntity implements Serializable {
 	@ApiModelProperty(value = "邀请码")
 	private String invite_code;
 
+	@ApiModelProperty(value = "站点")
+	private String org_id;
+
 	@Transient
 	private String nickName;
 

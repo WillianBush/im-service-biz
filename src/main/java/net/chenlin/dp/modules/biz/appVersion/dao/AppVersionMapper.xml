@@ -10,7 +10,7 @@
 			`gmt_modified`, 
 			`version`, 
 			`descript`, 
-			`site_id`, 
+			`org_id`,
 			`device_type`,
 			`down_url`, 
 			`force_update`, 
@@ -26,7 +26,7 @@
 		<if test="gmt_modified != null"> and `gmt_modified` = #{gmt_modified} </if>
 		<if test="version != null"> and `version` = #{version} </if>
 		<if test="descript != null"> and `descript` = #{descript} </if>
-		<if test="site_id != null"> and `site_id` = #{site_id} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		<if test="device_type != null"> and `device_type` = #{device_type} </if>
 		<if test="down_url != null"> and `down_url` = #{down_url} </if>
 		<if test="force_update != null"> and `force_update` = #{force_update} </if>
@@ -46,7 +46,7 @@
 			`gmt_modified`, 
 			`version`, 
 			`descript`, 
-			`site_id`, 
+			`org_id`,
 			`device_type`,
 			`down_url`, 
 			`force_update`, 
@@ -59,7 +59,7 @@
 			#{gmt_modified}, 
 			#{version}, 
 			#{descript}, 
-			#{site_id}, 
+			#{org_id},
 			#{device_type},
 			#{down_url}, 
 			#{force_update}, 
@@ -76,7 +76,7 @@
 			`gmt_modified`, 
 			`version`, 
 			`descript`, 
-			`site_id`, 
+			`org_id`,
 			`device_type`,
 			`down_url`, 
 			`force_update`, 
@@ -96,7 +96,7 @@
 			<if test="gmt_modified != null">`gmt_modified` = #{gmt_modified}, </if>
 			<if test="version != null">`version` = #{version}, </if>
 			<if test="descript != null">`descript` = #{descript}, </if>
-			<if test="site_id != null">`site_id` = #{site_id}, </if>
+			<if test="org_id != null">`org_id` = #{org_id}, </if>
 			<if test="device_type != null">`device_type` = #{device_type}, </if>
 			<if test="down_url != null">`down_url` = #{down_url}, </if>
 			<if test="force_update != null">`force_update` = #{force_update}, </if>
@@ -134,7 +134,7 @@
 			`gmt_modified`,
 			`version`,
 			`descript`,
-			`site_id`,
+			`org_id`,
 			`device_type`,
 			`down_url`,
 			`force_update`,

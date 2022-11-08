@@ -18,7 +18,7 @@ public interface YyMRegisterDayService {
      * @param params
      * @return
      */
-	List<YyMRegisterDayEntity> listYyMRegisterDay(Map<String, Object> params);
+	Resp<List<YyMRegisterDayEntity>> listYyMRegisterDay(Map<String, Object> params);
 
     /**
      * 新增

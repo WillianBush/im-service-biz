@@ -17,6 +17,7 @@
 		edm.`picture_5`,
 		edm.`id`,
 		edm.`invite_code`,
+		edm.`org_id`,
 		m.nickName
 		FROM
 			employee_default_message edm
@@ -35,6 +36,7 @@
 		<if test="picture_5 != null"> and edm.`picture_5` = #{picture_5} </if>
 		<if test="id != null"> and edm.`id` = #{id} </if>
 		<if test="invite_code != null"> and edm.`invite_code` = #{invite_code} </if>
+		<if test="org_id != null"> and edm.`org_id` = #{org_id} </if>
 		<if test="nickName != null"> and m.`nickName` = #{nickName} </if>
 		ORDER BY
 			id DESC
@@ -53,7 +55,8 @@
 			`picture_4`, 
 			`picture_5`, 
 			`id`, 
-			`invite_code`
+			`invite_code`,
+			`org_id`
 		)
 		VALUES (
 			#{employee_id}, 
@@ -67,7 +70,8 @@
 			#{picture_4}, 
 			#{picture_5}, 
 			#{id}, 
-			#{invite_code}
+			#{invite_code},
+			#{org_id}
 		)
 	</insert>
 	
@@ -84,7 +88,8 @@
 			`picture_4`, 
 			`picture_5`, 
 			`id`, 
-			`invite_code`
+			`invite_code`,
+			`org_id`
 		FROM
 			employee_default_message
 		WHERE

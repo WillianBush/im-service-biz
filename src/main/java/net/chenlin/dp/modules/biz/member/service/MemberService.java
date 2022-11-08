@@ -89,6 +89,6 @@ public interface MemberService {
      * @param
      * @return
      */
-    Resp<Double> getTotalNumber();
+    Resp<Long> getTotalNumber();
 
 }

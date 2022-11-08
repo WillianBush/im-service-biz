@@ -6,6 +6,7 @@
 		<id column="id" property="id" />
 		<id column="mid" property="mid" />
 		<id column="note" property="note" />
+		<id column="org_id" property="org_id" />
 		<!-- 一对多的关系 -->
 		<!-- property: 指的是集合属性的值,对应类中的属性名 ofType：指的是集合中元素的类型 -->
 		<collection property="members" ofType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
@@ -27,6 +28,7 @@
 		<if test="modifydate != null"> and `modifyDate` = #{modifydate} </if>
 		<if test="friendid != null"> and `friendid` = #{friendid} </if>
 		<if test="mid != null"> and `mid` = #{mid} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -37,14 +39,16 @@
 			`createDate`, 
 			`modifyDate`, 
 			`friendid`, 
-			`mid`
+			`mid`,
+			`org_id`
 		)
 		VALUES (
 			#{id}, 
 			#{createdate}, 
 			#{modifydate}, 
 			#{friendid}, 
-			#{mid}
+			#{mid},
+			#{org_id}
 		)
 	</insert>
 	
@@ -54,7 +58,8 @@
 			`createDate`, 
 			`modifyDate`, 
 			`friendid`, 
-			`mid`
+			`mid`,
+			`org_id`
 		FROM
 			friends
 		WHERE
@@ -70,7 +75,7 @@
 			<if test="mid != null">`mid` = #{mid}</if>
 		</set>
 		WHERE
-			id = #{id}
+			id = #{id} and org_id = #{org_id}
 	</update>
 	
 	<delete id="removeFriend">
@@ -80,6 +85,7 @@
 		WHERE
 			mid =#{id}
 			and friendid = #{friendid}
+			and org_id = #{org_id}
 	</delete>
 
 </mapper>

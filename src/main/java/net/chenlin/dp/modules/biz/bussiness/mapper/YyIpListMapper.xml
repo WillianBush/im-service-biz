@@ -9,7 +9,8 @@
 			`ip_address`, 
 			`note`, 
 			`type`, 
-			`stauts`
+			`stauts`,
+			`org_id`
 		FROM
 			yy_ip_list
 		where
@@ -19,6 +20,7 @@
 		<if test="note != null"> and `note` = #{note} </if>
 		<if test="type != null"> and `type` = #{type} </if>
 		<if test="stauts != null"> and `stauts` = 0 </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		ORDER BY
 			ip_address DESC
 	</select>
@@ -28,13 +30,15 @@
 			`ip_address`, 
 			`note`, 
 			`type`, 
-			`stauts`
+			`stauts`,
+			`org_id`
 		)
 		VALUES (
 			#{ip_address}, 
 			#{note}, 
 			#{type}, 
-			#{stauts}
+			#{stauts},
+			#{org_id}
 		)
 	</insert>
 	
@@ -44,7 +48,8 @@
 			`ip_address`, 
 			`note`, 
 			`type`, 
-			`stauts`
+			`stauts`,
+			`org_id`
 		FROM
 			yy_ip_list
 		WHERE
@@ -61,7 +66,7 @@
 			<if test="stauts != null">`stauts` = #{stauts}</if>
 		</set>
 		WHERE
-			id = #{id}
+			id = #{id} and org_id = #{org_id}
 	</update>
 	
 	<delete id="batchRemove">
@@ -81,11 +86,12 @@
 			`ip_address`,
 			`note`,
 			`type`,
-			`stauts`
+			`stauts`,
+			`org_id`
 		FROM
 			yy_ip_list
 		WHERE
-			ip_address = #{ip_address} and type = #{type}
+			ip_address = #{ip_address} and type = #{type} and org_id = #{org_id}
 	</select>
 
 </mapper>

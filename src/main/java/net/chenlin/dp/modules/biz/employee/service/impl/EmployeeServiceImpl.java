@@ -33,6 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
 	@Override
 	public Page<EmployeeEntity> listEmployee(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 		Page<EmployeeEntity> page = new Page<>(query);
 		List<EmployeeEntity> resp= employeeMapper.listForPage(page, query);
@@ -47,6 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
 	@Override
 	public Resp<EmployeeEntity> saveEmployee(EmployeeEntity employee) {
+		employee.setOrg_id(1);
 		employee.setId(IdGenerate.generateUUID());
 		int count = employeeMapper.save(employee);
 		return CommonUtils.msgResp(count);
@@ -59,19 +61,20 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
 	@Override
 	public Resp<EmployeeEntity> getEmployeeById(Long id) {
+		//Todo 需要处理baseMaper中方法
 		EmployeeEntity employee = employeeMapper.getObjectById(id);
 		return CommonUtils.msgResp(employee);
 	}
 
 	@Override
 	public EmployeeEntity getMemberUUID(String memberUUID) {
-		return employeeMapper.getMemberUUID(memberUUID);
+		return employeeMapper.getMemberUUID(memberUUID, 1);
 	}
 
 
 	@Override
 	public EmployeeEntity getByMemberId(String memberId) {
-		return employeeMapper.getByMemberId(memberId);
+		return employeeMapper.getByMemberId(memberId, 1);
 	}
 
 	/**
@@ -81,6 +84,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
 	@Override
 	public Resp<Integer> updateEmployee(EmployeeEntity employee) {
+		employee.setOrg_id(1);
 		int count = employeeMapper.update(employee);
 		return CommonUtils.msgResp(count);
 	}
@@ -101,7 +105,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employee.getMember_id().isEmpty() || null == employee.getMember_id()) {
 			return Resp.error("用户ID未空");
 		}
-
+		employee.setOrg_id(1);
 		int count = employeeMapper.bindIP(employee);
 		return CommonUtils.msgResp(count);
 	}

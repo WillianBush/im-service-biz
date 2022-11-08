@@ -43,7 +43,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册rest拦截器
-        registry.addInterceptor(new RestApiInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","/health-check","/swagger-ui.html","/error");
+        registry.addInterceptor(new RestApiInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","/health-check","/swagger-ui.html","/error","/logout");
     }
 
     /**

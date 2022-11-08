@@ -277,4 +277,9 @@ public class RoomEntity implements Serializable {
 
 	private List<MemberEntity> members;
 
+	/**
+	 * 站点
+	 */
+	private Integer org_id;
+
 }

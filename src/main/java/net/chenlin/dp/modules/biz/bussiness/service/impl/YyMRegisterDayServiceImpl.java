@@ -33,10 +33,10 @@ public class YyMRegisterDayServiceImpl implements YyMRegisterDayService {
      * @return
      */
 	@Override
-	public List<YyMRegisterDayEntity> listYyMRegisterDay(Map<String, Object> params) {
+	public Resp<List<YyMRegisterDayEntity>> listYyMRegisterDay(Map<String, Object> params) {
 		Query query = new Query(params);
 		List<YyMRegisterDayEntity> resp= memberMapper.getObjectGroupByDate(query);
-		return resp;
+		return Resp.ok(200, "操作成功", resp);
 	}
 
     /**

@@ -56,7 +56,7 @@ public class AppVersionServiceImpl implements AppVersionService {
     public Resp<AppVersionEntity> saveAppVersion(AppVersionEntity appVersion) {
         int id = appVersionMapper.save(appVersion);
         if (id != 0) {
-            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDevice_type(), appVersion.getSite_id(), appVersion.getApp_id());
+            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDevice_type(), appVersion.getOrg_id(), appVersion.getApp_id());
             redisCacheManager.set(redisKey, appVersion);
         }
         return CommonUtils.msgResp(appVersion);
@@ -100,7 +100,7 @@ public class AppVersionServiceImpl implements AppVersionService {
         int counts = 0;
         for (Long id : ids) {
             AppVersionEntity appVersion = appVersionMapper.getObjectById(id);
-            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDevice_type(), appVersion.getSite_id(), appVersion.getApp_id());
+            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDevice_type(), appVersion.getOrg_id(), appVersion.getApp_id());
             int count = appVersionMapper.remove(id);
             if (count == 1) {
                 redisCacheManager.del(redisKey);
@@ -114,7 +114,7 @@ public class AppVersionServiceImpl implements AppVersionService {
     public AppVersionEntity selectByUniqueKey(String version, Integer siteId, String os, String appId) {
         return appVersionMapper.selectOne(AppVersionEntity.builder()
                 .version(version)
-                .site_id(siteId)
+                .org_id(siteId)
                 .device_type(os)
                 .app_id(appId)
                 .build());

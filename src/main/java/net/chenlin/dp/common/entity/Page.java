@@ -13,6 +13,14 @@ import java.util.List;
  */
 @ApiModel
 public class Page<T> extends RowBounds {
+
+
+    @ApiModelProperty(value = "0:成功")
+    protected int code = 0;
+
+
+    @ApiModelProperty(value = "0:成功")
+    protected String msg ="成功";
     
 	/**
      * 页编号 : 第几页
@@ -177,4 +185,20 @@ public class Page<T> extends RowBounds {
         this.totalPages = totalPages;
     }
 
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }

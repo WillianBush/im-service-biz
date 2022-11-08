@@ -51,12 +51,12 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      * @return
      */
 	@Override
-	public List<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params) {
+	public Resp<List<YyMOnlineDayEntity>> listYyMOnlineDay(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 
-//		Page<MemberloginlogEntity> page = new Page<>(query);
 		List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
-		return resp;
+		return Resp.ok(200, "操作成功", resp);
 	}
 
 
@@ -142,6 +142,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 					continue;
 				}
 				lastLoginDateEntity.setMemberId(respMember.getData().getMemberid());
+				lastLoginDateEntity.setOrg_id(1);
 				MemberloginlogEntity memberloginlogEntity = memberloginlogMapper.getLastLoginDate(lastLoginDateEntity);
 				if (memberloginlogEntity == null ){
 					continue;
@@ -151,8 +152,8 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 		}
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
+		page.setCode(0);
 //		log.info("ids:{}",ids);
-
 //		List<MemberloginlogEntity> resp = memberloginlogMapper.listForPage(page, query);
 		page.setRows(resp);
 		return page;

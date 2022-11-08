@@ -52,7 +52,8 @@
 			`sendTransferCount`, 
 			`sendTransferPriceSum`, 
 			`shimingStatus`, 
-			`sysGenerate`
+			`sysGenerate`,
+			`org_id`
 		FROM
 			member
 		where
@@ -105,6 +106,7 @@
 		<if test="sendtransferpricesum != null"> and `sendTransferPriceSum` = #{sendtransferpricesum} </if>
 		<if test="shimingstatus != null"> and `shimingStatus` = #{shimingstatus} </if>
 		<if test="sysgenerate != null"> and `sysGenerate` = #{sysgenerate} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		<if test="ids != null">
 			<if test="ids.size()>0">
 				and id in
@@ -172,7 +174,8 @@
 			`sendTransferCount`, 
 			`sendTransferPriceSum`, 
 			`shimingStatus`, 
-			`sysGenerate`
+			`sysGenerate`,
+			`org_id`
 		)
 		VALUES (
 			#{id}, 
@@ -222,7 +225,8 @@
 			#{sendtransfercount}, 
 			#{sendtransferpricesum}, 
 			#{shimingstatus}, 
-			#{sysgenerate}
+			#{sysgenerate},
+			#{org_id}
 		)
 	</insert>
 	
@@ -275,7 +279,8 @@
 			`sendTransferCount`, 
 			`sendTransferPriceSum`, 
 			`shimingStatus`, 
-			`sysGenerate`
+			`sysGenerate`,
+			`org_id`
 		FROM
 			member
 		WHERE
@@ -332,7 +337,8 @@
 			`sendTransferCount`,
 			`sendTransferPriceSum`,
 			`shimingStatus`,
-			`sysGenerate`
+			`sysGenerate`,
+			`org_id`
 		FROM
 			member
 		WHERE
@@ -389,6 +395,7 @@
 			<if test="sendtransferpricesum != null">`sendTransferPriceSum` = #{sendtransferpricesum}, </if>
 			<if test="shimingstatus != null">`shimingStatus` = #{shimingstatus}, </if>
 			<if test="sysgenerate != null">`sysGenerate` = #{sysgenerate}</if>
+			<if test="org_id != null">`org_id` = #{org_id}</if>
 		</set>
 		WHERE
 			id = #{id}
@@ -455,7 +462,8 @@
 		`sendTransferCount`,
 		`sendTransferPriceSum`,
 		`shimingStatus`,
-		`sysGenerate`
+		`sysGenerate`,
+		`org_id`
 		FROM
 		member
 		WHERE
@@ -470,8 +478,9 @@
 			   count(distinct memberId) as m_register_number
 		FROM member
 		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
-		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
-		  and memberType = 0
+			and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+			and memberType = 0
+			and org_id = #{org_id}
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
 
@@ -492,17 +501,17 @@
 			headpic,
 		    username
 		from member m
-		where memberId = #{memberId}
+		where memberId = #{memberId} and org_id = #{org_id}
 	</select>
 
 
-	<select id="gettMemberByRoomIdForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
+	<select id="getMemberByRoomIdForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			m.*
 		FROM
 		member m left join room_member rm on m.id=rm.member_id
 		where
-		rm.room_id=#{room_id}
+		rm.room_id=#{room_id} and org_id = #{org_id}
 		<if test="nickname != null"> and `nickName` like  concat('%',#{nickname},'%') </if>
 		ORDER BY
 		id DESC
@@ -516,14 +525,15 @@
         where
         1=1
         <if test="mid != null"> and f.`mid` = #{mid} </if>
+        <if test="org_id != null"> and f.`org_id` = #{org_id} </if>
 		<if test="nickname != null"> and m.`nickName` like  concat('%',#{nickname},'%') </if>
         ORDER BY
         id DESC
     </select>
 
-	<select id="getTotal" resultType="Double">
+	<select id="getTotal" resultType="java.lang.Long">
 		SELECT
-			count(*)
+			count(1)
 		FROM
 			member
 		where
@@ -535,5 +545,14 @@
 			(select 1 from room_member rm where rm.room_id=#{room_id} and rm.member_id=m.id)
 			and m.memberType=1
 			limit ${count}
+	</select>
+
+	<select id="isExitByNickname" resultType="java.lang.Long">
+		SELECT
+			count(1)
+		FROM
+			member
+		where
+			nickName = #{nickName}
 	</select>
 </mapper>

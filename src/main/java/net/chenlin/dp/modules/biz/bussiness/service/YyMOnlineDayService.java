@@ -20,7 +20,7 @@ public interface YyMOnlineDayService {
      * @param params
      * @return
      */
-    List<YyMOnlineDayEntity> listYyMOnlineDay(Map<String, Object> params);
+    Resp<List<YyMOnlineDayEntity>> listYyMOnlineDay(Map<String, Object> params);
 
     /**
      * 新增

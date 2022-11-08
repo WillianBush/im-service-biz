@@ -66,7 +66,8 @@ public class RoomBean {
 	private String memberMgr_ids = "";//群管理 ID集合  id#id#id#
 	
 	private Integer useCustomHeadpic = 0;//使用用户自定义图片 0否  1是
-	
+	private Integer org_id = 1;//站点
+
 	
 	
 	public Integer getUseCustomHeadpic() {

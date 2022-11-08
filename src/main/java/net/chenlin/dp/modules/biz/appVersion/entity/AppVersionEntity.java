@@ -46,7 +46,7 @@ public class AppVersionEntity implements Serializable {
 	private String descript;
 	
 	@ApiModelProperty(value = "站点(同orgId)")
-	private Integer site_id;
+	private Integer org_id;
 	
 	@ApiModelProperty(value = "系统(1安卓2为IOS)")
 	private String device_type;
@@ -65,7 +65,8 @@ public class AppVersionEntity implements Serializable {
 	
 	@ApiModelProperty(value = "APP昵称")
 	private String app_name;
-	
+
+
 
 
 }

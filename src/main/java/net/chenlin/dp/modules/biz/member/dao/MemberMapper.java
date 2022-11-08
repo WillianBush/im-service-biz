@@ -25,16 +25,18 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
 
     List<MemberEntity> getFriendsByMid(String mid);
     
-    MemberEntity getMemberByMid(String mid);
+    MemberEntity getMemberByMid(String mid, int org_id);
 
-    List<MemberEntity> gettMemberByRoomIdForPage(Page<MemberEntity> page,Query query);
+    List<MemberEntity> getMemberByRoomIdForPage(Page<MemberEntity> page, Query query);
 
     List<MemberEntity> listForPageByFriend(Page<MemberEntity> page,Query query);
 
-    Double getTotal();
+    Long getTotal();
 
     List<MemberEntity> getRobotList(String room_id,Integer count);
 
 
     MemberEntity getByUsername(@Param("username") String username);
+
+    Long isExitByNickname(@Param("nickName") String nickName);
 }

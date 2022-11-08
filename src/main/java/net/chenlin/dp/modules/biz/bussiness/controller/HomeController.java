@@ -36,7 +36,7 @@ public class HomeController {
     @SysLog("首页-用户总量")
     @PostMapping("/getMemberSum")
     @ApiOperation(value = "用户总量")
-    public Resp<Double> getMemberSum() {
+    public Resp<Long> getMemberSum() {
         return memberService.getTotalNumber();
     }
 

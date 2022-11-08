@@ -16,7 +16,8 @@
         `deviceVersion`,
         `mheadPic`,
         `username`,
-        `ipAddr`
+        `ipAddr`,
+        `org_id`
         FROM
         memberloginlog
         where
@@ -33,6 +34,7 @@
         <if test="mheadPic != null">and `mheadPic` = #{mheadPic}</if>
         <if test="username != null">and `username` = #{username}</if>
         <if test="ipAddr != null">and `ipAddr` = #{ipAddr}</if>
+        <if test="org_id != null">and `org_id` = #{org_id}</if>
         <if test="ids != null">
             and `mid` IN
             <foreach item="id" collection="ids" open="(" separator="," close=")">
@@ -55,7 +57,8 @@
                                     `deviceVersion`,
                                     `mheadPic`,
                                     `username`,
-                                    `ipAddr`)
+                                    `ipAddr`,
+                                    `org_id`)
         VALUES (#{id},
                 #{createdate},
                 #{modifydate},
@@ -65,7 +68,10 @@
                 #{mtel},
                 #{deviceType},
                 #{deviceVersion},
-                #{mheadPic}) #{username}) #{ipAddr})
+                #{mheadPic},
+                #{username},
+                #{ipAddr},
+                #{org_id})
     </insert>
 
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
@@ -80,7 +86,8 @@
                `deviceVersion`,
                `mheadPic`,
                `username`,
-               `ipAddr`
+               `ipAddr`,
+               `org_id`
         FROM memberloginlog
         WHERE id = #{id}
     </select>
@@ -93,15 +100,15 @@
             <if test="ip != null">`ip` = #{ip},</if>
             <if test="mid != null">`mid` = #{mid},</if>
             <if test="mnickname != null">`mnickName` = #{mnickname},</if>
-            <if test="mtel != null">`mtel` = #{mtel}</if>
-            <if test="deviceType != null">`deviceType` = #{deviceType}</if>
-            <if test="deviceVersion != null">`deviceVersion` = #{deviceVersion}</if>
-            <if test="mheadPic != null">`mheadPic` = #{mheadPic}</if>
-            <if test="username != null">`username` = #{username}</if>
-            <if test="ipAddr != null">`ipAddr` = #{ipAddr}</if>
+            <if test="mtel != null">`mtel` = #{mtel},</if>
+            <if test="deviceType != null">`deviceType` = #{deviceType},</if>
+            <if test="deviceVersion != null">`deviceVersion` = #{deviceVersion},</if>
+            <if test="mheadPic != null">`mheadPic` = #{mheadPic},</if>
+            <if test="username != null">`username` = #{username},</if>
+            <if test="ipAddr != null">`ipAddr` = #{ipAddr},</if>
         </set>
         WHERE
-        id = #{id}
+        id = #{id} and org_id = #{org_id}
     </update>
 
     <delete id="batchRemove">
@@ -120,7 +127,8 @@
                count(distinct mid)                 as m_online_number
         FROM memberloginlog
         where createdate &gt;= str_to_date(#{startdate}, '%Y-%m-%d')
-          and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'), INTERVAL 1 day)
+            and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'), INTERVAL 1 day)
+            and org_id = #{org_id}
         group by date_format(createdate, '%Y-%m-%d')
     </select>
 
@@ -136,12 +144,14 @@
         `deviceVersion`,
         `mheadPic`,
         `username`,
-        `ipAddr`
+        `ipAddr`,
+        `org_id`
         FROM memberloginlog
         WHERE mid = #{memberId}
         <if test="mnickname != null">and `mnickName` = #{mnickname}</if>
         <if test="username != null">and `username` = #{username}</if>
         <if test="ip != null">and `ip` = #{ip}</if>
+        <if test="org_id != null">and `org_id` = #{org_id}</if>
         <if test="startdate != null and enddate != null">
             createdate &gt;= str_to_date(#{startdate}, '%Y-%m-%d') and createdate &lt; date_add(str_to_date(#{enddate},
             '%Y-%m-%d'), INTERVAL 1 day)

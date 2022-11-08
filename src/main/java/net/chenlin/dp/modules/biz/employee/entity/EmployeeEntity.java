@@ -54,6 +54,9 @@ public class EmployeeEntity implements Serializable {
 	@ApiModelProperty(value = "绑定白名单")
 	private String ip_white;
 
+	@ApiModelProperty(value = "站点")
+	private int org_id;
+
 	@Transient
 	private String nickName;
 

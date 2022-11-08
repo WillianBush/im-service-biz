@@ -96,6 +96,18 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Resp batchSaveMember(List<MemberEntity> members) {
+		log.info("批量添加用户---startcheck");
+		for (MemberEntity memberEntity: members) {
+			log.info("批量添加用户---校验用户是否存在");
+			if (memberMapper.isExitByNickname(memberEntity.getNickname()) > 0L) {
+				log.info("批量添加用户---昵称重复");
+				return Resp.error(500, "昵称重复");
+			}
+			if (memberMapper.getByUsername(memberEntity.getUsername()) != null) {
+				log.info("批量添加用户---手机号重复");
+				return Resp.error(500, "手机号重复");
+			}
+		}
 		members.forEach(memberEntity -> {
 			saveMember(memberEntity);
 		});
@@ -125,7 +137,7 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public Resp<MemberEntity> getMemberByMid(String mid) {
-		MemberEntity member = memberMapper.getMemberByMid(mid);
+		MemberEntity member = memberMapper.getMemberByMid(mid, 1);
 		if (member == null) {
 			return Resp.error("用户不存在！");
 		} else {
@@ -182,6 +194,7 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public Page<MemberEntity> listFriends(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 		Page<MemberEntity> page = new Page<>(query);
 		page.setRows(memberMapper.listForPageByFriend(page, query));
@@ -190,7 +203,7 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public Resp<Double> getTotalNumber() {
+	public Resp<Long> getTotalNumber() {
 		return CommonUtils.msgResp(memberMapper.getTotal());
 	}
 }

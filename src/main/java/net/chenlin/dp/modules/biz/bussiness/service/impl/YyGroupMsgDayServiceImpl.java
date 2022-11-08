@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity;
+import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -24,6 +26,7 @@ import net.chenlin.dp.modules.biz.bussiness.service.YyGroupMsgDayService;
 public class YyGroupMsgDayServiceImpl implements YyGroupMsgDayService {
 
     private YyGroupMsgDayMapper yyGroupMsgDayMapper;
+	private MessageHistoryMapper messageHistoryMapper;
 
     /**
      * 分页查询
@@ -31,12 +34,10 @@ public class YyGroupMsgDayServiceImpl implements YyGroupMsgDayService {
      * @return
      */
 	@Override
-	public Page<YyGroupMsgDayEntity> listYyGroupMsgDay(Map<String, Object> params) {
+	public Resp<List<YyGroupMsgDayEntity>> listYyGroupMsgDay(Map<String, Object> params) {
 		Query query = new Query(params);
-		Page<YyGroupMsgDayEntity> page = new Page<>(query);
-		List<YyGroupMsgDayEntity> resp= yyGroupMsgDayMapper.listForPage(page, query);
-		page.setRows(resp);
-		return page;
+		List<YyGroupMsgDayEntity> resp = messageHistoryMapper.getObjectGroupMessageGroupByDate(query);
+		return Resp.ok(200, "操作成功", resp);
 	}
 
     /**

@@ -12,13 +12,10 @@ import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.room.entity.RoomBean;
-import org.apache.commons.lang.ObjectUtils;
-import org.springframework.data.redis.cache.RedisCache;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
-import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
 import net.chenlin.dp.modules.biz.room.dao.RoomMemberMapper;
@@ -44,9 +41,10 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      */
 	@Override
 	public Page<MemberEntity> listRoomMember(Map<String, Object> params) {
+		params.put("org_id", 1);
 		Query query = new Query(params);
 		Page<MemberEntity> page = new Page<>(query);
-		page.setRows(memberMapper.gettMemberByRoomIdForPage(page, query));
+		page.setRows(memberMapper.getMemberByRoomIdForPage(page, query));
 		return page;
 	}
 
@@ -61,7 +59,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 		roomMember.setId(sw.createId());
 		roomMember.setCreateDate(new Date());
 		/*** 根据memberId 查询 member 得到 id */
-		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMember_id());
+		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMember_id(), 1);
 		roomMember.setMember_id(memberEntity.getId());
 		int count = roomMemberMapper.save(roomMember);
 		return CommonUtils.msgResp(count);

@@ -35,14 +35,11 @@ public class YyPersonalMsgDayServiceImpl implements YyPersonalMsgDayService {
      * @return
      */
 	@Override
-	public List<YyPersonalMsgDayEntity> listYyPersonalMsgDay(Map<String, Object> params) {
+	public Resp<List<YyPersonalMsgDayEntity>> listYyPersonalMsgDay(Map<String, Object> params) {
 		Query query = new Query(params);
-		return messageHistoryMapper.getObjectPersonalMessageGroupByDate(query);
+		List<YyPersonalMsgDayEntity> resp = messageHistoryMapper.getObjectPersonalMessageGroupByDate(query);
+		return Resp.ok(200, "操作成功", resp);
 	}
-
-//		if (Objects.equals(type, "group")) {
-//			return messageHistoryMapper.getObjectGroupMessageGroupByDate(query);
-//		} else
 
 	@Override
 	public List<YyGroupMsgDayEntity> listYyGroupMsgDay(Map<String, Object> params) {
