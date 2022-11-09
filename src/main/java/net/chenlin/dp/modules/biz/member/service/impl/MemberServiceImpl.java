@@ -8,6 +8,7 @@ import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
+import net.chenlin.dp.common.utils.IdGenerate;
 import net.chenlin.dp.common.utils.MD5Utils;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
@@ -92,6 +93,7 @@ public class MemberServiceImpl implements MemberService {
 		//普通用户
 		member.setMembertype(0);
 		member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
+		member.setId(IdGenerate.generateUUID());
 		int count = memberMapper.save(member);
 		return CommonUtils.msgResp(count);
 	}
