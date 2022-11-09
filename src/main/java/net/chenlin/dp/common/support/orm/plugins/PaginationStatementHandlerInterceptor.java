@@ -47,21 +47,21 @@ public class PaginationStatementHandlerInterceptor implements Interceptor {
         BoundSql boundSql = statementHandler.getBoundSql();
         String sql=boundSql.getSql().toLowerCase();
         String currentSessionId = SysLoginController.currentSessionId.get(Thread.currentThread());
-        if(!StringUtils.isNullOrEmpty(currentSessionId)) {
-            if (sql.startsWith("select")) {
-                /**当存在两个where的时候 下面的逻辑会有误**/
-                if(((sql+" ").split("where")).length>2){
-                if (sql.indexOf("where") > 0) {
-                    sql = sql.replace("where", " where org_id=" + currentSessionId + " and");
-                } else {
-                    sql += " where org_id=" + currentSessionId;
-                }
-                Field field = boundSql.getClass().getDeclaredField("sql");
-                field.setAccessible(true);
-                field.set(boundSql, sql);
-                }
-            }
-        }
+//        if(!StringUtils.isNullOrEmpty(currentSessionId)) {
+//            if (sql.startsWith("select")) {
+//                /**当存在两个where的时候 下面的逻辑会有误**/
+//                if(((sql+" ").split("where")).length>2){
+//                if (sql.indexOf("where") > 0) {
+//                    sql = sql.replace("where", " where org_id=" + currentSessionId + " and");
+//                } else {
+//                    sql += " where org_id=" + currentSessionId;
+//                }
+//                Field field = boundSql.getClass().getDeclaredField("sql");
+//                field.setAccessible(true);
+//                field.set(boundSql, sql);
+//                }
+//            }
+//        }
 
         MetaObject metaStatementHandler = MetaObject.forObject(statementHandler, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, DEFAULT_REFLECTOR_FACTORY);
         RowBounds rowBounds = (RowBounds) metaStatementHandler.getValue("delegate.rowBounds");
