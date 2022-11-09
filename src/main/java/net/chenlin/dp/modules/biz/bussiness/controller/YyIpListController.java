@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.exception.RRException;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.DependsOn;
 import net.chenlin.dp.common.exception.GoLoginException;
 import org.springframework.web.bind.annotation.*;
@@ -54,11 +55,11 @@ public class YyIpListController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<YyIpListEntity> save(@RequestBody YyIpListEntity yyIpList) {
-		if (null == yyIpList.getIp_address() || yyIpList.getIp_address().isEmpty()) {
+		if (StringUtils.isEmpty(yyIpList.getIp_address() )) {
 			return Resp.error("IP地址为空");
 		}
 
-		if (null == yyIpList.getType() || yyIpList.getType().isEmpty() ) {
+		if (StringUtils.isEmpty(yyIpList.getType() ) ) {
 			return Resp.error("IP类型参数错误");
 		}
 		YyIpListEntity yyIpListEntity= yyIpListService.getByIP(yyIpList.getIp_address(),0);
