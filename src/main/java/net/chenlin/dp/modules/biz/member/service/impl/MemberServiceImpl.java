@@ -94,6 +94,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setMembertype(0);
 		member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
 		member.setId(IdGenerate.generateUUID());
+		member.setStatus(0);
 		int count = memberMapper.save(member);
 		return CommonUtils.msgResp(count);
 	}
@@ -106,7 +107,7 @@ public class MemberServiceImpl implements MemberService {
 				return Resp.error(500, "密码不能为空");
 			}
 			if (StringUtils.isEmpty(memberEntity.getNickname()) || memberEntity.getNickname().contains(" ")) {
-				return Resp.error(500, "昵称不呢为空且不能含有空格");
+				return Resp.error(500, "昵称不呢为空且不能含有空格"+memberEntity.getNickname());
 			}
 			log.info("批量添加用户---校验用户是否存在");
 			if (memberMapper.isExitByNickname(memberEntity.getNickname()) > 0L) {
