@@ -118,6 +118,5 @@ public interface BaseMapper<T> {
 	 * @param ip
 	 * @return
 	 */
-	T getObjectByIp(Object ip, Object type, int org_id);
 
 }

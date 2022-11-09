@@ -91,7 +91,7 @@
 		FROM
 			yy_ip_list
 		WHERE
-			ip_address = #{ip_address} and type = #{type} and org_id = #{org_id}
+			ip_address = #{ipAddress} and type = #{type} and org_id = #{org_id}
 	</select>
 
 </mapper>

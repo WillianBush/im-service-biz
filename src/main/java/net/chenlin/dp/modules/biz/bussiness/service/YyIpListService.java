@@ -50,10 +50,10 @@ public interface YyIpListService {
 
     /**
      * 删除
-     * @param ip
+     * @param ipAddress
      * @param type
      * @return
      */
-    YyIpListEntity getByIP(String ip, int type);
+    YyIpListEntity getByIP(String ipAddress, Integer type);
 
 }

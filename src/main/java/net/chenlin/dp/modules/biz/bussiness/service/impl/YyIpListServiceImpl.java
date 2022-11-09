@@ -88,8 +88,8 @@ public class YyIpListServiceImpl implements YyIpListService {
 	}
 
 	@Override
-	public YyIpListEntity getByIP(String ip, int type) {
-		return yyIpListMapper.getObjectByIp(ip, type, 1);
+	public YyIpListEntity getByIP(String ipAddress, Integer type) {
+		return yyIpListMapper.getObjectByIp(ipAddress, type, 1);
 	}
 
 }
