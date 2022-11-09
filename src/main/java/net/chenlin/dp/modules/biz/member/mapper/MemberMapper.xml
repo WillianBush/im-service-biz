@@ -501,7 +501,7 @@
 			headpic,
 		    username
 		from member m
-		where memberId = #{memberId} and org_id = #{org_id}
+		where memberId = #{memberId} and org_id = #{orgId}
 	</select>
 
 

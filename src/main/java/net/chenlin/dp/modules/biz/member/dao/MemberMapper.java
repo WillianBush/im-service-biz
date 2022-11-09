@@ -23,9 +23,9 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
 
     List<YyMRegisterDayEntity> getObjectGroupByDate(Query query);
 
-    List<MemberEntity> getFriendsByMid(String mid);
+    List<MemberEntity> getFriendsByMid(@Param("mid") String mid);
     
-    MemberEntity getMemberByMid(String mid, int org_id);
+    MemberEntity getMemberByMid(@Param("mid") String mid,@Param("orgId") Integer orgId);
 
     List<MemberEntity> getMemberByRoomIdForPage(Page<MemberEntity> page, Query query);
 
@@ -33,7 +33,7 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
 
     Long getTotal();
 
-    List<MemberEntity> getRobotList(String room_id,Integer count);
+    List<MemberEntity> getRobotList(@Param("room_id") String room_id,@Param("count") Integer count);
 
 
     MemberEntity getByUsername(@Param("username") String username);
