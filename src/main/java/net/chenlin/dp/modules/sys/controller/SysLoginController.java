@@ -81,8 +81,8 @@ public class SysLoginController extends AbstractController {
 					return  Resp.error(1001,"谷歌验证码错误");
 				}
 			}
-			DomainsEntity domainsEntity=domainsService.getDomainsByUrl(getServerName());
-			currentSessionId.put(Thread.currentThread(),domainsEntity.getOrg_id()+"");
+//			DomainsEntity domainsEntity=domainsService.getDomainsByUrl(getServerName());
+			currentSessionId.put(Thread.currentThread(),"1");
 			SysLoginResp resp = new SysLoginResp();
 			userEntity.setPassword("");
 			userEntity.setGoogleKaptchaKey("");
