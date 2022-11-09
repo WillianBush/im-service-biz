@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.*;
 import net.chenlin.dp.common.annotation.SysLog;
@@ -48,6 +49,12 @@ public class MemberController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增用户")
 	public Resp save(@RequestBody MemberEntity member) {
+		if (StringUtils.isEmpty(member.getPassword())) {
+			return Resp.error(500, "密码不能为空");
+		}
+		if (StringUtils.isEmpty(member.getNickname()) || member.getNickname().contains(" ")) {
+			return Resp.error(500, "昵称不呢为空且不能含有空格");
+		}
 		return memberService.saveMember(member);
 	}
 	

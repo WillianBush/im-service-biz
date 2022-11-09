@@ -79,17 +79,19 @@ public class MemberServiceImpl implements MemberService {
 	public Resp saveMember(MemberEntity member) {
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
 		//根据username查询是否存在
-		Map para=new HashMap();
+		Map<String,Object> para=new HashMap<>();
 		para.put("username",member.getUsername());
 		Page<MemberEntity> rsPage=listMember(para);
 		if(rsPage.getRows().size()>0){
 			return Resp.error(Resp.error,"用户已经存在");
 		}
-		Long number = redisCacheManager.incr(RedisCacheKeys.REDIS_KEY_CREATE_MEMBERID, 1L);
-		member.setId(sw.createId());
-		member.setMemberid(number+"");
+		long number = redisCacheManager.incr(RedisCacheKeys.REDIS_KEY_CREATE_MEMBERID,1);
+		member.setMemberid(Long.toString(number));
+		member.setUsername(RedisCacheKeys.REDIS_KEY_CREATE_USERNAME+number);
+		member.setTelphone(RedisCacheKeys.default_telphone);
 		//普通用户
 		member.setMembertype(0);
+		member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
 		int count = memberMapper.save(member);
 		return CommonUtils.msgResp(count);
 	}
@@ -98,19 +100,20 @@ public class MemberServiceImpl implements MemberService {
 	public Resp batchSaveMember(List<MemberEntity> members) {
 		log.info("批量添加用户---startcheck");
 		for (MemberEntity memberEntity: members) {
+			if (StringUtils.isEmpty(memberEntity.getPassword())) {
+				return Resp.error(500, "密码不能为空");
+			}
+			if (StringUtils.isEmpty(memberEntity.getNickname()) || memberEntity.getNickname().contains(" ")) {
+				return Resp.error(500, "昵称不呢为空且不能含有空格");
+			}
 			log.info("批量添加用户---校验用户是否存在");
 			if (memberMapper.isExitByNickname(memberEntity.getNickname()) > 0L) {
 				log.info("批量添加用户---昵称重复");
 				return Resp.error(500, "昵称重复");
 			}
-			if (memberMapper.getByUsername(memberEntity.getUsername()) != null) {
-				log.info("批量添加用户---手机号重复");
-				return Resp.error(500, "手机号重复");
-			}
+
 		}
-		members.forEach(memberEntity -> {
-			saveMember(memberEntity);
-		});
+		members.forEach(this::saveMember);
 		return Resp.ok();
 	}
 
@@ -132,7 +135,7 @@ public class MemberServiceImpl implements MemberService {
 
 	/**
 	 * 根据mid查询
-	 * @param mid
+	 * @param memberId
 	 * @return
 	 */
 	@Override
