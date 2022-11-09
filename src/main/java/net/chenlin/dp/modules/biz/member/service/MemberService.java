@@ -41,11 +41,11 @@ public interface MemberService {
     MemberEntity getByUserName(String username);
 
     /**
-     * 根据id查询
-     * @param mid
+     * 根据memberId查询
+     * @param memberId
      * @return
      */
-    Resp<MemberEntity> getMemberByMid(String mid);
+    Resp<MemberEntity> getMemberByMid(String memberId);
 
     /**
      * 修改
