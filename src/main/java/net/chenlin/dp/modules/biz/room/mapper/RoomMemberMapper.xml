@@ -86,4 +86,20 @@
 		where room_id = #{roomId}
 	</select>
 
+	<select id="getRoomMember" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
+		SELECT
+		`id`,
+		`room_id`,
+		`member_id`,
+		`is_manager`
+		FROM
+		room_member
+		where
+		1=1
+		<if test="id != null"> and `id` = #{id} </if>
+		<if test="room_id != null"> and `room_id` = #{room_id} </if>
+		<if test="member_id != null"> and `member_id` = #{member_id} </if>
+		<if test="is_manager != null"> and `is_manager` = #{is_manager} </if>
+	</select>
+
 </mapper>

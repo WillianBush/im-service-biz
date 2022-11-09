@@ -58,8 +58,16 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
 		roomMember.setId(sw.createId());
 		roomMember.setCreateDate(new Date());
+		RoomMemberEntity rmParam=new RoomMemberEntity();
 		/*** 根据memberId 查询 member 得到 id */
 		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMember_id(), 1);
+		rmParam.setRoom_id(roomMember.getRoom_id());
+		rmParam.setMember_id(memberEntity.getId());
+		//查询是否已经存在
+		RoomMemberEntity rsRm=roomMemberMapper.getRoomMember(rmParam);
+		if(null!=rsRm){
+			return Resp.error("不能重复添加群成员！");
+		}
 		roomMember.setMember_id(memberEntity.getId());
 		int count = roomMemberMapper.save(roomMember);
 		return CommonUtils.msgResp(count);
