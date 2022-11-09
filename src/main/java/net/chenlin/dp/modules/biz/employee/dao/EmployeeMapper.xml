@@ -136,7 +136,6 @@
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>
-			and org_id = #{org_id}
 	</delete>
 
 	<update id="bindIP">
