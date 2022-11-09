@@ -147,7 +147,7 @@ public class MemberController extends AbstractController {
 	@SysLog("新增")
 	@GetMapping("/getByMid")
 	@ApiOperation(value = "批量新增用户")
-	public Resp<MemberEntity> getByMid(@RequestParam String mid) {
+	public Resp<MemberEntity> getByMid(@RequestParam(value = "mid") String mid) {
 		return memberService.getMemberByMid(mid);
 	}
 }
