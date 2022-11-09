@@ -5,6 +5,7 @@ import java.util.Map;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.exception.RRException;
 import org.springframework.context.annotation.DependsOn;
 import net.chenlin.dp.common.exception.GoLoginException;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class YyIpListController extends AbstractController {
 	@ApiOperation(value = "列表")
 	public Page<YyIpListEntity> list(@RequestBody Map<String, Object> params) {
 		if (null == params.get("type") || params.get("type") == "") {
-			throw new GoLoginException("type不能为空",5001);
+			throw new RRException("type不能为空");
 		}
 		return yyIpListService.listYyIpList(params);
 	}
@@ -54,14 +55,16 @@ public class YyIpListController extends AbstractController {
 	@ApiOperation(value = "新增")
 	public Resp<YyIpListEntity> save(@RequestBody YyIpListEntity yyIpList) {
 		if (null == yyIpList.getIp_address() || yyIpList.getIp_address().isEmpty()) {
-			throw new GoLoginException("IP地址为空", 5002);
+			return Resp.error("IP地址为空");
 		}
 
 		if (null == yyIpList.getType() || yyIpList.getType().isEmpty() ) {
-			throw new GoLoginException("IP类型参数错误", 5003);
+			return Resp.error("IP类型参数错误");
 		}
-
-
+		YyIpListEntity yyIpListEntity= yyIpListService.getByIP(yyIpList.getIp_address(),0);
+		if (null != yyIpListEntity){
+			return Resp.error("ip已存在");
+		}
 		return yyIpListService.saveYyIpList(yyIpList);
 	}
 	
@@ -74,7 +77,7 @@ public class YyIpListController extends AbstractController {
 	@ApiOperation(value = "根据id查询详情")
 	public Resp<YyIpListEntity> getById(@RequestBody Long id) {
 		if (null == id) {
-			throw new GoLoginException("id不能为空", 5005);
+			throw new RRException("id不能为空");
 		}
 		return yyIpListService.getYyIpListById(id);
 	}
@@ -89,7 +92,7 @@ public class YyIpListController extends AbstractController {
 	@ApiOperation(value = "修改")
 	public Resp<Integer> update(@RequestBody YyIpListEntity yyIpList) {
 		if (null == yyIpList.getId()) {
-			throw new GoLoginException("id参数不能为空", 5006);
+			throw new RRException("id参数不能为空");
 		}
 		return yyIpListService.updateYyIpList(yyIpList);
 	}
@@ -104,7 +107,7 @@ public class YyIpListController extends AbstractController {
 	@ApiOperation(value = "删除")
 	public Resp batchRemove(@RequestBody Long[] id) {
 		if (0 == id.length) {
-			throw new GoLoginException("id不能为空", 5005);
+			throw new RRException("id不能为空");
 		}
 
 		return  yyIpListService.batchRemove(id);
