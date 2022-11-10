@@ -82,7 +82,7 @@ public class EmployeeController extends AbstractController {
 		}
 
 		employeeService.saveEmployee(employee,member);
-		return Resp.error("新增失败");
+		return Resp.ok("新增成功");
 	}
 	
 	/**
