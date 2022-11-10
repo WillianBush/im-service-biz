@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.member.entity;
 import lombok.*;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -268,4 +269,9 @@ public class MemberEntity implements Serializable {
 	private Integer org_id;
 
 
+	/**
+	 * 是否为特权
+	 * */
+	@Transient
+	private Integer is_employee;
 }

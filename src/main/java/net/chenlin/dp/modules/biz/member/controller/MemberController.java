@@ -60,11 +60,6 @@ public class MemberController extends AbstractController {
 			return Resp.error(500, "昵称不呢为空且不能含有空格");
 		}
 		Resp resp = memberService.saveMember(member);
-		if (1 == is_employee) {
-			EmployeeEntity employee = null;
-			employeeService.saveEmployee(employee, member);
-
-		}
 		return resp;
 	}
 	
