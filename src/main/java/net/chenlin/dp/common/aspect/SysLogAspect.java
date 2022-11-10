@@ -1,5 +1,6 @@
 package net.chenlin.dp.common.aspect;
 
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.common.utils.JSONUtils;
@@ -27,6 +28,7 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Component
+@Slf4j
 public class SysLogAspect {
 	
 	@Resource
@@ -42,6 +44,9 @@ public class SysLogAspect {
 
 	@Around("logPointCut()")
 	public Object around(ProceedingJoinPoint point) throws Throwable {
+		if (null == point) {
+			return null;
+		}
 		long beginTime = System.currentTimeMillis();
 		//执行方法
 		Object result = point.proceed();
@@ -71,7 +76,7 @@ public class SysLogAspect {
 			String params = JSONUtils.beanToJson(args[0]);
 			sysLog.setParams(params);
 		}catch (Exception e){
-
+			log.error("",e);
 		}
 		//设置IP地址
 		sysLog.setIp(WebUtils.getIpAddr());
@@ -80,6 +85,7 @@ public class SysLogAspect {
 		if(null == currUser ) {
 			sysLog.setUserId(-1L);
 			sysLog.setUsername("未知用户");
+			return;
 		} else {
 			if(sysLog.getParams() != null) {
 				sysLog.setUserId(currUser.getUserId());
@@ -87,6 +93,7 @@ public class SysLogAspect {
 			} else {
 				sysLog.setUserId(-1L);
 				sysLog.setUsername("获取用户信息为空");
+				return;
 			}
 		}
 		sysLog.setTime(time);
