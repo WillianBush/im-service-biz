@@ -80,12 +80,12 @@ public class EmployeeController extends AbstractController {
 		if (employeeEntity != null){
 			return Resp.error("用户已经是特权用户");
 		}
-		employee.setMember_id(member.getMemberid());
-		employee.setLastLoginIp(member.getLastloginip());
-		employee.setCreateDate(new Date());
-		employee.setName(member.getNickname());
-		employee.setMember_uuid(member.getId());
-		return employeeService.saveEmployee(employee);
+
+		Integer i = employeeService.saveEmployee(employee,member);
+		if (i >0 ) {
+			return Resp.ok();
+		}
+		return Resp.error("新增失败");
 	}
 	
 	/**

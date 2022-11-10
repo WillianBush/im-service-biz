@@ -5,6 +5,7 @@ import java.util.Map;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 
 /**
  * 
@@ -24,8 +25,10 @@ public interface EmployeeService {
      * @param employee
      * @return
      */
-	Resp<EmployeeEntity> saveEmployee(EmployeeEntity employee);
+	Resp<Integer> saveEmployee(EmployeeEntity employee);
 
+
+    Integer saveEmployee(EmployeeEntity employee,MemberEntity member);
     /**
      * 根据id查询
      * @param id

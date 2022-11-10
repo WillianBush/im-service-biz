@@ -1,10 +1,12 @@
 package net.chenlin.dp.modules.biz.employee.service.impl;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.utils.IdGenerate;
+import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -47,14 +49,24 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
 	@Override
-	public Resp<EmployeeEntity> saveEmployee(EmployeeEntity employee) {
+	public Resp<Integer> saveEmployee(EmployeeEntity employee) {
 		employee.setOrg_id(1);
 		employee.setId(IdGenerate.generateUUID());
 		int count = employeeMapper.save(employee);
 		return CommonUtils.msgResp(count);
 	}
 
-    /**
+	@Override
+	public Integer saveEmployee(EmployeeEntity employee,MemberEntity member) {
+		employee.setMember_id(member.getMemberid());
+		employee.setLastLoginIp(member.getLastloginip());
+		employee.setCreateDate(new Date());
+		employee.setName(member.getNickname());
+		employee.setMember_uuid(member.getId());
+		return this.saveEmployee(employee).getData();
+	}
+
+	/**
      * 根据id查询
      * @param id
      * @return
