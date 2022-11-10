@@ -9,6 +9,7 @@ import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.modules.sys.entity.DomainsEntity;
 import net.chenlin.dp.modules.sys.service.DomainsService;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class AdminDomainController extends AbstractController {
      * @return
      */
     @SysLog("新增机构域名")
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public R save(@RequestBody DomainsEntity domainsEntity) {
         return domainsService.save(domainsEntity);
     }
@@ -40,7 +41,7 @@ public class AdminDomainController extends AbstractController {
      * @return
      */
     @SysLog("查询机构域名")
-    @RequestMapping("/getDomainByOrgId")
+    @PostMapping("/getDomainByOrgId")
     public R getDomainByOrgId(@RequestBody Integer org_id) {
         return domainsService.getDomainByOrgId(org_id);
     }
