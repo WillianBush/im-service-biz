@@ -2,17 +2,19 @@ package net.chenlin.dp.modules.sys.controller;
 
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.sys.entity.DomainsEntity;
+import net.chenlin.dp.modules.sys.service.DomainsConfigService;
 import net.chenlin.dp.modules.sys.service.DomainsService;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/sys/domain")
@@ -24,13 +26,14 @@ public class AdminDomainController extends AbstractController {
 
     private DomainsService domainsService;
 
+    private DomainsConfigService domainsConfigService;
     /**
      * 新增机构域名
      * @param domainsEntity
      * @return
      */
     @SysLog("新增机构域名")
-    @PostMapping("/save")
+    @PostMapping("/saveDb")
     public R save(@RequestBody DomainsEntity domainsEntity) {
         return domainsService.save(domainsEntity);
     }
@@ -44,6 +47,27 @@ public class AdminDomainController extends AbstractController {
     @PostMapping("/getDomainByOrgId")
     public R getDomainByOrgId(@RequestBody Integer org_id) {
         return domainsService.getDomainByOrgId(org_id);
+    }
+
+
+    /**
+     * 保存域名配置
+     * @param params
+     * @return
+     */
+    @PostMapping("/save")
+    @ApiOperation(value = "保存域名配置")
+    public Resp listLog(@RequestBody Map<String, Object> params) {
+        return domainsConfigService.save(params);
+    }
+
+    /**
+     * 查看配置
+     * @return
+     */
+    @GetMapping("/info")
+    public Resp info() {
+        return domainsConfigService.get();
     }
 
 }
