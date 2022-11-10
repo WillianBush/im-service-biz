@@ -24,7 +24,7 @@ public interface DefaultEmoticonService {
      * @param defaultEmoticon
      * @return
      */
-	Resp<DefaultEmoticonEntity> saveDefaultEmoticon(DefaultEmoticonEntity defaultEmoticon);
+	Resp<Integer> saveDefaultEmoticon(DefaultEmoticonEntity defaultEmoticon);
 
     /**
      * 根据id查询

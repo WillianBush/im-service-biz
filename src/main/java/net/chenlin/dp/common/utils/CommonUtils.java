@@ -85,9 +85,9 @@ public class CommonUtils {
 		return R.ok().put(SystemConstant.DATA_ROWS, data);
 	}
 
-	public static Resp<Integer>  msgResp(Integer count) {
+	public static <T> Resp<T>  msgResp(Integer count) {
 		if(isIntThanZero(count)){
-			return Resp.ok(MsgConstant.MSG_OPERATION_SUCCESS,count);
+			return Resp.ok(MsgConstant.MSG_OPERATION_SUCCESS);
 		}
 		return Resp.error(MsgConstant.MSG_OPERATION_FAILED);
 	}

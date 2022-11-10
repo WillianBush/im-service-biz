@@ -81,10 +81,7 @@ public class EmployeeController extends AbstractController {
 			return Resp.error("用户已经是特权用户");
 		}
 
-		Integer i = employeeService.saveEmployee(employee,member);
-		if (  null != i && 1 == i ) {
-			return Resp.ok();
-		}
+		employeeService.saveEmployee(employee,member);
 		return Resp.error("新增失败");
 	}
 	

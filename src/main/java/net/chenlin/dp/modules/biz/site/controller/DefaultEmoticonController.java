@@ -49,7 +49,7 @@ public class DefaultEmoticonController extends AbstractController {
 	@SysLog("新增")
 	@GetMapping("/save")
 	@ApiOperation(value = "新增")
-	public Resp<DefaultEmoticonEntity> save(@RequestBody DefaultEmoticonEntity defaultEmoticon) {
+	public Resp<Integer> save(@RequestBody DefaultEmoticonEntity defaultEmoticon) {
 		return defaultEmoticonService.saveDefaultEmoticon(defaultEmoticon);
 	}
 	

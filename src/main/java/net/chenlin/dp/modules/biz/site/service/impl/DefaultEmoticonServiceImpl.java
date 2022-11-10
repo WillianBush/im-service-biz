@@ -45,7 +45,7 @@ public class DefaultEmoticonServiceImpl implements DefaultEmoticonService {
      * @return
      */
 	@Override
-	public Resp<DefaultEmoticonEntity> saveDefaultEmoticon(DefaultEmoticonEntity defaultEmoticon) {
+	public Resp<Integer> saveDefaultEmoticon(DefaultEmoticonEntity defaultEmoticon) {
 		int count = defaultEmoticonMapper.save(defaultEmoticon);
 		return CommonUtils.msgResp(count);
 	}
