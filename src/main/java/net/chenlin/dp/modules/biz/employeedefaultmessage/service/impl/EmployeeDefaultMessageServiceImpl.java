@@ -109,4 +109,11 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
 		return CommonUtils.msgResp(id, count);
 	}
 
+	@Override
+	public EmployeeDefaultMessageEntity getEmployeeDefaultMessageByInviteCode(String inviteCode) {
+		return	employeeDefaultMessageMapper.selectOne(EmployeeDefaultMessageEntity.builder()
+						.invite_code(inviteCode)
+				.build());
+	}
+
 }

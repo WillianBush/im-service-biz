@@ -70,6 +70,10 @@ public class EmployeeDefaultMessageController extends AbstractController {
 		if (member.getData() == null) {
 			return Resp.error("会员不存在");
 		}
+		EmployeeDefaultMessageEntity inviteCode =employeeDefaultMessageService.getEmployeeDefaultMessageByInviteCode(employeeDefaultMessage.getInvite_code());
+		if ( null != inviteCode) {
+			return Resp.error("邀请码重复");
+		}
 		employeeDefaultMessage.setEmployee_id(employee.getId());
 		employeeDefaultMessage.setMember_id(member.getData().getMemberid());
 		return employeeDefaultMessageService.saveEmployeeDefaultMessage(employeeDefaultMessage);

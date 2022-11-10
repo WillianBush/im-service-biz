@@ -46,5 +46,7 @@ public interface EmployeeDefaultMessageService {
      * @return
      */
 	Resp batchRemove(Object[] id);
-	
+
+
+    EmployeeDefaultMessageEntity getEmployeeDefaultMessageByInviteCode(String inviteCode);
 }
