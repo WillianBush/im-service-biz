@@ -16,4 +16,27 @@
 				AND http_domain= #{http_domain}
 			</if>
 	</select>
+
+	<insert id="save" parameterType="net.chenlin.dp.modules.sys.entity.DomainsEntity" useGeneratedKeys="true" keyProperty="org_id">
+		INSERT INTO domains (
+			org_id,
+			http_domain,
+			ws_domain,
+			oss_domain
+		)
+		VALUES (
+				   #{org_id},
+				   #{http_domain},
+				   #{ws_domain},
+				   #{oss_domain}
+			   )
+	</insert>
+
+	<select id="getDomainByOrgId" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+		SELECT
+		*
+		FROM
+		domains
+		where org_id = #{org_id}
+	</select>
 </mapper>
