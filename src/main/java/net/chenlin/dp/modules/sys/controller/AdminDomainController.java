@@ -38,9 +38,9 @@ public class AdminDomainController extends AbstractController {
     @PostMapping("/list")
     @ApiOperation(value = "站点列表")
     public Page<DomainsEntity> list(@RequestBody(required = false) Map<String, Object> params) {
-        if (!isSuperAdmin()) {
-            params.put("userIdCreate", getUserId());
-        }
+//        if (!isSuperAdmin()) {
+//            params.put("userIdCreate", getUserId());
+//        }
         return domainsService.listDomain(params);
     }
 
