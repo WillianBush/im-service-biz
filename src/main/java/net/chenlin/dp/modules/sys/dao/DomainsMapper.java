@@ -1,7 +1,6 @@
 package net.chenlin.dp.modules.sys.dao;
 
 import net.chenlin.dp.common.mapper.TkBaseMapper;
-import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.sys.entity.DomainsEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,4 +15,6 @@ public interface DomainsMapper extends TkBaseMapper<DomainsEntity> {
 	DomainsEntity selectObj(DomainsEntity domainsEntity);
 
 	DomainsEntity getDomainByOrgId(@Param("org_id") int org_id);
+
+	int remove(@Param("org_id") int org_id);
 }

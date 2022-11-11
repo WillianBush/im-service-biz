@@ -21,9 +21,9 @@ public class DomainsEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 角色id
+     * id
      */
-    @ApiModelProperty(value = "角色id")
+    @ApiModelProperty(value = "id")
     private Long domain_id;
 
     /**

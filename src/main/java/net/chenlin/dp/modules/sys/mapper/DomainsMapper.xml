@@ -2,41 +2,78 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.chenlin.dp.modules.sys.dao.DomainsMapper">
-	
-	<select id="selectObj" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
-		SELECT
-			*
-		FROM
-			domains
-			where 1=1
-			<if test="org_id != null ">
-				AND org_id = #{org_id}
-			</if>
-			<if test="http_domain != null and http_domain.trim() != ''">
-				AND http_domain= #{http_domain}
-			</if>
-	</select>
 
-	<insert id="save" parameterType="net.chenlin.dp.modules.sys.entity.DomainsEntity" useGeneratedKeys="true" keyProperty="org_id">
-		INSERT INTO domains (
-			org_id,
-			http_domain,
-			ws_domain,
-			oss_domain
-		)
-		VALUES (
-				   #{org_id},
-				   #{http_domain},
-				   #{ws_domain},
-				   #{oss_domain}
-			   )
-	</insert>
+    <select id="selectObj" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+        SELECT
+        *
+        FROM
+        domains
+        where 1=1
+        <if test="org_id != null ">
+            AND org_id = #{org_id}
+        </if>
+        <if test="http_domain != null and http_domain.trim() != ''">
+            AND http_domain= #{http_domain}
+        </if>
+    </select>
 
-	<select id="getDomainByOrgId" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
-		SELECT
-		*
-		FROM
-		domains
-		where org_id = #{org_id}
-	</select>
+    <insert id="save" parameterType="net.chenlin.dp.modules.sys.entity.DomainsEntity" useGeneratedKeys="true"
+            keyProperty="org_id">
+        INSERT INTO domains (org_id,
+                             http_domain,
+                             ws_domain,
+                             oss_domain)
+        VALUES (#{org_id},
+                #{http_domain},
+                #{ws_domain},
+                #{oss_domain})
+    </insert>
+
+    <select id="getDomainByOrgId" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+        SELECT *
+        FROM domains
+        where org_id = #{org_id}
+    </select>
+
+    <select id="listForPage" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+        SELECT
+        domain_id,
+        org_id,
+        http_domain,
+        ws_domain,
+        oss_domain
+        FROM domains
+        <where>
+             1=1
+            <if test="org_id != null"> AND org_id = #{org_id},</if>
+            <if test="http_domain != null and http_domain.trim() != ''">
+                AND http_domain LIKE concat('%',#{http_domain},'%')
+            </if>
+            <if test="ws_domain != null and ws_domain.trim() != ''">
+                AND ws_domain LIKE concat('%',#{ws_domain},'%')
+            </if>
+            <if test="oss_domain != null and oss_domain.trim() != ''">
+                AND oss_domain LIKE concat('%',#{oss_domain},'%')
+            </if>
+        </where>
+        ORDER BY
+        org_id DESC
+    </select>
+
+
+    <update id="update">
+        UPDATE domains
+        <set>
+            <if test="http_domain != null">http_domain = #{http_domain},</if>
+            <if test="ws_domain != null">ws_domain = #{ws_domain},</if>
+            <if test="oss_domain != null">oss_domain = #{oss_domain}</if>
+        </set>
+        where org_id = #{org_id}
+    </update>
+
+    <delete id="remove">
+        DELETE
+        FROM domains
+        where org_id = #{org_id}
+    </delete>
 </mapper>
