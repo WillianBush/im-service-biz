@@ -45,7 +45,7 @@
         FROM domains
         <where>
              1=1
-            <if test="org_id != null"> AND org_id = #{org_id},</if>
+            <if test="org_id != null"> AND org_id = #{org_id} </if>
             <if test="http_domain != null and http_domain.trim() != ''">
                 AND http_domain LIKE concat('%',#{http_domain},'%')
             </if>
