@@ -64,8 +64,8 @@ public class DomainsServiceImpl implements DomainsService {
     }
 
     @Override
-    public R remove(int org_id) {
-        int count = domainsMapper.remove(org_id);
+    public R remove(Long[] org_id) {
+        int count = domainsMapper.batchRemove(org_id);
         return CommonUtils.msg(count);
     }
 }

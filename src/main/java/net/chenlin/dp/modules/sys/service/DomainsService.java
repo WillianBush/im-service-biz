@@ -43,5 +43,5 @@ public interface DomainsService {
      * @param org_id
      * @return
      */
-    R remove(int org_id);
+    R remove(Long[] org_id);
 }
