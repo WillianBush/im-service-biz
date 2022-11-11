@@ -41,7 +41,7 @@ public class AdminDomainController extends AbstractController {
         if (!isSuperAdmin()) {
             params.put("userIdCreate", getUserId());
         }
-        return domainsService.listUser(params);
+        return domainsService.listDomain(params);
     }
 
 

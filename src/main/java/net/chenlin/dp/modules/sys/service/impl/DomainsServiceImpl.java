@@ -30,7 +30,7 @@ public class DomainsServiceImpl implements DomainsService {
     }
 
     @Override
-    public Page<DomainsEntity> listUser(Map<String, Object> params) {
+    public Page<DomainsEntity> listDomain(Map<String, Object> params) {
         Query query = new Query(params);
         Page<DomainsEntity> page = new Page<>(query);
         List<DomainsEntity> resp = domainsMapper.listForPage(page, query);
