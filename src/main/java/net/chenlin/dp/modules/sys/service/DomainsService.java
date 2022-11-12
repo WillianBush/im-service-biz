@@ -40,8 +40,8 @@ public interface DomainsService {
 
     /**
      * 删除站点
-     * @param org_id
+     * @param domain_id
      * @return
      */
-    R remove(Long[] org_id);
+    R remove(Long[] domain_id);
 }
