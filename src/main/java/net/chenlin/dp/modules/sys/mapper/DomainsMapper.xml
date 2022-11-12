@@ -86,4 +86,21 @@
             #{domain_id}
         </foreach>
     </delete>
+
+    <insert id="saveOrgDomains" parameterType="net.chenlin.dp.modules.sys.entity.DomainsEntity" useGeneratedKeys="true"
+            keyProperty="org_id">
+        INSERT INTO sys_org_domains (org_id,
+                             domain_id)
+        VALUES (#{org_id},
+                #{domain_id})
+    </insert>
+
+    <delete id="delOrgDomains">
+        DELETE
+        FROM sys_org_domains
+        WHERE
+        1=1
+        <if test="org_id != null"> AND org_id = #{org_id} </if>
+        <if test="domain_id != null"> AND domain_id = #{domain_id} </if>
+    </delete>
 </mapper>
