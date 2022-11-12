@@ -107,8 +107,8 @@ public class AdminDomainController extends AbstractController {
      */
     @SysLog("删除机构")
     @PostMapping("/remove")
-    public R remove(@RequestBody Long[] org_id) {
-        return domainsService.remove(org_id);
+    public R remove(@RequestBody Long[] domain_id) {
+        return domainsService.remove(domain_id);
     }
 
 }
