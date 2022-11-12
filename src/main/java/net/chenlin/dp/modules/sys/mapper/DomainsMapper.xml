@@ -37,15 +37,21 @@
 
     <select id="listForPage" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
         SELECT
-        domain_id,
-        org_id,
+        o.name org_name,
+        d.domain_id domain_id,
+        o.org_id org_id,
         http_domain,
         ws_domain,
         oss_domain
-        FROM domains
+        FROM
+        sys_org o
+        LEFT JOIN sys_org_domains od ON o.org_id = od.org_id
+        LEFT JOIN domains d ON od.domain_id = d.domain_id
+
         <where>
              1=1
-            <if test="org_id != null"> AND org_id = #{org_id} </if>
+            <if test="org_id != null"> AND o.org_id = #{org_id} </if>
+            <if test="org_name != null"> AND o.name LIKE concat('%',#{org_name},'%') </if>
             <if test="http_domain != null and http_domain.trim() != ''">
                 AND http_domain LIKE concat('%',#{http_domain},'%')
             </if>
@@ -57,7 +63,7 @@
             </if>
         </where>
         ORDER BY
-        org_id DESC
+        o.org_id DESC
     </select>
 
 
@@ -68,7 +74,7 @@
             <if test="ws_domain != null">ws_domain = #{ws_domain},</if>
             <if test="oss_domain != null">oss_domain = #{oss_domain}</if>
         </set>
-        where org_id = #{org_id}
+        where domain_id = #{domain_id}
     </update>
 
     <delete id="batchRemove">
