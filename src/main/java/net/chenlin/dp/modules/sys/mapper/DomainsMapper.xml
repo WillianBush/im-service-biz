@@ -81,9 +81,9 @@
         DELETE
         FROM domains
         WHERE
-        org_id IN
-        <foreach item="org_id" collection="array" open="(" separator="," close=")">
-            #{org_id}
+        domain_id IN
+        <foreach item="domain_id" collection="array" open="(" separator="," close=")">
+            #{domain_id}
         </foreach>
     </delete>
 </mapper>
