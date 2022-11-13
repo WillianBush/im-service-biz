@@ -22,11 +22,13 @@
         INSERT INTO domains (org_id,
                              http_domain,
                              ws_domain,
-                             oss_domain)
+                             oss_domain,
+                             admin_domain)
         VALUES (#{org_id},
                 #{http_domain},
                 #{ws_domain},
-                #{oss_domain})
+                #{oss_domain},
+                #{admin_domain})
     </insert>
 
     <select id="getDomainByOrgId" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
@@ -42,7 +44,8 @@
         o.org_id org_id,
         http_domain,
         ws_domain,
-        oss_domain
+        oss_domain,
+        admin_domain
         FROM
         sys_org o
         LEFT JOIN domains d ON o.org_id = d.org_id
@@ -60,6 +63,9 @@
             <if test="oss_domain != null and oss_domain.trim() != ''">
                 AND d.oss_domain LIKE concat('%',#{oss_domain},'%')
             </if>
+            <if test="admin_domain != null and admin_domain.trim() != ''">
+                AND d.admin_domain LIKE concat('%',#{admin_domain},'%')
+            </if>
         </where>
         ORDER BY
         o.org_id DESC
@@ -72,6 +78,7 @@
             <if test="http_domain != null">http_domain = #{http_domain},</if>
             <if test="ws_domain != null">ws_domain = #{ws_domain},</if>
             <if test="oss_domain != null">oss_domain = #{oss_domain}</if>
+            <if test="admin_domain != null">admin_domain = #{admin_domain}</if>
         </set>
         where domain_id = #{domain_id}
     </update>
@@ -84,22 +91,5 @@
         <foreach item="domain_id" collection="array" open="(" separator="," close=")">
             #{domain_id}
         </foreach>
-    </delete>
-
-    <insert id="saveOrgDomains" parameterType="net.chenlin.dp.modules.sys.entity.DomainsEntity" useGeneratedKeys="true"
-            keyProperty="org_id">
-        INSERT INTO sys_org_domains (org_id,
-                             domain_id)
-        VALUES (#{org_id},
-                #{domain_id})
-    </insert>
-
-    <delete id="delOrgDomains">
-        DELETE
-        FROM sys_org_domains
-        WHERE
-        1=1
-        <if test="org_id != null"> AND org_id = #{org_id} </if>
-        <if test="domain_id != null"> AND domain_id = #{domain_id} </if>
     </delete>
 </mapper>

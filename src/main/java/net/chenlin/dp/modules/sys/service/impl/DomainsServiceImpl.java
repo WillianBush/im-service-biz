@@ -48,9 +48,9 @@ public class DomainsServiceImpl implements DomainsService {
         }
 
         int count = domainsMapper.save(domainsEntity);
-        if(count>0){
-            domainsMapper.saveOrgDomains(domainsEntity);
-        }
+//        if(count>0){
+//            domainsMapper.saveOrgDomains(domainsEntity);
+//        }
         return CommonUtils.msg(count);
     }
 
@@ -69,13 +69,13 @@ public class DomainsServiceImpl implements DomainsService {
     @Override
     public R remove(Long[] domain_id) {
         int count = domainsMapper.batchRemove(domain_id);
-        if (count > 0) {
-            for (Long id : domain_id) {
-                DomainsEntity de = new DomainsEntity();
-                de.setDomain_id(id);
-                domainsMapper.delOrgDomains(de);
-            }
-        }
+//        if (count > 0) {
+//            for (Long id : domain_id) {
+//                DomainsEntity de = new DomainsEntity();
+//                de.setDomain_id(id);
+//                domainsMapper.delOrgDomains(de);
+//            }
+//        }
         return CommonUtils.msg(count);
     }
 }

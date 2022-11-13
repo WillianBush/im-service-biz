@@ -51,4 +51,9 @@ public class DomainsEntity implements Serializable {
      */
     @ApiModelProperty(value = "oss域名")
     private String oss_domain;
+    /**
+     * oss域名
+     */
+    @ApiModelProperty(value = "oss域名")
+    private String admin_domain;
 }
