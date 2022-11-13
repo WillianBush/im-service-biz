@@ -45,21 +45,20 @@
         oss_domain
         FROM
         sys_org o
-        LEFT JOIN sys_org_domains od ON o.org_id = od.org_id
-        LEFT JOIN domains d ON od.domain_id = d.domain_id
+        LEFT JOIN domains d ON o.org_id = d.org_id
 
         <where>
              1=1
             <if test="org_id != null"> AND o.org_id = #{org_id} </if>
             <if test="org_name != null"> AND o.name LIKE concat('%',#{org_name},'%') </if>
             <if test="http_domain != null and http_domain.trim() != ''">
-                AND http_domain LIKE concat('%',#{http_domain},'%')
+                AND d.http_domain LIKE concat('%',#{http_domain},'%')
             </if>
             <if test="ws_domain != null and ws_domain.trim() != ''">
-                AND ws_domain LIKE concat('%',#{ws_domain},'%')
+                AND d.ws_domain LIKE concat('%',#{ws_domain},'%')
             </if>
             <if test="oss_domain != null and oss_domain.trim() != ''">
-                AND oss_domain LIKE concat('%',#{oss_domain},'%')
+                AND d.oss_domain LIKE concat('%',#{oss_domain},'%')
             </if>
         </where>
         ORDER BY
