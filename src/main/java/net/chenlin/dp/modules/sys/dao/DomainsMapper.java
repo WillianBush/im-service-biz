@@ -17,4 +17,8 @@ public interface DomainsMapper extends TkBaseMapper<DomainsEntity> {
 	DomainsEntity getDomainByOrgId(@Param("org_id") int org_id);
 
 	int remove(@Param("org_id") int org_id);
+
+	int saveOrgDomains(DomainsEntity domainsEntity);
+
+	int delOrgDomains(DomainsEntity domainsEntity);
 }
