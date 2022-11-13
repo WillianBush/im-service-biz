@@ -12,6 +12,7 @@ import java.util.List;
  * @url www.chenlintech.com
  * @date 2017年8月17日 上午10:31:09
  */
+
 public class SysOrgEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -54,12 +55,32 @@ public class SysOrgEntity implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	private Timestamp gmtCreate;
-	
+	private Timestamp gmt_create;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public Timestamp getGmt_create() {
+		return gmt_create;
+	}
+
+	public void setGmt_create(Timestamp gmt_create) {
+		this.gmt_create = gmt_create;
+	}
+
+	public Timestamp getGmt_modified() {
+		return gmt_modified;
+	}
+
+	public void setGmt_modified(Timestamp gmt_modified) {
+		this.gmt_modified = gmt_modified;
+	}
+
 	/**
 	 * 修改时间
 	 */
-	private Timestamp gmtModified;
+	private Timestamp gmt_modified;
 	
 	/**
 	 * ztree属性
@@ -126,22 +147,6 @@ public class SysOrgEntity implements Serializable {
 
 	public void setStatus(Integer status) {
 		this.status = status;
-	}
-
-	public Timestamp getGmtCreate() {
-		return gmtCreate;
-	}
-
-	public void setGmtCreate(Timestamp gmtCreate) {
-		this.gmtCreate = gmtCreate;
-	}
-
-	public Timestamp getGmtModified() {
-		return gmtModified;
-	}
-
-	public void setGmtModified(Timestamp gmtModified) {
-		this.gmtModified = gmtModified;
 	}
 
 	public Boolean getOpen() {
