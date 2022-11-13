@@ -1,9 +1,12 @@
 package net.chenlin.dp.modules.sys.service;
 
+import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.modules.sys.entity.DomainsEntity;
 import net.chenlin.dp.modules.sys.entity.SysOrgEntity;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 组织机构
@@ -15,7 +18,7 @@ public interface SysOrgService {
 	 * 查询机构列表
 	 * @return
 	 */
-	List<SysOrgEntity> listOrg();
+	Page<SysOrgEntity> listOrg(Map<String, Object> params);
 
 	/**
 	 * 查询机构列表：ztree数据源

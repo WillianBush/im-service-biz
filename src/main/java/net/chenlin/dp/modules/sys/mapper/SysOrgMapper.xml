@@ -21,7 +21,7 @@
 			parent_id = #{value}
 	</select>
 	
-	<select id="list" resultType="net.chenlin.dp.modules.sys.entity.SysOrgEntity">
+	<select id="listForPage" resultType="net.chenlin.dp.modules.sys.entity.SysOrgEntity">
 		SELECT
 			o.org_id orgId,
 			o.parent_id parentId,

@@ -15,6 +15,4 @@ public interface DomainsMapper extends TkBaseMapper<DomainsEntity> {
 	DomainsEntity selectObj(DomainsEntity domainsEntity);
 
 	DomainsEntity getDomainByOrgId(@Param("org_id") int org_id);
-
-	int remove(@Param("org_id") int org_id);
 }

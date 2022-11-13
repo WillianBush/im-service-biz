@@ -1,10 +1,13 @@
 package net.chenlin.dp.modules.sys.service.impl;
 
 import net.chenlin.dp.common.constant.MsgConstant;
+import net.chenlin.dp.common.entity.Page;
+import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.sys.dao.SysOrgMapper;
 import net.chenlin.dp.modules.sys.dao.SysRoleOrgMapper;
+import net.chenlin.dp.modules.sys.entity.DomainsEntity;
 import net.chenlin.dp.modules.sys.entity.SysOrgEntity;
 import net.chenlin.dp.modules.sys.service.SysOrgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 组织机构
@@ -35,8 +39,12 @@ public class SysOrgServiceImpl implements SysOrgService {
 	 * @return
 	 */
 	@Override
-	public List<SysOrgEntity> listOrg() {
-		return sysOrgMapper.list();
+	public Page<SysOrgEntity> listOrg(Map<String, Object> params) {
+		Query query = new Query(params);
+		Page<SysOrgEntity> page = new Page<>(query);
+		List<SysOrgEntity> resp = sysOrgMapper.listForPage(page, query);
+		page.setRows(resp);
+		return page;
 	}
 
 	/**

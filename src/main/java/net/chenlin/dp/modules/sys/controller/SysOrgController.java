@@ -2,16 +2,20 @@ package net.chenlin.dp.modules.sys.controller;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.annotation.SysLog;
+import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.R;
+import net.chenlin.dp.modules.sys.entity.DomainsEntity;
 import net.chenlin.dp.modules.sys.entity.SysOrgEntity;
 import net.chenlin.dp.modules.sys.service.SysOrgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 组织机构
@@ -29,9 +33,9 @@ public class SysOrgController extends AbstractController {
 	 * 机构列表
 	 * @return
 	 */
-	@RequestMapping("/list")
-	public List<SysOrgEntity> list() {
-		return sysOrgService.listOrg();
+	@PostMapping("/list")
+	public Page<SysOrgEntity> list(@RequestBody(required = false) Map<String, Object> params) {
+		return sysOrgService.listOrg(params);
 	}
 	
 	/**
@@ -49,7 +53,7 @@ public class SysOrgController extends AbstractController {
 	 * @return
 	 */
 	@SysLog("新增机构")
-	@RequestMapping("/save")
+	@PostMapping("/save")
 	public R save(@RequestBody SysOrgEntity org) {
 		return sysOrgService.saveOrg(org);
 	}
