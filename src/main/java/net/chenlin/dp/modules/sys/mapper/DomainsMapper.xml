@@ -41,18 +41,18 @@
         SELECT
         o.name org_name,
         d.domain_id domain_id,
-        o.org_id org_id,
+        d.org_id org_id,
         http_domain,
         ws_domain,
         oss_domain,
         admin_domain
         FROM
-        sys_org o
-        LEFT JOIN domains d ON o.org_id = d.org_id
+        domains d
+        LEFT JOIN sys_org o ON d.org_id = o.org_id
 
         <where>
              1=1
-            <if test="org_id != null"> AND o.org_id = #{org_id} </if>
+            <if test="org_id != null"> AND d.org_id = #{org_id} </if>
             <if test="org_name != null"> AND o.name LIKE concat('%',#{org_name},'%') </if>
             <if test="http_domain != null and http_domain.trim() != ''">
                 AND d.http_domain LIKE concat('%',#{http_domain},'%')
@@ -68,7 +68,7 @@
             </if>
         </where>
         ORDER BY
-        o.org_id DESC
+        d.org_id DESC
     </select>
 
 
