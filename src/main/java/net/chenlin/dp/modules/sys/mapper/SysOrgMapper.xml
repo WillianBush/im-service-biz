@@ -36,7 +36,9 @@
 			o.code,
 			o.name,
 			o.status,
-			o.order_num orderNum
+			o.order_num orderNum,
+			o.gmt_modified,
+			o.gmt_create
 		FROM
 			sys_org o
 		ORDER BY
