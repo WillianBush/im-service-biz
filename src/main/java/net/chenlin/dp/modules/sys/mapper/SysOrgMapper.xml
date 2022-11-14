@@ -44,6 +44,7 @@
 			where 1=1
 		<if test="code != null">and code = #{code} </if>
 		<if test="orgId != null"> and org_id = #{orgId} </if>
+		<if test="status != null"> and status = #{status} </if>
 		<if test="name != null">and name LIKE concat('%',#{name},'%') </if>
 		<if test="startTime != null and startTime.trim() != ''">
 			AND gmt_create &gt;= #{startdate}
