@@ -1,11 +1,13 @@
 package net.chenlin.dp.modules.sys.service.impl;
 
 import io.swagger.models.auth.In;
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import net.chenlin.dp.modules.sys.dao.SysLogMapper;
 import net.chenlin.dp.modules.sys.entity.SysLogEntity;
 import net.chenlin.dp.modules.sys.service.SysLogService;
@@ -21,10 +23,12 @@ import java.util.Map;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Service("sysLogService")
+@AllArgsConstructor
 public class SysLogServiceImpl implements SysLogService {
 
-    @Autowired
     private SysLogMapper sysLogMapper;
+
+    private DomainsMapper domainsMapper;
 
     /**
      * 分页查询
@@ -40,6 +44,7 @@ public class SysLogServiceImpl implements SysLogService {
                 params.put("gmtCreateEnd",lastLogin.get(1));
             }
         }
+        params.put("domain",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
         Query query = new Query(params);
         Page<SysLogEntity> page = new Page<>(query);
         List<SysLogEntity> resp= sysLogMapper.listForPage(page, query);
