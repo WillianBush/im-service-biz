@@ -89,7 +89,7 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public Resp saveMember(MemberEntity member,String domain) {
-        SnowFlakeIdWorker sw = new SnowFlakeIdWorker(1);
+        DomainsEntity domainsEntity=domainsService.getDomainsByUrl(domain);
         //根据username查询是否存在
         Map<String, Object> para = new HashMap<>();
         para.put("username", member.getUsername());
@@ -107,6 +107,7 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
         member.setId(IdGenerate.generateUUID());
         member.setStatus(0);
+        member.setOrg_id(domainsEntity.getOrg_id());
         int count = memberMapper.save(member);
 
 		if (member.getIs_employee().equals(1)) {
