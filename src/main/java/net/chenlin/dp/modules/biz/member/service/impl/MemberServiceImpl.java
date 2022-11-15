@@ -93,6 +93,7 @@ public class MemberServiceImpl implements MemberService {
         //根据username查询是否存在
         Map<String, Object> para = new HashMap<>();
         para.put("username", member.getUsername());
+        para.put("domain",domain);
         Page<MemberEntity> rsPage = listMember(para);
         if (rsPage.getRows().size() > 0) {
             return Resp.error(Resp.error, "用户已经存在");
