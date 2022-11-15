@@ -20,7 +20,7 @@
             AND org_id = #{org_id}
         </if>
         <if test="http_domain != null and http_domain.trim() != ''">
-            AND http_domain= #{http_domain}
+            AND http_domain like concat('%',#{http_domain},'%') or admin_domain like  concat('%',#{http_domain},'%')
         </if>
     </select>
 
