@@ -37,6 +37,7 @@ public class MessageHistoryController extends AbstractController {
     @PostMapping("/list")
     @ApiOperation(value = "列表")
     public Page<MessageHistoryEntity> list(@RequestBody Map<String, Object> params) {
+        params.put("domain",getServerName());
         return messageHistoryService.listMessageHistory(params);
     }
 

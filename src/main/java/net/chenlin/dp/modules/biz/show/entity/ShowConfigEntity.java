@@ -29,7 +29,7 @@ public class ShowConfigEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "站点ID")
-	private String orgid;
+	private Long orgid;
 	
 	@ApiModelProperty(value = "联系方式")
 	private String contact;

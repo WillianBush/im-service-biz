@@ -24,7 +24,7 @@ public interface YyIpListService {
      * @param yyIpList
      * @return
      */
-	Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList);
+	Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList,String domain);
 
     /**
      * 根据id查询

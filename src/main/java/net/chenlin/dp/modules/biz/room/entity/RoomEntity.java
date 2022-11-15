@@ -280,6 +280,6 @@ public class RoomEntity implements Serializable {
 	/**
 	 * 站点
 	 */
-	private Integer org_id;
+	private Long org_id;
 
 }

@@ -2,8 +2,6 @@ package net.chenlin.dp.modules.sys.dao;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
-import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
-
 import java.util.List;
 
 /**
@@ -111,12 +109,7 @@ public interface BaseMapper<T> {
 	 */
 	T getObjectByName(Object name);
 
-	int bindIP(EmployeeEntity employee);
 
-	/**
-	 * 根据ip查询详情
-	 * @param ip
-	 * @return
-	 */
+
 
 }

@@ -48,6 +48,7 @@ public class EmployeeController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Page<EmployeeEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return employeeService.listEmployee(params);
 	}
 		
@@ -81,7 +82,7 @@ public class EmployeeController extends AbstractController {
 			return Resp.error("用户已经是特权用户");
 		}
 
-		employeeService.saveEmployee(employee,member);
+		employeeService.saveEmployee(employee,member,getServerName());
 		return Resp.ok("新增成功");
 	}
 	
@@ -137,6 +138,6 @@ public class EmployeeController extends AbstractController {
 		if (yyIpListEntity.getIp_address().isEmpty()) {
 			throw new GoLoginException("IP_white参数不存在");
 		}
-		return employeeService.employeeBindIp(employee);
+		return employeeService.employeeBindIp(employee,getServerName());
 	}
 }

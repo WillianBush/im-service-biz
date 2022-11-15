@@ -42,6 +42,7 @@
 		<if test="startDate != null"> and `createDate` &gt;=  str_to_date(#{startDate}, '%Y-%m-%d %H:%i:%s') </if>
 		<if test="endDate != null"> and `createDate` &lt;  str_to_date(#{endDate}, '%Y-%m-%d %H:%i:%s') </if>
 		<if test="modifyDate != null"> and `modifyDate` = #{modifyDate} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		ORDER BY
 		id DESC
 	</select>
@@ -158,6 +159,7 @@
 		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
 		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
 		  and toGroupid is not null
+		  and org_id = #{org_id}
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
 
@@ -168,6 +170,7 @@
 		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
 		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
 		  and toUid is not null
+		  and org_id = #{org_id}
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
 
@@ -187,6 +190,7 @@
 			message_history
 		where
 			toGroupid is not null
+			and org_id = #{org_id}
 	</select>
 
 	<select id="getPersonalMessageTotal" resultType="java.lang.Long">
@@ -196,6 +200,7 @@
 		     message_history
 		where
 			toUid is not null
+			and org_id = #{org_id}
 	</select>
 
 </mapper>

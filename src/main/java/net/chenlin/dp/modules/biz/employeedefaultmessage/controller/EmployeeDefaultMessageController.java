@@ -47,6 +47,7 @@ public class EmployeeDefaultMessageController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Page<EmployeeDefaultMessageEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return employeeDefaultMessageService.listEmployeeDefaultMessage(params);
 	}
 		
@@ -76,7 +77,7 @@ public class EmployeeDefaultMessageController extends AbstractController {
 		}
 		employeeDefaultMessage.setEmployee_id(employee.getId());
 		employeeDefaultMessage.setMember_id(member.getData().getMemberid());
-		return employeeDefaultMessageService.saveEmployeeDefaultMessage(employeeDefaultMessage);
+		return employeeDefaultMessageService.saveEmployeeDefaultMessage(employeeDefaultMessage,getServerName());
 	}
 	
 	/**

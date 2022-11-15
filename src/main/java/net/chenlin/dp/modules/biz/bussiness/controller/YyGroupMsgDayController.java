@@ -39,6 +39,7 @@ public class YyGroupMsgDayController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Resp<List<YyGroupMsgDayEntity>> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return yyGroupMsgDayService.listYyGroupMsgDay(params);
 	}
 		

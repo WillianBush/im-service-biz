@@ -43,6 +43,7 @@ public class YyIpListController extends AbstractController {
 		if (null == params.get("type") || params.get("type") == "") {
 			throw new RRException("type不能为空");
 		}
+		params.put("domain",getServerName());
 		return yyIpListService.listYyIpList(params);
 	}
 		
@@ -66,7 +67,7 @@ public class YyIpListController extends AbstractController {
 		if (null != yyIpListEntity){
 			return Resp.error("ip已存在");
 		}
-		return yyIpListService.saveYyIpList(yyIpList);
+		return yyIpListService.saveYyIpList(yyIpList,getServerName());
 	}
 	
 	/**

@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
+import net.chenlin.dp.modules.sys.entity.DomainsEntity;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -25,12 +27,15 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
 
     private MessageHistoryMapper messageHistoryMapper;
 
+	private DomainsMapper domainsMapper;
+
     /**
      * 分页查询
      * @param params
      * @return
      */
 	public Page<MessageHistoryEntity> listMessageHistory(Map<String, Object> params) {
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<MessageHistoryEntity> page = new Page<>(query);
 		List<MessageHistoryEntity> resp= messageHistoryMapper.listForPage(page, query);
@@ -88,11 +93,11 @@ public class MessageHistoryServiceImpl implements MessageHistoryService {
 		return CommonUtils.msgResp(id, count);
 	}
 
-	public Long getPersonalMessageTotal() {
-		return messageHistoryMapper.getPersonalMessageTotal();
+	public Long getPersonalMessageTotal(String domain) {
+		return messageHistoryMapper.getPersonalMessageTotal(domainsMapper.getOrgIdByDomain(domain));
 	}
 
-	public Long getGroupMessageTotal() {
-		return messageHistoryMapper.getGroupMessageTotal();
+	public Long getGroupMessageTotal(String domain) {
+		return messageHistoryMapper.getGroupMessageTotal(domainsMapper.getOrgIdByDomain(domain));
 	}
 }

@@ -10,6 +10,9 @@ import net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
 import net.chenlin.dp.modules.biz.room.service.MessageHistoryService;
 import net.chenlin.dp.modules.biz.room.service.RoomService;
+import net.chenlin.dp.modules.sys.controller.AbstractController;
+import net.chenlin.dp.modules.sys.entity.DomainsEntity;
+import net.chenlin.dp.modules.sys.service.DomainsService;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +24,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/home_page_data")
 @Api(tags = "首页-第一行统计数据")
 @DependsOn("springContextUtils")
-public class HomeController {
+public class HomeController extends AbstractController {
 
     private MemberService memberService;
 
     private MessageHistoryService messageHistoryService;
 
     private RoomService roomService;
+
+
+
     /**
      * 用户总量
      * @param
@@ -37,7 +43,7 @@ public class HomeController {
     @PostMapping("/getMemberSum")
     @ApiOperation(value = "用户总量")
     public Resp<Long> getMemberSum() {
-        return memberService.getTotalNumber();
+        return memberService.getTotalNumber(getServerName());
     }
 
     /**
@@ -49,7 +55,7 @@ public class HomeController {
     @PostMapping("/getPersonalMessageSum")
     @ApiOperation(value = "用户消息总量")
     public Resp<Long> getPersonalMessageSum() {
-        return Resp.ok(messageHistoryService.getPersonalMessageTotal());
+        return Resp.ok(messageHistoryService.getPersonalMessageTotal(getServerName()));
     }
 
     /**
@@ -61,7 +67,7 @@ public class HomeController {
     @PostMapping("/getGroupMessageSum")
     @ApiOperation(value = "群组消息总量")
     public Resp<Long> getGroupMessageSum() {
-        return Resp.ok(messageHistoryService.getGroupMessageTotal());
+        return Resp.ok(messageHistoryService.getGroupMessageTotal(getServerName()));
     }
 
     /**
@@ -73,6 +79,6 @@ public class HomeController {
     @PostMapping("/getRoomSum")
     @ApiOperation(value = "用户消息总量")
     public Resp<Long> getRoomSum() {
-        return Resp.ok(roomService.getTotal());
+        return Resp.ok(roomService.getTotal(getServerName()));
     }
 }

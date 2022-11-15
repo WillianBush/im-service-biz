@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.OssConstant;
 import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.common.utils.OssUtil;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
     private ShowConfigMapper showConfigMapper;
 	private OssUtil ossUtil;
 	private OSSModel ossModel;
-
+	private DomainsMapper domainsMapper;
     /**
      * 分页查询
      * @param params
@@ -41,6 +42,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
      */
 	@Override
 	public Page<ShowConfigEntity> listShowConfig(Map<String, Object> params) {
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<ShowConfigEntity> page = new Page<>(query);
 		List<ShowConfigEntity> resp= showConfigMapper.listForPage(page, query);
@@ -72,7 +74,8 @@ public class ShowConfigServiceImpl implements ShowConfigService {
      * @return
      */
 	@Override
-	public Resp<ShowConfigEntity> saveShowConfig(ShowConfigEntity showConfig) {
+	public Resp<ShowConfigEntity> saveShowConfig(ShowConfigEntity showConfig,String domain) {
+		showConfig.setOrgid(domainsMapper.getOrgIdByDomain(domain));
 		int count = showConfigMapper.save(showConfig);
 		if(count>0){
 			upLoadConfig(showConfig);

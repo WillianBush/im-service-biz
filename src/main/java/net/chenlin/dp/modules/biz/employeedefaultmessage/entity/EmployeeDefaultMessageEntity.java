@@ -76,7 +76,7 @@ public class EmployeeDefaultMessageEntity implements Serializable {
 
 	@ApiModelProperty(value = "站点")
 	@Column(name = "org_id")
-	private String org_id;
+	private Long org_id;
 
 	@Transient
 	private String nickName;

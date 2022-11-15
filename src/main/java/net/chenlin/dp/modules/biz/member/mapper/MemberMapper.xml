@@ -501,7 +501,7 @@
 			headpic,
 		    username
 		from member m
-		where memberId = #{memberId} and org_id = #{orgId}
+		where memberId = #{memberId}
 	</select>
 
 
@@ -537,7 +537,7 @@
 		FROM
 			member
 		where
-			1=1
+			org_id = #{org_id}
 	</select>
 
 	<select id="getRobotList" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">

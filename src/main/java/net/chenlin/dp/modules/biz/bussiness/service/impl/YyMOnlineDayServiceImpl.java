@@ -17,6 +17,7 @@ import net.chenlin.dp.modules.biz.member.entity.LastLoginDateEntity;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,8 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 	private MemberloginlogMapper memberloginlogMapper;
 
 	private MemberService memberService;
+
+	private DomainsMapper domainsMapper;
     /**
      * 分页查询
      * @param params
@@ -52,7 +55,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      */
 	@Override
 	public Resp<List<YyMOnlineDayEntity>> listYyMOnlineDay(Map<String, Object> params) {
-		params.put("org_id", 1);
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 
 		List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
@@ -142,7 +145,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 					continue;
 				}
 				lastLoginDateEntity.setMemberId(respMember.getData().getMemberid());
-				lastLoginDateEntity.setOrg_id(1);
+				lastLoginDateEntity.setOrg_id(domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 				MemberloginlogEntity memberloginlogEntity = memberloginlogMapper.getLastLoginDate(lastLoginDateEntity);
 				if (memberloginlogEntity == null ){
 					continue;

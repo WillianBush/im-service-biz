@@ -59,13 +59,13 @@ public interface MessageHistoryService {
      * @param
      * @return
      */
-    Long getPersonalMessageTotal();
+    Long getPersonalMessageTotal(String domain);
 
     /**
      * 获取私人消息总数
      * @param
      * @return
      */
-    Long getGroupMessageTotal();
+    Long getGroupMessageTotal(String domain);
 	
 }

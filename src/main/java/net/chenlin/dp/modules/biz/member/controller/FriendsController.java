@@ -41,6 +41,7 @@ public class FriendsController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "好友列表")
 	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return memberService.listFriends(params);
 	}
 		

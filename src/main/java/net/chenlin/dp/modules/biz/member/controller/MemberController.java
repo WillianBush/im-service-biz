@@ -41,6 +41,7 @@ public class MemberController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "用户列表")
 	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return memberService.listMember(params);
 	}
 		
@@ -59,7 +60,7 @@ public class MemberController extends AbstractController {
 		if (StringUtils.isEmpty(member.getNickname()) || member.getNickname().contains(" ")) {
 			return Resp.error(500, "昵称不呢为空且不能含有空格");
 		}
-		Resp resp = memberService.saveMember(member);
+		Resp resp = memberService.saveMember(member,getServerName());
 		return resp;
 	}
 	
@@ -148,7 +149,7 @@ public class MemberController extends AbstractController {
 	@PostMapping("/batchSave")
 	@ApiOperation(value = "批量新增用户")
 	public Resp batchSave(@RequestBody List<MemberEntity> member) {
-		return memberService.batchSaveMember(member);
+		return memberService.batchSaveMember(member,getServerName());
 	}
 
 	/**

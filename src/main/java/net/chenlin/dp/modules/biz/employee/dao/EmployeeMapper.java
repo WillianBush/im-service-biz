@@ -13,8 +13,14 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface EmployeeMapper extends TkBaseMapper<EmployeeEntity> {
 
-    EmployeeEntity getMemberUUID(@Param("memberUUID") String memberUUID, @Param("org_id") int org_id);
+    EmployeeEntity getMemberUUID(@Param("memberUUID") String memberUUID);
 
-    EmployeeEntity getByMemberId(@Param("memberId") String memberId, @Param("org_id") int org_id);
+    EmployeeEntity getByMemberId(@Param("memberId") String memberId);
 
+    /**
+     * 根据ip查询详情
+     * @param employee
+     * @return
+     */
+    int bindIP(EmployeeEntity employee);
 }

@@ -41,6 +41,6 @@ public class YyIpListEntity implements Serializable {
 	private String stauts;
 
 	@ApiModelProperty(value = "站点")
-	private int org_id;
+	private Long org_id;
 
 }

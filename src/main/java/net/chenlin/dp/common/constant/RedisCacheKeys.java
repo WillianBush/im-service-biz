@@ -28,7 +28,7 @@ public class RedisCacheKeys {
 
     public final static String default_telphone = "18888888888";
 
-    public static String appLastVersion(String os,Integer siteId,String appId) {
+    public static String appLastVersion(String os,Long siteId,String appId) {
         return APP_LAST_VERSION +":" +siteId +":"+ os +":"+appId;
     }
 }

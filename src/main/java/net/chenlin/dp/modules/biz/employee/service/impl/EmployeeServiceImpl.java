@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.utils.IdGenerate;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -28,6 +29,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeMapper employeeMapper;
 
+    private DomainsMapper domainsMapper;
+
     /**
      * 分页查询
      * @param params
@@ -35,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
 	@Override
 	public Page<EmployeeEntity> listEmployee(Map<String, Object> params) {
-		params.put("org_id", 1);
+		params.put("org_id", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<EmployeeEntity> page = new Page<>(query);
 		List<EmployeeEntity> resp= employeeMapper.listForPage(page, query);
@@ -50,19 +53,19 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
 	@Override
 	public Resp<Integer> saveEmployee(EmployeeEntity employee) {
-		employee.setOrg_id(1);
 		employee.setId(IdGenerate.generateUUID());
 		int count = employeeMapper.save(employee);
 		return CommonUtils.msgResp(count);
 	}
 
 	@Override
-	public Integer saveEmployee(EmployeeEntity employee,MemberEntity member) {
+	public Integer saveEmployee(EmployeeEntity employee,MemberEntity member,String domain) {
 		employee.setMember_id(member.getMemberid());
 		employee.setLastLoginIp(member.getLastloginip());
 		employee.setCreateDate(new Date());
 		employee.setName(member.getNickname());
 		employee.setMember_uuid(member.getId());
+		employee.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		return this.saveEmployee(employee).getData();
 	}
 
@@ -80,13 +83,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeEntity getMemberUUID(String memberUUID) {
-		return employeeMapper.getMemberUUID(memberUUID, 1);
+		return employeeMapper.getMemberUUID(memberUUID);
 	}
 
 
 	@Override
 	public EmployeeEntity getByMemberId(String memberId) {
-		return employeeMapper.getByMemberId(memberId, 1);
+		return employeeMapper.getByMemberId(memberId);
 	}
 
 	/**
@@ -96,7 +99,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
 	@Override
 	public Resp<Integer> updateEmployee(EmployeeEntity employee) {
-		employee.setOrg_id(1);
 		int count = employeeMapper.update(employee);
 		return CommonUtils.msgResp(count);
 	}
@@ -113,11 +115,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Resp<Integer> employeeBindIp(EmployeeEntity employee) {
+	public Resp<Integer> employeeBindIp(EmployeeEntity employee,String domain) {
 		if (employee.getMember_id().isEmpty() || null == employee.getMember_id()) {
 			return Resp.error("用户ID未空");
 		}
-		employee.setOrg_id(1);
+		employee.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		int count = employeeMapper.bindIP(employee);
 		return CommonUtils.msgResp(count);
 	}

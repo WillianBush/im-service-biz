@@ -7,6 +7,7 @@ import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -31,6 +32,8 @@ public class AppVersionServiceImpl implements AppVersionService {
 
     private RedisCacheManager redisCacheManager;
 
+    private DomainsMapper domainsMapper;
+
     /**
      * 分页查询
      *
@@ -53,7 +56,8 @@ public class AppVersionServiceImpl implements AppVersionService {
      * @return
      */
     @Override
-    public Resp<AppVersionEntity> saveAppVersion(AppVersionEntity appVersion) {
+    public Resp<AppVersionEntity> saveAppVersion(AppVersionEntity appVersion,String domain) {
+        appVersion.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
         int id = appVersionMapper.save(appVersion);
         if (id != 0) {
             String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDevice_type(), appVersion.getOrg_id(), appVersion.getApp_id());
@@ -111,7 +115,7 @@ public class AppVersionServiceImpl implements AppVersionService {
     }
 
     @Override
-    public AppVersionEntity selectByUniqueKey(String version, Integer siteId, String os, String appId) {
+    public AppVersionEntity selectByUniqueKey(String version, Long siteId, String os, String appId) {
         return appVersionMapper.selectOne(AppVersionEntity.builder()
                 .version(version)
                 .org_id(siteId)

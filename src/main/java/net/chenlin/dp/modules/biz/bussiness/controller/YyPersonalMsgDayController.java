@@ -44,6 +44,7 @@ public class YyPersonalMsgDayController extends AbstractController {
 		if (type.isEmpty()) {
 			return Resp.error(500, "参数错误");
 		}
+		params.put("domain",getServerName());
 		return yyPersonalMsgDayService.listYyPersonalMsgDay(params);
 	}
 
@@ -59,6 +60,7 @@ public class YyPersonalMsgDayController extends AbstractController {
 		if (type.isEmpty()) {
 			return Resp.error("参数错误");
 		}
+		params.put("domain",getServerName());
 		List<YyGroupMsgDayEntity> list = yyPersonalMsgDayService.listYyGroupMsgDay(params);
 		return Resp.ok(list);
 	}

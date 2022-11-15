@@ -92,7 +92,7 @@
 		FROM
 			employee
 		WHERE
-			member_uuid = #{memberUUID} and org_id = #{org_id}
+			member_uuid = #{memberUUID}
 	</select>
 
 	<select id="getByMemberId" resultType="net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity">
@@ -109,7 +109,7 @@
 		FROM
 			employee
 		WHERE
-			member_id = #{memberId} and org_id = #{org_id}
+			member_id = #{memberId}
 	</select>
 	
 	<update id="update">

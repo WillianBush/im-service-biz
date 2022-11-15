@@ -85,5 +85,5 @@ public class MemberloginlogEntity implements Serializable {
 	/**
 	 *站点
 	 */
-	private int org_id;
+	private Long org_id;
 }
