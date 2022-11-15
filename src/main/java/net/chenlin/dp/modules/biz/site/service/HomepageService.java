@@ -24,7 +24,7 @@ public interface HomepageService {
      * @param homepage
      * @return
      */
-	Resp<HomepageEntity> saveHomepage(HomepageEntity homepage);
+	Resp<HomepageEntity> saveHomepage(HomepageEntity homepage,String domain);
 
     /**
      * 根据id查询
