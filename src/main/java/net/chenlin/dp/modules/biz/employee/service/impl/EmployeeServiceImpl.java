@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.utils.IdGenerate;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.sys.dao.DomainsMapper;
@@ -23,6 +24,7 @@ import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
+@Slf4j
 @Service("employeeService")
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -39,6 +41,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Page<EmployeeEntity> listEmployee(Map<String, Object> params) {
 		params.put("org_id", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
+		log.info("domain:::::::::::{}",params.get("domain").toString());
+		log.info("org_id:::::::::::{}",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<EmployeeEntity> page = new Page<>(query);
 		List<EmployeeEntity> resp= employeeMapper.listForPage(page, query);
