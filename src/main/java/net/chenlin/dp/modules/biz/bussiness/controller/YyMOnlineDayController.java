@@ -99,6 +99,7 @@ public class YyMOnlineDayController extends AbstractController {
 	@PostMapping("/onlineList")
 	@ApiOperation(value = "列表")
 	public Page<MemberloginlogEntity> onlineList(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return yyMOnlineDayService.getYyMOnline(params);
 	}
 }
