@@ -33,6 +33,9 @@
 			<if test="ip != null and ip.trim() != ''">
 				AND ip LIKE concat('%',#{ip},'%')
 			</if>
+			<if test="org_id != null ">
+				AND org_id =#{org_id}
+			</if>
 		</where>
 		ORDER BY
 			gmt_create DESC
@@ -47,7 +50,8 @@
 			method,
 			params,
 			ip,
-			gmt_create
+			gmt_create,
+			org_id
 		)
 		VALUES (
 			#{userId},
@@ -57,7 +61,8 @@
 			#{method}, 
 			#{params}, 
 			#{ip}, 
-			NOW()
+			NOW(),
+			#{org_id}
 		)
 	</insert>
 	
