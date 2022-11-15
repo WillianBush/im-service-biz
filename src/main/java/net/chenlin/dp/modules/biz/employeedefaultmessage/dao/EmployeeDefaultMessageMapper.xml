@@ -39,7 +39,7 @@
 		<if test="org_id != null"> and edm.`org_id` = #{org_id} </if>
 		<if test="nickName != null"> and m.`nickName` = #{nickName} </if>
 		ORDER BY
-			id DESC
+		edm.`member_id` DESC
 	</select>
 	
 	<insert id="save">
