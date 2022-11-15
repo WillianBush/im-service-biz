@@ -36,6 +36,7 @@ public class HomepageController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Page<HomepageEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return homepageService.listHomepage(params);
 	}
 		
@@ -48,7 +49,7 @@ public class HomepageController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<HomepageEntity> save(@RequestBody HomepageEntity homepage) {
-		return homepageService.saveHomepage(homepage);
+		return homepageService.saveHomepage(homepage,getServerName());
 	}
 	
 	/**
