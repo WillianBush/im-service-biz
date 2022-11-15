@@ -107,6 +107,6 @@
         sys_org o
         LEFT JOIN domains d ON o.org_id = d.org_id
         where
-        http_domain= #{domain}
+         http_domain like concat('%',#{http_domain},'%') or admin_domain like  concat('%',#{http_domain},'%')
     </select>
 </mapper>
