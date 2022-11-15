@@ -23,6 +23,7 @@
 		<if test="paramter_open != null"> and `paramter_open` = #{paramter_open} </if>
 		<if test="rule != null"> and `rule` = #{rule} </if>
 		<if test="sort != null"> and `sort` = #{sort} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -35,7 +36,8 @@
 			`link`, 
 			`paramter_open`, 
 			`rule`, 
-			`sort`
+			`sort`,
+			org_id
 		)
 		VALUES (
 			#{id}, 
@@ -44,7 +46,8 @@
 			#{link}, 
 			#{paramter_open}, 
 			#{rule}, 
-			#{sort}
+			#{sort},
+			#{org_id}
 		)
 	</insert>
 	
