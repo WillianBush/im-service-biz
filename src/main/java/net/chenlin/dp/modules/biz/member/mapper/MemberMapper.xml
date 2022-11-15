@@ -174,8 +174,7 @@
 			`sendTransferCount`, 
 			`sendTransferPriceSum`, 
 			`shimingStatus`, 
-			`sysGenerate`,
-			`org_id`
+			`sysGenerate`
 		)
 		VALUES (
 			#{id}, 
@@ -225,8 +224,7 @@
 			#{sendtransfercount}, 
 			#{sendtransferpricesum}, 
 			#{shimingstatus}, 
-			#{sysgenerate},
-			#{org_id}
+			#{sysgenerate}
 		)
 	</insert>
 	
@@ -501,7 +499,7 @@
 			headpic,
 		    username
 		from member m
-		where memberId = #{memberId} and org_id = #{orgId}
+		where memberId = #{memberId}
 	</select>
 
 
