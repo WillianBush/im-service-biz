@@ -21,7 +21,7 @@
 		m.nickName
 		FROM
 			employee_default_message edm
-		left join member m on m.memberId = edm.member_id
+		inner join member m on m.memberId = edm.member_id
 		where
 		1=1
 		<if test="employee_id != null"> and edm.`employee_id` = #{employee_id} </if>
