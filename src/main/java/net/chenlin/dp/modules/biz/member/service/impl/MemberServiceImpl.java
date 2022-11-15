@@ -237,6 +237,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Resp<Long> getTotalNumber(String domain) {
         DomainsEntity domainsEntity=domainsService.getDomainsByUrl(domain);
+        if (null == domainsEntity){
+            log.error("domain 无法获取对应的 org_id, domain:{}",domain);
+            return CommonUtils.msgResp(-1L);
+        }
         return CommonUtils.msgResp(memberMapper.getTotal(domainsEntity.getOrg_id()));
     }
 }
