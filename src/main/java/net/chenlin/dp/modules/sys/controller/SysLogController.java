@@ -38,6 +38,7 @@ public class SysLogController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "日志列表")
 	public Page<SysLogEntity> listLog(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return sysLogService.listLog(params);
 	}
 	
