@@ -19,7 +19,7 @@
 		member.lastLoginIp lastLoginIp
 		FROM
 			employee
-		left join member on member.memberId = employee.member_id
+		inner join member on member.memberId = employee.member_id and member.org_id = employee.org_id
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
