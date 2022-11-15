@@ -32,6 +32,7 @@
 		<if test="org_id != null"> and employee.org_id = #{org_id} </if>
 		<if test="ip_white != null"> and `ip_white` = #{ip_white} </if>
 		<if test="username != null"> and member.username = #{username} </if>
+		<if test="nickName != null"> and member.nickName like  concat('%',#{nickName},'%') </if>
 		ORDER BY
 			id DESC
 	</select>
