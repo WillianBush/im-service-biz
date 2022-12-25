@@ -31,7 +31,7 @@ public class CommodityEntity implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "商品分类")
-    private String category;
+    private int category_id;
 
     @ApiModelProperty(value = "单价")
     private Double prize;
@@ -48,7 +48,7 @@ public class CommodityEntity implements Serializable {
     @ApiModelProperty(value = "修改时间")
     private Timestamp modify_time;
 
-    @ApiModelProperty(value = "修改时间")
+    @ApiModelProperty(value = "机构ID")
     private int org_id;
 
 }

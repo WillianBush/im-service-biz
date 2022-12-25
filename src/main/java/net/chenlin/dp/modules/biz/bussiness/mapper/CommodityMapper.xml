@@ -7,7 +7,7 @@
         SELECT
         `id`,
         `name`,
-        `category`,
+        `category_id`,
         `prize`,
         `in_stock`,
         `img`,
@@ -20,30 +20,46 @@
         1=1
         <if test="id != null">and `id` = #{id}</if>
         <if test="name != null">and `name` = #{name}</if>
-        <if test="category != null">and `category` = #{category}</if>
+        <if test="category_id != null">and `category_id` = #{category_id}</if>
         ORDER BY
-        ip_address DESC
+        id DESC
+    </select>
+
+
+    <select id="listForPageCC" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity">
+        SELECT
+        `id`,
+        `category_name`
+        FROM
+        commodity_category
+        where
+        1=1
     </select>
 
     <insert id="save">
         INSERT INTO commodity (`name`,
-                               `category`,
+                               `category_id`,
                                `prize`,
                                `in_stock`,
                                `img`,
                                `org_id`)
         VALUES (#{name},
-                #{category},
+                #{category_id},
                 #{prize},
                 #{in_stock},
                 #{img},
                 #{org_id})
     </insert>
 
+    <insert id="saveCC">
+        INSERT INTO commodity (`category_name`)
+        VALUES (#{name})
+    </insert>
+
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
         SELECT `id`,
                `name`,
-               `category`,
+               `category_id`,
                `prize`,
                `in_stock`,
                `img`,
@@ -59,10 +75,19 @@
             <if test="name != null">`name` = #{name},</if>
             <if test="prize != null">`prize` = #{prize},</if>
             <if test="in_stock != null">`in_stock` = #{in_stock},</if>
-            <if test="category != null">`category` = #{category}</if>
+            <if test="category_id != null">`category_id` = #{category_id}</if>
         </set>
         WHERE
         id = #{id} and org_id = #{org_id}
+    </update>
+
+    <update id="updateCC">
+        UPDATE commodity_category
+        <set>
+            <if test="category_name != null">`category_name` = #{category_name},</if>
+        </set>
+        WHERE
+        id = #{id}
     </update>
 
     <delete id="batchRemove">
@@ -76,5 +101,15 @@
         </foreach>
     </delete>
 
+    <delete id="batchRemoveCC">
+        DELETE
+        FROM
+        commodity_category
+        WHERE
+        id IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>
