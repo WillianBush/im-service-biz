@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.biz.bussiness.dao.CommodityMapper">
+
+    <select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
+        SELECT
+        `id`,
+        `name`,
+        `category`,
+        `prize`,
+        `in_stock`,
+        `img`,
+        `create_time`,
+        `modify_time`,
+        `org_id`
+        FROM
+        commodity
+        where
+        1=1
+        <if test="id != null">and `id` = #{id}</if>
+        <if test="name != null">and `name` = #{name}</if>
+        <if test="category != null">and `category` = #{category}</if>
+        ORDER BY
+        ip_address DESC
+    </select>
+
+    <insert id="save">
+        INSERT INTO commodity (`name`,
+                               `category`,
+                               `prize`,
+                               `in_stock`,
+                               `img`,
+                               `org_id`)
+        VALUES (#{name},
+                #{category},
+                #{prize},
+                #{in_stock},
+                #{img},
+                #{org_id})
+    </insert>
+
+    <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
+        SELECT `id`,
+               `name`,
+               `category`,
+               `prize`,
+               `in_stock`,
+               `img`,
+               `org_id`
+        FROM commodity
+        WHERE id = #{id}
+    </select>
+
+    <update id="update">
+        UPDATE commodity
+        <set>
+            <!--			<if test="id != null">`id` = #{id}, </if>-->
+            <if test="name != null">`name` = #{name},</if>
+            <if test="prize != null">`prize` = #{prize},</if>
+            <if test="in_stock != null">`in_stock` = #{in_stock},</if>
+            <if test="category != null">`category` = #{category}</if>
+        </set>
+        WHERE
+        id = #{id} and org_id = #{org_id}
+    </update>
+
+    <delete id="batchRemove">
+        DELETE
+        FROM
+        commodity
+        WHERE
+        id IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+</mapper>
