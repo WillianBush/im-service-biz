@@ -151,10 +151,7 @@
 			<if test="userStatus != null">`userStatus` = #{userStatus},</if>
 		</set>
 		WHERE
-		id IN
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
+		id = #{id}
 	</update>
 
 	<update id="bindIP">
