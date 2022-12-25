@@ -118,6 +118,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return CommonUtils.msgResp(id, count);
 	}
 
+	/**
+	 * 设置特权用户在线
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public Resp updateEmployeeEnable(String[] id, int userStatus) {
+		int count = employeeMapper.updateEmployeeEnable(id, userStatus);
+		return CommonUtils.msgResp(id, count);
+	}
+
 	@Override
 	public Resp<Integer> employeeBindIp(EmployeeEntity employee,String domain) {
 		if (employee.getMember_id().isEmpty() || null == employee.getMember_id()) {

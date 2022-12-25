@@ -23,4 +23,6 @@ public interface EmployeeMapper extends TkBaseMapper<EmployeeEntity> {
      * @return
      */
     int bindIP(EmployeeEntity employee);
+
+    int updateEmployeeEnable(String[] id, int userStatus);
 }

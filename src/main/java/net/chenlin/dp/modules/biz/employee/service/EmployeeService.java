@@ -54,6 +54,12 @@ public interface EmployeeService {
      * @return
      */
 	Resp batchRemove(String[] id);
+    /**
+     * 特权用户上线
+     * @param id
+     * @return
+     */
+	Resp updateEmployeeEnable(String[] id, int userStatus);
 
     Resp<Integer> employeeBindIp(EmployeeEntity employee,String domain);
 

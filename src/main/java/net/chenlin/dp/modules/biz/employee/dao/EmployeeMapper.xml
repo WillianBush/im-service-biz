@@ -144,6 +144,19 @@
 		</foreach>
 	</delete>
 
+	<update id="updateEmployeeEnable">
+		UPDATE
+		employee
+		<set>
+			<if test="userStatus != null">`userStatus` = #{userStatus},</if>
+		</set>
+		WHERE
+		id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+
 	<update id="bindIP">
 		UPDATE employee
 		<set>

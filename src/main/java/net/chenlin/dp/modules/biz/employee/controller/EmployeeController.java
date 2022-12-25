@@ -140,4 +140,30 @@ public class EmployeeController extends AbstractController {
 		}
 		return employeeService.employeeBindIp(employee,getServerName());
 	}
+
+	/**
+	 * 特权用户在线
+	 * @param id
+	 * @return
+	 */
+	@SysLog("设置特权用户在线")
+	@PostMapping("/enable")
+	@ApiOperation(value = "设置特权用户在线")
+	public Resp updateUserEnable(@RequestBody String[] id) {
+		return employeeService.updateEmployeeEnable(id, 1);
+	}
+
+	/**
+	 * 特权用户下线
+	 * @param id
+	 * @return
+	 */
+	@SysLog("设置特权用户下线")
+	@PostMapping("/disable")
+	@ApiOperation(value = "设置特权用户下线")
+	public Resp updateUserDisable(@RequestBody String[] id) {
+		return employeeService.updateEmployeeEnable(id, 0);
+	}
+
+
 }
