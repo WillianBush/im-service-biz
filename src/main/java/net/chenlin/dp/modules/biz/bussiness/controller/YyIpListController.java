@@ -63,7 +63,8 @@ public class YyIpListController extends AbstractController {
 		if (StringUtils.isEmpty(yyIpList.getType() ) ) {
 			return Resp.error("IP类型参数错误");
 		}
-		YyIpListEntity yyIpListEntity= yyIpListService.getByIP(yyIpList.getIp_address(),0);
+
+		YyIpListEntity yyIpListEntity= yyIpListService.getByIP(yyIpList.getIp_address(),0, getServerName());
 		if (null != yyIpListEntity){
 			return Resp.error("ip已存在");
 		}
@@ -96,7 +97,8 @@ public class YyIpListController extends AbstractController {
 		if (null == yyIpList.getId()) {
 			throw new RRException("id参数不能为空");
 		}
-		return yyIpListService.updateYyIpList(yyIpList);
+
+		return yyIpListService.updateYyIpList(yyIpList, getServerName());
 	}
 	
 	/**

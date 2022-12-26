@@ -73,7 +73,8 @@ public class YyIpListServiceImpl implements YyIpListService {
      * @return
      */
 	@Override
-	public Resp<Integer> updateYyIpList(YyIpListEntity yyIpList) {
+	public Resp<Integer> updateYyIpList(YyIpListEntity yyIpList, String domain) {
+		Long org_id = domainsMapper.getOrgIdByDomain(domain);
 		int count = yyIpListMapper.update(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
@@ -90,8 +91,9 @@ public class YyIpListServiceImpl implements YyIpListService {
 	}
 
 	@Override
-	public YyIpListEntity getByIP(String ipAddress, Integer type) {
-		return yyIpListMapper.getObjectByIp(ipAddress, type, 1);
+	public YyIpListEntity getByIP(String ipAddress, Integer type, String domain) {
+		Long org_id = domainsMapper.getOrgIdByDomain(domain);
+		return yyIpListMapper.getObjectByIp(ipAddress, type, org_id);
 	}
 
 }

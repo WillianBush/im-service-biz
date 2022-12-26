@@ -49,6 +49,6 @@ public class CommodityEntity implements Serializable {
     private Timestamp modify_time;
 
     @ApiModelProperty(value = "机构ID")
-    private int org_id;
+    private Long org_id;
 
 }

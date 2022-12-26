@@ -134,7 +134,7 @@ public class EmployeeController extends AbstractController {
 		if (employee.getIp_white().isEmpty() || null == employee.getIp_white()) {
 			throw new GoLoginException("ip_white参数为空");
 		}
-		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIp_white(), 0);
+		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIp_white(), 0, getServerName());
 		if (yyIpListEntity.getIp_address().isEmpty()) {
 			throw new GoLoginException("IP_white参数不存在");
 		}

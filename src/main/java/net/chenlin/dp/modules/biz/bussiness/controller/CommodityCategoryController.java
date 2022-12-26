@@ -7,10 +7,9 @@ import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.exception.RRException;
+import net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity;
-import net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity;
 import net.chenlin.dp.modules.biz.bussiness.service.CommodityService;
-import net.chenlin.dp.modules.biz.bussiness.service.YyIpListService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.DependsOn;
@@ -24,10 +23,10 @@ import java.util.Map;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/commodity")
+@RequestMapping("/commodity_category")
 @Api(tags = "商品信息")
 @DependsOn("springContextUtils")
-public class CommodityController extends AbstractController {
+public class CommodityCategoryController extends AbstractController {
 	
 
 	private CommodityService commodityService;
@@ -39,32 +38,25 @@ public class CommodityController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public Page<CommodityEntity> list(@RequestBody Map<String, Object> params) {
-		params.put("domain",getServerName());
-		return commodityService.listPageForCommodity(params);
+	public Page<CommodityCategoryEntity> list(@RequestBody Map<String, Object> params) {
+//		params.put("domain",getServerName());
+		return commodityService.listPageForCommodityCategory(params);
 	}
 		
 	/**
 	 * 新增
-	 * @param commodityEntity
+	 * @param commodityCategoryEntity
 	 * @return
 	 */
 	@SysLog("新增")
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
-	public Resp<CommodityEntity> save(@RequestBody CommodityEntity commodityEntity) {
-		if (StringUtils.isEmpty(commodityEntity.getName() )) {
+	public Resp<CommodityCategoryEntity> save(@RequestBody CommodityCategoryEntity commodityCategoryEntity) {
+		if (StringUtils.isEmpty(commodityCategoryEntity.getCategory_name() )) {
 			return Resp.error("商品名称不能为空");
-		}
 
-		if (StringUtils.isEmpty(commodityEntity.getIn_stock() ) ) {
-			return Resp.error("商品库存数量错误");
 		}
-		Resp<CommodityEntity> commodityEntityCheck = commodityService.getCommodityById(commodityEntity.getId());
-		if (null != commodityEntityCheck){
-			return Resp.error("商品已存在");
-		}
-		return commodityService.saveCommodity(commodityEntity,getServerName());
+		return commodityService.saveCommodityCategory(commodityCategoryEntity);
 	}
 
 	/**
@@ -74,26 +66,26 @@ public class CommodityController extends AbstractController {
 	 */
 	@GetMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp<CommodityEntity> getById(@RequestBody Long id) {
+	public Resp<CommodityCategoryEntity> getById(@RequestBody Long id) {
 		if (null == id) {
 			throw new RRException("id不能为空");
 		}
-		return commodityService.getCommodityById(id);
+		return commodityService.getCommodityCategoryById(id);
 	}
 
 	/**
 	 * 修改
-	 * @param commodityEntity
+	 * @param commodityCategoryEntity
 	 * @return
 	 */
 	@SysLog("修改")
 	@PostMapping("/update")
 	@ApiOperation(value = "修改")
-	public Resp<Integer> update(@RequestBody CommodityEntity commodityEntity) {
-		if (null == commodityEntity.getId()) {
+	public Resp<Integer> update(@RequestBody CommodityCategoryEntity commodityCategoryEntity) {
+		if (null == commodityCategoryEntity.getId()) {
 			throw new RRException("id参数不能为空");
 		}
-		return commodityService.updateCommodity(commodityEntity, getServerName());
+		return commodityService.updateCommodityCategory(commodityCategoryEntity);
 	}
 
 	/**
@@ -109,7 +101,7 @@ public class CommodityController extends AbstractController {
 			throw new RRException("id不能为空");
 		}
 
-		return  commodityService.batchRemove(id);
+		return  commodityService.batchRemoveCC(id);
 	}
 	
 }

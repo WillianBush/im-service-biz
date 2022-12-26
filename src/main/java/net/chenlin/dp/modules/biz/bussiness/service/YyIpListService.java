@@ -38,7 +38,7 @@ public interface YyIpListService {
      * @param yyIpList
      * @return
      */
-	Resp<Integer> updateYyIpList(YyIpListEntity yyIpList);
+	Resp<Integer> updateYyIpList(YyIpListEntity yyIpList, String domain);
 
     /**
      * 删除
@@ -54,6 +54,6 @@ public interface YyIpListService {
      * @param type
      * @return
      */
-    YyIpListEntity getByIP(String ipAddress, Integer type);
+    YyIpListEntity getByIP(String ipAddress, Integer type, String domain);
 
 }

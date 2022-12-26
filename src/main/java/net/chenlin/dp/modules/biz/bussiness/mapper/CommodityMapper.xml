@@ -5,17 +5,18 @@
 
     <select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
         SELECT
-        `id`,
-        `name`,
-        `category_id`,
-        `prize`,
-        `in_stock`,
-        `img`,
-        `create_time`,
-        `modify_time`,
-        `org_id`
+        c.`id`,
+        c.`name`,
+        cc.`category_name`,
+        c.`prize`,
+        c.`in_stock`,
+        c.`img`,
+        c.`create_time`,
+        c.`modify_time`,
+        c.`org_id`
         FROM
-        commodity
+        commodity c
+        left join commodity_category cc on c.`category_id` = cc.`id`
         where
         1=1
         <if test="id != null">and `id` = #{id}</if>
@@ -33,7 +34,7 @@
         FROM
         commodity_category
         where
-        1=1
+        1=1 and
     </select>
 
     <insert id="save">
@@ -57,21 +58,29 @@
     </insert>
 
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
-        SELECT `id`,
-               `name`,
-               `category_id`,
-               `prize`,
-               `in_stock`,
-               `img`,
-               `org_id`
-        FROM commodity
+        SELECT c.`id`,
+               c.`name`,
+               cc.`category_name`,
+               c.`prize`,
+               c.`in_stock`,
+               c.`img`,
+               c.`org_id`
+        FROM commodity c
+        left join commodity_category cc on c.`category_id` = cc.`id`
         WHERE id = #{id}
     </select>
+
+    <select id="getObjectByIdCC" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity">
+        SELECT `id`,
+               `category_name`,
+        FROM commodity_category
+        WHERE id = #{id}
+    </select>
+
 
     <update id="update">
         UPDATE commodity
         <set>
-            <!--			<if test="id != null">`id` = #{id}, </if>-->
             <if test="name != null">`name` = #{name},</if>
             <if test="prize != null">`prize` = #{prize},</if>
             <if test="in_stock != null">`in_stock` = #{in_stock},</if>
