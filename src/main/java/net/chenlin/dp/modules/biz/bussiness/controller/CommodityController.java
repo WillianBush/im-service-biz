@@ -57,7 +57,7 @@ public class CommodityController extends AbstractController {
 			return Resp.error("商品名称不能为空");
 		}
 
-		if (StringUtils.isEmpty(commodityEntity.getIn_stock() ) ) {
+		if (StringUtils.isEmpty(String.valueOf(commodityEntity.getIn_stock())) ) {
 			return Resp.error("商品库存数量错误");
 		}
 		Resp<CommodityEntity> commodityEntityCheck = commodityService.getCommodityById(commodityEntity.getId());

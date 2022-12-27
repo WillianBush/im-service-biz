@@ -37,10 +37,10 @@ public class CommodityEntity implements Serializable {
     private Double prize;
 
     @ApiModelProperty(value = "库存")
-    private String in_stock;
+    private int in_stock;
 
     @ApiModelProperty(value = "商品图片路径")
-    private Long img;
+    private String img;
 
     @ApiModelProperty(value = "创建时间")
     private Timestamp create_time;
