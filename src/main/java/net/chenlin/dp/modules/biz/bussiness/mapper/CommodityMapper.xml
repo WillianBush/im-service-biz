@@ -79,6 +79,17 @@
         FROM commodity_category
         WHERE id = #{id}
     </select>
+    <select id="getObjectByName" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
+        SELECT c.`id`,
+               c.`name`,
+               c.`commodity_info`,
+               c.`prize`,
+               c.`in_stock`,
+               c.`img`,
+               c.`org_id`
+        FROM commodity c
+        WHERE name = #{name}
+    </select>
 
 
     <update id="update">

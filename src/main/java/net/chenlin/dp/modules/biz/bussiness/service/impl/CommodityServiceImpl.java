@@ -78,6 +78,12 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
+    public Resp<CommodityEntity> getCommodityByName(String name) {
+        CommodityEntity commodityEntity = commodityMapper.getObjectByName(name);
+        return CommonUtils.msgResp(commodityEntity);
+    }
+
+    @Override
     public Resp<CommodityCategoryEntity> getCommodityCategoryById(Long id) {
         CommodityCategoryEntity commodityEntity = commodityMapper.getObjectByIdCC(id);
         return CommonUtils.msgResp(commodityEntity);
