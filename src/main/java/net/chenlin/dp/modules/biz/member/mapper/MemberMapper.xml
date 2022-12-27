@@ -535,7 +535,7 @@
 		FROM
 			member
 		where
-			1=1
+			org_id = #{org_id}
 	</select>
 
 	<select id="getRobotList" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">

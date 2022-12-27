@@ -28,7 +28,7 @@ public interface EmployeeService {
 	Resp<Integer> saveEmployee(EmployeeEntity employee);
 
 
-    Integer saveEmployee(EmployeeEntity employee,MemberEntity member);
+    Integer saveEmployee(EmployeeEntity employee,MemberEntity member,String domain);
     /**
      * 根据id查询
      * @param id
@@ -54,8 +54,14 @@ public interface EmployeeService {
      * @return
      */
 	Resp batchRemove(String[] id);
+    /**
+     * 特权用户上线
+     * @param id
+     * @return
+     */
+	Resp updateEmployeeEnable(String[] id, int userStatus);
 
-    Resp<Integer> employeeBindIp(EmployeeEntity employee);
+    Resp<Integer> employeeBindIp(EmployeeEntity employee,String domain);
 
 	
 }

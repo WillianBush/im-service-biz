@@ -12,6 +12,7 @@ import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.room.entity.RoomBean;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -34,6 +35,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
     private MemberMapper memberMapper;
     private RedisCacheManager redisCacheManager;
 
+    private DomainsMapper domainsMapper;
     /**
      * 分页查询
      * @param params
@@ -41,7 +43,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
      */
 	@Override
 	public Page<MemberEntity> listRoomMember(Map<String, Object> params) {
-		params.put("org_id", 1);
+		params.put("org_id", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<MemberEntity> page = new Page<>(query);
 		page.setRows(memberMapper.getMemberByRoomIdForPage(page, query));
@@ -60,7 +62,7 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 		roomMember.setCreateDate(new Date());
 		RoomMemberEntity rmParam=new RoomMemberEntity();
 		/*** 根据memberId 查询 member 得到 id */
-		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMember_id(), 1);
+		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMember_id());
 		rmParam.setRoom_id(roomMember.getRoom_id());
 		rmParam.setMember_id(memberEntity.getId());
 		//查询是否已经存在

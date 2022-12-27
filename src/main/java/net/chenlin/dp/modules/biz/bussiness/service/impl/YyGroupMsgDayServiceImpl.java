@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity;
 import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
+import net.chenlin.dp.modules.sys.service.DomainsService;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -27,6 +28,7 @@ public class YyGroupMsgDayServiceImpl implements YyGroupMsgDayService {
 
     private YyGroupMsgDayMapper yyGroupMsgDayMapper;
 	private MessageHistoryMapper messageHistoryMapper;
+	private DomainsService domainsService;
 
     /**
      * 分页查询

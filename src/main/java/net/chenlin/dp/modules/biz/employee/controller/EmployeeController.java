@@ -48,6 +48,7 @@ public class EmployeeController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Page<EmployeeEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return employeeService.listEmployee(params);
 	}
 		
@@ -81,7 +82,7 @@ public class EmployeeController extends AbstractController {
 			return Resp.error("用户已经是特权用户");
 		}
 
-		employeeService.saveEmployee(employee,member);
+		employeeService.saveEmployee(employee,member,getServerName());
 		return Resp.ok("新增成功");
 	}
 	
@@ -133,10 +134,36 @@ public class EmployeeController extends AbstractController {
 		if (employee.getIp_white().isEmpty() || null == employee.getIp_white()) {
 			throw new GoLoginException("ip_white参数为空");
 		}
-		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIp_white(), 0);
+		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIp_white(), 0, getServerName());
 		if (yyIpListEntity.getIp_address().isEmpty()) {
 			throw new GoLoginException("IP_white参数不存在");
 		}
-		return employeeService.employeeBindIp(employee);
+		return employeeService.employeeBindIp(employee,getServerName());
 	}
+
+	/**
+	 * 特权用户在线
+	 * @param id
+	 * @return
+	 */
+	@SysLog("设置特权用户在线")
+	@PostMapping("/enable")
+	@ApiOperation(value = "设置特权用户在线")
+	public Resp updateUserEnable(@RequestBody String[] id) {
+		return employeeService.updateEmployeeEnable(id, 1);
+	}
+
+	/**
+	 * 特权用户下线
+	 * @param id
+	 * @return
+	 */
+	@SysLog("设置特权用户下线")
+	@PostMapping("/disable")
+	@ApiOperation(value = "设置特权用户下线")
+	public Resp updateUserDisable(@RequestBody String[] id) {
+		return employeeService.updateEmployeeEnable(id, 0);
+	}
+
+
 }

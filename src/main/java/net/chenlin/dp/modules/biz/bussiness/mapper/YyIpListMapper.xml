@@ -59,7 +59,6 @@
 	<update id="update">
 		UPDATE yy_ip_list
 	 	<set>
-<!--			<if test="id != null">`id` = #{id}, </if>-->
 			<if test="ip_address != null">`ip_address` = #{ip_address}, </if>
 			<if test="note != null">`note` = #{note}, </if>
 			<if test="type != null">`type` = #{type}, </if>

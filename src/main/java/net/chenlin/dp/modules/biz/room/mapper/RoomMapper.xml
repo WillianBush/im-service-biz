@@ -423,7 +423,7 @@
 		FROM
 			room
 		WHERE
-			id = #{id} and org_id = #{org_id}
+			id = #{id}
 	</select>
 
 

@@ -25,7 +25,7 @@ public interface MemberloginlogService {
      * @param memberloginlog
      * @return
      */
-    Resp saveMemberloginlog(MemberloginlogEntity memberloginlog);
+    Resp saveMemberloginlog(MemberloginlogEntity memberloginlog,String domain);
 
     /**
      * 根据id查询

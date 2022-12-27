@@ -24,7 +24,7 @@ public interface EmployeeDefaultMessageService {
      * @param employeeDefaultMessage
      * @return
      */
-	Resp<EmployeeDefaultMessageEntity> saveEmployeeDefaultMessage(EmployeeDefaultMessageEntity employeeDefaultMessage);
+	Resp<EmployeeDefaultMessageEntity> saveEmployeeDefaultMessage(EmployeeDefaultMessageEntity employeeDefaultMessage,String domain);
 
     /**
      * 根据id查询

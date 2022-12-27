@@ -30,7 +30,7 @@ public class AppVersionController extends AbstractController {
 	
 
 	private AppVersionService appVersionService;
-	
+
 	/**
 	 * 列表
 	 * @param params
@@ -62,14 +62,13 @@ public class AppVersionController extends AbstractController {
 			return Resp.error("参数异常");
 		}
 		if (appVersion.getOrg_id() == null){
-			appVersion.setOrg_id(1);
+			appVersion.setOrg_id(1L);
 		}
-
 		AppVersionEntity appVersionEntity = appVersionService.selectByUniqueKey(appVersion.getVersion(),appVersion.getOrg_id(),appVersion.getDevice_type(),appVersion.getApp_id());
 		if (null != appVersionEntity) {
 			return Resp.error("版本已存在，请核对");
 		}
-		return appVersionService.saveAppVersion(appVersion);
+		return appVersionService.saveAppVersion(appVersion,getServerName());
 	}
 	
 	/**

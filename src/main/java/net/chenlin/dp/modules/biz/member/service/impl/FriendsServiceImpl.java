@@ -39,7 +39,7 @@ public class FriendsServiceImpl implements FriendsService {
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
 		friends.setMid(para.getMid());
 		/*** 根据memberId 查询 member 得到 id */
-		MemberEntity memberEntity=memberMapper.getMemberByMid(para.getFriendid(), 1);
+		MemberEntity memberEntity=memberMapper.getMemberByMid(para.getFriendid());
 		if(null==memberEntity){
 			return Resp.error("添加好友不存在");
 		}

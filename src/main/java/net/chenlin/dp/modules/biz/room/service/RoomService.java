@@ -25,7 +25,7 @@ public interface RoomService {
      * @param room
      * @return
      */
-    Resp saveRoom(RoomEntity room);
+    Resp saveRoom(RoomEntity room,String domain);
 
     /**
      * 根据id查询
@@ -60,5 +60,5 @@ public interface RoomService {
      * @param
      * @return
      */
-    Long getTotal();
+    Long getTotal(String domain);
 }

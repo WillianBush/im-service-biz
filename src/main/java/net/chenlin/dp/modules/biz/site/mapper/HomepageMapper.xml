@@ -9,7 +9,8 @@
 			`name`, 
 			`icon`, 
 			`link`, 
-			`paramter_open`, 
+			`info`,
+			`paramter_open`,
 			`rule`, 
 			`sort`
 		FROM
@@ -23,6 +24,7 @@
 		<if test="paramter_open != null"> and `paramter_open` = #{paramter_open} </if>
 		<if test="rule != null"> and `rule` = #{rule} </if>
 		<if test="sort != null"> and `sort` = #{sort} </if>
+		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -33,18 +35,22 @@
 			`name`, 
 			`icon`, 
 			`link`, 
-			`paramter_open`, 
+			`info`,
+			`paramter_open`,
 			`rule`, 
-			`sort`
+			`sort`,
+			org_id
 		)
 		VALUES (
 			#{id}, 
 			#{name}, 
 			#{icon}, 
 			#{link}, 
-			#{paramter_open}, 
+			#{info},
+			#{paramter_open},
 			#{rule}, 
-			#{sort}
+			#{sort},
+			#{org_id}
 		)
 	</insert>
 	
@@ -54,7 +60,8 @@
 			`name`, 
 			`icon`, 
 			`link`, 
-			`paramter_open`, 
+			`info`,
+			`paramter_open`,
 			`rule`, 
 			`sort`
 		FROM
@@ -69,6 +76,7 @@
 			<if test="name != null">`name` = #{name}, </if>
 			<if test="icon != null">`icon` = #{icon}, </if>
 			<if test="link != null">`link` = #{link}, </if>
+			<if test="info != null">`info` = #{info}, </if>
 			<if test="paramter_open != null">`paramter_open` = #{paramter_open}, </if>
 			<if test="rule != null">`rule` = #{rule}, </if>
 			<if test="sort != null">`sort` = #{sort}</if>

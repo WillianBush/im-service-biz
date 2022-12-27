@@ -36,6 +36,9 @@ public class HomepageEntity implements Serializable {
 	
 	@ApiModelProperty(value = "链接")
 	private String link;
+
+	@ApiModelProperty(value = "详情")
+	private String info;
 	
 	@ApiModelProperty(value = "参数开关0否1是")
 	private Integer paramter_open;
@@ -45,6 +48,8 @@ public class HomepageEntity implements Serializable {
 	
 	@ApiModelProperty(value = "顺序")
 	private Integer sort;
+
+	private Long org_id;
 	
 
 

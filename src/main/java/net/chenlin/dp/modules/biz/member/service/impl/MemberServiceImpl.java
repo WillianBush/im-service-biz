@@ -16,6 +16,8 @@ import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
 import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
 import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
 import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
+import net.chenlin.dp.modules.sys.entity.DomainsEntity;
+import net.chenlin.dp.modules.sys.service.DomainsService;
 import org.apache.commons.lang.StringUtils;
 import org.bouncycastle.jcajce.provider.digest.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,8 @@ public class MemberServiceImpl implements MemberService {
 
     private RedisCacheManager redisCacheManager;
 
+    private DomainsService domainsService;
+
     /**
      * 分页查询
      *
@@ -52,6 +56,8 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public Page<MemberEntity> listMember(Map<String, Object> params) {
+        DomainsEntity domainsEntity=domainsService.getDomainsByUrl(params.get("domain").toString());
+
         if (null != params && !params.isEmpty()) {
             List<String> lastLogin = (ArrayList<String>) params.get("createdate");
             if (lastLogin != null && lastLogin.size() == 2) {
@@ -59,6 +65,8 @@ public class MemberServiceImpl implements MemberService {
                 params.put("createdateEnd", lastLogin.get(1));
             }
         }
+
+        params.put("org_id",domainsEntity.getOrg_id());
         Query query = new Query(params);
         Page<MemberEntity> page = new Page<>(query);
         List<MemberEntity> list = memberMapper.listForPage(page, query);
@@ -80,11 +88,12 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     @Override
-    public Resp saveMember(MemberEntity member) {
-        SnowFlakeIdWorker sw = new SnowFlakeIdWorker(1);
+    public Resp saveMember(MemberEntity member,String domain) {
+        DomainsEntity domainsEntity=domainsService.getDomainsByUrl(domain);
         //根据username查询是否存在
         Map<String, Object> para = new HashMap<>();
         para.put("username", member.getUsername());
+        para.put("domain",domain);
         Page<MemberEntity> rsPage = listMember(para);
         if (rsPage.getRows().size() > 0) {
             return Resp.error(Resp.error, "用户已经存在");
@@ -98,18 +107,19 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
         member.setId(IdGenerate.generateUUID());
         member.setStatus(0);
+        member.setOrg_id(domainsEntity.getOrg_id());
         int count = memberMapper.save(member);
 
 		if (member.getIs_employee().equals(1)) {
 			EmployeeEntity employee = new EmployeeEntity();
-			employeeService.saveEmployee(employee, this.getMemberById(member.getId()).getData());
+			employeeService.saveEmployee(employee, this.getMemberById(member.getId()).getData(),domain);
 		}
 
         return CommonUtils.msgResp(count);
     }
 
     @Override
-    public Resp batchSaveMember(List<MemberEntity> members) {
+    public Resp batchSaveMember(List<MemberEntity> members,String domain) {
         log.info("批量添加用户---startcheck");
         for (MemberEntity memberEntity : members) {
             if (StringUtils.isEmpty(memberEntity.getPassword())) {
@@ -125,7 +135,9 @@ public class MemberServiceImpl implements MemberService {
             }
 
         }
-        members.forEach(this::saveMember);
+        members.forEach(memberEntity -> {
+            saveMember(memberEntity,domain);
+        });
         return Resp.ok();
     }
 
@@ -154,7 +166,7 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public Resp<MemberEntity> getMemberByMid(String memberId) {
-        MemberEntity member = memberMapper.getMemberByMid(memberId, 1);
+        MemberEntity member = memberMapper.getMemberByMid(memberId);
         if (member == null) {
             return Resp.error("用户不存在！");
         } else {
@@ -215,7 +227,8 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public Page<MemberEntity> listFriends(Map<String, Object> params) {
-        params.put("org_id", 1);
+        DomainsEntity domainsEntity=domainsService.getDomainsByUrl(params.get("domain").toString());
+        params.put("org_id", domainsEntity.getOrg_id());
         Query query = new Query(params);
         Page<MemberEntity> page = new Page<>(query);
         page.setRows(memberMapper.listForPageByFriend(page, query));
@@ -224,7 +237,12 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public Resp<Long> getTotalNumber() {
-        return CommonUtils.msgResp(memberMapper.getTotal());
+    public Resp<Long> getTotalNumber(String domain) {
+        DomainsEntity domainsEntity=domainsService.getDomainsByUrl(domain);
+        if (null == domainsEntity){
+            log.error("domain 无法获取对应的 org_id, domain:{}",domain);
+            return CommonUtils.msgResp(-1L);
+        }
+        return CommonUtils.msgResp(memberMapper.getTotal(domainsEntity.getOrg_id()));
     }
 }

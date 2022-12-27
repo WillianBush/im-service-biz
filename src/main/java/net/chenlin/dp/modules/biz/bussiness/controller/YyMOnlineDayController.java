@@ -40,6 +40,7 @@ public class YyMOnlineDayController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Resp<List<YyMOnlineDayEntity>> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return yyMOnlineDayService.listYyMOnlineDay(params);
 	}
 		
@@ -98,6 +99,7 @@ public class YyMOnlineDayController extends AbstractController {
 	@PostMapping("/onlineList")
 	@ApiOperation(value = "列表")
 	public Page<MemberloginlogEntity> onlineList(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return yyMOnlineDayService.getYyMOnline(params);
 	}
 }

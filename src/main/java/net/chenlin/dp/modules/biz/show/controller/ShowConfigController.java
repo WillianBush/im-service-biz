@@ -38,6 +38,7 @@ public class ShowConfigController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
 	public Page<ShowConfigEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return showConfigService.listShowConfig(params);
 	}
 		
@@ -50,7 +51,7 @@ public class ShowConfigController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<ShowConfigEntity> save(@RequestBody ShowConfigEntity showConfig) {
-		return showConfigService.saveShowConfig(showConfig);
+		return showConfigService.saveShowConfig(showConfig,getServerName());
 	}
 	
 	/**

@@ -26,9 +26,9 @@ public interface MemberService {
      * @param member
      * @return
      */
-    Resp saveMember(MemberEntity member);
+    Resp saveMember(MemberEntity member,String domain);
 
-    Resp batchSaveMember(List<MemberEntity> member);
+    Resp batchSaveMember(List<MemberEntity> member,String domain);
 
     /**
      * 根据id查询
@@ -89,6 +89,6 @@ public interface MemberService {
      * @param
      * @return
      */
-    Resp<Long> getTotalNumber();
+    Resp<Long> getTotalNumber(String domain);
 
 }

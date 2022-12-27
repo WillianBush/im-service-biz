@@ -2,7 +2,9 @@ package net.chenlin.dp.modules.biz.member.service.impl;
 
 import java.util.Map;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +21,12 @@ import net.chenlin.dp.modules.biz.member.service.MemberloginlogService;
  * @author wang<fangyuan.co@outlook.com>
  */
 @Service("memberloginlogService")
+@AllArgsConstructor
 public class MemberloginlogServiceImpl implements MemberloginlogService {
 
-	@Autowired
     private MemberloginlogMapper memberloginlogMapper;
+
+    private DomainsMapper domainsMapper;
 
     /**
      * 分页查询
@@ -31,7 +35,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      */
 	@Override
 	public Page<MemberloginlogEntity> listMemberloginlog(Map<String, Object> params) {
-		params.put("org_id", 1);
+		params.put("org_id", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<MemberloginlogEntity> page = new Page<>(query);
 		page.setRows(memberloginlogMapper.listForPage(page, query));
@@ -44,8 +48,8 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      * @return
      */
 	@Override
-	public Resp saveMemberloginlog(MemberloginlogEntity memberloginlog) {
-		memberloginlog.setOrg_id(1);
+	public Resp saveMemberloginlog(MemberloginlogEntity memberloginlog,String domain) {
+		memberloginlog.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		int count = memberloginlogMapper.save(memberloginlog);
 		return CommonUtils.msgResp(count);
 	}
@@ -68,7 +72,6 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      */
 	@Override
 	public Resp updateMemberloginlog(MemberloginlogEntity memberloginlog) {
-		memberloginlog.setOrg_id(1);
 		int count = memberloginlogMapper.update(memberloginlog);
 		return CommonUtils.msgResp(count);
 	}

@@ -38,6 +38,7 @@ public class RoomController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "群组列表")
 	public Page<RoomEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		return roomService.listRoom(params);
 	}
 		
@@ -50,7 +51,7 @@ public class RoomController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增群组")
 	public Resp save(@RequestBody RoomEntity room) {
-		return roomService.saveRoom(room);
+		return roomService.saveRoom(room,getServerName());
 	}
 	
 	/**

@@ -14,9 +14,9 @@ import net.chenlin.dp.common.mapper.TkBaseMapper;
 @Mapper
 public interface RoomMapper extends TkBaseMapper<RoomEntity> {
 
-    RoomMemberEntity getRoomMemberById(String roomId, Integer org_id);
+    RoomMemberEntity getRoomMemberById(String roomId);
 
 
-    Long getRoomSum(Integer org_id);
+    Long getRoomSum(Long org_id);
 
 }

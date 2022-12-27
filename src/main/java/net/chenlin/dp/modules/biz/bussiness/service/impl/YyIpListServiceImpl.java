@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.utils.IdGenerate;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -26,6 +27,8 @@ public class YyIpListServiceImpl implements YyIpListService {
 
     private YyIpListMapper yyIpListMapper;
 
+    private DomainsMapper domainsMapper;
+
     /**
      * 分页查询
      * @param params
@@ -33,7 +36,7 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Page<YyIpListEntity> listYyIpList(Map<String, Object> params) {
-		params.put("org_id", 1);
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<YyIpListEntity> page = new Page<>(query);
 		List<YyIpListEntity> resp=yyIpListMapper.listForPage(page, query);
@@ -47,8 +50,8 @@ public class YyIpListServiceImpl implements YyIpListService {
      * @return
      */
 	@Override
-	public Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList) {
-		yyIpList.setOrg_id(1);
+	public Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList,String domain) {
+		yyIpList.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		int count = yyIpListMapper.save(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
@@ -70,8 +73,8 @@ public class YyIpListServiceImpl implements YyIpListService {
      * @return
      */
 	@Override
-	public Resp<Integer> updateYyIpList(YyIpListEntity yyIpList) {
-		yyIpList.setOrg_id(1);
+	public Resp<Integer> updateYyIpList(YyIpListEntity yyIpList, String domain) {
+		Long org_id = domainsMapper.getOrgIdByDomain(domain);
 		int count = yyIpListMapper.update(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
@@ -88,8 +91,9 @@ public class YyIpListServiceImpl implements YyIpListService {
 	}
 
 	@Override
-	public YyIpListEntity getByIP(String ipAddress, Integer type) {
-		return yyIpListMapper.getObjectByIp(ipAddress, type, 1);
+	public YyIpListEntity getByIP(String ipAddress, Integer type, String domain) {
+		Long org_id = domainsMapper.getOrgIdByDomain(domain);
+		return yyIpListMapper.getObjectByIp(ipAddress, type, org_id);
 	}
 
 }

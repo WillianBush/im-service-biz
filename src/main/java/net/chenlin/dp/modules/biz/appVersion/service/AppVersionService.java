@@ -24,7 +24,7 @@ public interface AppVersionService {
      * @param appVersion
      * @return
      */
-	Resp<AppVersionEntity> saveAppVersion(AppVersionEntity appVersion);
+	Resp<AppVersionEntity> saveAppVersion(AppVersionEntity appVersion,String domain);
 
     /**
      * 根据id查询
@@ -47,7 +47,7 @@ public interface AppVersionService {
      */
     Resp<Integer> batchRemove(Long[] ids);
 
-    AppVersionEntity selectByUniqueKey(String version,Integer siteId,String os ,String appId);
+    AppVersionEntity selectByUniqueKey(String version,Long siteId,String os ,String appId);
 
     Resp<AppVersionEntity> getAppVersionByOSAndAppName(String os, String appName);
 }

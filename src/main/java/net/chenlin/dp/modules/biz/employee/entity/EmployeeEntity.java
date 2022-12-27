@@ -55,7 +55,10 @@ public class EmployeeEntity implements Serializable {
 	private String ip_white;
 
 	@ApiModelProperty(value = "站点")
-	private int org_id;
+	private Long org_id;
+
+	@ApiModelProperty(value = "特权用户在线状态")
+	private Long userStatus;
 
 	@Transient
 	private String nickName;

@@ -24,7 +24,7 @@ public interface ShowConfigService {
      * @param showConfig
      * @return
      */
-	Resp<ShowConfigEntity> saveShowConfig(ShowConfigEntity showConfig);
+	Resp<ShowConfigEntity> saveShowConfig(ShowConfigEntity showConfig,String domain);
 
     /**
      * 根据id查询

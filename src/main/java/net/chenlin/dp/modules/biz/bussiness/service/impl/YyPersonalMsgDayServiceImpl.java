@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import net.chenlin.dp.modules.biz.bussiness.entity.YyGroupMsgDayEntity;
 import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
 import net.chenlin.dp.modules.biz.room.entity.MessageHistoryEntity;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Query;
@@ -28,7 +29,7 @@ public class YyPersonalMsgDayServiceImpl implements YyPersonalMsgDayService {
 
     private YyPersonalMsgDayMapper yyPersonalMsgDayMapper;
 	private MessageHistoryMapper messageHistoryMapper;
-
+	private DomainsMapper domainsMapper;
     /**
      * 分页查询
      * @param params
@@ -36,6 +37,7 @@ public class YyPersonalMsgDayServiceImpl implements YyPersonalMsgDayService {
      */
 	@Override
 	public Resp<List<YyPersonalMsgDayEntity>> listYyPersonalMsgDay(Map<String, Object> params) {
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		List<YyPersonalMsgDayEntity> resp = messageHistoryMapper.getObjectPersonalMessageGroupByDate(query);
 		return Resp.ok(200, "操作成功", resp);
@@ -43,6 +45,7 @@ public class YyPersonalMsgDayServiceImpl implements YyPersonalMsgDayService {
 
 	@Override
 	public List<YyGroupMsgDayEntity> listYyGroupMsgDay(Map<String, Object> params) {
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		return messageHistoryMapper.getObjectGroupMessageGroupByDate(query);
 	}

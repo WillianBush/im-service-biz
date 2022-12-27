@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.OSSModel;
 import net.chenlin.dp.common.utils.IdGenerate;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,8 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
     private EmployeeDefaultMessageMapper employeeDefaultMessageMapper;
 	private OSSModel ossModel;
 
+	private DomainsMapper domainsMapper;
+
     /**
      * 分页查询
      * @param params
@@ -38,6 +41,7 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
      */
 	@Override
 	public Page<EmployeeDefaultMessageEntity> listEmployeeDefaultMessage(Map<String, Object> params) {
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<EmployeeDefaultMessageEntity> page = new Page<>(query);
 		List<EmployeeDefaultMessageEntity> resp= employeeDefaultMessageMapper.listForPage(page, query);
@@ -68,8 +72,9 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
      * @return
      */
 	@Override
-	public Resp<EmployeeDefaultMessageEntity> saveEmployeeDefaultMessage(EmployeeDefaultMessageEntity employeeDefaultMessage) {
+	public Resp<EmployeeDefaultMessageEntity> saveEmployeeDefaultMessage(EmployeeDefaultMessageEntity employeeDefaultMessage,String domain) {
 		employeeDefaultMessage.setId(IdGenerate.generateUUID());
+		employeeDefaultMessage.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		int count = employeeDefaultMessageMapper.save(employeeDefaultMessage);
 		return CommonUtils.msgResp(count);
 	}

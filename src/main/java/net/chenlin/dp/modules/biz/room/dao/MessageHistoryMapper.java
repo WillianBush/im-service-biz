@@ -26,7 +26,7 @@ public interface MessageHistoryMapper extends TkBaseMapper<MessageHistoryEntity>
 
     int deleteByFromUid(String uid);
 
-    Long getGroupMessageTotal();
+    Long getGroupMessageTotal(Long org_id);
 
-    Long getPersonalMessageTotal();
+    Long getPersonalMessageTotal(Long org_id);
 }

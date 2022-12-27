@@ -8,8 +8,8 @@ import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.room.dao.RoomMemberMapper;
 import net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.utils.CommonUtils;
@@ -35,6 +35,8 @@ public class RoomServiceImpl implements RoomService {
 
 	private MemberMapper memberMapper;
 
+	private DomainsMapper domainsMapper;
+
     /**
      * 分页查询
      * @param params
@@ -42,7 +44,7 @@ public class RoomServiceImpl implements RoomService {
      */
 	@Override
 	public Page<RoomEntity> listRoom(Map<String, Object> params) {
-		params.put("org_id", 1);
+		params.put("org_id", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<RoomEntity> page = new Page<>(query);
 		List<RoomEntity> roomEntityList = roomMapper.listForPage(page, query);
@@ -60,8 +62,8 @@ public class RoomServiceImpl implements RoomService {
      * @return
      */
 	@Override
-	public Resp saveRoom(RoomEntity room) {
-		room.setOrg_id(1);
+	public Resp saveRoom(RoomEntity room,String domain) {
+		room.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		int count = roomMapper.save(room);
 		return CommonUtils.msgResp(count);
 	}
@@ -85,7 +87,6 @@ public class RoomServiceImpl implements RoomService {
      */
 	@Override
 	public Resp updateRoom(RoomEntity room) {
-		room.setOrg_id(1);
 		int count = roomMapper.update(room);
 		return CommonUtils.msgResp(count);
 	}
@@ -112,14 +113,14 @@ public class RoomServiceImpl implements RoomService {
 	 */
 	@Override
 	public Resp getRoomMemberById(String id) {
-		RoomMemberEntity room = roomMapper.getRoomMemberById(id, 1);
+		RoomMemberEntity room = roomMapper.getRoomMemberById(id);
 		return CommonUtils.msgResp(room);
 	}
 
 	
 	@Override
-	public Long getTotal() {
-		return roomMapper.getRoomSum(1);
+	public Long getTotal(String domain) {
+		return roomMapper.getRoomSum(domainsMapper.getOrgIdByDomain(domain));
 	}
 
 	private void getRoomHeadImg(RoomEntity room){
@@ -135,7 +136,6 @@ public class RoomServiceImpl implements RoomService {
 	 * @return
 	 */
 	private RoomEntity getMembersByRoom(RoomEntity room){
-		room.setOrg_id(1);
 		List<RoomMemberEntity> roomMemberEntities =roomMemberMapper.select(RoomMemberEntity.builder()
 				.room_id(room.getId())
 				.build());

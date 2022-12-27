@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.OSSModel;
 import net.chenlin.dp.common.utils.IdGenerate;
 import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
+import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,8 @@ public class HomepageServiceImpl implements HomepageService {
     private HomepageMapper homepageMapper;
 
 	private OSSModel ossModel;
+
+	private DomainsMapper domainsMapper;
     /**
      * 分页查询
      * @param params
@@ -37,6 +40,7 @@ public class HomepageServiceImpl implements HomepageService {
      */
 	@Override
 	public Page<HomepageEntity> listHomepage(Map<String, Object> params) {
+		params.put("org_id",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<HomepageEntity> page = new Page<>(query);
 		List<HomepageEntity> resp= homepageMapper.listForPage(page, query);
@@ -53,8 +57,9 @@ public class HomepageServiceImpl implements HomepageService {
      * @return
      */
 	@Override
-	public Resp<HomepageEntity> saveHomepage(HomepageEntity homepage) {
+	public Resp<HomepageEntity> saveHomepage(HomepageEntity homepage,String domain) {
 		homepage.setId(IdGenerate.generateUUID());
+		homepage.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		int count = homepageMapper.save(homepage);
 		return CommonUtils.msgResp(count);
 	}
