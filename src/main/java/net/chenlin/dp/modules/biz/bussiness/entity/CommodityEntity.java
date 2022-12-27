@@ -30,6 +30,9 @@ public class CommodityEntity implements Serializable {
     @ApiModelProperty(value = "商品名称")
     private String name;
 
+    @ApiModelProperty(value = "商品详情")
+    private String commodity_info;
+
     @ApiModelProperty(value = "商品分类")
     private int category_id;
 
