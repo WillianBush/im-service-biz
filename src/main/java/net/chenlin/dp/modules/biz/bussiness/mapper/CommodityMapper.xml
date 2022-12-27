@@ -103,7 +103,6 @@
         </set>
         WHERE
         id = #{id}
---         id = #{id} and org_id = #{org_id}
     </update>
 
     <update id="updateCC">

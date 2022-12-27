@@ -61,7 +61,7 @@ public class CommodityController extends AbstractController {
 			return Resp.error("商品库存数量错误");
 		}
 		Resp<CommodityEntity> commodityEntityCheck = commodityService.getCommodityByName(commodityEntity.getName());
-		if (null != commodityEntityCheck){
+		if (!commodityEntityCheck.getRows().isEmpty()){
 			return Resp.error("商品已存在");
 		}
 		return commodityService.saveCommodity(commodityEntity,getServerName());
