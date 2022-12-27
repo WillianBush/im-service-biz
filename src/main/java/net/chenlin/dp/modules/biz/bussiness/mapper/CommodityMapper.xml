@@ -75,7 +75,7 @@
 
     <select id="getObjectByIdCC" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity">
         SELECT `id`,
-               `category_name`,
+               `category_name`
         FROM commodity_category
         WHERE id = #{id}
     </select>
