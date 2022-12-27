@@ -15,6 +15,7 @@ import net.chenlin.dp.modules.sys.entity.SysLogEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +63,8 @@ public class CommodityServiceImpl implements CommodityService {
     public Resp<CommodityEntity> saveCommodity(CommodityEntity commodityEntity, String domain) {
 //        commodityEntity.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
         commodityEntity.setOrg_id(1L);
+        commodityEntity.setCreate_time(new Date());
+        commodityEntity.setModify_time(new Date());
         int count = commodityMapper.save(commodityEntity);
         return CommonUtils.msgResp(count);
     }
@@ -105,6 +108,7 @@ public class CommodityServiceImpl implements CommodityService {
     public Resp<Integer> updateCommodity(CommodityEntity commodityEntity, String domain) {
 //        commodityEntity.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
         commodityEntity.setOrg_id(1L);
+        commodityEntity.setModify_time(new Date());
         commodityEntity.setCategory_id(getCommodityCategoryByName(commodityEntity.getCategory_name()).getData().getId());
         int count = commodityMapper.update(commodityEntity);
         return CommonUtils.msgResp(count);
