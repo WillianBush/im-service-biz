@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.bussiness.service.impl;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.Resp;
@@ -11,6 +12,7 @@ import net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity;
 import net.chenlin.dp.modules.biz.bussiness.service.CommodityService;
 import net.chenlin.dp.modules.sys.dao.DomainsMapper;
 import net.chenlin.dp.modules.sys.entity.SysLogEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.Map;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
+@Service("CommodityService")
+@AllArgsConstructor
 public class CommodityServiceImpl implements CommodityService {
 
     private CommodityMapper commodityMapper;
