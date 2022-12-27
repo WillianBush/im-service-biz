@@ -60,6 +60,7 @@
 			#{member_uuid}, 
 			#{name},
 			#{ip_white},
+			#{userStatus},
 			#{org_id}
 		)
 	</insert>
