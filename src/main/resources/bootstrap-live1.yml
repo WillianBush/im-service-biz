@@ -6,7 +6,7 @@ spring:
         file-extension: yaml  #后缀名
         group: DEFAULT_GROUP      #分组
         namespace: 1179b48c-54e0-44a1-b526-0e457e93766c  #命名空间的id
-        shared-configs: ${spring.application.name}.${spring.cloud.nacos.config.file-extension},${spring.application.name}-uat.${spring.cloud.nacos.config.file-extension}
+        shared-configs: ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
       discovery:
         server-addr: nacos-svc:8848
         namespace: 1179b48c-54e0-44a1-b526-0e457e93766c
