@@ -20,7 +20,6 @@
         left join commodity_category cc on c.`category_id` = cc.`id`
         where
         1=1
-        <if test="id != null">and `id` = #{id}</if>
         <if test="name != null">and `name` = #{name}</if>
         <if test="category_id != null">and `category_id` = #{category_id}</if>
         ORDER BY
@@ -92,7 +91,8 @@
             <if test="commodity_info != null">`commodity_info` = #{commodity_info}</if>
         </set>
         WHERE
-        id = #{id} and org_id = #{org_id}
+        id = #{id}
+--         id = #{id} and org_id = #{org_id}
     </update>
 
     <update id="updateCC">
