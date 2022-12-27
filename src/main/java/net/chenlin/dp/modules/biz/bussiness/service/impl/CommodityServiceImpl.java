@@ -91,8 +91,8 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public Resp<CommodityCategoryEntity> getCommodityCategoryByName(String name) {
-        CommodityCategoryEntity commodityEntity = commodityMapper.getObjectByNameCC(name);
+    public Resp<CommodityCategoryEntity> getCommodityCategoryByName(String category_name) {
+        CommodityCategoryEntity commodityEntity = commodityMapper.getObjectByNameCC(category_name);
         return CommonUtils.msgResp(commodityEntity);
     }
 

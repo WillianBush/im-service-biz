@@ -43,7 +43,7 @@ public interface CommodityMapper extends TkBaseMapper<CommodityEntity> {
      * @param name
      * @return
      */
-    CommodityCategoryEntity getObjectByNameCC(Object name);
+    CommodityCategoryEntity getObjectByNameCC(Object category_name);
 
     /**
      * 更新
