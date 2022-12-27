@@ -44,6 +44,8 @@
                                `prize`,
                                `in_stock`,
                                `img`,
+                               `create_time`,
+                               `modify_time`,
                                `org_id`)
         VALUES (#{name},
                 #{category_id},
@@ -51,6 +53,8 @@
                 #{prize},
                 #{in_stock},
                 #{img},
+                #{create_time},
+                #{modify_time},
                 #{org_id})
     </insert>
 
@@ -103,8 +107,10 @@
             <if test="name != null">`name` = #{name},</if>
             <if test="prize != null">`prize` = #{prize},</if>
             <if test="in_stock != null">`in_stock` = #{in_stock},</if>
-            <if test="category_id != null">`category_id` = #{category_id}</if>
-            <if test="commodity_info != null">`commodity_info` = #{commodity_info}</if>
+            <if test="category_id != null">`category_id` = #{category_id},</if>
+            <if test="commodity_info != null">`commodity_info` = #{commodity_info},</if>
+            <if test="img != null">`img` = #{img},</if>
+            <if test="modify_time != null">`modify_time` = #{modify_time},</if>
         </set>
         WHERE
         id = #{id}

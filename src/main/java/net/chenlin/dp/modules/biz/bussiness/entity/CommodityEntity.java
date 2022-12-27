@@ -47,10 +47,10 @@ public class CommodityEntity implements Serializable {
     private String img;
 
     @ApiModelProperty(value = "创建时间")
-    private Timestamp create_time;
+    private Date create_time;
 
     @ApiModelProperty(value = "修改时间")
-    private Timestamp modify_time;
+    private Date modify_time;
 
     @ApiModelProperty(value = "机构ID")
     private Long org_id;
