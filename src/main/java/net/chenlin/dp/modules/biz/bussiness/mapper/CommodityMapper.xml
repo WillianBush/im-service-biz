@@ -7,6 +7,7 @@
         SELECT
         c.`id`,
         c.`name`,
+        c.`commodity_info`,
         cc.`category_name`,
         c.`prize`,
         c.`in_stock`,
@@ -19,7 +20,6 @@
         left join commodity_category cc on c.`category_id` = cc.`id`
         where
         1=1
-        <if test="id != null">and `id` = #{id}</if>
         <if test="name != null">and `name` = #{name}</if>
         <if test="category_id != null">and `category_id` = #{category_id}</if>
         ORDER BY
@@ -40,15 +40,21 @@
     <insert id="save">
         INSERT INTO commodity (`name`,
                                `category_id`,
+                               `commodity_info`,
                                `prize`,
                                `in_stock`,
                                `img`,
+                               `create_time`,
+                               `modify_time`,
                                `org_id`)
         VALUES (#{name},
                 #{category_id},
+                #{commodity_info},
                 #{prize},
                 #{in_stock},
                 #{img},
+                #{create_time},
+                #{modify_time},
                 #{org_id})
     </insert>
 
@@ -60,6 +66,7 @@
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
         SELECT c.`id`,
                c.`name`,
+               c.`commodity_info`,
                cc.`category_name`,
                c.`prize`,
                c.`in_stock`,
@@ -72,9 +79,25 @@
 
     <select id="getObjectByIdCC" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity">
         SELECT `id`,
-               `category_name`,
+               `category_name`
         FROM commodity_category
         WHERE id = #{id}
+    </select>
+
+    <select id="getObjectByNameCC" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity">
+        SELECT `id`, `category_name` FROM commodity_category WHERE category_name = #{category_name}
+    </select>
+
+    <select id="getObjectByName" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
+        SELECT c.`id`,
+               c.`name`,
+               c.`commodity_info`,
+               c.`prize`,
+               c.`in_stock`,
+               c.`img`,
+               c.`org_id`
+        FROM commodity c
+        WHERE name = #{name}
     </select>
 
 
@@ -84,10 +107,13 @@
             <if test="name != null">`name` = #{name},</if>
             <if test="prize != null">`prize` = #{prize},</if>
             <if test="in_stock != null">`in_stock` = #{in_stock},</if>
-            <if test="category_id != null">`category_id` = #{category_id}</if>
+            <if test="category_id != null">`category_id` = #{category_id},</if>
+            <if test="commodity_info != null">`commodity_info` = #{commodity_info},</if>
+            <if test="img != null">`img` = #{img},</if>
+            <if test="modify_time != null">`modify_time` = #{modify_time},</if>
         </set>
         WHERE
-        id = #{id} and org_id = #{org_id}
+        id = #{id}
     </update>
 
     <update id="updateCC">

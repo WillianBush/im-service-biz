@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -30,8 +31,11 @@ public class CommodityEntity implements Serializable {
     @ApiModelProperty(value = "商品名称")
     private String name;
 
+    @ApiModelProperty(value = "商品详情")
+    private String commodity_info;
+
     @ApiModelProperty(value = "商品分类")
-    private int category_id;
+    private Long category_id;
 
     @ApiModelProperty(value = "单价")
     private Double prize;
@@ -43,12 +47,15 @@ public class CommodityEntity implements Serializable {
     private String img;
 
     @ApiModelProperty(value = "创建时间")
-    private Timestamp create_time;
+    private Date create_time;
 
     @ApiModelProperty(value = "修改时间")
-    private Timestamp modify_time;
+    private Date modify_time;
 
     @ApiModelProperty(value = "机构ID")
     private Long org_id;
+
+    @Transient
+    private String category_name;
 
 }

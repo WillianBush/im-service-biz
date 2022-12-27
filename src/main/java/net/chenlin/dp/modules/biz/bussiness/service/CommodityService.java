@@ -50,10 +50,24 @@ public interface CommodityService {
 
     /**
      * 根据id查询
+     * @param name
+     * @return
+     */
+    Resp<CommodityEntity> getCommodityByName(String name);
+
+    /**
+     * 根据id查询
      * @param id
      * @return
      */
     Resp<CommodityCategoryEntity> getCommodityCategoryById(Long id);
+
+    /**
+     * 根据id查询
+     * @param name
+     * @return
+     */
+    Resp<CommodityCategoryEntity> getCommodityCategoryByName(String name);
 
     /**
      * 修改
