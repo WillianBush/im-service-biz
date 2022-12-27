@@ -81,10 +81,7 @@
     </select>
 
     <select id="getObjectByNameCC" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity">
-        SELECT `id`,
-               `category_name`,
-        FROM commodity_category
-        WHERE category_name = #{category_name}
+        SELECT `id`, `category_name` FROM commodity_category WHERE category_name = #{category_name}
     </select>
 
     <select id="getObjectByName" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
