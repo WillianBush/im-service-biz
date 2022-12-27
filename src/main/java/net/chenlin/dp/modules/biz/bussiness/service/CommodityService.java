@@ -63,6 +63,13 @@ public interface CommodityService {
     Resp<CommodityCategoryEntity> getCommodityCategoryById(Long id);
 
     /**
+     * 根据id查询
+     * @param name
+     * @return
+     */
+    Resp<CommodityCategoryEntity> getCommodityCategoryByName(String name);
+
+    /**
      * 修改
      * @param commodityEntity
      * @return

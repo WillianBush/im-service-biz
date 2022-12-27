@@ -39,6 +39,13 @@ public interface CommodityMapper extends TkBaseMapper<CommodityEntity> {
     CommodityCategoryEntity getObjectByIdCC(Object id);
 
     /**
+     * 根据ID获取实例信息
+     * @param name
+     * @return
+     */
+    CommodityCategoryEntity getObjectByNameCC(Object name);
+
+    /**
      * 更新
      * @param t
      * @return

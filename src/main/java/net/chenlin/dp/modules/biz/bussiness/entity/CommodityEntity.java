@@ -35,7 +35,7 @@ public class CommodityEntity implements Serializable {
     private String commodity_info;
 
     @ApiModelProperty(value = "商品分类")
-    private int category_id;
+    private Long category_id;
 
     @ApiModelProperty(value = "单价")
     private Double prize;

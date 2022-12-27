@@ -90,6 +90,12 @@ public class CommodityServiceImpl implements CommodityService {
         return CommonUtils.msgResp(commodityEntity);
     }
 
+    @Override
+    public Resp<CommodityCategoryEntity> getCommodityCategoryByName(String name) {
+        CommodityCategoryEntity commodityEntity = commodityMapper.getObjectByNameCC(name);
+        return CommonUtils.msgResp(commodityEntity);
+    }
+
     /**
      * 修改
      *
@@ -97,7 +103,9 @@ public class CommodityServiceImpl implements CommodityService {
      * @return
      */
     public Resp<Integer> updateCommodity(CommodityEntity commodityEntity, String domain) {
-        commodityEntity.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+//        commodityEntity.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+        commodityEntity.setOrg_id(1L);
+        commodityEntity.setCategory_id(getCommodityCategoryByName(commodityEntity.getCategory_name()).getData().getId());
         int count = commodityMapper.update(commodityEntity);
         return CommonUtils.msgResp(count);
     }

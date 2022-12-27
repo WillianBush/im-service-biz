@@ -79,6 +79,14 @@
         FROM commodity_category
         WHERE id = #{id}
     </select>
+
+    <select id="getObjectByNameCC" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity">
+        SELECT `id`,
+               `category_name`,
+        FROM commodity_category
+        WHERE name = #{name}
+    </select>
+
     <select id="getObjectByName" resultType="net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity">
         SELECT c.`id`,
                c.`name`,
