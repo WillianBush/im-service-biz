@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -53,5 +54,8 @@ public class CommodityEntity implements Serializable {
 
     @ApiModelProperty(value = "机构ID")
     private Long org_id;
+
+    @Transient
+    private String category_name;
 
 }
