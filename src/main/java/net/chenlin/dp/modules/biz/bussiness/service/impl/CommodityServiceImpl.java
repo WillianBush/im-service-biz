@@ -60,7 +60,8 @@ public class CommodityServiceImpl implements CommodityService {
      * @return
      */
     public Resp<CommodityEntity> saveCommodity(CommodityEntity commodityEntity, String domain) {
-        commodityEntity.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+//        commodityEntity.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+        commodityEntity.setOrg_id(1L);
         int count = commodityMapper.save(commodityEntity);
         return CommonUtils.msgResp(count);
     }
