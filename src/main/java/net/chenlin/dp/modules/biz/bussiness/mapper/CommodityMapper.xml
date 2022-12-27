@@ -103,7 +103,7 @@
             <if test="name != null">`name` = #{name},</if>
             <if test="prize != null">`prize` = #{prize},</if>
             <if test="in_stock != null">`in_stock` = #{in_stock},</if>
-            <if test="category_id != null">`category_id` = #{category_id}</if>
+            <if test="category_id != null">`category_id` = #{category_id},</if>
             <if test="commodity_info != null">`commodity_info` = #{commodity_info}</if>
         </set>
         WHERE
