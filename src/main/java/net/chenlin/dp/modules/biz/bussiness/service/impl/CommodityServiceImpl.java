@@ -1,6 +1,7 @@
 package net.chenlin.dp.modules.biz.bussiness.service.impl;
 
 import lombok.AllArgsConstructor;
+import net.chenlin.dp.common.entity.OSSModel;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.Resp;
@@ -29,6 +30,8 @@ public class CommodityServiceImpl implements CommodityService {
 
     private CommodityMapper commodityMapper;
     private DomainsMapper domainsMapper;
+
+    private OSSModel ossModel;
     /**
      * 分页查询
      *
@@ -40,6 +43,11 @@ public class CommodityServiceImpl implements CommodityService {
         Query query = new Query(params);
         Page<CommodityEntity> page = new Page<>(query);
         List<CommodityEntity> resp= commodityMapper.listForPage(page, query);
+        if (!resp.isEmpty()) {
+            for (CommodityEntity commodity: resp) {
+                commodity.setImg("https://" + ossModel.getEndpoint() + commodity.getImg());
+            }
+        }
         page.setRows(resp);
         return page;
     }
