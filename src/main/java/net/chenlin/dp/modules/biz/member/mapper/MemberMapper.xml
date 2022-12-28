@@ -122,7 +122,7 @@
 			AND createDate &lt; #{endTime}
 		</if>
 		ORDER BY
-			id DESC
+			createDate DESC
 	</select>
 	
 	<insert id="save">
