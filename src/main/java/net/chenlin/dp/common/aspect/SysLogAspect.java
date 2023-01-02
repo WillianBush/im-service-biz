@@ -72,12 +72,15 @@ public class SysLogAspect {
 		sysLog.setMethod(className + "." + methodName + "()");
 		//请求的参数
 		Object[] args = joinPoint.getArgs();
-		try{
-			String params = JSONUtils.beanToJson(args[0]);
-			sysLog.setParams(params);
-		}catch (Exception e){
-			log.error("",e);
+		if (args.length != 0){
+			try{
+				String params = JSONUtils.beanToJson(args[0]);
+				sysLog.setParams(params);
+			}catch (Exception e){
+				log.error("",e);
+			}
 		}
+
 		//设置IP地址
 		sysLog.setIp(WebUtils.getIpAddr());
 		//用户名

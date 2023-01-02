@@ -6,9 +6,10 @@ import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.OSSObject;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.OSSModel;
-import net.chenlin.dp.common.entity.OSSUploadResp;
+import net.chenlin.dp.common.entity.UploadResp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.io.*;
 
 @Component
 @Slf4j
+@Data
 public class OssUtil {
 
     OSSModel ossModel;
@@ -67,7 +69,7 @@ public class OssUtil {
     public void deleteFile(String folder, String filePath){
         OSS ossClient = getOSSClient();
         String bucketName = ossModel.getBucketname();
-        ossClient.deleteObject(bucketName, folder + filePath);
+        ossClient.deleteObject(bucketName, folder +"/" + filePath);
         log.info("删除" + bucketName + "下的文件" + folder + filePath + "成功");
     }
 
@@ -133,7 +135,7 @@ public class OssUtil {
      * @param fileSize  文件大小
      * @return 返回的唯一MD5数字签名
      */
-    public OSSUploadResp uploadObjectToOSS(InputStream inputStream, String fileName, String folder, Long fileSize) {
+    public UploadResp uploadObjectToOSS(InputStream inputStream, String fileName, String folder, Long fileSize) {
         OSS ossClient = getOSSClient();
         String bucketName = ossModel.getBucketname();
 
@@ -164,7 +166,7 @@ public class OssUtil {
         } catch (Exception e) {
             log.error("上传阿里云OSS服务器异常." + e.getMessage(), e);
         }
-        return new OSSUploadResp(ossFilePath,resultStr);
+        return new UploadResp(ossFilePath,resultStr);
     }
 
     /**

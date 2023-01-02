@@ -39,6 +39,9 @@ mybatis:
   configLocation: classpath:mybatis.xml
   mapper-locations: classpath*:net/chenlin/dp/**/mapper/*.xml
 
+#    文件系统类型 oss 或 s3
+file-system-active: oss
+
 aliyun:
   oss:
     endpoint: 360-im.oss-cn-hongkong.aliyuncs.com
@@ -47,6 +50,15 @@ aliyun:
     accessKeySecret: 7JOKPC0ZpbuC6nSn0x4aFfKbdG664A
     bucketname: 360-im
     domain: https://360-im.oss-cn-hongkong.aliyuncs.com
+
+
+aws:
+  s3:
+    accessKeyId: AKIA6ENKP3UH5UCIHHPZ
+    accessKeySecret: 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
+    bucketname: media.qweac.link
+    endpoint: s3.ap-northeast-1.amazonaws.com/media.qweac.link
+    domain: https://media.qweac.link
 
 log:
   level:

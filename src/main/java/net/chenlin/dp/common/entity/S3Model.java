@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "aliyun.oss")
+@ConfigurationProperties(prefix = "aws.s3")
 @Data
 @ToString
-public class OSSModel {
+public class S3Model {
 
     private String endpoint;
 
@@ -17,10 +17,6 @@ public class OSSModel {
 
     private String accessKeySecret;
 
-    private String roleArn;
-
     private String bucketname;
-
-    private String appPoint;
 
 }
