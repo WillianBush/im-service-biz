@@ -7,10 +7,14 @@ import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.site.entity.HomepageEntity;
-import net.chenlin.dp.modules.biz.site.service.HomepageService;
+import net.chenlin.dp.modules.biz.site.entity.HomepageUserEntity;
+import net.chenlin.dp.modules.biz.site.service.HomepageUserService;
 import net.chenlin.dp.modules.sys.controller.AbstractController;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -20,12 +24,12 @@ import java.util.Map;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/site/homepage")
+@RequestMapping("/site/homepageUser")
 @Api(tags = "主页")
 @DependsOn("springContextUtils")
-public class HomepageController extends AbstractController {
+public class HomepageUserController extends AbstractController {
 
-	private HomepageService homepageService;
+	private HomepageUserService homepageUserService;
 
 	
 	/**
@@ -35,9 +39,9 @@ public class HomepageController extends AbstractController {
 	 */
 	@PostMapping("/list")
 	@ApiOperation(value = "列表")
-	public Page<HomepageEntity> list(@RequestBody Map<String, Object> params) {
+	public Page<HomepageUserEntity> list(@RequestBody Map<String, Object> params) {
 		params.put("domain",getServerName());
-		return homepageService.listHomepage(params);
+		return homepageUserService.listHomepage(params);
 	}
 		
 	/**
@@ -48,8 +52,8 @@ public class HomepageController extends AbstractController {
 	@SysLog("新增")
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
-	public Resp<HomepageEntity> save(@RequestBody HomepageEntity homepage) {
-		return homepageService.saveHomepage(homepage,getServerName());
+	public Resp<HomepageUserEntity> save(@RequestBody HomepageUserEntity homepage) {
+		return homepageUserService.saveHomepageUser(homepage);
 	}
 	
 	/**
@@ -59,20 +63,20 @@ public class HomepageController extends AbstractController {
 	 */
 	@PostMapping("/info")
 	@ApiOperation(value = "根据id查询详情")
-	public Resp<HomepageEntity> getById(@RequestBody String id) {
-		return homepageService.getHomepageById(id);
+	public Resp<HomepageUserEntity> getById(@RequestBody String id) {
+		return homepageUserService.getHomepageById(id);
 	}
 	
 	/**
 	 * 修改
-	 * @param homepage
+	 * @param homepageUserEntity
 	 * @return
 	 */
 	@SysLog("修改")
 	@PostMapping("/update")
 	@ApiOperation(value = "修改")
-	public Resp<Integer> update(@RequestBody HomepageEntity homepage) {
-		return homepageService.updateHomepage(homepage);
+	public Resp<Integer> update(@RequestBody HomepageUserEntity homepageUserEntity) {
+		return homepageUserService.updateHomepage(homepageUserEntity);
 	}
 	
 	/**
@@ -84,14 +88,7 @@ public class HomepageController extends AbstractController {
 	@PostMapping("/remove")
 	@ApiOperation(value = "删除")
 	public Resp batchRemove(@RequestBody String[] id) {
-		return homepageService.batchRemove(id);
-	}
-
-	@PostMapping("/getById")
-	@ApiOperation(value = "通过ID查询外链信息")
-	public Resp<HomepageEntity> getById(@RequestBody Map<String, Object> params) {
-		params.put("domain",getServerName());
-		return homepageService.getHomepageById(params.get("id").toString());
+		return homepageUserService.batchRemove(id);
 	}
 	
 }
