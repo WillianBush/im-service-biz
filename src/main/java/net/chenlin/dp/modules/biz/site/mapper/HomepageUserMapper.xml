@@ -7,7 +7,7 @@
 		SELECT
 			hpu.`id`,
 			hpu.`member_id`,
-			m.`username`,
+			m.`nickName`,
 			hpu.`out_link_id`,
 			hpu.`status`,
 			hp.`name` as out_link_name

@@ -40,6 +40,6 @@ public class HomepageUserEntity implements Serializable {
 	private String out_link_name;
 
 	@Transient
-	private String username;
+	private String nickName;
 
 }
