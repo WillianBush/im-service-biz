@@ -78,7 +78,7 @@ public class HomepageServiceImpl implements HomepageService {
 	@Override
 	public Resp<HomepageEntity> getHomepageById(String id) {
 		HomepageEntity homepage = homepageMapper.getObjectById(id);
-		log.info("33333333333333333333333333333getHomepageById:" + homepage.getName());
+//		log.info("33333333333333333333333333333getHomepageById:" + homepage.getName());
 		return CommonUtils.msgResp(homepage);
 	}
 

@@ -93,7 +93,7 @@ public class HomepageController extends AbstractController {
 	@ApiOperation(value = "通过ID查询外链信息")
 	public Resp<HomepageEntity> getById(@RequestParam(value = "id") String id) {
 //		params.put("domain",getServerName());
-		log.info("-=-==-=-=-=-=-=-=-=-=:" + id);
+//		log.info("-=-==-=-=-=-=-=-=-=-=:" + id);
 		return homepageService.getHomepageById(id);
 	}
 	

@@ -10,7 +10,7 @@
 			m.`username`,
 			hpu.`out_link_id`,
 			hpu.`status`,
-			hp.`name`
+			hp.`name` as out_link_name
 		FROM
 			homepage_user hpu
 		left join homepage hp on hpu.`out_link_id` = hp.`id`
