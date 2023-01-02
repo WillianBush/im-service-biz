@@ -83,6 +83,9 @@ public class HomepageServiceImpl implements HomepageService {
      */
 	@Override
 	public Resp<Integer> updateHomepage(HomepageEntity homepage) {
+		if (!StringUtils.isEmpty(homepage.getIcon())){
+			homepage.setIcon(fileSystemService.removeBucketName(homepage.getIcon()));
+		}
 		int count = homepageMapper.update(homepage);
 		return CommonUtils.msgResp(count);
 	}

@@ -62,4 +62,12 @@ public class FileSystemServiceImpl implements FileSystemService {
         }
         return  s3Util.getS3Model().getEndpoint();
     }
+
+    @Override
+    public String removeBucketName(String uriWithBucketName) {
+        if (OSS.equals(fileSystemActive)){
+            return uriWithBucketName;
+        }
+        return uriWithBucketName.replaceFirst("/"+s3Util.getS3Model().getBucketname(),"");
+    }
 }

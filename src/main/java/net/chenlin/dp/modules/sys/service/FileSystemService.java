@@ -13,4 +13,6 @@ public interface FileSystemService {
     UploadResp uploadObject(InputStream inputStream, String fileName, String folder, Long fileSize);
 
     String getEndpoint();
+
+    String removeBucketName(String uriWithBucketName);
 }
