@@ -39,6 +39,9 @@ mybatis:
   configLocation: classpath:mybatis.xml
   mapper-locations: classpath*:net/chenlin/dp/**/mapper/*.xml
 
+#    文件系统类型 oss 或 s3
+file-system-active: oss
+
 aliyun:
   oss:
     endpoint: 360-im.oss-cn-hongkong.aliyuncs.com

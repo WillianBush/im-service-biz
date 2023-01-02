@@ -258,8 +258,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3 -->
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.12.376</version>
+        </dependency>
 
-<!--        <dependency>-->
+        <!--        <dependency>-->
 <!--            <groupId>cn.afterturn</groupId>-->
 <!--            <artifactId>easypoi-base</artifactId>-->
 <!--            <version>3.0.1</version>-->

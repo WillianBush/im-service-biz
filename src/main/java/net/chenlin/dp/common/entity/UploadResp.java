@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OSSUploadResp {
+public class UploadResp {
     private String filePath;
     private String md5Key;
 }

@@ -13,6 +13,7 @@ import net.chenlin.dp.common.constant.OssConstant;
 import net.chenlin.dp.common.entity.*;
 import net.chenlin.dp.common.utils.OssUtil;
 import net.chenlin.dp.modules.sys.dao.DomainsMapper;
+import net.chenlin.dp.modules.sys.service.FileSystemService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,7 @@ import net.chenlin.dp.modules.biz.show.service.ShowConfigService;
 public class ShowConfigServiceImpl implements ShowConfigService {
 
     private ShowConfigMapper showConfigMapper;
-	private OssUtil ossUtil;
-	private OSSModel ossModel;
+	private FileSystemService fileSystemService;
 	private DomainsMapper domainsMapper;
     /**
      * 分页查询
@@ -48,20 +48,20 @@ public class ShowConfigServiceImpl implements ShowConfigService {
 		List<ShowConfigEntity> resp= showConfigMapper.listForPage(page, query);
 		for (ShowConfigEntity showConfigEntity : resp) {
 			if (StringUtils.isEmpty(showConfigEntity.getIcon())){
-				showConfigEntity.setIcon("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+				showConfigEntity.setIcon("https://"+fileSystemService.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
 			}else {
-				showConfigEntity.setIcon("https://"+ossModel.getEndpoint() +showConfigEntity.getIcon());
+				showConfigEntity.setIcon("https://"+fileSystemService.getEndpoint() +showConfigEntity.getIcon());
 			}
 
 			if (StringUtils.isEmpty(showConfigEntity.getApp_start_img())){
-				showConfigEntity.setApp_start_img("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+				showConfigEntity.setApp_start_img("https://"+fileSystemService.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
 			}else {
-				showConfigEntity.setApp_start_img("https://"+ossModel.getEndpoint() +showConfigEntity.getApp_start_img());
+				showConfigEntity.setApp_start_img("https://"+fileSystemService.getEndpoint() +showConfigEntity.getApp_start_img());
 			}
 			if (StringUtils.isEmpty(showConfigEntity.getLogo())){
-				showConfigEntity.setLogo("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+				showConfigEntity.setLogo("https://"+fileSystemService.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
 			}else {
-				showConfigEntity.setLogo("https://"+ossModel.getEndpoint() +showConfigEntity.getLogo());
+				showConfigEntity.setLogo("https://"+fileSystemService.getEndpoint() +showConfigEntity.getLogo());
 			}
 		}
 		page.setRows(resp);
@@ -129,7 +129,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
 			InputStream in = new ByteArrayInputStream(encryptBytes);
 			String fileName = "show_config" + showConfigEntity.getOrgid() + "proc.txt" ;
 //			OSSUploadResp resp =  ossUtil.uploadObjectToOSS(in, OssConstant.OSS_SHOW_FILE_NAME,OssConstant.OSS_CONFIG_PATH, (long) in.available());
-			OSSUploadResp resp =  ossUtil.uploadObjectToOSS(in, fileName, OssConstant.OSS_CONFIG_PATH, (long) in.available());
+			UploadResp resp =  fileSystemService.uploadObject(in, fileName, OssConstant.OSS_CONFIG_PATH, (long) in.available());
 			log.debug("oss上传结束:{}", JSONObject.toJSONString(resp));
 		} catch (Exception e) {
 			log.error("ShowConfigServiceImpl:{}",e);

@@ -3,7 +3,7 @@ package net.chenlin.dp.modules.sys.controller;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.chenlin.dp.common.entity.OSSUploadResp;
+import net.chenlin.dp.common.entity.UploadResp;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.OssUtil;
 import net.chenlin.dp.common.utils.UploadUtils;
@@ -11,6 +11,7 @@ import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
 import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
 import net.chenlin.dp.modules.biz.room.service.RoomService;
+import net.chenlin.dp.modules.sys.service.FileSystemService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,7 +38,8 @@ public class SysEditorUploadController {
     private MemberService memberService;
 
     private RoomService roomService;
-    private OssUtil ossUtil;
+
+    private FileSystemService fileSystemService;
 
     /**
      * 上传图片
@@ -75,7 +77,7 @@ public class SysEditorUploadController {
                 String now = format.format(System.currentTimeMillis());
                 String iconName = "APP" + now + fileExtension;
 
-                OSSUploadResp resp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
+                UploadResp resp = fileSystemService.uploadObject(file.getInputStream(), iconName, ossPath, file.getSize());
                 log.info(removeDomain(resp.getFilePath()));
                 return  Resp.ok("上传成功", removeDomain(resp.getFilePath()));
             } catch (Exception e) {
@@ -100,7 +102,7 @@ public class SysEditorUploadController {
                 String now = format.format(System.currentTimeMillis());
                 String iconName = uid + "-" + now + fileExtension;
 
-                OSSUploadResp resp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
+                UploadResp resp = fileSystemService.uploadObject(file.getInputStream(), iconName, ossPath, file.getSize());
                 Resp<MemberEntity> respMember = memberService.getMemberById(uid);
                 if (respMember.getData() == null) {
                     return "用户uid不存在";
@@ -132,7 +134,7 @@ public class SysEditorUploadController {
                 String now = format.format(System.currentTimeMillis());
 
                 String iconName = roomid + "-" + now + fileExtension;
-                OSSUploadResp resp = ossUtil.uploadObjectToOSS(file.getInputStream(), iconName, ossPath, file.getSize());
+                UploadResp resp = fileSystemService.uploadObject(file.getInputStream(), iconName, ossPath, file.getSize());
                 Resp<RoomEntity> respRoom = roomService.getRoomById(roomid);
                 RoomEntity room = respRoom.getData();
                 room.setHeadimg(removeDomain(resp.getFilePath()));

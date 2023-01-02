@@ -1,24 +1,17 @@
 package net.chenlin.dp.common.utils;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import net.chenlin.dp.common.entity.OSSUploadResp;
 import net.chenlin.dp.common.support.properties.GlobalProperties;
-import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
-import net.chenlin.dp.modules.biz.room.service.RoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
