@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.OSSModel;
 import net.chenlin.dp.common.utils.IdGenerate;
 import net.chenlin.dp.modules.biz.room.entity.RoomEntity;
@@ -27,6 +28,7 @@ import net.chenlin.dp.modules.biz.site.service.HomepageService;
  */
 @Service("homepageService")
 @AllArgsConstructor
+@Slf4j
 public class HomepageServiceImpl implements HomepageService {
 
     private HomepageMapper homepageMapper;
@@ -76,6 +78,7 @@ public class HomepageServiceImpl implements HomepageService {
 	@Override
 	public Resp<HomepageEntity> getHomepageById(String id) {
 		HomepageEntity homepage = homepageMapper.getObjectById(id);
+		log.info("33333333333333333333333333333getHomepageById:" + homepage.getName());
 		return CommonUtils.msgResp(homepage);
 	}
 

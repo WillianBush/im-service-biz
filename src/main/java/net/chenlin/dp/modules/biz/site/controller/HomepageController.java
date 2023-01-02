@@ -3,6 +3,7 @@ package net.chenlin.dp.modules.biz.site.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.annotation.SysLog;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
@@ -23,6 +24,7 @@ import java.util.Map;
 @RequestMapping("/site/homepage")
 @Api(tags = "主页")
 @DependsOn("springContextUtils")
+@Slf4j
 public class HomepageController extends AbstractController {
 
 	private HomepageService homepageService;
@@ -91,6 +93,7 @@ public class HomepageController extends AbstractController {
 	@ApiOperation(value = "通过ID查询外链信息")
 	public Resp<HomepageEntity> getById(@RequestParam(value = "id") String id) {
 //		params.put("domain",getServerName());
+		log.info("-=-==-=-=-=-=-=-=-=-=:" + id);
 		return homepageService.getHomepageById(id);
 	}
 	
