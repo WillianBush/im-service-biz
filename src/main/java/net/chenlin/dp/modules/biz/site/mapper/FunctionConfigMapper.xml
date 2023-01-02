@@ -20,7 +20,8 @@
 			`miss_room_maneger_msg`,
 			`is_frozen`,
 			`ip_black`,
-			`ip_white`
+			`ip_white`,
+			`out_link_status`
 		FROM
 			function_config
 		where
@@ -41,6 +42,7 @@
 		<if test="is_frozen != null">`is_frozen` = #{is_frozen}</if>
 		<if test="ip_black != null">`ip_black` = #{ip_black}</if>
 		<if test="ip_white != null">`ip_white` = #{ip_white}</if>
+		<if test="out_link_status != null">`out_link_status` = #{out_link_status}</if>
 		ORDER BY
 			id DESC
 	</select>
@@ -62,7 +64,8 @@
 			`miss_room_maneger_msg`,
 			`is_frozen`,
 			`ip_black`,
-			`ip_white`
+			`ip_white`,
+			`out_link_status`
 		)
 		VALUES (
 			#{id}, 
@@ -80,7 +83,8 @@
 			#{miss_room_maneger_msg},
 			#{is_frozen},
 			#{ip_black},
-			#{ip_white}
+			#{ip_white},
+			#{out_link_status}
 		)
 	</insert>
 	
@@ -101,7 +105,8 @@
 			`miss_room_maneger_msg`,
 			`is_frozen`,
 			`ip_black`,
-			`ip_white`
+			`ip_white`,
+			`out_link_status`
 		FROM
 			function_config
 		WHERE
@@ -126,6 +131,7 @@
 			<if test="is_frozen != null">`is_frozen` = #{is_frozen},</if>
 			<if test="ip_black != null">`ip_black` = #{ip_black},</if>
 			<if test="ip_white != null">`ip_white` = #{ip_white}</if>
+			<if test="out_link_status != null">`out_link_status` = #{out_link_status}</if>
 		</set>
 		WHERE
 			id = #{id}
