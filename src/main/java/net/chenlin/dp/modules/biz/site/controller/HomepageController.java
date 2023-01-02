@@ -52,16 +52,16 @@ public class HomepageController extends AbstractController {
 		return homepageService.saveHomepage(homepage,getServerName());
 	}
 	
-	/**
-	 * 根据id查询详情
-	 * @param id
-	 * @return
-	 */
-	@PostMapping("/info")
-	@ApiOperation(value = "根据id查询详情")
-	public Resp<HomepageEntity> getById(@RequestBody String id) {
-		return homepageService.getHomepageById(id);
-	}
+//	/**
+//	 * 根据id查询详情
+//	 * @param id
+//	 * @return
+//	 */
+//	@PostMapping("/info")
+//	@ApiOperation(value = "根据id查询详情")
+//	public Resp<HomepageEntity> getById(@RequestBody String id) {
+//		return homepageService.getHomepageById(id);
+//	}
 	
 	/**
 	 * 修改
@@ -87,11 +87,11 @@ public class HomepageController extends AbstractController {
 		return homepageService.batchRemove(id);
 	}
 
-	@PostMapping("/getById")
+	@GetMapping("/getById")
 	@ApiOperation(value = "通过ID查询外链信息")
-	public Resp<HomepageEntity> getById(@RequestBody Map<String, Object> params) {
-		params.put("domain",getServerName());
-		return homepageService.getHomepageById(params.get("id").toString());
+	public Resp<HomepageEntity> getById(@RequestParam(value = "id") String id) {
+//		params.put("domain",getServerName());
+		return homepageService.getHomepageById(id);
 	}
 	
 }
