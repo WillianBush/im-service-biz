@@ -7,13 +7,13 @@ import com.amazonaws.services.s3.model.analytics.AnalyticsConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.S3Model;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@AllArgsConstructor
 @Slf4j
 public class AwsS3Bucket {
 
@@ -22,6 +22,12 @@ public class AwsS3Bucket {
     private S3Model s3Model;
 
     private String region = Regions.AP_NORTHEAST_1.getName();
+
+    @Autowired
+    public AwsS3Bucket(AmazonS3 s3, S3Model s3Model) {
+        this.s3 = s3;
+        this.s3Model = s3Model;
+    }
 
     /**
      * 列出所有的s3桶
