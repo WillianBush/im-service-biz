@@ -86,5 +86,12 @@ public class HomepageController extends AbstractController {
 	public Resp batchRemove(@RequestBody String[] id) {
 		return homepageService.batchRemove(id);
 	}
+
+	@PostMapping("/getById")
+	@ApiOperation(value = "通过ID查询外链信息")
+	public Resp<HomepageEntity> getById(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
+		return homepageService.getHomepageById(params.get("id").toString());
+	}
 	
 }
