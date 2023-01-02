@@ -1,5 +1,6 @@
 package net.chenlin.dp.modules.biz.site.service.impl;
 
+import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.Resp;
@@ -7,10 +8,13 @@ import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.site.dao.HomepageUserMapper;
 import net.chenlin.dp.modules.biz.site.entity.HomepageUserEntity;
 import net.chenlin.dp.modules.biz.site.service.HomepageUserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
+@Service
+@AllArgsConstructor
 public class HomepageUserServiceImpl implements HomepageUserService {
 
     private HomepageUserMapper homepageUserMapper;
