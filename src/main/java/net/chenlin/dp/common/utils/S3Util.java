@@ -69,7 +69,7 @@ public class S3Util {
             PutObjectResult putObjectResult = s3.putObject(putObjectRequest);
             log.info("获取上传后文件路径地址");
             ossFilePath = "https://" + s3Model.getEndpoint() + "/"+folder+"/" + fileName;
-            resultStr = putObjectResult.getContentMd5();
+            resultStr = putObjectResult.getETag();
         }catch (Exception e){
             log.info("执行上传和获取文件链接异常:{}",e.getMessage());
         }finally {
