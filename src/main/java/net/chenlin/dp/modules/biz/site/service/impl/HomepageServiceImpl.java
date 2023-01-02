@@ -60,6 +60,9 @@ public class HomepageServiceImpl implements HomepageService {
 	@Override
 	public Resp<HomepageEntity> saveHomepage(HomepageEntity homepage,String domain) {
 		homepage.setId(IdGenerate.generateUUID());
+		if (!StringUtils.isEmpty(homepage.getIcon())){
+			homepage.setIcon(fileSystemService.removeBucketName(homepage.getIcon()));
+		}
 		homepage.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
 		int count = homepageMapper.save(homepage);
 		return CommonUtils.msgResp(count);
