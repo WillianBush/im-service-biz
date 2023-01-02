@@ -14,7 +14,7 @@
 		FROM
 			homepage_user hpu
 		left join homepage hp on hpu.`out_link_id` = hp.`id`
-		left join  member m on hpu`member_id` = m.`memberId`
+		left join  member m on hpu.`member_id` = m.`memberId`
 		where
 		1=1
 		<if test="id != null"> and hpu.`id` = #{id} </if>
