@@ -3,7 +3,7 @@ package net.chenlin.dp.modules.biz.site.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.springframework.data.annotation.Transient;
+import javax.persistence.Transient;
 
 import javax.persistence.Table;
 import java.io.Serializable;
