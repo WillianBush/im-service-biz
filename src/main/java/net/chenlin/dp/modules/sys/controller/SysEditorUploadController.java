@@ -78,7 +78,7 @@ public class SysEditorUploadController {
                 String iconName = "APP" + now + fileExtension;
 
                 UploadResp resp = fileSystemService.uploadObject(file.getInputStream(), iconName, ossPath, file.getSize());
-                log.info(removeDomain(resp.getFilePath()));
+                log.info("上传成功 ,resp:{}",resp.toString());
                 return  Resp.ok("上传成功", removeDomain(resp.getFilePath()));
             } catch (Exception e) {
                 log.error("上传失败", e);
