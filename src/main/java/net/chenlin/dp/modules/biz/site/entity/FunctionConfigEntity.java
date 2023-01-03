@@ -73,7 +73,7 @@ public class FunctionConfigEntity implements Serializable {
 	@ApiModelProperty(value = "安全登陆：是否使用IP Web白名单功能 0否1是")
 	private Integer ip_white;
 
-	@ApiModelProperty(value = "用户外链开关：是否允许用户访问外链 0否1是")
+	@ApiModelProperty(value = "用户外链开关：限制用户访问外链总开关 0不限制 1限制")
 	private Integer out_link_status;
 	
 
