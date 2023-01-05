@@ -107,6 +107,7 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
         member.setId(IdGenerate.generateUUID());
         member.setStatus(0);
+        member.setCreatedate(new Date());
         member.setOrg_id(domainsEntity.getOrg_id());
         int count = memberMapper.save(member);
 
