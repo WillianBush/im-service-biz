@@ -22,7 +22,7 @@ import java.util.Map;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
-@Service("CommodityService")
+@Service("NoticeService")
 @AllArgsConstructor
 public class NoticeServiceImpl implements NoticeService {
 
