@@ -5,7 +5,7 @@ spring:
         server-addr: 180.178.43.202:8848
         file-extension: yaml
         group: DEFAULT_GROUP
-        namespace: 0b0b1900-e2da-4351-942c-d93bfb68488b
+        namespace: 11fd56fa-68d4-44ea-8a3b-af227bee82a7
         shared-configs: ${spring.application.name}.${spring.cloud.nacos.config.file-extension},${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
       discovery:
         server-addr: 180.178.43.202:8848
