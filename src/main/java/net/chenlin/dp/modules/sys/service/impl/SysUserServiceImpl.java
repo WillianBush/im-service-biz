@@ -277,9 +277,9 @@ public class SysUserServiceImpl implements SysUserService {
 		}
 		SysUserEntity update = new SysUserEntity();
 		update.setUserId(sysUser.getUserId());
-		update.setLast_login_time(now);
-		update.setLast_login_ip(sysUser.getLast_login_ip());
-		sysUser.setLast_login_time(now);
+		update.setLastLoginTime(now);
+		update.setLastLoginIp(sysUser.getLastLoginIp());
+		sysUser.setLastLoginTime(now);
 		sysUserMapper.update(update);
 		redisCacheManager.set(RedisCacheKeys.LOGIN_REDIS_CACHE +token, sysUser,jwtProperties.getExpiration());
 		return count;

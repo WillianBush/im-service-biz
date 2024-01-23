@@ -42,11 +42,11 @@ public class SysUserEntity implements Serializable {
 
 	private Long orgId;
 	
-	/**
-	 * 机构名称
-	 */
-	@ApiModelProperty(value = "机构名称")
-	private String orgName;
+//	/**
+//	 * 机构名称
+//	 */
+//	@ApiModelProperty(value = "机构名称")
+//	private String orgName;
 	
 	/**
 	 * 用户名
@@ -105,11 +105,11 @@ public class SysUserEntity implements Serializable {
 
 
 	@ApiModelProperty(value = "最后登陆ip")
-	private String last_login_ip;
+	private String lastLoginIp;
 
 
 	@ApiModelProperty(value = "最后登陆时间")
-	private Date last_login_time;
+	private Date lastLoginTime;
 	
 	/**
 	 * 角色id列表

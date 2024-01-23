@@ -91,7 +91,7 @@ public class SysLoginController extends AbstractController {
 			String token = TokenUtils.generateValue(userEntity.getUsername());
 			List<SysRoleEntity>  roleSigns= new ArrayList<>(sysUserService.listUserRoleList(userEntity.getUserId()));
 			userEntity.setRoleList(roleSigns);
-			userEntity.setLast_login_ip(WebUtils.getIpAddr());
+			userEntity.setLastLoginIp(WebUtils.getIpAddr());
 			sysUserService.saveOrUpdateToken(userEntity,token);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_TOKEN,token);
 			getHttpServletRequest().getSession().setAttribute(RestApiConstant.AUTH_USER,userEntity);
