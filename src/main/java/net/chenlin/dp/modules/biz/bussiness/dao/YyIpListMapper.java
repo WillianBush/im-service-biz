@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface YyIpListMapper extends TkBaseMapper<YyIpListEntity> {
-    YyIpListEntity getObjectByIp(@Param("ipAddress") String ipAddress, @Param("type")Integer type, @Param("org_id")Long org_id);
+    YyIpListEntity getObjectByIp(@Param("ipAddress") String ipAddress, @Param("type")Integer type, @Param("org_id")Long orgId);
 }

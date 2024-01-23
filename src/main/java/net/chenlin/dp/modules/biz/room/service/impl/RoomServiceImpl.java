@@ -63,7 +63,7 @@ public class RoomServiceImpl implements RoomService {
      */
 	@Override
 	public Resp saveRoom(RoomEntity room,String domain) {
-		room.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+		room.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		int count = roomMapper.save(room);
 		return CommonUtils.msgResp(count);
 	}
@@ -137,10 +137,10 @@ public class RoomServiceImpl implements RoomService {
 	 */
 	private RoomEntity getMembersByRoom(RoomEntity room){
 		List<RoomMemberEntity> roomMemberEntities =roomMemberMapper.select(RoomMemberEntity.builder()
-				.room_id(room.getId())
+				.roomId(room.getId())
 				.build());
 		if (!roomMemberEntities.isEmpty()) {
-			List<MemberEntity> memberEntities = memberMapper.getByIds(roomMemberEntities.stream().map(RoomMemberEntity::getMember_id).toArray());
+			List<MemberEntity> memberEntities = memberMapper.getByIds(roomMemberEntities.stream().map(RoomMemberEntity::getMemberId).toArray());
 			room.setMembers(memberEntities);
 		}else {
 			room.setMembers(Collections.emptyList());

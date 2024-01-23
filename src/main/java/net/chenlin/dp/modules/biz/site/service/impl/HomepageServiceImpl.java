@@ -65,7 +65,7 @@ public class HomepageServiceImpl implements HomepageService {
 		if (!StringUtils.isEmpty(homepage.getIcon())){
 			homepage.setIcon(fileSystemService.removeBucketName(homepage.getIcon()));
 		}
-		homepage.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+		homepage.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		int count = homepageMapper.save(homepage);
 		return CommonUtils.msgResp(count);
 	}

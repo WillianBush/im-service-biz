@@ -67,7 +67,7 @@ public class FriendsServiceImpl implements FriendsService {
      */
 	@Override
 	public Resp updateFriends(FriendsEntity friends) {
-		friends.setOrg_id(1);
+		friends.setOrgId(1);
 		int count = friendsMapper.update(friends);
 		return CommonUtils.msgResp(count);
 	}
@@ -79,7 +79,7 @@ public class FriendsServiceImpl implements FriendsService {
      */
 	@Override
 	public Resp removeFriend(FriendsEntity friendsEntity) {
-		friendsEntity.setOrg_id(1);
+		friendsEntity.setOrgId(1);
 		int count = friendsMapper.removeFriend(friendsEntity);
 		return CommonUtils.msgResp(count);
 	}

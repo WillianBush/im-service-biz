@@ -6,16 +6,16 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultEmoticonEntity">
 		SELECT
 			`id`, 
-			`img_addres`, 
-			`up_time`, 
+			`img_addres` imgAddres,
+			`up_time` upTime,
 			`sort`
 		FROM
 			default_emoticon
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="img_addres != null"> and `img_addres` = #{img_addres} </if>
-		<if test="up_time != null"> and `up_time` = #{up_time} </if>
+		<if test="imgAddres != null"> and `img_addres` = #{imgAddres} </if>
+		<if test="upTime != null"> and `up_time` = #{upTime} </if>
 		<if test="sort != null"> and `sort` = #{sort} </if>
 		ORDER BY
 			id DESC
@@ -24,8 +24,8 @@
 	<insert id="save">
 		INSERT INTO default_emoticon (
 			`id`, 
-			`img_addres`, 
-			`up_time`, 
+			`img_addres` imgAddres,
+			`up_time` upTime,
 			`sort`
 		)
 		VALUES (
@@ -39,8 +39,8 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultEmoticonEntity">
 		SELECT
 			`id`, 
-			`img_addres`, 
-			`up_time`, 
+			`img_addres` imgAddres,
+			`up_time` upTime,
 			`sort`
 		FROM
 			default_emoticon
@@ -51,8 +51,8 @@
 	<update id="update">
 		UPDATE default_emoticon
 	 	<set>
-			<if test="img_addres != null">`img_addres` = #{img_addres}, </if>
-			<if test="up_time != null">`up_time` = #{up_time}, </if>
+			<if test="imgAddres != null">`img_addres` = #{imgAddres}, </if>
+			<if test="upTime != null">`up_time` = #{upTime}, </if>
 			<if test="sort != null">`sort` = #{sort}</if>
 		</set>
 		WHERE

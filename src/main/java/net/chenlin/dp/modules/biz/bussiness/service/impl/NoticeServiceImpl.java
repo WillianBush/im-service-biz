@@ -7,8 +7,8 @@ import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.bussiness.dao.NoticeMapper;
-import net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity;
-import net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity;
+//import net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity;
+////import net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.NoticeEntity;
 import net.chenlin.dp.modules.biz.bussiness.service.NoticeService;
 import net.chenlin.dp.modules.sys.dao.DomainsMapper;
@@ -51,10 +51,10 @@ public class NoticeServiceImpl implements NoticeService {
      * @return
      */
     public Resp<NoticeEntity> save(NoticeEntity notice, String domain) {
-        notice.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
-        notice.setOrg_id(1L);
-        notice.setCreate_time(new Date());
-        notice.setModify_time(new Date());
+        notice.setOrgId(domainsMapper.getOrgIdByDomain(domain));
+        notice.setOrgId(1L);
+        notice.setCreateDate(new Date());
+        notice.setModifyDate(new Date());
         int count = noticeMapper.save(notice);
         return CommonUtils.msgResp(count);
     }
@@ -78,9 +78,9 @@ public class NoticeServiceImpl implements NoticeService {
      * @return
      */
     public Resp<Integer> update(NoticeEntity notice, String domain) {
-        notice.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
-        notice.setOrg_id(1L);
-        notice.setModify_time(new Date());
+        notice.setOrgId(domainsMapper.getOrgIdByDomain(domain));
+        notice.setOrgId(1L);
+        notice.setModifyDate(new Date());
         int count = noticeMapper.update(notice);
         return CommonUtils.msgResp(count);
     }

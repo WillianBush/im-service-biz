@@ -29,13 +29,13 @@ public class DefaultFriendEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "好友ID")
-	private String friend_id;
+	private String friendId;
 	
 	@ApiModelProperty(value = "备注")
 	private String note;
 	
 	@ApiModelProperty(value = "打招呼内容")
-	private String send_hello_msg;
+	private String sendHelloMsg;
 	
 
 

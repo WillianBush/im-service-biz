@@ -3,8 +3,8 @@ package net.chenlin.dp.modules.biz.bussiness.dao;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.mapper.TkBaseMapper;
-import net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity;
-import net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity;
+//import net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity;
+//import net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.NoticeEntity;
 import org.apache.ibatis.annotations.Mapper;
 

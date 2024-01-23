@@ -49,7 +49,7 @@ public class HomepageEntity implements Serializable {
 	@ApiModelProperty(value = "顺序")
 	private Integer sort;
 
-	private Long org_id;
+	private Long orgId;
 	
 
 

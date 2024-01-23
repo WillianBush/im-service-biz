@@ -266,7 +266,7 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 站点ID
 	 */
-	private Long org_id;
+	private Long orgId;
 
 
 	/**

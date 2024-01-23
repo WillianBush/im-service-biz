@@ -43,7 +43,7 @@ public class AdminSendmsgLogEntity implements Serializable {
 	
 	@ApiModelProperty(value = "接收者名称")
 	private String receiverName;
-	
+	private Integer orgId;
 
 
 }

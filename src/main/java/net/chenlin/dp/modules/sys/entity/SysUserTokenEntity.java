@@ -2,6 +2,7 @@ package net.chenlin.dp.modules.sys.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Date;
  * @url www.chenlintech.com
  * @date 2017年9月3日 上午3:27:06
  */
+@Getter
 @ApiModel
 public class SysUserTokenEntity implements Serializable {
 
@@ -47,32 +49,16 @@ public class SysUserTokenEntity implements Serializable {
 		super();
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
-
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
-
-	public String getToken() {
-		return token;
 	}
 
 	public void setToken(String token) {
 		this.token = token;
 	}
 
-	public Date getGmtExpire() {
-		return gmtExpire;
-	}
-
 	public void setGmtExpire(Date gmtExpire) {
 		this.gmtExpire = gmtExpire;
-	}
-
-	public Date getGmtModified() {
-		return gmtModified;
 	}
 
 	public void setGmtModified(Date gmtModified) {

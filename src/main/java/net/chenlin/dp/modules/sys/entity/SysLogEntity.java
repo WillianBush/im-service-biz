@@ -55,7 +55,7 @@ public class SysLogEntity implements Serializable {
 	@ApiModelProperty(value = "创建时间")
 	private Timestamp gmtCreate;
 
-	private Long org_id;
+	private Long orgId;
 
 	public SysLogEntity() {
 		super();

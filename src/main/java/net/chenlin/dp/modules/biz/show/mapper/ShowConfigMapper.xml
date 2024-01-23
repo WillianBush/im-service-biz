@@ -6,9 +6,9 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.show.entity.ShowConfigEntity">
 		SELECT
 			`id`, 
-			`orgid`,
+			`org_id` orgId,
 			`contact`, 
-			`app_start_img`, 
+			`app_start_img` appStartImg,
 			`icon`, 
 			`logo`
 		FROM
@@ -16,9 +16,9 @@
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="orgid != null"> and `orgid` = #{orgid} </if>
+		<if test="orgId != null"> and `org_id` = #{orgId} </if>
 		<if test="contact != null"> and `contact` = #{contact} </if>
-		<if test="app_start_img != null"> and `app_start_img` = #{app_start_img} </if>
+		<if test="appStartImg != null"> and `app_start_img` = #{appStartImg} </if>
 		<if test="icon != null"> and `icon` = #{icon} </if>
 		<if test="logo != null"> and `logo` = #{logo} </if>
 		ORDER BY
@@ -28,17 +28,17 @@
 	<insert id="save">
 		INSERT INTO show_config (
 			`id`, 
-			`orgid`,
+			`org_id` orgId,
 			`contact`, 
-			`app_start_img`, 
+			`app_start_img` appStartImg,
 			`icon`, 
 			`logo`
 		)
 		VALUES (
 			#{id}, 
-			#{orgid},
+			#{orgId},
 			#{contact}, 
-			#{app_start_img}, 
+			#{appStartImg},
 			#{icon}, 
 			#{logo}
 		)
@@ -47,9 +47,9 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.show.entity.ShowConfigEntity">
 		SELECT
 			`id`, 
-			`orgid`,
+			`org_id` orgId,
 			`contact`, 
-			`app_start_img`, 
+			`app_start_img` appStartImg,
 			`icon`, 
 			`logo`
 		FROM
@@ -62,12 +62,12 @@
 		UPDATE show_config
 	 	<set>
 			<if test="contact != null">`contact` = #{contact}, </if>
-			<if test="app_start_img != null">`app_start_img` = #{app_start_img}, </if>
+			<if test="appStartImg != null">`app_start_img` = #{appStartImg}, </if>
 			<if test="icon != null">`icon` = #{icon}, </if>
 			<if test="logo != null">`logo` = #{logo}</if>
 		</set>
 		WHERE
-		orgid = #{orgid}
+		org_id = #{orgId}
 	</update>
 	
 	<delete id="batchRemove">

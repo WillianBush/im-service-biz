@@ -57,10 +57,10 @@ public class AppVersionServiceImpl implements AppVersionService {
      */
     @Override
     public Resp<AppVersionEntity> saveAppVersion(AppVersionEntity appVersion,String domain) {
-        appVersion.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+        appVersion.setOrgId(domainsMapper.getOrgIdByDomain(domain));
         int id = appVersionMapper.save(appVersion);
         if (id != 0) {
-            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDevice_type(), appVersion.getOrg_id(), appVersion.getApp_id());
+            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDeviceType(), appVersion.getOrgId(), appVersion.getAppId());
             redisCacheManager.set(redisKey, appVersion);
         }
         return CommonUtils.msgResp(appVersion);
@@ -88,7 +88,7 @@ public class AppVersionServiceImpl implements AppVersionService {
     public Resp<Integer> updateAppVersion(AppVersionEntity appVersion) {
         int id = appVersionMapper.update(appVersion);
         appVersion = appVersionMapper.getObjectById(id);
-//        String redisKey = RedisCacheKeys.appLastVersion(appVersion.getOs(), appVersion.getSite_id(), appVersion.getApp_id());
+//        String redisKey = RedisCacheKeys.appLastVersion(appVersion.getOs(), appVersion.getSite_id(), appVersion.getAppId());
 //        redisCacheManager.set(redisKey, appVersion);
         return CommonUtils.msgResp(id);
     }
@@ -104,7 +104,7 @@ public class AppVersionServiceImpl implements AppVersionService {
         int counts = 0;
         for (Long id : ids) {
             AppVersionEntity appVersion = appVersionMapper.getObjectById(id);
-            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDevice_type(), appVersion.getOrg_id(), appVersion.getApp_id());
+            String redisKey = RedisCacheKeys.appLastVersion(appVersion.getDeviceType(), appVersion.getOrgId(), appVersion.getAppId());
             int count = appVersionMapper.remove(id);
             if (count == 1) {
                 redisCacheManager.del(redisKey);
@@ -118,9 +118,9 @@ public class AppVersionServiceImpl implements AppVersionService {
     public AppVersionEntity selectByUniqueKey(String version, Long siteId, String os, String appId) {
         return appVersionMapper.selectOne(AppVersionEntity.builder()
                 .version(version)
-                .org_id(siteId)
-                .device_type(os)
-                .app_id(appId)
+                .orgId(siteId)
+                .deviceType(os)
+                .appId(appId)
                 .build());
     }
 

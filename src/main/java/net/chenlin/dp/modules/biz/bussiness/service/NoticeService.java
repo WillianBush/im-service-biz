@@ -2,8 +2,8 @@ package net.chenlin.dp.modules.biz.bussiness.service;
 
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Resp;
-import net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity;
-import net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity;
+//import net.chenlin.dp.modules.biz.bussiness.entity.CommodityCategoryEntity;
+//import net.chenlin.dp.modules.biz.bussiness.entity.CommodityEntity;
 import net.chenlin.dp.modules.biz.bussiness.entity.NoticeEntity;
 
 import java.util.Map;

@@ -18,6 +18,6 @@ public class OrgUtils {
         if(null==domainsEntity){
             return 1L;
         }
-        return domainsEntity.getOrg_id();
+        return domainsEntity.getOrgId();
     }
 }

@@ -24,7 +24,7 @@ public class DomainsServiceImpl implements DomainsService {
     @Override
     public DomainsEntity getDomainsByUrl(String url) {
         DomainsEntity de = new DomainsEntity();
-        de.setHttp_domain(url);
+        de.setHttpDomain(url);
         DomainsEntity rs = domainsMapper.selectObj(de);
         return rs;
     }
@@ -40,10 +40,10 @@ public class DomainsServiceImpl implements DomainsService {
 
     @Override
     public R save(DomainsEntity domainsEntity) {
-        if (StringUtils.isNullOrEmpty(domainsEntity.getOrg_id().toString())
-                || StringUtils.isNullOrEmpty(domainsEntity.getHttp_domain())
-                || StringUtils.isNullOrEmpty(domainsEntity.getWs_domain())
-                || StringUtils.isNullOrEmpty(domainsEntity.getOss_domain())) {
+        if (StringUtils.isNullOrEmpty(domainsEntity.getOrgId().toString())
+                || StringUtils.isNullOrEmpty(domainsEntity.getHttpDomain())
+                || StringUtils.isNullOrEmpty(domainsEntity.getWsDomain())
+                || StringUtils.isNullOrEmpty(domainsEntity.getOssDomain())) {
             return CommonUtils.msg("参数不全");
         }
 
@@ -55,8 +55,8 @@ public class DomainsServiceImpl implements DomainsService {
     }
 
     @Override
-    public R getDomainByOrgId(int org_id) {
-        DomainsEntity domainsEntity = domainsMapper.getDomainByOrgId(org_id);
+    public R getDomainByOrgId(int orgId) {
+        DomainsEntity domainsEntity = domainsMapper.getObjectByName(orgId);
         return CommonUtils.msg(domainsEntity);
     }
 

@@ -62,15 +62,15 @@ public class RoomMemberServiceImpl implements RoomMemberService {
 		roomMember.setCreateDate(new Date());
 		RoomMemberEntity rmParam=new RoomMemberEntity();
 		/*** 根据memberId 查询 member 得到 id */
-		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMember_id());
-		rmParam.setRoom_id(roomMember.getRoom_id());
-		rmParam.setMember_id(memberEntity.getId());
+		MemberEntity memberEntity=memberMapper.getMemberByMid(roomMember.getMemberId());
+		rmParam.setRoomId(roomMember.getRoomId());
+		rmParam.setMemberId(memberEntity.getId());
 		//查询是否已经存在
 		RoomMemberEntity rsRm=roomMemberMapper.getRoomMember(rmParam);
 		if(null!=rsRm){
 			return Resp.error("不能重复添加群成员！");
 		}
-		roomMember.setMember_id(memberEntity.getId());
+		roomMember.setMemberId(memberEntity.getId());
 		int count = roomMemberMapper.save(roomMember);
 		return CommonUtils.msgResp(count);
 	}

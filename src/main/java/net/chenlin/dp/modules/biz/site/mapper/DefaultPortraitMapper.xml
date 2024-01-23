@@ -6,15 +6,15 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultPortraitEntity">
 		SELECT
 			`id`, 
-			`img_addres`, 
-			`up_time`
+			`img_address` imgAddress,
+			`up_time` upTime
 		FROM
 			default_portrait
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="img_addres != null"> and `img_addres` = #{img_addres} </if>
-		<if test="up_time != null"> and `up_time` = #{up_time} </if>
+		<if test="imgAddress != null"> and `img_address` = #{imgAddress} </if>
+		<if test="upTime != null"> and `up_time` = #{upTime} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -22,21 +22,21 @@
 	<insert id="save">
 		INSERT INTO default_portrait (
 			`id`, 
-			`img_addres`, 
-			`up_time`
+			`img_address` imgAddress,
+			`up_time` upTime
 		)
 		VALUES (
 			#{id}, 
-			#{img_addres}, 
-			#{up_time}
+			#{imgAddress},
+			#{upTime}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultPortraitEntity">
 		SELECT
 			`id`, 
-			`img_addres`, 
-			`up_time`
+			`img_address` imgAddress,
+			`up_time` upTime
 		FROM
 			default_portrait
 		WHERE
@@ -46,8 +46,8 @@
 	<update id="update">
 		UPDATE default_portrait
 	 	<set>
-			<if test="img_addres != null">`img_addres` = #{img_addres}, </if>
-			<if test="up_time != null">`up_time` = #{up_time}</if>
+			<if test="imgAddress != null">`img_address` = #{imgAddress}, </if>
+			<if test="upTime != null">`up_time` = #{upTime}</if>
 		</set>
 		WHERE
 			id = #{id}

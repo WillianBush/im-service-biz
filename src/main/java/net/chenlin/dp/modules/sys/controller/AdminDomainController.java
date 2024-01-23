@@ -58,13 +58,13 @@ public class AdminDomainController extends AbstractController {
 
     /**
      * 查询机构域名
-     * @param org_id
+     * @param orgId
      * @return
      */
     @SysLog("查询机构域名")
     @PostMapping("/getDomainByOrgId")
-    public R getDomainByOrgId(@RequestBody Integer org_id) {
-        return domainsService.getDomainByOrgId(org_id);
+    public R getDomainByOrgId(@RequestBody Integer orgId) {
+        return domainsService.getDomainByOrgId(orgId);
     }
 
 

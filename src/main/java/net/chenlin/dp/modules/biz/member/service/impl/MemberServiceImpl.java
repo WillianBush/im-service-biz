@@ -66,7 +66,7 @@ public class MemberServiceImpl implements MemberService {
             }
         }
 
-        params.put("org_id",domainsEntity.getOrg_id());
+        params.put("org_id",domainsEntity.getOrgId());
         Query query = new Query(params);
         Page<MemberEntity> page = new Page<>(query);
         List<MemberEntity> list = memberMapper.listForPage(page, query);
@@ -108,7 +108,7 @@ public class MemberServiceImpl implements MemberService {
         member.setId(IdGenerate.generateUUID());
         member.setStatus(0);
         member.setCreatedate(new Date());
-        member.setOrg_id(domainsEntity.getOrg_id());
+        member.setOrgId(domainsEntity.getOrgId());
         int count = memberMapper.save(member);
 
 		if (member.getIs_employee().equals(1)) {
@@ -229,7 +229,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Page<MemberEntity> listFriends(Map<String, Object> params) {
         DomainsEntity domainsEntity=domainsService.getDomainsByUrl(params.get("domain").toString());
-        params.put("org_id", domainsEntity.getOrg_id());
+        params.put("org_id", domainsEntity.getOrgId());
         Query query = new Query(params);
         Page<MemberEntity> page = new Page<>(query);
         page.setRows(memberMapper.listForPageByFriend(page, query));
@@ -241,9 +241,9 @@ public class MemberServiceImpl implements MemberService {
     public Resp<Long> getTotalNumber(String domain) {
         DomainsEntity domainsEntity=domainsService.getDomainsByUrl(domain);
         if (null == domainsEntity){
-            log.error("domain 无法获取对应的 org_id, domain:{}",domain);
+            log.error("domain 无法获取对应的 orgId, domain:{}",domain);
             return CommonUtils.msgResp(-1L);
         }
-        return CommonUtils.msgResp(memberMapper.getTotal(domainsEntity.getOrg_id()));
+        return CommonUtils.msgResp(memberMapper.getTotal(domainsEntity.getOrgId()));
     }
 }

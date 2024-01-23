@@ -55,18 +55,18 @@ public class SysOrgEntity implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	private Timestamp gmt_create;
+	private Timestamp gmtCreate;
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
 
-	public Timestamp getGmt_create() {
-		return gmt_create;
+	public Timestamp getGmtCreate() {
+		return gmtCreate;
 	}
 
-	public void setGmt_create(Timestamp gmt_create) {
-		this.gmt_create = gmt_create;
+	public void setGmtCreate(Timestamp gmtCreate) {
+		this.gmtCreate = gmtCreate;
 	}
 
 	public Timestamp getGmt_modified() {

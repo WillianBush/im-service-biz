@@ -53,10 +53,10 @@ public class ShowConfigServiceImpl implements ShowConfigService {
 				showConfigEntity.setIcon("https://"+fileSystemService.getEndpoint() +showConfigEntity.getIcon());
 			}
 
-			if (StringUtils.isEmpty(showConfigEntity.getApp_start_img())){
-				showConfigEntity.setApp_start_img("https://"+fileSystemService.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+			if (StringUtils.isEmpty(showConfigEntity.getAppStartImg())){
+				showConfigEntity.setAppStartImg("https://"+fileSystemService.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
 			}else {
-				showConfigEntity.setApp_start_img("https://"+fileSystemService.getEndpoint() +showConfigEntity.getApp_start_img());
+				showConfigEntity.setAppStartImg("https://"+fileSystemService.getEndpoint() +showConfigEntity.getAppStartImg());
 			}
 			if (StringUtils.isEmpty(showConfigEntity.getLogo())){
 				showConfigEntity.setLogo("https://"+fileSystemService.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
@@ -75,7 +75,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
      */
 	@Override
 	public Resp<ShowConfigEntity> saveShowConfig(ShowConfigEntity showConfig,String domain) {
-		showConfig.setOrgid(domainsMapper.getOrgIdByDomain(domain));
+		showConfig.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		int count = showConfigMapper.save(showConfig);
 		if(count>0){
 			upLoadConfig(showConfig);
@@ -127,7 +127,7 @@ public class ShowConfigServiceImpl implements ShowConfigService {
 		try {
 			byte[] encryptBytes =  showConfigEntity.toString().getBytes(StandardCharsets.UTF_8);
 			InputStream in = new ByteArrayInputStream(encryptBytes);
-			String fileName = "show_config" + showConfigEntity.getOrgid() + "proc.txt" ;
+			String fileName = "show_config" + showConfigEntity.getOrgId() + "proc.txt" ;
 //			OSSUploadResp resp =  ossUtil.uploadObjectToOSS(in, OssConstant.OSS_SHOW_FILE_NAME,OssConstant.OSS_CONFIG_PATH, (long) in.available());
 			UploadResp resp =  fileSystemService.uploadObject(in, fileName, OssConstant.OSS_CONFIG_PATH, (long) in.available());
 			log.debug("oss上传结束:{}", JSONObject.toJSONString(resp));

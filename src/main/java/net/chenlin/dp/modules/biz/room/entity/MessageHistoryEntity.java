@@ -74,7 +74,7 @@ public class MessageHistoryEntity implements Serializable {
 	private Date modifyDate;
 
 	@ApiModelProperty(value = "站点")
-	private String org_id;
+	private String orgId;
 
 
 }

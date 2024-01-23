@@ -104,7 +104,7 @@ public class RoomMemberController extends AbstractController {
 	@ApiOperation(value = "设为管理员")
 	public Resp addRoomMgr(@RequestBody RoomMemberEntity room) {
 		/**状态1位管理员*/
-		room.setIs_manager(1);
+		room.setIsManager(1);
 		return roomMemberService.updateRoomMember(room);
 	}
 
@@ -119,7 +119,7 @@ public class RoomMemberController extends AbstractController {
 	@ApiOperation(value = "设置禁言")
 	public Resp setStopSpeaker(@RequestBody RoomMemberEntity room) {
 		/**状态1位管理员*/
-		room.setIs_stop_speaker(1);
+		room.setIsStopSpeaker(1);
 		return roomMemberService.updateRoomMember(room);
 	}
 }

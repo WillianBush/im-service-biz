@@ -51,7 +51,7 @@ public class FriendsEntity implements Serializable {
 	/**
 	 * 站点
 	 */
-	private int org_id;
+	private int orgId;
 
 	/**
 	 * 备注

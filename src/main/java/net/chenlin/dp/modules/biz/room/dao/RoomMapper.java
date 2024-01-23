@@ -17,6 +17,6 @@ public interface RoomMapper extends TkBaseMapper<RoomEntity> {
     RoomMemberEntity getRoomMemberById(String roomId);
 
 
-    Long getRoomSum(Long org_id);
+    Long getRoomSum(Long orgId);
 
 }

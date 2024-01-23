@@ -24,33 +24,33 @@ public class DomainsEntity implements Serializable {
      * id
      */
     @ApiModelProperty(value = "id")
-    private Long domain_id;
+    private Long domainId;
 
     /**
      * 机构id
      */
     @ApiModelProperty(value = "机构id")
-    private Long org_id;
+    private Long orgId;
 
-    private String org_name;
+//    private String orgName;
     /**
      * http域名
      */
     @ApiModelProperty(value = "http域名")
-    private String http_domain;
+    private String httpDomain;
 
 
     /**
      * ws域名
      */
     @ApiModelProperty(value = "ws域名")
-    private String ws_domain;
+    private String wsDomain;
 
     /**
      * oss域名
      */
     @ApiModelProperty(value = "oss域名")
-    private String oss_domain;
+    private String ossDomain;
     /**
      * oss域名
      */

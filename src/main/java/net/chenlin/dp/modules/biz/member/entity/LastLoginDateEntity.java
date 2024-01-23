@@ -20,6 +20,6 @@ public class LastLoginDateEntity implements Serializable {
 
     private String memberId;
 
-    private Long org_id;
+    private Long orgId;
 
 }

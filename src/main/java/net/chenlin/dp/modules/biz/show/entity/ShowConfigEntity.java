@@ -29,13 +29,13 @@ public class ShowConfigEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "站点ID")
-	private Long orgid;
+	private Long orgId;
 	
 	@ApiModelProperty(value = "联系方式")
 	private String contact;
 	
 	@ApiModelProperty(value = "app启动图片配置")
-	private String app_start_img;
+	private String appStartImg;
 	
 	@ApiModelProperty(value = "图标")
 	private String icon;

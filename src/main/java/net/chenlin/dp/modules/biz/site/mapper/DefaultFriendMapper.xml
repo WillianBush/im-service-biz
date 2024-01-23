@@ -6,17 +6,17 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultFriendEntity">
 		SELECT
 			`id`, 
-			`friend_id`, 
+			`friend_id` friendId,
 			`note`, 
-			`send_hello_msg`
+			`send_hello_msg` sendHelloMsg
 		FROM
 			default_friend
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="friend_id != null"> and `friend_id` = #{friend_id} </if>
+		<if test="friendId != null"> and `friend_id` = #{friendId} </if>
 		<if test="note != null"> and `note` = #{note} </if>
-		<if test="send_hello_msg != null"> and `send_hello_msg` = #{send_hello_msg} </if>
+		<if test="sendHelloMsg != null"> and `send_hello_msg` = #{sendHelloMsg} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -24,24 +24,24 @@
 	<insert id="save">
 		INSERT INTO default_friend (
 			`id`, 
-			`friend_id`, 
+			`friend_id` friendId,
 			`note`, 
-			`send_hello_msg`
+			`send_hello_msg` sendHelloMsg
 		)
 		VALUES (
 			#{id}, 
-			#{friend_id}, 
+			#{friendId},
 			#{note}, 
-			#{send_hello_msg}
+			#{sendHelloMsg}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultFriendEntity">
 		SELECT
 			`id`, 
-			`friend_id`, 
+			`friend_id` friendId,
 			`note`, 
-			`send_hello_msg`
+			`send_hello_msg` sendHelloMsg
 		FROM
 			default_friend
 		WHERE
@@ -51,9 +51,9 @@
 	<update id="update">
 		UPDATE default_friend
 	 	<set>
-			<if test="friend_id != null">`friend_id` = #{friend_id}, </if>
+			<if test="friendId != null">`friend_id` = #{friendId}, </if>
 			<if test="note != null">`note` = #{note}, </if>
-			<if test="send_hello_msg != null">`send_hello_msg` = #{send_hello_msg}</if>
+			<if test="sendHelloMsg != null">`send_hello_msg` = #{sendHelloMsg}</if>
 		</set>
 		WHERE
 			id = #{id}

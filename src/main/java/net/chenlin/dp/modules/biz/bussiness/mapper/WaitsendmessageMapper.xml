@@ -22,8 +22,7 @@
 			`uuid`, 
 			`cmd`, 
 			`descri`, 
-			`descri1`, 
-			`money`, 
+			`money`,
 			`number`, 
 			`redType`, 
 			`redUUID`, 
@@ -57,7 +56,6 @@
 		<if test="uuid != null"> and `uuid` = #{uuid} </if>
 		<if test="cmd != null"> and `cmd` = #{cmd} </if>
 		<if test="descri != null"> and `descri` = #{descri} </if>
-		<if test="descri1 != null"> and `descri1` = #{descri1} </if>
 		<if test="money != null"> and `money` = #{money} </if>
 		<if test="number != null"> and `number` = #{number} </if>
 		<if test="redType != null"> and `redType` = #{redType} </if>
@@ -94,8 +92,7 @@
 			`uuid`, 
 			`cmd`, 
 			`descri`, 
-			`descri1`, 
-			`money`, 
+			`money`,
 			`number`, 
 			`redType`, 
 			`redUUID`, 
@@ -127,8 +124,7 @@
 			#{uuid}, 
 			#{cmd}, 
 			#{descri}, 
-			#{descri1}, 
-			#{money}, 
+			#{money},
 			#{number}, 
 			#{redType}, 
 			#{redUUID}, 
@@ -163,8 +159,7 @@
 			`uuid`, 
 			`cmd`, 
 			`descri`, 
-			`descri1`, 
-			`money`, 
+			`money`,
 			`number`, 
 			`redType`, 
 			`redUUID`, 
@@ -202,7 +197,6 @@
 			<if test="uuid != null">`uuid` = #{uuid}, </if>
 			<if test="cmd != null">`cmd` = #{cmd}, </if>
 			<if test="descri != null">`descri` = #{descri}, </if>
-			<if test="descri1 != null">`descri1` = #{descri1}, </if>
 			<if test="money != null">`money` = #{money}, </if>
 			<if test="number != null">`number` = #{number}, </if>
 			<if test="redType != null">`redType` = #{redType}, </if>

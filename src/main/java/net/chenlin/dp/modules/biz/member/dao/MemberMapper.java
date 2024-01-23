@@ -31,7 +31,7 @@ public interface MemberMapper extends TkBaseMapper<MemberEntity> {
 
     List<MemberEntity> listForPageByFriend(Page<MemberEntity> page,Query query);
 
-    Long getTotal(Long org_id);
+    Long getTotal(Long orgId);
 
     List<MemberEntity> getRobotList(@Param("room_id") String room_id,@Param("count") Integer count);
 

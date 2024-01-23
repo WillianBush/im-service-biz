@@ -51,7 +51,7 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Resp<YyIpListEntity> saveYyIpList(YyIpListEntity yyIpList,String domain) {
-		yyIpList.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+		yyIpList.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		int count = yyIpListMapper.save(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
@@ -74,7 +74,7 @@ public class YyIpListServiceImpl implements YyIpListService {
      */
 	@Override
 	public Resp<Integer> updateYyIpList(YyIpListEntity yyIpList, String domain) {
-		Long org_id = domainsMapper.getOrgIdByDomain(domain);
+		Long orgId = domainsMapper.getOrgIdByDomain(domain);
 		int count = yyIpListMapper.update(yyIpList);
 		return CommonUtils.msgResp(count);
 	}
@@ -92,8 +92,8 @@ public class YyIpListServiceImpl implements YyIpListService {
 
 	@Override
 	public YyIpListEntity getByIP(String ipAddress, Integer type, String domain) {
-		Long org_id = domainsMapper.getOrgIdByDomain(domain);
-		return yyIpListMapper.getObjectByIp(ipAddress, type, org_id);
+		Long orgId = domainsMapper.getOrgIdByDomain(domain);
+		return yyIpListMapper.getObjectByIp(ipAddress, type, orgId);
 	}
 
 }

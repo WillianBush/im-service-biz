@@ -26,10 +26,10 @@ public class DefaultRoomEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ApiModelProperty(value = "")
-	private String id;
+	private String orgId;
 	
 	@ApiModelProperty(value = "群组ID")
-	private String room_id;
+	private String roomId;
 	
 
 

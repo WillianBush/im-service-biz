@@ -42,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Page<EmployeeEntity> listEmployee(Map<String, Object> params) {
 		params.put("org_id", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		log.info("domain:::::::::::{}",params.get("domain").toString());
-		log.info("org_id:::::::::::{}",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
+		log.info("orgId:::::::::::{}",domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<EmployeeEntity> page = new Page<>(query);
 		List<EmployeeEntity> resp= employeeMapper.listForPage(page, query);
@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employee.setCreateDate(new Date());
 		employee.setName(member.getNickname());
 		employee.setMember_uuid(member.getId());
-		employee.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+		employee.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		return this.saveEmployee(employee).getData();
 	}
 
@@ -134,7 +134,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employee.getMember_id().isEmpty() || null == employee.getMember_id()) {
 			return Resp.error("用户ID未空");
 		}
-		employee.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+		employee.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		int count = employeeMapper.bindIP(employee);
 		return CommonUtils.msgResp(count);
 	}

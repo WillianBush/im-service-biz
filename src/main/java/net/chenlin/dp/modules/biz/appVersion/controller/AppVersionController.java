@@ -55,16 +55,16 @@ public class AppVersionController extends AbstractController {
 			return  Resp.error("参数异常");
 		}
 
-		if (StringUtils.isEmpty(appVersion.getApp_id())
-				|| StringUtils.isEmpty(appVersion.getDown_url())
-				|| StringUtils.isEmpty(appVersion.getDevice_type())
+		if (StringUtils.isEmpty(appVersion.getAppId())
+				|| StringUtils.isEmpty(appVersion.getDownUrl())
+				|| StringUtils.isEmpty(appVersion.getDeviceType())
 		        || StringUtils.isEmpty(appVersion.getVersion())){
 			return Resp.error("参数异常");
 		}
-		if (appVersion.getOrg_id() == null){
-			appVersion.setOrg_id(1L);
+		if (appVersion.getOrgId() == null){
+			appVersion.setOrgId(1L);
 		}
-		AppVersionEntity appVersionEntity = appVersionService.selectByUniqueKey(appVersion.getVersion(),appVersion.getOrg_id(),appVersion.getDevice_type(),appVersion.getApp_id());
+		AppVersionEntity appVersionEntity = appVersionService.selectByUniqueKey(appVersion.getVersion(),appVersion.getOrgId(),appVersion.getDeviceType(),appVersion.getAppId());
 		if (null != appVersionEntity) {
 			return Resp.error("版本已存在，请核对");
 		}
@@ -113,6 +113,6 @@ public class AppVersionController extends AbstractController {
 	@PostMapping("/appInfo")
 	@ApiOperation(value = "根据OS,AppName查询详情")
 	public Resp<AppVersionEntity> getByOSAndAppName(@RequestBody AppVersionEntity appVersion) {
-		return appVersionService.getAppVersionByOSAndAppName(appVersion.getDevice_type(), appVersion.getApp_name());
+		return appVersionService.getAppVersionByOSAndAppName(appVersion.getDeviceType(), appVersion.getAppName());
 	}
 }

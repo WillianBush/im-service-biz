@@ -5,46 +5,46 @@
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultRoomEntity">
 		SELECT
-			`id`, 
-			`room_id`
+			`org_id` orgId,
+			`room_id` roomId
 		FROM
 			default_room
 		where
 		1=1
-		<if test="id != null"> and `id` = #{id} </if>
-		<if test="room_id != null"> and `room_id` = #{room_id} </if>
+		<if test="orgId != null"> and `org_id` = #{orgId} </if>
+		<if test="roomId != null"> and `room_id` = #{roomId} </if>
 		ORDER BY
 			id DESC
 	</select>
 	
 	<insert id="save">
 		INSERT INTO default_room (
-			`id`, 
-			`room_id`
+			`org_id` orgId,
+			`room_id` roomId
 		)
 		VALUES (
-			#{id}, 
-			#{room_id}
+			#{orgId},
+			#{roomId}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.DefaultRoomEntity">
 		SELECT
-			`id`, 
-			`room_id`
+			`org_id` orgId,
+			`room_id` roomId
 		FROM
 			default_room
 		WHERE
-			id = #{id}
+			org_id = #{orgId}
 	</select>
 	
 	<update id="update">
 		UPDATE default_room
 	 	<set>
-			<if test="room_id != null">`room_id` = #{room_id}</if>
+			<if test="room_id != null">`room_id` = #{roomId}</if>
 		</set>
 		WHERE
-			id = #{id}
+			org_id = #{orgId}
 	</update>
 	
 	<delete id="batchRemove">
@@ -52,7 +52,7 @@
 		FROM
 			default_room
 		WHERE
-			id IN
+			org_id IN
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

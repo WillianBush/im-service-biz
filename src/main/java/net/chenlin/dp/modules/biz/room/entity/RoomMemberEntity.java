@@ -15,54 +15,62 @@ import java.util.Date;
 @Table(name = "room_member")
 @Data
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class RoomMemberEntity implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * 
-	 */
+
 	private String id;
-	
+
 	/**
-	 * 群组ID
+	 * 群组ID,主键
 	 */
-	private String room_id;
-	
+	private String roomId;
+
 	/**
-	 * 用户ID
+	 * 用户ID主键
 	 */
-	private String member_id;
-	
+	private String memberId;
+
 	/**
 	 * 是否管理员：0否，1是
 	 */
-	private Integer is_manager;
+	private Integer isManager;
 
 	/**
-	 * 创建日期
+	 * 是否禁言：0:否;1:是
 	 */
+	private Integer isStopSpeaker;
+
 	private Date createDate;
 
-	/**
-	 * 修改日期
-	 */
 	private Date modifyDate;
 
-	/**
-	 * 是否管理员：0否，1是
-	 */
-	private Integer is_stop_speaker;
+	private Integer orgId;
 
-	public RoomMemberEntity(String id, String room_id, String member_id, Integer is_manager, Integer is_stop_speaker) {
-		this.id = id;
-		this.room_id = room_id;
-		this.member_id = member_id;
-		this.is_manager = is_manager;
-		this.is_stop_speaker = is_stop_speaker;
+	public RoomMemberEntity() {
 	}
 
+	public RoomMemberEntity(String id,String  roomId, String  memberId) {
+		this. roomId =  roomId;
+		this. memberId =  memberId;
+		/***设置默认值*/
+		this. isManager=0;
+		this. isStopSpeaker=0;
+	}
+
+	public RoomMemberEntity(String  roomId, String  memberId, Integer  isManager) {
+		this. roomId =  roomId;
+		this. memberId =  memberId;
+		this. isManager =  isManager;
+	}
+
+	public RoomMemberEntity(String id, String roomId, String memberId, Integer isManager, Integer isStopSpeaker) {
+		this.id = id;
+		this.roomId = roomId;
+		this.memberId = memberId;
+		this.isManager = isManager;
+		this.isStopSpeaker = isStopSpeaker;
+	}
 }

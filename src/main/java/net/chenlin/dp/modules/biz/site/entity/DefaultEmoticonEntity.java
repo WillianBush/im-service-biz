@@ -29,10 +29,10 @@ public class DefaultEmoticonEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "表情地址")
-	private String img_addres;
+	private String imgAddres;
 	
 	@ApiModelProperty(value = "上传时间")
-	private Date up_time;
+	private Date upTime;
 	
 	@ApiModelProperty(value = "显示顺序")
 	private Integer sort;

@@ -29,52 +29,52 @@ public class FunctionConfigEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "站点ID")
-	private String org_id;
+	private String orgId;
 	
 	@ApiModelProperty(value = "禁止网页/客户端注册 0否1是")
-	private Integer web_app_regist;
+	private Integer  webAppRegist;
 	
 	@ApiModelProperty(value = "网页/客户端显示IP 0否1是")
-	private Integer web_app_ip_show;
+	private Integer  webAppIpShow;
 	
 	@ApiModelProperty(value = "单账号多段登录，网页/客户端最大登录数量")
-	private Integer max_login_counts;
+	private Integer  maxLoginCounts;
 	
 	@ApiModelProperty(value = "安全登录开关0关1开")
-	private Integer safe_login;
+	private Integer  safeLogin;
 	
 	@ApiModelProperty(value = "安全登录，最大登录重试次数")
-	private Integer safe_login_retry_counts;
+	private Integer safeLoginRetryCounts;
 	
 	@ApiModelProperty(value = "安全登录，是否适用IP黑名单功能 0否1是")
-	private Integer safe_login_apply_blacklist;
+	private Integer  safeLoginApplyBlacklist;
 	
 	@ApiModelProperty(value = "禁止普通用户添加好友0否1是")
-	private Integer add_friend;
+	private Integer  addFriend;
 	
 	@ApiModelProperty(value = "禁止普通用户建群0否1是")
-	private Integer create_room;
+	private Integer  createRoom;
 	
 	@ApiModelProperty(value = "开启手机号验证0否1是")
-	private Integer phone_verify;
+	private Integer  phoneVerify;
 	
 	@ApiModelProperty(value = "群主/群管理踢人是否删除被踢人信息0否1是")
-	private Integer out_room_del_message;
+	private Integer  outRoomDelMessage;
 	
 	@ApiModelProperty(value = "隐藏群主/群管理的管理消息（禁言、撤回消息等）0否1是")
-	private Integer miss_room_maneger_msg;
+	private Integer  missRoomManagerMsg;
 
 	@ApiModelProperty(value = "安全登陆：是否使用账号冻结功能 o:否;1:是")
-	private Integer is_frozen;
+	private Integer  isFrozen;
 
 	@ApiModelProperty(value = "安全登陆：是否使用IP黑名单功能 o:否;1:是")
-	private Integer ip_black;
+	private Integer  ipBlack;
 
 	@ApiModelProperty(value = "安全登陆：是否使用IP Web白名单功能 0否1是")
-	private Integer ip_white;
+	private Integer  ipWhite;
 
 	@ApiModelProperty(value = "用户外链开关：限制用户访问外链总开关 0不限制 1限制")
-	private Integer out_link_status;
+	private Integer  outLinkStatus;
 	
 
 

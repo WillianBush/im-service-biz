@@ -60,23 +60,23 @@ public class EmployeeDefaultMessageController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<EmployeeDefaultMessageEntity> save(@RequestBody EmployeeDefaultMessageEntity employeeDefaultMessage) {
-		if (employeeDefaultMessage == null || StringUtils.isEmpty(employeeDefaultMessage.getInvite_code())|| StringUtils.isEmpty(employeeDefaultMessage.getMember_uuid())){
+		if (employeeDefaultMessage == null || StringUtils.isEmpty(employeeDefaultMessage.getInviteCode())|| StringUtils.isEmpty(employeeDefaultMessage.getMemberId())){
 			return Resp.error("参数错误");
 		}
-		EmployeeEntity employee = employeeService.getMemberUUID(employeeDefaultMessage.getMember_uuid());
+		EmployeeEntity employee = employeeService.getMemberUUID(employeeDefaultMessage.getMemberId());
 		if (employee == null){
 			return Resp.error("会员不是特权用户");
 		}
-		Resp<MemberEntity> member =memberService.getMemberById(employeeDefaultMessage.getMember_uuid());
+		Resp<MemberEntity> member =memberService.getMemberById(employeeDefaultMessage.getMemberId());
 		if (member.getData() == null) {
 			return Resp.error("会员不存在");
 		}
-		EmployeeDefaultMessageEntity inviteCode =employeeDefaultMessageService.getEmployeeDefaultMessageByInviteCode(employeeDefaultMessage.getInvite_code());
+		EmployeeDefaultMessageEntity inviteCode =employeeDefaultMessageService.getEmployeeDefaultMessageByInviteCode(employeeDefaultMessage.getInviteCode());
 		if ( null != inviteCode) {
 			return Resp.error("邀请码重复");
 		}
-		employeeDefaultMessage.setEmployee_id(employee.getId());
-		employeeDefaultMessage.setMember_id(member.getData().getMemberid());
+		employeeDefaultMessage.setEmployeeId(employee.getId());
+		employeeDefaultMessage.setMemberId(member.getData().getMemberid());
 		return employeeDefaultMessageService.saveEmployeeDefaultMessage(employeeDefaultMessage,getServerName());
 	}
 	

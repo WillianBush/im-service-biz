@@ -63,7 +63,7 @@ public class WaitsendmessageEntity implements Serializable {
 	private String psr;
 	
 	@ApiModelProperty(value = "")
-	private String sub_txt;
+	private String subTxt;
 	
 	@ApiModelProperty(value = "")
 	private String oldContent;
@@ -77,8 +77,8 @@ public class WaitsendmessageEntity implements Serializable {
 	@ApiModelProperty(value = "")
 	private String descri;
 	
-	@ApiModelProperty(value = "")
-	private String descri1;
+//	@ApiModelProperty(value = "")
+//	private String descri1;
 	
 	@ApiModelProperty(value = "")
 	private BigDecimal money;
@@ -99,7 +99,7 @@ public class WaitsendmessageEntity implements Serializable {
 	private String toGroupid;
 	
 	@ApiModelProperty(value = "")
-	private String simple_content;
+	private String simpleContent;
 	
 	@ApiModelProperty(value = "")
 	private String utid;

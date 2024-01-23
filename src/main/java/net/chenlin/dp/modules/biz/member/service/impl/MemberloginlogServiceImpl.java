@@ -49,7 +49,7 @@ public class MemberloginlogServiceImpl implements MemberloginlogService {
      */
 	@Override
 	public Resp saveMemberloginlog(MemberloginlogEntity memberloginlog,String domain) {
-		memberloginlog.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+		memberloginlog.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		int count = memberloginlogMapper.save(memberloginlog);
 		return CommonUtils.msgResp(count);
 	}

@@ -46,20 +46,20 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
 		Page<EmployeeDefaultMessageEntity> page = new Page<>(query);
 		List<EmployeeDefaultMessageEntity> resp= employeeDefaultMessageMapper.listForPage(page, query);
 		for (EmployeeDefaultMessageEntity employeeDefaultMessage: resp) {
-			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_1())){
-				employeeDefaultMessage.setPicture_1("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_1());
+			if (!StringUtils.isEmpty(employeeDefaultMessage. getPicture1())){
+				employeeDefaultMessage.setPicture1("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture1());
 			}
-			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_2())){
-				employeeDefaultMessage.setPicture_2("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_2());
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture2())){
+				employeeDefaultMessage.setPicture2("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture2());
 			}
-			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_3())){
-				employeeDefaultMessage.setPicture_3("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_3());
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture3())){
+				employeeDefaultMessage.setPicture3("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture3());
 			}
-			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_4())){
-				employeeDefaultMessage.setPicture_4("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_4());
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture4())){
+				employeeDefaultMessage.setPicture4("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture4());
 			}
-			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture_5())){
-				employeeDefaultMessage.setPicture_5("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture_5());
+			if (!StringUtils.isEmpty(employeeDefaultMessage.getPicture5())){
+				employeeDefaultMessage.setPicture5("https://"+ossModel.getEndpoint() +employeeDefaultMessage.getPicture5());
 			}
 		}
 		page.setRows(resp);
@@ -74,7 +74,7 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
 	@Override
 	public Resp<EmployeeDefaultMessageEntity> saveEmployeeDefaultMessage(EmployeeDefaultMessageEntity employeeDefaultMessage,String domain) {
 		employeeDefaultMessage.setId(IdGenerate.generateUUID());
-		employeeDefaultMessage.setOrg_id(domainsMapper.getOrgIdByDomain(domain));
+		employeeDefaultMessage.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		int count = employeeDefaultMessageMapper.save(employeeDefaultMessage);
 		return CommonUtils.msgResp(count);
 	}
@@ -117,7 +117,7 @@ public class EmployeeDefaultMessageServiceImpl implements EmployeeDefaultMessage
 	@Override
 	public EmployeeDefaultMessageEntity getEmployeeDefaultMessageByInviteCode(String inviteCode) {
 		return	employeeDefaultMessageMapper.selectOne(EmployeeDefaultMessageEntity.builder()
-						.invite_code(inviteCode)
+						.inviteCode(inviteCode)
 				.build());
 	}
 

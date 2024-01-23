@@ -29,10 +29,10 @@ public class DefaultPortraitEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "图片地址")
-	private String img_addres;
+	private String imgAddress;
 	
 	@ApiModelProperty(value = "上传时间")
-	private Date up_time;
+	private Date upTime;
 	
 
 

@@ -26,10 +26,10 @@ public interface DomainsService {
 
     /**
      * 查询域名
-     * @param org_id
+     * @param orgId
      * @return
      */
-    R getDomainByOrgId(int org_id);
+    R getDomainByOrgId(int orgId);
 
     /**
      * 修改站点域名

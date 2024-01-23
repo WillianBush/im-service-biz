@@ -32,12 +32,12 @@ public class AppVersionEntity implements Serializable {
 	@ApiModelProperty(value = "创建时间")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date gmt_create;
+	private Date gmtCreate;
 	
 	@ApiModelProperty(value = "修改时间")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date gmt_modified;
+	private Date gmtModified;
 	
 	@ApiModelProperty(value = "版本号")
 	private String version;
@@ -46,25 +46,25 @@ public class AppVersionEntity implements Serializable {
 	private String descript;
 	
 	@ApiModelProperty(value = "站点(同orgId)")
-	private Long org_id;
+	private Long orgId;
 	
 	@ApiModelProperty(value = "系统(1安卓2为IOS)")
-	private String device_type;
+	private String deviceType;
 	
 	@ApiModelProperty(value = "下载链接")
-	private String down_url;
+	private String downUrl;
 	
 	@ApiModelProperty(value = "是否强更(0否1是)")
-	private Integer force_update;
+	private Integer forceUpdate;
 	
 	@ApiModelProperty(value = "0: 不显示, 1显示")
-	private String is_show;
+	private String isShow;
 	
 	@ApiModelProperty(value = "应用id")
-	private String app_id;
+	private String appId;
 	
 	@ApiModelProperty(value = "APP昵称")
-	private String app_name;
+	private String appName;
 
 
 
