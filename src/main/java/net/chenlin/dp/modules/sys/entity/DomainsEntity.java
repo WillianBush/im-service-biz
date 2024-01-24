@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
 
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -14,6 +16,7 @@ import java.io.Serializable;
 @Data
 @Builder
 @ApiModel
+@NameStyle(Style.camelhump)
 @NoArgsConstructor
 @AllArgsConstructor
 public class DomainsEntity implements Serializable {
