@@ -12,7 +12,7 @@ import java.util.Date;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
-@Table(name = "memberloginlog")
+@Table(name = "member_login_log")
 @Data
 @ToString
 @NoArgsConstructor
