@@ -19,7 +19,7 @@
         `ipAddr`,
         `org_id`
         FROM
-        memberloginlog
+        member_login_log
         where
         1=1
         <if test="id != null">and `id` = #{id}</if>
@@ -46,7 +46,7 @@
     </select>
 
     <insert id="save">
-        INSERT INTO memberloginlog (`id`,
+        INSERT INTO member_login_log (`id`,
                                     `createDate`,
                                     `modifyDate`,
                                     `ip`,
@@ -88,12 +88,12 @@
                `username`,
                `ipAddr`,
                `org_id`
-        FROM memberloginlog
+        FROM member_login_log
         WHERE id = #{id}
     </select>
 
     <update id="update">
-        UPDATE memberloginlog
+        UPDATE member_login_log
         <set>
             <if test="createdate != null">`createDate` = #{createdate},</if>
             <if test="modifydate != null">`modifyDate` = #{modifydate},</if>
@@ -114,7 +114,7 @@
     <delete id="batchRemove">
         DELETE
         FROM
-        memberloginlog
+        member_login_log
         WHERE
         id IN
         <foreach item="id" collection="array" open="(" separator="," close=")">
@@ -125,7 +125,7 @@
     <select id="getObjectGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity">
         SELECT date_format(createdate, '%Y-%m-%d') as create_time,
                count(distinct mid)                 as m_online_number
-        FROM memberloginlog
+        FROM member_login_log
         where createdate &gt;= str_to_date(#{startdate}, '%Y-%m-%d')
             and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'), INTERVAL 1 day)
             and org_id = #{org_id}
@@ -146,7 +146,7 @@
         `username`,
         `ipAddr`,
         `org_id`
-        FROM memberloginlog
+        FROM member_login_log
         WHERE mid = #{memberId}
         <if test="mnickname != null">and `mnickName` = #{mnickname}</if>
         <if test="username != null">and `username` = #{username}</if>
