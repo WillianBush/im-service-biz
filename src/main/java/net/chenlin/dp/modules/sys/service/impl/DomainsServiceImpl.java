@@ -55,8 +55,10 @@ public class DomainsServiceImpl implements DomainsService {
     }
 
     @Override
-    public R getDomainByOrgId(int orgId) {
-        DomainsEntity domainsEntity = domainsMapper.getObjectByName(orgId);
+    public R getDomainByOrgId(Long orgId) {
+        DomainsEntity domain = new DomainsEntity();
+        domain.setOrgId(orgId);
+        DomainsEntity domainsEntity = domainsMapper.selectOne(domain);
         return CommonUtils.msg(domainsEntity);
     }
 

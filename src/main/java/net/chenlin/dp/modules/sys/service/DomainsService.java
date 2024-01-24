@@ -29,7 +29,7 @@ public interface DomainsService {
      * @param orgId
      * @return
      */
-    R getDomainByOrgId(int orgId);
+    R getDomainByOrgId(Long orgId);
 
     /**
      * 修改站点域名
