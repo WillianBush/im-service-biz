@@ -10,7 +10,7 @@
 		`date`,
 		`fromHeadpic`,
 		`oldTxt`,
-		`toUid`,
+		`to_uid`,
 		`toGroupid`,
 		`chatid`,
 		`psr`,
@@ -30,7 +30,7 @@
 		<if test="date != null"> and `date` = #{date} </if>
 		<if test="fromHeadpic != null"> and `fromHeadpic` = #{fromHeadpic} </if>
 		<if test="oldTxt != null"> and `oldTxt` = #{oldTxt} </if>
-		<if test="toUid != null"> and `toUid` = #{toUid} </if>
+		<if test="toUid != null"> and `to_uid` = #{toUid} </if>
 		<if test="toGroupid != null"> and `toGroupid` = #{toGroupid} </if>
 		<if test="chatid != null"> and `chatid` = #{chatid} </if>
 		<if test="psr != null"> and `psr` = #{psr} </if>
@@ -54,7 +54,7 @@
 			`date`, 
 			`fromHeadpic`, 
 			`oldTxt`, 
-			`toUid`, 
+			`to_uid`,
 			`chatid`, 
 			`psr`, 
 			`txt`, 
@@ -91,7 +91,7 @@
 			`date`, 
 			`fromHeadpic`, 
 			`oldTxt`, 
-			`toUid`, 
+			`to_uid`,
 			`chatid`, 
 			`psr`, 
 			`txt`, 
@@ -114,7 +114,7 @@
 			<if test="date != null">`date` = #{date}, </if>
 			<if test="fromHeadpic != null">`fromHeadpic` = #{fromHeadpic}, </if>
 			<if test="oldTxt != null">`oldTxt` = #{oldTxt}, </if>
-			<if test="toUid != null">`toUid` = #{toUid}, </if>
+			<if test="toUid != null">`to_uid` = #{toUid}, </if>
 			<if test="chatid != null">`chatid` = #{chatid}, </if>
 			<if test="psr != null">`psr` = #{psr}, </if>
 			<if test="txt != null">`txt` = #{txt}, </if>
@@ -165,11 +165,11 @@
 
 	<select id="getObjectPersonalMessageGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity">
 		SELECT date_format(createdate, '%Y-%m-%d') as create_time,
-			   count(toUid) as personal_message_total
+			   count(to_uid) as personal_message_total
 		FROM message_history
 		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
 		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
-		  and toUid is not null
+		  and to_uid is not null
 		  and org_id = #{org_id}
 		group by date_format(createdate, '%Y-%m-%d')
 	</select>
@@ -180,7 +180,7 @@
         message_history
         WHERE
         fromUid= #{uid}
-        or toUid= #{uid}
+        or to_uid= #{uid}
     </delete>
 
 	<select id="getGroupMessageTotal" resultType="java.lang.Long">
@@ -195,11 +195,11 @@
 
 	<select id="getPersonalMessageTotal" resultType="java.lang.Long">
 		SELECT
-			   count(toUid)
+			   count(to_uid)
 		FROM
 		     message_history
 		where
-			toUid is not null
+			to_uid is not null
 			and org_id = #{org_id}
 	</select>
 

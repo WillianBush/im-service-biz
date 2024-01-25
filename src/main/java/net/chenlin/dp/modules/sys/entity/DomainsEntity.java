@@ -16,7 +16,6 @@ import java.io.Serializable;
 @Data
 @Builder
 @ApiModel
-@NameStyle(Style.camelhump)
 @NoArgsConstructor
 @AllArgsConstructor
 public class DomainsEntity implements Serializable {

@@ -3,24 +3,34 @@
 
 <mapper namespace="net.chenlin.dp.modules.sys.dao.DomainsMapper">
 
-    <select id="selectObj" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+    <resultMap id="domainsResultMap" type="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+        <id column="name" property="orgName" />
+        <result  column="domain_id" property="domainId"/>
+        <result  column="org_id" property="orgId"/>
+        <result  column="http_domain" property="httpDomain"/>
+        <result  column="ws_domain" property="wsDomain"/>
+        <result  column="oss_domain" property="ossDomain"/>
+        <result  column="admin_domain" property="adminDomain"/>
+    </resultMap>
+
+    <select id="selectObj" resultMap="domainsResultMap">
         SELECT
-        o.name org_name,
-        d.domain_id domain_id,
-        o.org_id org_id,
-        http_domain,
-        ws_domain,
-        oss_domain,
-        admin_domain
+        o.name orgName,
+        d.domain_id domainId,
+        o.org_id orgId,
+        http_domain httpDomain,
+        ws_domain wsDomain,
+        oss_domain ossDomain,
+        admin_domain adminDomain
         FROM
         sys_org o
         LEFT JOIN domains d ON o.org_id = d.org_id
         where 1=1
-        <if test="org_id != null ">
-            AND org_id = #{org_id}
+        <if test="orgId != null ">
+            AND org_id = #{orgId}
         </if>
-        <if test="http_domain != null and http_domain.trim() != ''">
-            AND http_domain like concat('%',#{http_domain},'%') or admin_domain like  concat('%',#{http_domain},'%')
+        <if test="httpDomain != null and httpDomain.trim() != ''">
+            AND http_domain like concat('%',#{httpDomain},'%') or admin_domain like  concat('%',#{httpDomain},'%')
         </if>
     </select>
 
@@ -102,7 +112,7 @@
 
     <select id="getOrgIdByDomain" resultType="java.lang.Long">
       SELECT
-        o.org_id org_id
+        o.org_id orgId
         FROM
         sys_org o
         LEFT JOIN domains d ON o.org_id = d.org_id

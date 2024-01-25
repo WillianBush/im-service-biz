@@ -1,0 +1,8 @@
+logging:
+  level:
+    net:
+      chenlin:
+        dp:
+          modules:
+            sys:
+              dao: debug
