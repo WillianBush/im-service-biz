@@ -36,7 +36,7 @@
 			`mname`, 
 			`muuid`
 		FROM
-			waitsendmessage
+			wait_send_message
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
@@ -74,7 +74,7 @@
 	</select>
 	
 	<insert id="save">
-		INSERT INTO waitsendmessage (
+		INSERT INTO wait_send_message (
 			`id`, 
 			`createDate`, 
 			`modifyDate`, 
@@ -173,13 +173,13 @@
 			`mname`, 
 			`muuid`
 		FROM
-			waitsendmessage
+			wait_send_message
 		WHERE
 			id = #{id}
 	</select>
 	
 	<update id="update">
-		UPDATE waitsendmessage
+		UPDATE wait_send_message
 	 	<set>
 			<if test="createDate != null">`createDate` = #{createDate}, </if>
 			<if test="modifyDate != null">`modifyDate` = #{modifyDate}, </if>
@@ -218,7 +218,7 @@
 	<delete id="batchRemove">
 		DELETE
 		FROM
-			waitsendmessage
+			wait_send_message
 		WHERE
 			id IN
 		<foreach item="id" collection="array" open="(" separator="," close=")">

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
-@Table(name = "waitsendmessage")
+@Table(name = "wait_send_message")
 @Data
 @ToString
 @NoArgsConstructor
