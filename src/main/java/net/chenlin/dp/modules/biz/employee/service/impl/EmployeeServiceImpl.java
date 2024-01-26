@@ -64,10 +64,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Integer saveEmployee(EmployeeEntity employee,MemberEntity member,String domain) {
-		employee.setMember_id(member.getMemberid());
-		employee.setLastLoginIp(member.getLastloginip());
+		employee.setMember_id(member.getMemberId());
+		employee.setLastLoginIp(member.getLastLoginIp());
 		employee.setCreateDate(new Date());
-		employee.setName(member.getNickname());
+		employee.setName(member.getNickName());
 		employee.setMember_uuid(member.getId());
 		employee.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		return this.saveEmployee(employee).getData();

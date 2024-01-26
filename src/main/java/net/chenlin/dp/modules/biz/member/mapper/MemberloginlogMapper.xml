@@ -6,35 +6,35 @@
     <select id="listForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
         SELECT
         `id`,
-        `createDate`,
-        `modifyDate`,
+        `create_date` createDate,
+        `modify_date` modifyDate,
         `ip`,
         `mid`,
-        `mnickName`,
+        `mnick_name` mnickName,
         `mtel`,
-        `deviceType`,
-        `deviceVersion`,
-        `mheadPic`,
+        `device_type` deviceType,
+        `device_version` deviceVersion,
+        `mhead_pic` mheadPic,
         `username`,
-        `ipAddr`,
-        `org_id`
+        `ip_addr` ipAddr,
+        `org_id` orgId
         FROM
         member_login_log
         where
         1=1
         <if test="id != null">and `id` = #{id}</if>
-        <if test="createdate != null">and `createDate` = #{createdate}</if>
-        <if test="modifydate != null">and `modifyDate` = #{modifydate}</if>
+        <if test="createDate != null">and `create_date` = #{createDate}</if>
+        <if test="modifyDate != null">and `modify_date` = #{modifyDate}</if>
         <if test="ip != null">and `ip` = #{ip}</if>
         <if test="mid != null">and `mid` = #{mid}</if>
-        <if test="mnickname != null">and `mnickName` = #{mnickname}</if>
+        <if test="mnickName != null">and `mnick_name` = #{mnickName}</if>
         <if test="mtel != null">and `mtel` = #{mtel}</if>
-        <if test="deviceType != null">and `deviceType` = #{deviceType}</if>
-        <if test="deviceVersion != null">and `deviceVersion` = #{deviceVersion}</if>
-        <if test="mheadPic != null">and `mheadPic` = #{mheadPic}</if>
+        <if test="deviceType != null">and `device_type` = #{deviceType}</if>
+        <if test="deviceVersion != null">and `device_version` = #{deviceVersion}</if>
+        <if test="mheadPic != null">and `mhead_pic` = #{mheadPic}</if>
         <if test="username != null">and `username` = #{username}</if>
-        <if test="ipAddr != null">and `ipAddr` = #{ipAddr}</if>
-        <if test="org_id != null">and `org_id` = #{org_id}</if>
+        <if test="ipAddr != null">and `ip_addr` = #{ipAddr}</if>
+        <if test="orgId != null">and `org_id` = #{orgId}</if>
         <if test="ids != null">
             and `mid` IN
             <foreach item="id" collection="ids" open="(" separator="," close=")">
@@ -47,24 +47,24 @@
 
     <insert id="save">
         INSERT INTO member_login_log (`id`,
-                                    `createDate`,
-                                    `modifyDate`,
+                                    `create_date` createDate,
+                                    `modify_date` modifyDate,
                                     `ip`,
                                     `mid`,
-                                    `mnickName`,
+                                    `mnick_name` mnickName,
                                     `mtel`,
-                                    `deviceType`,
-                                    `deviceVersion`,
-                                    `mheadPic`,
+                                    `device_type` deviceType,
+                                    `device_version` deviceVersion,
+                                    `mhead_pic` mheadPic,
                                     `username`,
-                                    `ipAddr`,
-                                    `org_id`)
+                                    `ip_addr` ipAddr,
+        `org_id` orgId)
         VALUES (#{id},
-                #{createdate},
-                #{modifydate},
+                #{createDate},
+                #{modifyDate},
                 #{ip},
                 #{mid},
-                #{mnickname},
+                #{mnickName},
                 #{mtel},
                 #{deviceType},
                 #{deviceVersion},
@@ -76,18 +76,18 @@
 
     <select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
         SELECT `id`,
-               `createDate`,
-               `modifyDate`,
+               `create_date` createDate,
+               `modify_date` modifyDate,
                `ip`,
                `mid`,
-               `mnickName`,
+               `mnick_name` mnickName,
                `mtel`,
-               `deviceType`,
-               `deviceVersion`,
-               `mheadPic`,
+               `device_type` deviceType,
+               `device_version` deviceVersion,
+               `mhead_pic` mheadPic,
                `username`,
-               `ipAddr`,
-               `org_id`
+               `ip_addr` ipAddr,
+                `org_id` orgId
         FROM member_login_log
         WHERE id = #{id}
     </select>
@@ -95,20 +95,20 @@
     <update id="update">
         UPDATE member_login_log
         <set>
-            <if test="createdate != null">`createDate` = #{createdate},</if>
-            <if test="modifydate != null">`modifyDate` = #{modifydate},</if>
+            <if test="createDate != null">`create_date` = #{createDate},</if>
+            <if test="modifyDate != null">`modify_date` = #{modifyDate},</if>
             <if test="ip != null">`ip` = #{ip},</if>
             <if test="mid != null">`mid` = #{mid},</if>
-            <if test="mnickname != null">`mnickName` = #{mnickname},</if>
+            <if test="mnickName != null">`mnick_name` = #{mnickName},</if>
             <if test="mtel != null">`mtel` = #{mtel},</if>
-            <if test="deviceType != null">`deviceType` = #{deviceType},</if>
-            <if test="deviceVersion != null">`deviceVersion` = #{deviceVersion},</if>
-            <if test="mheadPic != null">`mheadPic` = #{mheadPic},</if>
+            <if test="deviceType != null">`device_type` = #{deviceType},</if>
+            <if test="deviceVersion != null">`device_version` = #{deviceVersion},</if>
+            <if test="mheadPic != null">`mhead_pic` = #{mheadPic},</if>
             <if test="username != null">`username` = #{username},</if>
-            <if test="ipAddr != null">`ipAddr` = #{ipAddr},</if>
+            <if test="ipAddr != null">`ip_addr` = #{ipAddr},</if>
         </set>
         WHERE
-        id = #{id} and org_id = #{org_id}
+        id = #{id} and org_id = #{orgId}
     </update>
 
     <delete id="batchRemove">
@@ -123,37 +123,37 @@
     </delete>
 
     <select id="getObjectGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity">
-        SELECT date_format(createdate, '%Y-%m-%d') as create_time,
+        SELECT date_format(create_date, '%Y-%m-%d') as create_time,
                count(distinct mid)                 as m_online_number
         FROM member_login_log
-        where createdate &gt;= str_to_date(#{startdate}, '%Y-%m-%d')
-            and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'), INTERVAL 1 day)
+        where create_date &gt;= str_to_date(#{startDate}, '%Y-%m-%d')
+            and create_date &lt; date_add(str_to_date(#{endDate}, '%Y-%m-%d'), INTERVAL 1 day)
             and org_id = #{org_id}
-        group by date_format(createdate, '%Y-%m-%d')
+        group by date_format(create_date, '%Y-%m-%d')
     </select>
 
     <select id="getLastLoginDate" resultType="net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity">
         SELECT `id`,
-        `createDate`,
-        `modifyDate`,
+        `create_date` createDate,
+        `modify_date` modifyDate,
         `ip`,
         `mid`,
-        `mnickName`,
+        `mnick_name` mnickName,
         `mtel`,
-        `deviceType`,
-        `deviceVersion`,
-        `mheadPic`,
+        `device_type` deviceType,
+        `device_version` deviceVersion,
+        `mhead_pic` mheadPic,
         `username`,
-        `ipAddr`,
-        `org_id`
+        `ip_addr` ipAddr,
+        `org_id` orgId
         FROM member_login_log
         WHERE mid = #{memberId}
-        <if test="mnickname != null">and `mnickName` = #{mnickname}</if>
+        <if test="mnickName != null">and `mnick_name` = #{mnickName}</if>
         <if test="username != null">and `username` = #{username}</if>
         <if test="ip != null">and `ip` = #{ip}</if>
-        <if test="org_id != null">and `org_id` = #{org_id}</if>
+        <if test="orgId != null">and `org_id` = #{orgId}</if>
         <if test="startdate != null and enddate != null">
-            createdate &gt;= str_to_date(#{startdate}, '%Y-%m-%d') and createdate &lt; date_add(str_to_date(#{enddate},
+            create_date &gt;= str_to_date(#{startDate}, '%Y-%m-%d') and create_date &lt; date_add(str_to_date(#{endDate},
             '%Y-%m-%d'), INTERVAL 1 day)
         </if>
         order by createDate desc limit 1

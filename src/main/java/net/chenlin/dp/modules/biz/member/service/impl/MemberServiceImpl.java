@@ -6,21 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.entity.*;
-import net.chenlin.dp.common.support.properties.GlobalProperties;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
 import net.chenlin.dp.common.utils.IdGenerate;
 import net.chenlin.dp.common.utils.MD5Utils;
-import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
-import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
-import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
 import net.chenlin.dp.modules.biz.room.dao.MessageHistoryMapper;
 import net.chenlin.dp.modules.sys.entity.DomainsEntity;
 import net.chenlin.dp.modules.sys.service.DomainsService;
 import org.apache.commons.lang.StringUtils;
-import org.bouncycastle.jcajce.provider.digest.MD5;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.utils.CommonUtils;
@@ -99,19 +93,19 @@ public class MemberServiceImpl implements MemberService {
             return Resp.error(Resp.error, "用户已经存在");
         }
         long number = redisCacheManager.incr(RedisCacheKeys.REDIS_KEY_CREATE_MEMBERID, 1);
-        member.setMemberid(Long.toString(number));
+        member.setMemberId(Long.toString(number));
         member.setUsername(RedisCacheKeys.REDIS_KEY_CREATE_USERNAME + number);
         member.setTelphone(RedisCacheKeys.default_telphone);
         //普通用户
-        member.setMembertype(0);
+        member.setMemberType(0);
         member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
         member.setId(IdGenerate.generateUUID());
         member.setStatus(0);
-        member.setCreatedate(new Date());
+        member.setCreateDate(new Date());
         member.setOrgId(domainsEntity.getOrgId());
         int count = memberMapper.save(member);
 
-		if (member.getIs_employee().equals(1)) {
+		if (member.getIsEmployee().equals(1)) {
 			EmployeeEntity employee = new EmployeeEntity();
 			employeeService.saveEmployee(employee, this.getMemberById(member.getId()).getData(),domain);
 		}
@@ -126,11 +120,11 @@ public class MemberServiceImpl implements MemberService {
             if (StringUtils.isEmpty(memberEntity.getPassword())) {
                 return Resp.error(500, "密码不能为空");
             }
-            if (StringUtils.isEmpty(memberEntity.getNickname()) || memberEntity.getNickname().contains(" ")) {
-                return Resp.error(500, "昵称不呢为空且不能含有空格" + memberEntity.getNickname());
+            if (StringUtils.isEmpty(memberEntity.getNickName()) || memberEntity.getNickName().contains(" ")) {
+                return Resp.error(500, "昵称不呢为空且不能含有空格" + memberEntity.getNickName());
             }
             log.info("批量添加用户---校验用户是否存在");
-            if (memberMapper.isExitByNickname(memberEntity.getNickname()) > 0L) {
+            if (memberMapper.isExitByNickname(memberEntity.getNickName()) > 0L) {
                 log.info("批量添加用户---昵称重复");
                 return Resp.error(500, "昵称重复");
             }

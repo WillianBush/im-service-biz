@@ -66,7 +66,7 @@ public class SendMessageServiceImpl implements SendMessageService {
                 chatMsgEntity.setDateTime(System.currentTimeMillis());
                 chatMsgEntity.setFromHeadpic(fromMember.getHeadpic());
                 chatMsgEntity.setFromUid(fromMember.getId());
-                chatMsgEntity.setFromName(fromMember.getNickname());
+                chatMsgEntity.setFromName(fromMember.getNickName());
 
                 chatMsgEntity.setTxt(imgTxt);
                 chatMsgEntity.setToUid(memberEntity.getId());
@@ -133,7 +133,7 @@ public class SendMessageServiceImpl implements SendMessageService {
         aslog.setCreateDate(new Date());
         aslog.setTxt(chatMsgEntity.getTxt());
         aslog.setReceiverId(chatMsgEntity.getToUid());
-        aslog.setReceiverName(receiver.getNickname());
+        aslog.setReceiverName(receiver.getNickName());
         aslog.setSendAdminId(sysUserEntity.getUserId()+"");
         aslog.setSendAdminName(sysUserEntity.getUsername());
         adminSendmsgLogMapper.save(aslog);

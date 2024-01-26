@@ -30,12 +30,12 @@ public class MemberloginlogEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Date createdate;
+	private Date createDate;
 	
 	/**
 	 * 
 	 */
-	private Date modifydate;
+	private Date modifyDate;
 	
 	/**
 	 * 
@@ -50,7 +50,7 @@ public class MemberloginlogEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String mnickname;
+	private String mnickName;
 	
 	/**
 	 * 

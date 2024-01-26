@@ -24,11 +24,11 @@
 		where
 		1=1
 		<if test="id != null"> and f.`id` = #{id} </if>
-		<if test="createdate != null"> and `createDate` = #{createdate} </if>
-		<if test="modifydate != null"> and `modifyDate` = #{modifydate} </if>
-		<if test="friendid != null"> and `friendid` = #{friendid} </if>
+		<if test="createDate != null"> and `create_date` = #{createDate} </if>
+		<if test="modifyDate != null"> and `modify_date` = #{modifyDate} </if>
+		<if test="friendId != null"> and `friend_id` = #{friendId} </if>
 		<if test="mid != null"> and `mid` = #{mid} </if>
-		<if test="org_id != null"> and `org_id` = #{org_id} </if>
+		<if test="orgId != null"> and `org_id` = #{orgId} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -36,30 +36,30 @@
 	<insert id="save">
 		INSERT INTO friends (
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`friendid`, 
+			`create_date` createDate, 
+			`modify_date` modifyDate, 
+			`friend_id` friendId, 
 			`mid`,
-			`org_id`
+			`org_id` orgId
 		)
 		VALUES (
 			#{id}, 
-			#{createdate}, 
-			#{modifydate}, 
-			#{friendid}, 
+			#{createDate}, 
+			#{modifyDate}, 
+			#{friendId}, 
 			#{mid},
-			#{org_id}
+			#{orgId}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.FriendsEntity">
 		SELECT
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`friendid`, 
+			`create_date` createDate, 
+			`modify_date` modifyDate, 
+			`friend_id` friendId, 
 			`mid`,
-			`org_id`
+			`org_id` orgId
 		FROM
 			friends
 		WHERE
@@ -69,13 +69,13 @@
 	<update id="update">
 		UPDATE friends
 	 	<set>
-			<if test="createdate != null">`createDate` = #{createdate}, </if>
-			<if test="modifydate != null">`modifyDate` = #{modifydate}, </if>
-			<if test="friendid != null">`friendid` = #{friendid}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="modifyDate != null">`modify_date` = #{modifyDate}, </if>
+			<if test="friendId != null">`friend_id` = #{friendId}, </if>
 			<if test="mid != null">`mid` = #{mid}</if>
 		</set>
 		WHERE
-			id = #{id} and org_id = #{org_id}
+			id = #{id} and org_id = #{orgId}
 	</update>
 	
 	<delete id="removeFriend">
@@ -84,8 +84,8 @@
 			friends
 		WHERE
 			mid =#{id}
-			and friendid = #{friendid}
-			and org_id = #{org_id}
+			and friendid = #{friendId}
+			and org_id = #{orgId}
 	</delete>
 
 </mapper>

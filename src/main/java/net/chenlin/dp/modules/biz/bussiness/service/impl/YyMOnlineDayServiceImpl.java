@@ -1,24 +1,19 @@
 package net.chenlin.dp.modules.biz.bussiness.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.constant.RedisCacheKeys;
 import net.chenlin.dp.common.support.redis.RedisCacheManager;
-import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.dao.MemberloginlogMapper;
 import net.chenlin.dp.modules.biz.member.entity.LastLoginDateEntity;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.entity.MemberloginlogEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
 import net.chenlin.dp.modules.sys.dao.DomainsMapper;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import net.chenlin.dp.common.entity.Page;
@@ -117,7 +112,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 		Map<Object,Object> onlineMembersWithDevices=  redisCacheManager.hmget(RedisCacheKeys.ONLINE_MEMBER);
 		LastLoginDateEntity lastLoginDateEntity = new LastLoginDateEntity();
 		if ( null != params.get("mnickname")){
-			lastLoginDateEntity.setMnickname(params.get("mnickname").toString());
+			lastLoginDateEntity.setMnickName(params.get("mnickname").toString());
 		}
 		if ( null != params.get("username")){
 			lastLoginDateEntity.setUsername(params.get("username").toString());
@@ -126,8 +121,8 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 			lastLoginDateEntity.setIp(params.get("ip").toString());
 		}
 		if ( null != params.get("startdate") && null != params.get("enddate")){
-			lastLoginDateEntity.setStartdate(params.get("startdate").toString());
-			lastLoginDateEntity.setEnddate(params.get("enddate").toString());
+			lastLoginDateEntity.setStartDate(params.get("startdate").toString());
+			lastLoginDateEntity.setEndDate(params.get("enddate").toString());
 		}
 
 		List<MemberloginlogEntity> resp =new ArrayList<>();
@@ -144,7 +139,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
 				if (respMember.getData() == null) {
 					continue;
 				}
-				lastLoginDateEntity.setMemberId(respMember.getData().getMemberid());
+				lastLoginDateEntity.setMemberId(respMember.getData().getMemberId());
 				lastLoginDateEntity.setOrgId(domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 				MemberloginlogEntity memberloginlogEntity = memberloginlogMapper.getLastLoginDate(lastLoginDateEntity);
 				if (memberloginlogEntity == null ){

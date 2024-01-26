@@ -31,12 +31,12 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Date createdate;
+	private Date createDate;
 	
 	/**
 	 * 
 	 */
-	private Date modifydate;
+	private Date modifyDate;
 	
 	/**
 	 * 
@@ -46,12 +46,12 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Date lastlogindate;
+	private Date lastLoginDate;
 	
 	/**
 	 * 
 	 */
-	private String lastloginip;
+	private String lastLoginIp;
 	
 	/**
 	 * 
@@ -61,7 +61,7 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String nickname;
+	private String nickName;
 	
 	/**
 	 * 
@@ -71,7 +71,7 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String parentpath;
+	private String parentPath;
 	
 	/**
 	 * 
@@ -81,7 +81,7 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String registip;
+	private String registIp;
 	
 	/**
 	 * 
@@ -96,57 +96,57 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Double txmoney;
+	private Double txMoney;
 	
 	/**
 	 * 
 	 */
-	private Double txmoneying;
+	private Double txMoneyIng;
 	
 	/**
 	 * 
 	 */
-	private String memberid;
+	private String memberId;
 	
 	/**
 	 * 
 	 */
-	private Double losepricesum;
+	private Double losePriceSum;
 	
 	/**
 	 * 
 	 */
-	private Integer openredcount;
+	private Integer openRedCount;
 	
 	/**
 	 * 
 	 */
-	private Double openredpricesum;
+	private Double openRedPriceSum;
 	
 	/**
 	 * 
 	 */
-	private Double rechargepricesum;
+	private Double rechargePriceSum;
 	
 	/**
 	 * 
 	 */
-	private Integer sendredcount;
+	private Integer sendRedCount;
 	
 	/**
 	 * 
 	 */
-	private Double sendredpricesum;
+	private Double sendRedPriceSum;
 	
 	/**
 	 * 
 	 */
-	private Double txpricesum;
+	private Double txPriceSum;
 	
 	/**
 	 * 
 	 */
-	private Double winpricesum;
+	private Double winPriceSum;
 	
 	/**
 	 * 
@@ -156,27 +156,27 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String qrcodeimg;
+	private String qrCodeImg;
 	
 	/**
 	 * 
 	 */
-	private Double tichenpricesum;
+	private Double tichenPriceSum;
 	
 	/**
 	 * 
 	 */
-	private String pretximg;
+	private String preTxImg;
 	
 	/**
 	 * 
 	 */
-	private Integer pretxpay;
+	private Integer preTxPay;
 	
 	/**
 	 * 
 	 */
-	private Integer membertype;
+	private Integer memberType;
 	
 	/**
 	 * 
@@ -186,52 +186,52 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer one_Level_Count;
+	private Integer oneLevelCount;
 	
 	/**
 	 * 
 	 */
-	private Double rechargeprice_Today;
+	private Double rechargePriceToday;
 	
 	/**
 	 * 
 	 */
-	private Double tichenprice_Today;
+	private Double tichenPriceToday;
 	
 	/**
 	 * 
 	 */
-	private Double txprice_Today;
+	private Double txPriceToday;
 	
 	/**
 	 * 
 	 */
-	private String prebank_Addr;
+	private String preBankAddr;
 	
 	/**
 	 * 
 	 */
-	private String prebank_Belonger;
+	private String preBankBelonger;
 	
 	/**
 	 * 
 	 */
-	private String prebank_Code;
+	private String preBankCode;
 	
 	/**
 	 * 
 	 */
-	private String prebank_Name;
+	private String preBankName;
 	
 	/**
 	 * 
 	 */
-	private String wxopenid;
+	private String wxOpenId;
 	
 	/**
 	 * 
 	 */
-	private String qqopenid;
+	private String qqOpenId;
 	
 	/**
 	 * 
@@ -241,27 +241,27 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String pay_Pwd;
+	private String payPwd;
 	
 	/**
 	 * 
 	 */
-	private Integer sendtransfercount;
+	private Integer sendTransferCount;
 	
 	/**
 	 * 
 	 */
-	private Double sendtransferpricesum;
+	private Double sendTransferPriceSum;
 	
 	/**
 	 * 
 	 */
-	private Integer shimingstatus;
+	private Integer shimingStatus;
 	
 	/**
 	 * 
 	 */
-	private Integer sysgenerate;
+	private Integer sysGenerate;
 
 	/**
 	 * 站点ID
@@ -273,5 +273,5 @@ public class MemberEntity implements Serializable {
 	 * 是否为特权
 	 * */
 	@Transient
-	private Integer is_employee;
+	private Integer isEmployee;
 }

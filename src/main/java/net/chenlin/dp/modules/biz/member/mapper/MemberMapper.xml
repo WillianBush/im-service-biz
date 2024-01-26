@@ -6,53 +6,53 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
+			`create_date` createDate,
+			`modify_date` modifyDate,
 			`headpic`, 
-			`lastLoginDate`, 
-			`lastLoginIp`, 
+			`last_login_date` lastLoginDate,
+			`last_login_ip` lastLoginIp,
 			`money`, 
-			`nickName`, 
+			`nick_name` nickName, 
 			`parent`, 
-			`parentPath`, 
+			`parent_path` parentPath, 
 			`password`, 
-			`registIp`, 
+			`regist_ip` registIp, 
 			`status`, 
 			`telphone`, 
-			`txMoney`, 
-			`txMoneyIng`, 
-			`memberId`, 
-			`losePriceSum`, 
-			`openRedCount`, 
-			`openRedPriceSum`, 
-			`rechargePriceSum`, 
-			`sendRedCount`, 
-			`sendRedPriceSum`, 
-			`txPriceSum`, 
-			`winPriceSum`, 
+			`tx_money` txMoney, 
+			`tx_money_ing` txMoneyIng, 
+			`member_id` memberId, 
+			`lose_price_sum` losePriceSum, 
+			`open_red_count` openRedCount, 
+			`open_red_price_sum` openRedPriceSum, 
+			`recharge_price_sum` rechargePriceSum, 
+			`send_red_count` sendRedCount, 
+			`send_red_price_sum` sendRedPriceSum, 
+			`tx_price_sum` txPriceSum, 
+			`win_price_sum` winPriceSum, 
 			`username`, 
-			`qrCodeImg`, 
-			`tichenPriceSum`, 
-			`preTxImg`, 
-			`preTxPay`, 
-			`memberType`, 
+			`qr_code_img` qrCodeImg, 
+			`tichen_price_sum` tichenPriceSum, 
+			`pre_tx_img` preTxImg, 
+			`pre_tx_pay` preTxPay, 
+			`member_type` memberType, 
 			`parentmid`, 
-			`one_level_count`, 
-			`rechargePrice_today`, 
-			`tichenPrice_today`, 
-			`txPrice_today`, 
-			`preBank_addr`, 
-			`preBank_belonger`, 
-			`preBank_code`, 
-			`preBank_name`, 
-			`wxOpenId`, 
-			`qqOpenId`, 
+			`one_level_count` oneLevelCount, 
+			`recharge_price_today` rechargePriceToday, 
+			`tichen_price_today` tichenPriceToday, 
+			`tx_price_today` txPriceToday, 
+			`pre_bank_addr` preBankAddr, 
+			`pre_bank_belonger` preBankBelonger, 
+			`pre_bank_code` preBankCode, 
+			`pre_bank_name` preBankName, 
+			`wx_open_id` wxOpenId, 
+			`qq_open_id` qqOpenId, 
 			`sex`, 
-			`pay_pwd`, 
-			`sendTransferCount`, 
-			`sendTransferPriceSum`, 
-			`shimingStatus`, 
-			`sysGenerate`,
+			`pay_pwd` payPwd, 
+			`send_transfer_count` sendTransferCount, 
+			`send_transfer_price_sum` sendTransferPriceSum, 
+			`shiming_status` shimingStatus, 
+			`sys_generate` sysGenerate,
 			`org_id`
 		FROM
 			member
@@ -128,53 +128,53 @@
 	<insert id="save">
 		INSERT INTO member (
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
+			`create_date` createDate,
+			`modify_date` modifyDate,
 			`headpic`, 
-			`lastLoginDate`, 
-			`lastLoginIp`, 
+			`last_login_date` lastLoginDate,
+			`last_login_ip` lastLoginIp,
 			`money`, 
-			`nickName`, 
+			`nick_name` nickName, 
 			`parent`, 
-			`parentPath`, 
+			`parent_path` parentPath, 
 			`password`, 
-			`registIp`, 
+			`regist_ip` registIp, 
 			`status`, 
 			`telphone`, 
-			`txMoney`, 
-			`txMoneyIng`, 
-			`memberId`, 
-			`losePriceSum`, 
-			`openRedCount`, 
-			`openRedPriceSum`, 
-			`rechargePriceSum`, 
-			`sendRedCount`, 
-			`sendRedPriceSum`, 
-			`txPriceSum`, 
-			`winPriceSum`, 
+			`tx_money` txMoney, 
+			`tx_money_ing` txMoneyIng, 
+			`member_id` memberId, 
+			`lose_price_sum` losePriceSum, 
+			`open_red_count` openRedCount, 
+			`open_red_price_sum` openRedPriceSum, 
+			`recharge_price_sum` rechargePriceSum, 
+			`send_red_count` sendRedCount, 
+			`send_red_price_sum` sendRedPriceSum, 
+			`tx_price_sum` txPriceSum, 
+			`win_price_sum` winPriceSum, 
 			`username`, 
-			`qrCodeImg`, 
-			`tichenPriceSum`, 
-			`preTxImg`, 
-			`preTxPay`, 
-			`memberType`, 
+			`qr_code_img` qrCodeImg, 
+			`tichen_price_sum` tichenPriceSum, 
+			`pre_tx_img` preTxImg, 
+			`pre_tx_pay` preTxPay, 
+			`member_type` memberType, 
 			`parentmid`, 
-			`one_level_count`, 
-			`rechargePrice_today`, 
-			`tichenPrice_today`, 
-			`txPrice_today`, 
-			`preBank_addr`, 
-			`preBank_belonger`, 
-			`preBank_code`, 
-			`preBank_name`, 
-			`wxOpenId`, 
-			`qqOpenId`, 
+			`one_level_count` oneLevelCount, 
+			`recharge_price_today` rechargePriceToday, 
+			`tichen_price_today` tichenPriceToday, 
+			`tx_price_today` txPriceToday, 
+			`pre_bank_addr` preBankAddr, 
+			`pre_bank_belonger` preBankBelonger, 
+			`pre_bank_code` preBankCode, 
+			`pre_bank_name` preBankName, 
+			`wx_open_id` wxOpenId, 
+			`qq_open_id` qqOpenId, 
 			`sex`, 
-			`pay_pwd`, 
-			`sendTransferCount`, 
-			`sendTransferPriceSum`, 
-			`shimingStatus`, 
-			`sysGenerate`
+			`pay_pwd` payPwd, 
+			`send_transfer_count` sendTransferCount, 
+			`send_transfer_price_sum` sendTransferPriceSum, 
+			`shiming_status` shimingStatus, 
+			`sys_generate` sysGenerate
 		)
 		VALUES (
 			#{id}, 
@@ -231,53 +231,53 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
+			`create_date` createDate,
+			`modify_date` modifyDate,
 			`headpic`, 
-			`lastLoginDate`, 
-			`lastLoginIp`, 
+			`last_login_date` lastLoginDate,
+			`last_login_ip` lastLoginIp,
 			`money`, 
-			`nickName`, 
+			`nick_name` nickName, 
 			`parent`, 
-			`parentPath`, 
+			`parent_path` parentPath, 
 			`password`, 
-			`registIp`, 
+			`regist_ip` registIp, 
 			`status`, 
 			`telphone`, 
-			`txMoney`, 
-			`txMoneyIng`, 
-			`memberId`, 
-			`losePriceSum`, 
-			`openRedCount`, 
-			`openRedPriceSum`, 
-			`rechargePriceSum`, 
-			`sendRedCount`, 
-			`sendRedPriceSum`, 
-			`txPriceSum`, 
-			`winPriceSum`, 
+			`tx_money` txMoney, 
+			`tx_money_ing` txMoneyIng, 
+			`member_id` memberId, 
+			`lose_price_sum` losePriceSum, 
+			`open_red_count` openRedCount, 
+			`open_red_price_sum` openRedPriceSum, 
+			`recharge_price_sum` rechargePriceSum, 
+			`send_red_count` sendRedCount, 
+			`send_red_price_sum` sendRedPriceSum, 
+			`tx_price_sum` txPriceSum, 
+			`win_price_sum` winPriceSum, 
 			`username`, 
-			`qrCodeImg`, 
-			`tichenPriceSum`, 
-			`preTxImg`, 
-			`preTxPay`, 
-			`memberType`, 
+			`qr_code_img` qrCodeImg, 
+			`tichen_price_sum` tichenPriceSum, 
+			`pre_tx_img` preTxImg, 
+			`pre_tx_pay` preTxPay, 
+			`member_type` memberType, 
 			`parentmid`, 
-			`one_level_count`, 
-			`rechargePrice_today`, 
-			`tichenPrice_today`, 
-			`txPrice_today`, 
-			`preBank_addr`, 
-			`preBank_belonger`, 
-			`preBank_code`, 
-			`preBank_name`, 
-			`wxOpenId`, 
-			`qqOpenId`, 
+			`one_level_count` oneLevelCount, 
+			`recharge_price_today` rechargePriceToday, 
+			`tichen_price_today` tichenPriceToday, 
+			`tx_price_today` txPriceToday, 
+			`pre_bank_addr` preBankAddr, 
+			`pre_bank_belonger` preBankBelonger, 
+			`pre_bank_code` preBankCode, 
+			`pre_bank_name` preBankName, 
+			`wx_open_id` wxOpenId, 
+			`qq_open_id` qqOpenId, 
 			`sex`, 
-			`pay_pwd`, 
-			`sendTransferCount`, 
-			`sendTransferPriceSum`, 
-			`shimingStatus`, 
-			`sysGenerate`,
+			`pay_pwd` payPwd, 
+			`send_transfer_count` sendTransferCount, 
+			`send_transfer_price_sum` sendTransferPriceSum, 
+			`shiming_status` shimingStatus, 
+			`sys_generate` sysGenerate,
 			`org_id`
 		FROM
 			member
@@ -289,53 +289,53 @@
 	<select id="getByUsername" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			`id`,
-			`createDate`,
-			`modifyDate`,
+			`create_date` createDate,
+			`modify_date` modifyDate,
 			`headpic`,
 			`lastLoginDate`,
 			`lastLoginIp`,
 			`money`,
-			`nickName`,
+			`nick_name` nickName,
 			`parent`,
-			`parentPath`,
+			`parent_path` parentPath,
 			`password`,
-			`registIp`,
+			`regist_ip` registIp,
 			`status`,
 			`telphone`,
-			`txMoney`,
-			`txMoneyIng`,
-			`memberId`,
-			`losePriceSum`,
-			`openRedCount`,
-			`openRedPriceSum`,
-			`rechargePriceSum`,
-			`sendRedCount`,
-			`sendRedPriceSum`,
-			`txPriceSum`,
-			`winPriceSum`,
+			`tx_money` txMoney,
+			`tx_money_ing` txMoneyIng,
+			`member_id` memberId,
+			`lose_price_sum` losePriceSum,
+			`open_red_count` openRedCount,
+			`open_red_price_sum` openRedPriceSum,
+			`recharge_price_sum` rechargePriceSum,
+			`send_red_count` sendRedCount,
+			`send_red_price_sum` sendRedPriceSum,
+			`tx_price_sum` txPriceSum,
+			`win_price_sum` winPriceSum,
 			`username`,
-			`qrCodeImg`,
-			`tichenPriceSum`,
-			`preTxImg`,
-			`preTxPay`,
-			`memberType`,
+			`qr_code_img` qrCodeImg,
+			`tichen_price_sum` tichenPriceSum,
+			`pre_tx_img` preTxImg,
+			`pre_tx_pay` preTxPay,
+			`member_type` memberType,
 			`parentmid`,
-			`one_level_count`,
-			`rechargePrice_today`,
-			`tichenPrice_today`,
-			`txPrice_today`,
-			`preBank_addr`,
-			`preBank_belonger`,
-			`preBank_code`,
-			`preBank_name`,
-			`wxOpenId`,
-			`qqOpenId`,
+			`one_level_count` oneLevelCount,
+			`recharge_price_today` rechargePriceToday,
+			`tichen_price_today` tichenPriceToday,
+			`tx_price_today` txPriceToday,
+			`pre_bank_addr` preBankAddr,
+			`pre_bank_belonger` preBankBelonger,
+			`pre_bank_code` preBankCode,
+			`pre_bank_name` preBankName,
+			`wx_open_id` wxOpenId,
+			`qq_open_id` qqOpenId,
 			`sex`,
-			`pay_pwd`,
-			`sendTransferCount`,
-			`sendTransferPriceSum`,
-			`shimingStatus`,
-			`sysGenerate`,
+			`pay_pwd` payPwd,
+			`send_transfer_count` sendTransferCount,
+			`send_transfer_price_sum` sendTransferPriceSum,
+			`shiming_status` shimingStatus,
+			`sys_generate` sysGenerate,
 			`org_id`
 		FROM
 			member
@@ -414,54 +414,54 @@
 	<select id="getByIds" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 		`id`,
-		`createDate`,
-		`modifyDate`,
+		`create_date` createDate,
+		`modify_date` modifyDate,
 		`headpic`,
 		`lastLoginDate`,
 		`lastLoginIp`,
 		`money`,
-		`nickName`,
+		`nick_name` nickName,
 		`parent`,
-		`parentPath`,
+		`parent_path` parentPath,
 		`password`,
-		`registIp`,
+		`regist_ip` registIp,
 		`status`,
 		`telphone`,
-		`txMoney`,
-		`txMoneyIng`,
-		`memberId`,
-		`losePriceSum`,
-		`openRedCount`,
-		`openRedPriceSum`,
-		`rechargePriceSum`,
-		`sendRedCount`,
-		`sendRedPriceSum`,
-		`txPriceSum`,
-		`winPriceSum`,
+		`tx_money` txMoney,
+		`tx_money_ing` txMoneyIng,
+		`member_id` memberId,
+		`lose_price_sum` losePriceSum,
+		`open_red_count` openRedCount,
+		`open_red_price_sum` openRedPriceSum,
+		`recharge_price_sum` rechargePriceSum,
+		`send_red_count` sendRedCount,
+		`send_red_price_sum` sendRedPriceSum,
+		`tx_price_sum` txPriceSum,
+		`win_price_sum` winPriceSum,
 		`username`,
-		`qrCodeImg`,
-		`tichenPriceSum`,
-		`preTxImg`,
-		`preTxPay`,
-		`memberType`,
+		`qr_code_img` qrCodeImg,
+		`tichen_price_sum` tichenPriceSum,
+		`pre_tx_img` preTxImg,
+		`pre_tx_pay` preTxPay,
+		`member_type` memberType,
 		`parentmid`,
-		`one_level_count`,
-		`rechargePrice_today`,
-		`tichenPrice_today`,
-		`txPrice_today`,
-		`preBank_addr`,
-		`preBank_belonger`,
-		`preBank_code`,
-		`preBank_name`,
-		`wxOpenId`,
-		`qqOpenId`,
+		`one_level_count` oneLevelCount,
+		`recharge_price_today` rechargePriceToday,
+		`tichen_price_today` tichenPriceToday,
+		`tx_price_today` txPriceToday,
+		`pre_bank_addr` preBankAddr,
+		`pre_bank_belonger` preBankBelonger,
+		`pre_bank_code` preBankCode,
+		`pre_bank_name` preBankName,
+		`wx_open_id` wxOpenId,
+		`qq_open_id` qqOpenId,
 		`sex`,
-		`pay_pwd`,
-		`sendTransferCount`,
-		`sendTransferPriceSum`,
-		`shimingStatus`,
-		`sysGenerate`,
-		`org_id`
+		`pay_pwd` payPwd,
+		`send_transfer_count` sendTransferCount,
+		`send_transfer_price_sum` sendTransferPriceSum,
+		`shiming_status` shimingStatus,
+		`sys_generate` sysGenerate,
+		`org_id` orgId
 		FROM
 		member
 		WHERE
@@ -472,20 +472,20 @@
 	</select>
 
 	<select id="getObjectGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMRegisterDayEntity">
-		SELECT date_format(createdate, '%Y-%m-%d') as create_time,
+		SELECT date_format(create_date, '%Y-%m-%d') as create_time,
 			   count(distinct memberId) as m_register_number
 		FROM member
-		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
-			and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
-			and memberType = 0
-			and org_id = #{org_id}
-		group by date_format(createdate, '%Y-%m-%d')
+		where create_date &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
+			and create_date &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+			and member_type = 0
+			and org_id = #{orgId}
+		group by date_format(create_date, '%Y-%m-%d')
 	</select>
 
 	<select id="getFriendsByMid" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			m.id,
-			nickName,
+		    nick_name,
 			headpic
 		from friends f inner join member m on f.friendid=m.id
 		where f.mid = #{mid}
@@ -494,12 +494,12 @@
 	<select id="getMemberByMid" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		SELECT
 			m.id,
-		    memberId,
-			nickName,
+			member_id,
+			nick_name,
 			headpic,
 		    username
 		from member m
-		where memberId = #{memberId}
+		where member_id = #{memberId}
 	</select>
 
 
@@ -509,8 +509,8 @@
 		FROM
 		member m left join room_member rm on m.id=rm.member_id
 		where
-		rm.room_id=#{room_id} and org_id = #{org_id}
-		<if test="nickname != null"> and `nickName` like  concat('%',#{nickname},'%') </if>
+		rm.room_id=#{roomId} and org_id = #{orgId}
+		<if test="nickName != null"> and `nick_name` like  concat('%',#{nickName},'%') </if>
 		ORDER BY
 		id DESC
 	</select>
@@ -523,8 +523,8 @@
         where
         1=1
         <if test="mid != null"> and f.`mid` = #{mid} </if>
-        <if test="org_id != null"> and f.`org_id` = #{org_id} </if>
-		<if test="nickname != null"> and m.`nickName` like  concat('%',#{nickname},'%') </if>
+        <if test="orgId != null"> and f.`org_id` = #{orgId} </if>
+		<if test="nickName != null"> and m.`nick_name` like  concat('%',#{nickName},'%') </if>
         ORDER BY
         id DESC
     </select>
@@ -535,12 +535,12 @@
 		FROM
 			member
 		where
-			org_id = #{org_id}
+			org_id = #{orgId}
 	</select>
 
 	<select id="getRobotList" resultType="net.chenlin.dp.modules.biz.member.entity.MemberEntity">
 		select m.* from member m where not exists
-			(select 1 from room_member rm where rm.room_id=#{room_id} and rm.member_id=m.id)
+			(select 1 from room_member rm where rm.room_id=#{roomId} and rm.member_id=m.id)
 			and m.memberType=1
 			limit ${count}
 	</select>
@@ -551,6 +551,6 @@
 		FROM
 			member
 		where
-			nickName = #{nickName}
+			nick_name = #{nickName}
 	</select>
 </mapper>

@@ -8,13 +8,13 @@ import java.io.Serializable;
 public class LastLoginDateEntity implements Serializable {
     private static final long serialVersionUID = -8213726078985594297L;
 
-    private String mnickname;
+    private String mnickName;
 
     private String username;
 
-    private String startdate;
+    private String startDate;
 
-    private String enddate;
+    private String endDate;
 
     private String ip;
 

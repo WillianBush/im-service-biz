@@ -10,7 +10,6 @@ import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.context.annotation.DependsOn;
@@ -76,7 +75,7 @@ public class EmployeeDefaultMessageController extends AbstractController {
 			return Resp.error("邀请码重复");
 		}
 		employeeDefaultMessage.setEmployeeId(employee.getId());
-		employeeDefaultMessage.setMemberId(member.getData().getMemberid());
+		employeeDefaultMessage.setMemberId(member.getData().getMemberId());
 		return employeeDefaultMessageService.saveEmployeeDefaultMessage(employeeDefaultMessage,getServerName());
 	}
 	

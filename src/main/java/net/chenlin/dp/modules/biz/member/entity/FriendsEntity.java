@@ -31,17 +31,17 @@ public class FriendsEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Date createdate;
+	private Date createDate;
 	
 	/**
 	 * 
 	 */
-	private Date modifydate;
+	private Date modifyDate;
 	
 	/**
 	 * 
 	 */
-	private String friendid;
+	private String friendId;
 	
 	/**
 	 * 
