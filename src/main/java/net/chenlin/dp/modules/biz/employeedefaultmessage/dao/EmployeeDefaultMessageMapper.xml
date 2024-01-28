@@ -5,91 +5,91 @@
 	
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.employeedefaultmessage.entity.EmployeeDefaultMessageEntity">
 		SELECT
-		edm.`employee_id`,
-		edm.`member_id`,
-		edm.`msg_1`,
-		edm.`msg_2`,
-		edm.`msg_3`,
-		edm.`picture_1`,
-		edm.`picture_2`,
-		edm.`picture_3`,
-		edm.`picture_4`,
-		edm.`picture_5`,
+		edm.`employee_id` employeeId,
+		edm.`member_id` memberId,
+		edm.`msg1`,
+		edm.`msg2`,
+		edm.`msg3`,
+		edm.`picture1`,
+		edm.`picture2`,
+		edm.`picture3`,
+		edm.`picture4`,
+		edm.`picture5`,
 		edm.`id`,
-		edm.`invite_code`,
+		edm.`invite_code` inviteCode,
 		edm.`org_id`,
-		m.nickName
+		m.`nick_name` nickName
 		FROM
 			employee_default_message edm
-		inner join member m on m.memberId = edm.member_id  and m.org_id = edm.org_id
+		inner join member m on m.`member_id` = edm.`member_id`  and m.`org_id` = edm.`org_id`
 		where
 		1=1
-		<if test="employee_id != null"> and edm.`employee_id` = #{employee_id} </if>
-		<if test="member_id != null"> and edm.`member_id` = #{member_id} </if>
-		<if test="msg_1 != null"> and edm.`msg_1` = #{msg_1} </if>
-		<if test="msg_2 != null"> and edm.`msg_2` = #{msg_2} </if>
-		<if test="msg_3 != null"> and edm.`msg_3` = #{msg_3} </if>
-		<if test="picture_1 != null"> and edm.`picture_1` = #{picture_1} </if>
-		<if test="picture_2 != null"> and edm.`picture_2` = #{picture_2} </if>
-		<if test="picture_3 != null"> and edm.`picture_3` = #{picture_3} </if>
-		<if test="picture_4 != null"> and edm.`picture_4` = #{picture_4} </if>
-		<if test="picture_5 != null"> and edm.`picture_5` = #{picture_5} </if>
+		<if test="employeeId != null"> and edm.`employee_id` = #{employeeId} </if>
+		<if test="memberId != null"> and edm.`member_id` = #{memberId} </if>
+		<if test="msg1 != null"> and edm.`msg1` = #{msg1} </if>
+		<if test="msg2 != null"> and edm.`msg2` = #{msg2} </if>
+		<if test="msg3 != null"> and edm.`msg3` = #{msg3} </if>
+		<if test="picture1 != null"> and edm.`picture1` = #{picture1} </if>
+		<if test="picture2 != null"> and edm.`picture2` = #{picture2} </if>
+		<if test="picture3 != null"> and edm.`picture3` = #{picture3} </if>
+		<if test="picture4 != null"> and edm.`picture4` = #{picture4} </if>
+		<if test="picture5 != null"> and edm.`picture5` = #{picture5} </if>
 		<if test="id != null"> and edm.`id` = #{id} </if>
-		<if test="invite_code != null"> and edm.`invite_code` = #{invite_code} </if>
-		<if test="org_id != null"> and edm.`org_id` = #{org_id} </if>
-		<if test="nickName != null"> and m.`nickName` = #{nickName} </if>
+		<if test="inviteCode != null"> and edm.`invite_code` = #{inviteCode} </if>
+		<if test="orgId != null"> and edm.`org_id` = #{orgId} </if>
+		<if test="nickName != null"> and m.`nick_name` = #{nickName} </if>
 		ORDER BY
 		edm.`member_id` DESC
 	</select>
 	
 	<insert id="save">
 		INSERT INTO employee_default_message (
-			`employee_id`, 
-			`member_id`, 
-			`msg_1`, 
-			`msg_2`, 
-			`msg_3`, 
-			`picture_1`, 
-			`picture_2`, 
-			`picture_3`, 
-			`picture_4`, 
-			`picture_5`, 
+			`employee_id` employeeId, 
+			`member_id` memberId, 
+			`msg1`, 
+			`msg2`, 
+			`msg3`, 
+			`picture1`, 
+			`picture2`, 
+			`picture3`, 
+			`picture4`, 
+			`picture5`, 
 			`id`, 
-			`invite_code`,
-			`org_id`
+			`invite_code` inviteCode,
+			`org_id` orgId
 		)
 		VALUES (
-			#{employee_id}, 
-			#{member_id}, 
-			#{msg_1}, 
-			#{msg_2}, 
-			#{msg_3}, 
-			#{picture_1}, 
-			#{picture_2}, 
-			#{picture_3}, 
-			#{picture_4}, 
-			#{picture_5}, 
+			#{employeeId}, 
+			#{memberId}, 
+			#{msg1}, 
+			#{msg2}, 
+			#{msg3}, 
+			#{picture1}, 
+			#{picture2}, 
+			#{picture3}, 
+			#{picture4}, 
+			#{picture5}, 
 			#{id}, 
-			#{invite_code},
-			#{org_id}
+			#{inviteCode},
+			#{orgId}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.employeedefaultmessage.entity.EmployeeDefaultMessageEntity">
 		SELECT
-			`employee_id`, 
-			`member_id`, 
-			`msg_1`, 
-			`msg_2`, 
-			`msg_3`, 
-			`picture_1`, 
-			`picture_2`, 
-			`picture_3`, 
-			`picture_4`, 
-			`picture_5`, 
+			`employee_id` employeeId, 
+			`member_id` memberId, 
+			`msg1`, 
+			`msg2`, 
+			`msg3`, 
+			`picture1`, 
+			`picture2`, 
+			`picture3`, 
+			`picture4`, 
+			`picture5`, 
 			`id`, 
-			`invite_code`,
-			`org_id`
+			`invite_code` inviteCode,
+			`org_id` orgId
 		FROM
 			employee_default_message
 		WHERE
@@ -99,17 +99,17 @@
 	<update id="update">
 		UPDATE employee_default_message
 	 	<set>
-			<if test="employee_id != null">`employee_id` = #{employee_id}, </if>
-			<if test="member_id != null">`member_id` = #{member_id}, </if>
-			<if test="msg_1 != null">`msg_1` = #{msg_1}, </if>
-			<if test="msg_2 != null">`msg_2` = #{msg_2}, </if>
-			<if test="msg_3 != null">`msg_3` = #{msg_3}, </if>
-			<if test="picture_1 != null">`picture_1` = #{picture_1}, </if>
-			<if test="picture_2 != null">`picture_2` = #{picture_2}, </if>
-			<if test="picture_3 != null">`picture_3` = #{picture_3}, </if>
-			<if test="picture_4 != null">`picture_4` = #{picture_4}, </if>
-			<if test="picture_5 != null">`picture_5` = #{picture_5}, </if>
-			<if test="invite_code != null">`invite_code` = #{invite_code}</if>
+			<if test="employeeId != null">`employee_id` = #{employeeId}, </if>
+			<if test="memberId != null">`member_id` = #{memberId}, </if>
+			<if test="msg1 != null">`msg1` = #{msg1}, </if>
+			<if test="msg2 != null">`msg2` = #{msg2}, </if>
+			<if test="msg3 != null">`msg3` = #{msg3}, </if>
+			<if test="picture1 != null">`picture1` = #{picture1}, </if>
+			<if test="picture2 != null">`picture2` = #{picture2}, </if>
+			<if test="picture3 != null">`picture3` = #{picture3}, </if>
+			<if test="picture4 != null">`picture4` = #{picture4}, </if>
+			<if test="picture5 != null">`picture5` = #{picture5}, </if>
+			<if test="inviteCode != null">`invite_code` = #{inviteCode}</if>
 		</set>
 		WHERE
 			id = #{id}
