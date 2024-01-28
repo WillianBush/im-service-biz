@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.exception.RRException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.DependsOn;
-import net.chenlin.dp.common.exception.GoLoginException;
 import org.springframework.web.bind.annotation.*;
 
 import net.chenlin.dp.common.annotation.SysLog;
@@ -56,7 +55,7 @@ public class YyIpListController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<YyIpListEntity> save(@RequestBody YyIpListEntity yyIpList) {
-		if (StringUtils.isEmpty(yyIpList.getIp_address() )) {
+		if (StringUtils.isEmpty(yyIpList.getIpAddress() )) {
 			return Resp.error("IP地址为空");
 		}
 
@@ -64,7 +63,7 @@ public class YyIpListController extends AbstractController {
 			return Resp.error("IP类型参数错误");
 		}
 
-		YyIpListEntity yyIpListEntity= yyIpListService.getByIP(yyIpList.getIp_address(),0, getServerName());
+		YyIpListEntity yyIpListEntity= yyIpListService.getByIP(yyIpList.getIpAddress(),0, getServerName());
 		if (null != yyIpListEntity){
 			return Resp.error("ip已存在");
 		}

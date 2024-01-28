@@ -29,7 +29,7 @@ public class YyIpListEntity implements Serializable {
 	private Long id;
 	
 	@ApiModelProperty(value = "IP地址")
-	private String ip_address;
+	private String ipAddress;
 	
 	@ApiModelProperty(value = "备注")
 	private String note;

@@ -6,23 +6,23 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.AdminSendmsgLogEntity">
 		SELECT
 			`id`, 
-			`sendAdminId`, 
-			`sendAdminName`, 
+			`send_admin_id` sendAdminId, 
+			`send_admin_name` sendAdminName, 
 			`txt`, 
-			`createDate`, 
-			`receiverId`, 
-			`receiverName`
+			`create_date` createDate, 
+			`receiver_id` receiverId, 
+			`receiver_name` receiverName
 		FROM
 			admin_sendmsg_log
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="sendAdminId != null"> and `sendAdminId` = #{sendAdminId} </if>
-		<if test="sendAdminName != null"> and `sendAdminName` = #{sendAdminName} </if>
+		<if test="sendAdminId != null"> and `send_admin_id` = #{sendAdminId} </if>
+		<if test="sendAdminName != null"> and `send_admin_name` = #{sendAdminName} </if>
 		<if test="txt != null"> and `txt` = #{txt} </if>
-		<if test="createDate != null"> and `createDate` = #{createDate} </if>
-		<if test="receiverId != null"> and `receiverId` = #{receiverId} </if>
-		<if test="receiverName != null"> and `receiverName` = #{receiverName} </if>
+		<if test="createDate != null"> and `create_date` = #{createDate} </if>
+		<if test="receiverId != null"> and `receiver_id` = #{receiverId} </if>
+		<if test="receiverName != null"> and `receiver_name` = #{receiverName} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -30,12 +30,12 @@
 	<insert id="save">
 		INSERT INTO admin_sendmsg_log (
 			`id`, 
-			`sendAdminId`, 
-			`sendAdminName`, 
+			`send_admin_id` sendAdminId, 
+			`send_admin_name` sendAdminName, 
 			`txt`, 
-			`createDate`, 
-			`receiverId`, 
-			`receiverName`
+			`create_date` createDate, 
+			`receiver_id` receiverId,
+			`receiver_name` receiverName
 		)
 		VALUES (
 			#{id}, 
@@ -51,12 +51,12 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.AdminSendmsgLogEntity">
 		SELECT
 			`id`, 
-			`sendAdminId`, 
-			`sendAdminName`, 
+			`send_admin_id` sendAdminId, 
+			`send_admin_name` sendAdminName, 
 			`txt`, 
-			`createDate`, 
-			`receiverId`, 
-			`receiverName`
+			`create_date` createDate, 
+			`receiver_id` receiverId,
+			`receiver_name` receiverName
 		FROM
 			admin_sendmsg_log
 		WHERE
@@ -66,12 +66,12 @@
 	<update id="update">
 		UPDATE admin_sendmsg_log
 	 	<set>
-			<if test="sendAdminId != null">`sendAdminId` = #{sendAdminId}, </if>
-			<if test="sendAdminName != null">`sendAdminName` = #{sendAdminName}, </if>
+			<if test="sendAdminId != null">`send_admin_id` = #{sendAdminId}, </if>
+			<if test="sendAdminName != null">`send_admin_name` = #{sendAdminName}, </if>
 			<if test="txt != null">`txt` = #{txt}, </if>
-			<if test="createDate != null">`createDate` = #{createDate}, </if>
-			<if test="receiverId != null">`receiverId` = #{receiverId}, </if>
-			<if test="receiverName != null">`receiverName` = #{receiverName}</if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="receiverId != null">`receiver_id` = #{receiverId}, </if>
+			<if test="receiverName != null">`receiver_name` = #{receiverName}</if>
 		</set>
 		WHERE
 			id = #{id}

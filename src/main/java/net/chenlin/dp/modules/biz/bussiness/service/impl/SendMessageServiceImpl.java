@@ -88,7 +88,7 @@ public class SendMessageServiceImpl implements SendMessageService {
     public void saveWaitSendMsg(ChatMsgEntity cme){
         SnowFlakeIdWorker sfw=new SnowFlakeIdWorker(1);
         WaitsendmessageEntity wsm=JSON.parseObject(JSON.toJSONString(cme),WaitsendmessageEntity.class);
-        wsm.setChatid(cme.getFromUid());
+        wsm.setChatId(cme.getFromUid());
         wsm.setOldContent(cme.getOldTxt());
         wsm.setHeadpic(cme.getFromHeadpic());
         wsm.setName(cme.getFromName());

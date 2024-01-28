@@ -6,31 +6,31 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.WaitsendmessageEntity">
 		SELECT
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`chatid`, 
+			`create_date` createDate, 
+			`modify_date` modifyDate, 
+			`chat_id` chatId, 
 			`content`, 
 			`date`, 
-			`fromUid`, 
+			`from_uid` fromUid, 
 			`headpic`, 
 			`name`, 
-			`toUid`, 
+			`to_uid` toUid, 
 			`type`, 
 			`psr`, 
-			`sub_txt`, 
-			`oldContent`, 
+			`sub_txt` subTxt, 
+			`old_content` oldContent, 
 			`uuid`, 
 			`cmd`, 
 			`descri`, 
 			`money`,
 			`number`, 
-			`redType`, 
-			`redUUID`, 
-			`sendMoney`, 
-			`toGroupid`, 
-			`simple_content`, 
+			`red_type` redType, 
+			`red_uuid` redUUID, 
+			`send_money` sendMoney, 
+			`to_groupid` toGroupid, 
+			`simple_content` simpleContent, 
 			`utid`, 
-			`expiredTimeStr`, 
+			`expired_time_str` expiredTimeStr, 
 			`mheadpic`, 
 			`mid`, 
 			`mname`, 
@@ -40,31 +40,31 @@
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="createDate != null"> and `createDate` = #{createDate} </if>
-		<if test="modifyDate != null"> and `modifyDate` = #{modifyDate} </if>
-		<if test="chatid != null"> and `chatid` = #{chatid} </if>
+		<if test="createDate != null"> and `create_date` = #{createDate} </if>
+		<if test="modifyDate != null"> and `modify_date` = #{modifyDate} </if>
+		<if test="chatId != null"> and `chat_id` = #{chatId} </if>
 		<if test="content != null"> and `content` = #{content} </if>
 		<if test="date != null"> and `date` = #{date} </if>
-		<if test="fromUid != null"> and `fromUid` = #{fromUid} </if>
+		<if test="fromUid != null"> and `from_uid` = #{fromUid} </if>
 		<if test="headpic != null"> and `headpic` = #{headpic} </if>
 		<if test="name != null"> and `name` = #{name} </if>
-		<if test="toUid != null"> and `toUid` = #{toUid} </if>
+		<if test="toUid != null"> and `to_uid` = #{toUid} </if>
 		<if test="type != null"> and `type` = #{type} </if>
 		<if test="psr != null"> and `psr` = #{psr} </if>
-		<if test="sub_txt != null"> and `sub_txt` = #{sub_txt} </if>
-		<if test="oldContent != null"> and `oldContent` = #{oldContent} </if>
+		<if test="subTxt != null"> and `sub_txt` = #{subTxt} </if>
+		<if test="oldContent != null"> and `old_content` = #{oldContent} </if>
 		<if test="uuid != null"> and `uuid` = #{uuid} </if>
 		<if test="cmd != null"> and `cmd` = #{cmd} </if>
 		<if test="descri != null"> and `descri` = #{descri} </if>
 		<if test="money != null"> and `money` = #{money} </if>
 		<if test="number != null"> and `number` = #{number} </if>
-		<if test="redType != null"> and `redType` = #{redType} </if>
-		<if test="redUUID != null"> and `redUUID` = #{redUUID} </if>
-		<if test="sendMoney != null"> and `sendMoney` = #{sendMoney} </if>
-		<if test="toGroupid != null"> and `toGroupid` = #{toGroupid} </if>
-		<if test="simple_content != null"> and `simple_content` = #{simple_content} </if>
+		<if test="redType != null"> and `red_type` = #{redType} </if>
+		<if test="redUUID != null"> and `red_uuid` = #{redUUID} </if>
+		<if test="sendMoney != null"> and `send_money` = #{sendMoney} </if>
+		<if test="toGroupid != null"> and `to_groupid` = #{toGroupid} </if>
+		<if test="simpleContent != null"> and `simple_content` = #{simpleContent} </if>
 		<if test="utid != null"> and `utid` = #{utid} </if>
-		<if test="expiredTimeStr != null"> and `expiredTimeStr` = #{expiredTimeStr} </if>
+		<if test="expiredTimeStr != null"> and `expired_time_str` = #{expiredTimeStr} </if>
 		<if test="mheadpic != null"> and `mheadpic` = #{mheadpic} </if>
 		<if test="mid != null"> and `mid` = #{mid} </if>
 		<if test="mname != null"> and `mname` = #{mname} </if>
@@ -76,31 +76,31 @@
 	<insert id="save">
 		INSERT INTO wait_send_message (
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`chatid`, 
+			`create_date` createDate, 
+			`modify_date` modifyDate, 
+			`chat_id` chatId, 
 			`content`, 
 			`date`, 
-			`fromUid`, 
+			`from_uid` fromUid, 
 			`headpic`, 
 			`name`, 
-			`toUid`, 
+			`to_uid` toUid, 
 			`type`, 
 			`psr`, 
-			`sub_txt`, 
-			`oldContent`, 
+			`sub_txt` subTxt, 
+			`old_content` oldContent, 
 			`uuid`, 
 			`cmd`, 
 			`descri`, 
 			`money`,
 			`number`, 
-			`redType`, 
-			`redUUID`, 
-			`sendMoney`, 
-			`toGroupid`, 
-			`simple_content`, 
+			`red_type` redType, 
+			`red_uuid` redUUID, 
+			`send_money` sendMoney, 
+			`to_groupid` toGroupid, 
+			`simple_content` simpleContent, 
 			`utid`, 
-			`expiredTimeStr`, 
+			`expired_time_str` expiredTimeStr, 
 			`mheadpic`, 
 			`mid`, 
 			`mname`, 
@@ -110,7 +110,7 @@
 			#{id}, 
 			#{createDate}, 
 			#{modifyDate}, 
-			#{chatid}, 
+			#{chatId}, 
 			#{content}, 
 			#{date}, 
 			#{fromUid}, 
@@ -119,7 +119,7 @@
 			#{toUid}, 
 			#{type}, 
 			#{psr}, 
-			#{sub_txt}, 
+			#{subTxt}, 
 			#{oldContent}, 
 			#{uuid}, 
 			#{cmd}, 
@@ -130,7 +130,7 @@
 			#{redUUID}, 
 			#{sendMoney}, 
 			#{toGroupid}, 
-			#{simple_content}, 
+			#{simpleContent}, 
 			#{utid}, 
 			#{expiredTimeStr}, 
 			#{mheadpic}, 
@@ -143,31 +143,31 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.WaitsendmessageEntity">
 		SELECT
 			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`chatid`, 
+			`create_date` createDate, 
+			`modify_date` modifyDate, 
+			`chat_id` chatId, 
 			`content`, 
 			`date`, 
-			`fromUid`, 
+			`from_uid` fromUid, 
 			`headpic`, 
 			`name`, 
-			`toUid`, 
+			`to_uid` toUid, 
 			`type`, 
 			`psr`, 
-			`sub_txt`, 
-			`oldContent`, 
+			`sub_txt` subTxt, 
+			`old_content` oldContent, 
 			`uuid`, 
 			`cmd`, 
 			`descri`, 
 			`money`,
 			`number`, 
-			`redType`, 
-			`redUUID`, 
-			`sendMoney`, 
-			`toGroupid`, 
-			`simple_content`, 
+			`red_type` redType, 
+			`red_uuid` redUUID, 
+			`send_money` sendMoney, 
+			`to_groupid` toGroupid, 
+			`simple_content` simpleContent, 
 			`utid`, 
-			`expiredTimeStr`, 
+			`expired_time_str` expiredTimeStr, 
 			`mheadpic`, 
 			`mid`, 
 			`mname`, 
@@ -181,31 +181,31 @@
 	<update id="update">
 		UPDATE wait_send_message
 	 	<set>
-			<if test="createDate != null">`createDate` = #{createDate}, </if>
-			<if test="modifyDate != null">`modifyDate` = #{modifyDate}, </if>
-			<if test="chatid != null">`chatid` = #{chatid}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="modifyDate != null">`modify_date` = #{modifyDate}, </if>
+			<if test="chatId != null">`chat_id` = #{chatId}, </if>
 			<if test="content != null">`content` = #{content}, </if>
 			<if test="date != null">`date` = #{date}, </if>
-			<if test="fromUid != null">`fromUid` = #{fromUid}, </if>
+			<if test="fromUid != null">`from_uid` = #{fromUid}, </if>
 			<if test="headpic != null">`headpic` = #{headpic}, </if>
 			<if test="name != null">`name` = #{name}, </if>
-			<if test="toUid != null">`toUid` = #{toUid}, </if>
+			<if test="toUid != null">`to_uid` = #{toUid}, </if>
 			<if test="type != null">`type` = #{type}, </if>
 			<if test="psr != null">`psr` = #{psr}, </if>
-			<if test="sub_txt != null">`sub_txt` = #{sub_txt}, </if>
-			<if test="oldContent != null">`oldContent` = #{oldContent}, </if>
+			<if test="subTxt != null">`sub_txt` = #{subTxt}, </if>
+			<if test="oldContent != null">`old_content` = #{oldContent}, </if>
 			<if test="uuid != null">`uuid` = #{uuid}, </if>
 			<if test="cmd != null">`cmd` = #{cmd}, </if>
 			<if test="descri != null">`descri` = #{descri}, </if>
 			<if test="money != null">`money` = #{money}, </if>
 			<if test="number != null">`number` = #{number}, </if>
-			<if test="redType != null">`redType` = #{redType}, </if>
-			<if test="redUUID != null">`redUUID` = #{redUUID}, </if>
-			<if test="sendMoney != null">`sendMoney` = #{sendMoney}, </if>
-			<if test="toGroupid != null">`toGroupid` = #{toGroupid}, </if>
-			<if test="simple_content != null">`simple_content` = #{simple_content}, </if>
+			<if test="redType != null">`red_type` = #{redType}, </if>
+			<if test="redUUID != null">`red_uuid` = #{redUUID}, </if>
+			<if test="sendMoney != null">`send_money` = #{sendMoney}, </if>
+			<if test="toGroupid != null">`to_groupid` = #{toGroupid}, </if>
+			<if test="simpleContent != null">`simple_content` = #{simpleContent}, </if>
 			<if test="utid != null">`utid` = #{utid}, </if>
-			<if test="expiredTimeStr != null">`expiredTimeStr` = #{expiredTimeStr}, </if>
+			<if test="expiredTimeStr != null">`expired_time_str` = #{expiredTimeStr}, </if>
 			<if test="mheadpic != null">`mheadpic` = #{mheadpic}, </if>
 			<if test="mid != null">`mid` = #{mid}, </if>
 			<if test="mname != null">`mname` = #{mname}, </if>

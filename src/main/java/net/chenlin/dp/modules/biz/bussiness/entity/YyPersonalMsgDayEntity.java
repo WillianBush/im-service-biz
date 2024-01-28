@@ -26,10 +26,10 @@ public class YyPersonalMsgDayEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ApiModelProperty(value = "每日消息总数")
-	private Double personal_message_total;
+	private Double personalMessageTotal;
 	
 	@ApiModelProperty(value = "")
-	private Date create_time;
+	private Date createTime;
 	
 
 

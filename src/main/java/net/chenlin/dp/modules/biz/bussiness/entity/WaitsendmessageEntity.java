@@ -36,7 +36,7 @@ public class WaitsendmessageEntity implements Serializable {
 	private Date modifyDate;
 	
 	@ApiModelProperty(value = "")
-	private String chatid;
+	private String chatId;
 	
 	@ApiModelProperty(value = "")
 	private String content;

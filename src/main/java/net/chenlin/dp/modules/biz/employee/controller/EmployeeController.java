@@ -1,6 +1,5 @@
 package net.chenlin.dp.modules.biz.employee.controller;
 
-import java.util.Date;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -135,7 +134,7 @@ public class EmployeeController extends AbstractController {
 			throw new GoLoginException("ip_white参数为空");
 		}
 		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIp_white(), 0, getServerName());
-		if (yyIpListEntity.getIp_address().isEmpty()) {
+		if (yyIpListEntity.getIpAddress().isEmpty()) {
 			throw new GoLoginException("IP_white参数不存在");
 		}
 		return employeeService.employeeBindIp(employee,getServerName());

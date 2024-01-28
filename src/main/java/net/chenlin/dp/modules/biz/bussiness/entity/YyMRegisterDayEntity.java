@@ -26,10 +26,10 @@ public class YyMRegisterDayEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ApiModelProperty(value = "每日注册数量")
-	private Double m_register_number;
+	private Double mRegisterNumber;
 	
 	@ApiModelProperty(value = "")
-	private Date create_time;
+	private Date createTime;
 	
 	@ApiModelProperty(value = "")
 	private String id;

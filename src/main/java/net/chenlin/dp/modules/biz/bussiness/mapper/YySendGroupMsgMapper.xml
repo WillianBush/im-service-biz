@@ -6,21 +6,21 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YySendGroupMsgEntity">
 		SELECT
 			`id`, 
-			`send_member_ids`, 
-			`msg_type`, 
+			`send_member_ids` sendMemberIds, 
+			`msg_type` msgType, 
 			`message`, 
 			`picture`, 
-			`create_time`
+			`create_time` createTime
 		FROM
 			yy_send_group_msg
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="send_member_ids != null"> and `send_member_ids` = #{send_member_ids} </if>
-		<if test="msg_type != null"> and `msg_type` = #{msg_type} </if>
+		<if test="sendMemberIds != null"> and `send_member_ids` = #{sendMemberIds} </if>
+		<if test="msgType != null"> and `msg_type` = #{msgType} </if>
 		<if test="message != null"> and `message` = #{message} </if>
 		<if test="picture != null"> and `picture` = #{picture} </if>
-		<if test="create_time != null"> and `create_time` = #{create_time} </if>
+		<if test="createTime != null"> and `create_time` = #{createTime} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -28,30 +28,30 @@
 	<insert id="save">
 		INSERT INTO yy_send_group_msg (
 			`id`, 
-			`send_member_ids`, 
-			`msg_type`, 
+			`send_member_ids` sendMemberIds, 
+			`msg_type` msgType, 
 			`message`, 
 			`picture`, 
-			`create_time`
+			`create_time` createTime
 		)
 		VALUES (
 			#{id}, 
-			#{send_member_ids}, 
-			#{msg_type}, 
+			#{sendMemberIds}, 
+			#{msgType}, 
 			#{message}, 
 			#{picture}, 
-			#{create_time}
+			#{createTime}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YySendGroupMsgEntity">
 		SELECT
 			`id`, 
-			`send_member_ids`, 
-			`msg_type`, 
+			`send_member_ids` sendMemberIds, 
+			`msg_type` msgType, 
 			`message`, 
 			`picture`, 
-			`create_time`
+			`create_time` createTime
 		FROM
 			yy_send_group_msg
 		WHERE
@@ -61,11 +61,11 @@
 	<update id="update">
 		UPDATE yy_send_group_msg
 	 	<set>
-			<if test="send_member_ids != null">`send_member_ids` = #{send_member_ids}, </if>
-			<if test="msg_type != null">`msg_type` = #{msg_type}, </if>
+			<if test="sendMemberIds != null">`send_member_ids` = #{sendMemberIds}, </if>
+			<if test="msgType != null">`msg_type` = #{msgType}, </if>
 			<if test="message != null">`message` = #{message}, </if>
 			<if test="picture != null">`picture` = #{picture}, </if>
-			<if test="create_time != null">`create_time` = #{create_time}</if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
 		</set>
 		WHERE
 			id = #{id}
