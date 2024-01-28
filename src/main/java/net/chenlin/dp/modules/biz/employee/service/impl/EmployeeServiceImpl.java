@@ -64,11 +64,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Integer saveEmployee(EmployeeEntity employee,MemberEntity member,String domain) {
-		employee.setMember_id(member.getMemberId());
+		employee.setMemberId(member.getMemberId());
 		employee.setLastLoginIp(member.getLastLoginIp());
 		employee.setCreateDate(new Date());
 		employee.setName(member.getNickName());
-		employee.setMember_uuid(member.getId());
+		employee.setMemberUuid(member.getId());
 		employee.setOrgId(domainsMapper.getOrgIdByDomain(domain));
 		return this.saveEmployee(employee).getData();
 	}
@@ -131,7 +131,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Resp<Integer> employeeBindIp(EmployeeEntity employee,String domain) {
-		if (employee.getMember_id().isEmpty() || null == employee.getMember_id()) {
+		if (employee.getMemberId().isEmpty() || null == employee.getMemberId()) {
 			return Resp.error("用户ID未空");
 		}
 		employee.setOrgId(domainsMapper.getOrgIdByDomain(domain));

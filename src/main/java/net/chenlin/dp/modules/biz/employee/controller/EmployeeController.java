@@ -60,7 +60,7 @@ public class EmployeeController extends AbstractController {
 	@PostMapping("/save")
 	@ApiOperation(value = "新增")
 	public Resp<EmployeeEntity> save(@RequestBody EmployeeEntity employee) {
-		if (employee == null || ( StringUtils.isEmpty(employee.getMember_uuid()) && StringUtils.isEmpty(employee.getUsername()))){
+		if (employee == null || ( StringUtils.isEmpty(employee.getMemberUuid()) && StringUtils.isEmpty(employee.getUsername()))){
 			return Resp.error("参数错误");
 		}
 		MemberEntity member = null ;
@@ -68,15 +68,15 @@ public class EmployeeController extends AbstractController {
 			member = memberService.getByUserName(employee.getUsername());
 		}
 
-		if (!StringUtils.isEmpty(employee.getMember_uuid())){
-			Resp<MemberEntity> memberResp = memberService.getMemberById(employee.getMember_uuid());
+		if (!StringUtils.isEmpty(employee.getMemberUuid())){
+			Resp<MemberEntity> memberResp = memberService.getMemberById(employee.getMemberUuid());
 			member = memberResp.getData();
 		}
 
 		if (member == null){
 			return Resp.error("用户不存在");
 		}
-		EmployeeEntity employeeEntity =employeeService.getMemberUUID(employee.getMember_uuid());
+		EmployeeEntity employeeEntity =employeeService.getMemberUUID(employee.getMemberUuid());
 		if (employeeEntity != null){
 			return Resp.error("用户已经是特权用户");
 		}
@@ -130,10 +130,10 @@ public class EmployeeController extends AbstractController {
 	@PostMapping("/bindIP")
 	@ApiOperation(value = "绑定ip白名单")
 	public Resp bindIP(@RequestBody EmployeeEntity employee) {
-		if (employee.getIp_white().isEmpty() || null == employee.getIp_white()) {
+		if (employee.getIpWhite().isEmpty() || null == employee.getIpWhite()) {
 			throw new GoLoginException("ip_white参数为空");
 		}
-		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIp_white(), 0, getServerName());
+		YyIpListEntity yyIpListEntity = yyIpListService.getByIP(employee.getIpWhite(), 0, getServerName());
 		if (yyIpListEntity.getIpAddress().isEmpty()) {
 			throw new GoLoginException("IP_white参数不存在");
 		}

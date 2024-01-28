@@ -43,16 +43,16 @@ public class EmployeeEntity implements Serializable {
 	private String inviteCode;
 	
 	@ApiModelProperty(value = "")
-	private String member_id;
+	private String memberId;
 	
 	@ApiModelProperty(value = "")
-	private String member_uuid;
+	private String memberUuid;
 	
 	@ApiModelProperty(value = "昵称")
 	private String name;
 
 	@ApiModelProperty(value = "绑定白名单")
-	private String ip_white;
+	private String ipWhite;
 
 	@ApiModelProperty(value = "站点")
 	private Long orgId;
