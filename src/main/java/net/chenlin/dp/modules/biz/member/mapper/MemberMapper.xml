@@ -473,7 +473,7 @@
 
 	<select id="getObjectGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMRegisterDayEntity">
 		SELECT date_format(create_date, '%Y-%m-%d') as create_time,
-			   count(distinct memberId) as m_register_number
+			   count(distinct member_id) as m_register_number
 		FROM member
 		where create_date &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
 			and create_date &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
