@@ -10,7 +10,7 @@
 			`icon`, 
 			`link`, 
 			`info`,
-			`paramter_open`,
+			`paramter_open` `paramterOpen`,
 			`rule`, 
 			`sort`
 		FROM
@@ -21,10 +21,10 @@
 		<if test="name != null"> and `name` = #{name} </if>
 		<if test="icon != null"> and `icon` = #{icon} </if>
 		<if test="link != null"> and `link` = #{link} </if>
-		<if test="paramter_open != null"> and `paramter_open` = #{paramter_open} </if>
+		<if test="paramterOpen != null"> and `paramter_open` = #{paramterOpen} </if>
 		<if test="rule != null"> and `rule` = #{rule} </if>
 		<if test="sort != null"> and `sort` = #{sort} </if>
-		<if test="org_id != null"> and `org_id` = #{org_id} </if>
+		<if test="orgId != null"> and `org_id` = #{orgId} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -36,10 +36,10 @@
 			`icon`, 
 			`link`, 
 			`info`,
-			`paramter_open`,
+			`paramter_open` `paramterOpen`,
 			`rule`, 
 			`sort`,
-			org_id
+			`org_id` orgId
 		)
 		VALUES (
 			#{id}, 
@@ -50,7 +50,7 @@
 			#{paramter_open},
 			#{rule}, 
 			#{sort},
-			#{org_id}
+			#{orgId}
 		)
 	</insert>
 	
@@ -61,7 +61,7 @@
 			`icon`, 
 			`link`, 
 			`info`,
-			`paramter_open`,
+			`paramter_open` `paramterOpen`,
 			`rule`, 
 			`sort`
 		FROM
@@ -77,7 +77,7 @@
 			<if test="icon != null">`icon` = #{icon}, </if>
 			<if test="link != null">`link` = #{link}, </if>
 			<if test="info != null">`info` = #{info}, </if>
-			<if test="paramter_open != null">`paramter_open` = #{paramter_open}, </if>
+			<if test="paramterOpen != null">`paramter_open` = #{paramterOpen}, </if>
 			<if test="rule != null">`rule` = #{rule}, </if>
 			<if test="sort != null">`sort` = #{sort}</if>
 		</set>

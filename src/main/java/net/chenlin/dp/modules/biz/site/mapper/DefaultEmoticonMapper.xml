@@ -30,8 +30,8 @@
 		)
 		VALUES (
 			#{id}, 
-			#{img_addres}, 
-			#{up_time}, 
+			#{imgAddres}, 
+			#{upTime}, 
 			#{sort}
 		)
 	</insert>
