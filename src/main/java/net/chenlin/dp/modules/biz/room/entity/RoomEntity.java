@@ -24,94 +24,94 @@ public class RoomEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id;
 	@Column(name = "create_date")
-	private Date createdate;
+	private Date createDate;
 	@Column(name = "modify_date")
-	private Date modifydate;
+	private Date modifyDate;
 	private String descri;
 	@Column(name = "head_img")
-	private String headimg;
+	private String headImg;
 	private String name;
 	@Column(name = "openner_price")
-	private Double openerprice;
+	private Double openerPrice;
 	@Column(name = "send_price")
-	private Double sendprice;
+	private Double sendPrice;
 	private Integer status;
 	@Column(name = "control_game")
-	private Integer controlgame;
+	private Integer controlGame;
 	@Column(name = "control_model")
-	private Integer controlmodel;
+	private Integer controlModel;
 	@Column(name = "game_type")
-	private Integer gametype;
+	private Integer gameType;
 	@Column(name = "limit_num")
-	private Integer limitnum;
+	private Integer limitNum;
 	@Column(name = "open_fee_add")
-	private Double openfeeadd;
+	private Double openFeeAdd;
 	@Column(name = "open_fee_sum")
-	private Double openfeesum;
+	private Double openFeeSum;
 	private String owner;
 	@Column(name = "player_win_rate_s1")
-	private Double playerwinrate_S1;
+	private Double playerWinRateS1;
 	private String psw;
-	private Integer sendcount;
+	private Integer sendCount;
 	@Column(name = "send_fee_add")
-	private Double sendfeeadd;
+	private Double sendFeeAdd;
 	@Column(name = "send_fee_sum")
-	private Double sendfeesum;
+	private Double sendFeeSum;
 	@Column(name = "un_dead")
-	private String undead;
+	private String unDead;
 	@Column(name = "player_open_win_rate_s1")
-	private Double playeropenwinrate_S1;
+	private Double playerOpenWinRateS1;
 	@Column(name = "player_send_win_rate_s1")
-	private Double playersendwinrate_S1;
+	private Double playerSendWinRateS1;
 	@Column(name = "room_id")
-	private String roomid;
+	private String roomId;
 	private String props;
 	private String subname;
 	@Column(name = "fixed_robot_ids")
-	private String fixedrobotids;
+	private String fixedRobotIds;
 	@Column(name = "win_fee_add")
-	private Double winfeeadd;
+	private Double winFeeAdd;
 	@Column(name = "win_fee_sum")
-	private Double winfeesum;
+	private Double winFeeSum;
 	@Column(name = "rule_pic")
-	private String rulepic;
+	private String rulePic;
 	@Column(name = "game_status")
-	private Integer gamestatus;
+	private Integer gameStatus;
 	@Column(name = "end_date")
-	private Date enddate;
+	private Date endDate;
 	@Column(name = "owner_uuid")
-	private String owner_Uuid;
+	private String ownerUuid;
 //	private String ownerName;
 	private Integer independence;
-	@Column(name = "fixed_robot_ids")
-	private String agentredfandian;
+	@Column(name = "agent_red_fan_dian")
+	private String agentRedFanDian;
 	@Column(name = "max_robot_count")
-	private Integer maxrobotcount;
+	private Integer maxRobotCount;
 	@Column(name = "open_red_delay_end")
-	private Integer openreddelayend;
+	private Integer openRedDelayEnd;
 	@Column(name = "open_red_delay_start")
-	private Integer openreddelaystart;
+	private Integer openRedDelayStart;
 	@Column(name = "fateqq_codepay_id")
-	private String fateqq_Codepay_Id;
+	private String fateqqCodepayId;
 	@Column(name = "fateqq_key")
-	private String fateqq_Key;
+	private String fateqqKey;
 	@Column(name = "fateqq_token")
-	private String fateqq_Token;
+	private String fateqqToken;
 	private String domain;
 	@Column(name = "robot_rule")
-	private Integer robotrule;
+	private Integer robotRule;
 	@Column(name = "member_ids")
-	private String member_Ids;
+	private String memberIds;
 	@Column(name = "stopspeak_member_ids")
-	private String stopspeak_Member_Ids;
+	private String stopspeakMemberIds;
 	@Column(name = "member_mgr_ids")
-	private String membermgr_Ids;
+	private String memberMgrIds;
 	@Column(name = "yaoqing_able")
-	private Integer yaoqingable;
+	private Integer yaoqingAble;
 	@Column(name = "yaoqing_audit_able")
-	private Integer yaoqingauditable;
+	private Integer yaoqingAuditAble;
 	@Column(name = "use_custom_headpic")
-	private Integer usecustomheadpic;
+	private Integer useCustomHeadpic;
 	private List<MemberEntity> members;
 	@Column(name = "org_id")
 	private Long orgId;

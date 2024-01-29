@@ -124,10 +124,10 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	private void getRoomHeadImg(RoomEntity room){
-		if (StringUtils.isEmpty(room.getHeadimg())){
-			room.setHeadimg("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
+		if (StringUtils.isEmpty(room.getHeadImg())){
+			room.setHeadImg("https://"+ossModel.getEndpoint() + "/img_sys/defaultHeadPic.jpg");
 		}else {
-			room.setHeadimg("https://"+ossModel.getEndpoint() +room.getHeadimg());
+			room.setHeadImg("https://"+ossModel.getEndpoint() +room.getHeadImg());
 		}
 	}
 

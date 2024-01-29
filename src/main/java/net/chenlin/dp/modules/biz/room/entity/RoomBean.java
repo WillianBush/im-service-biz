@@ -10,9 +10,9 @@ public class RoomBean {
 
 	private String id;
 	private String name;
-	private String subname;
-	private String roomid;
-	private String roomUUID;
+	private String subName;
+	private String roomId;
+	private String roomUuid;
 	private String img;
 	private String descri;
 	private String gameType;
@@ -27,10 +27,10 @@ public class RoomBean {
 	private Integer status=0;//0正常  1停止
 	private String psw="";//房间密码。默认空
 	private Integer controlGame=0;//启用游戏控制 1：是  0：否
-	private Double playerSendWinRate_s1;//【模式1】玩家发包赢率
-	private Double playerOpenWinRate_s1;//【模式1】玩家抢包赢率
+	private Double playerSendWinRateS1;//【模式1】玩家发包赢率
+	private Double playerOpenWinRateS1;//【模式1】玩家抢包赢率
 	private String owner="";//房主ID，留空则平台为房主
-	private String owner_UUID="";//房主uuID，留空则平台为房主
+	private String ownerUuid ="";//房主uuID，留空则平台为房主
 	private String ownerName = "";
 	private String ownerImg = "";
 	private Integer limitNum=100;//人数限制
@@ -57,13 +57,13 @@ public class RoomBean {
 	private String domain = "";
 	private Integer robotRule=0;//0默认 1只抢不发
 	
-	private String member_ids;//成员ID集合  id#id#id#
+	private String memberIds;//成员ID集合  id#id#id#
 	private List<String> top5Hp;//最前5个头像
 	
-	private String stopspeak_member_ids;//禁言成员ID集合  id#id#id#【针对单个用户禁言】
+	private String stopspeakMemberIds;//禁言成员ID集合  id#id#id#【针对单个用户禁言】
 	private Integer yaoqingAble=0;//是否允许邀请 0否  1是  当否时只能管理员才邀请
 	private Integer yaoqingAuditAble=0;//邀请是否需要核实 0否  1是  
-	private String memberMgr_ids = "";//群管理 ID集合  id#id#id#
+	private String memberMgrIds = "";//群管理 ID集合  id#id#id#
 	
 	private Integer useCustomHeadpic = 0;//使用用户自定义图片 0否  1是
 	private Integer orgId = 1;//站点
@@ -90,19 +90,19 @@ public class RoomBean {
 	public void setYaoqingAuditAble(Integer yaoqingAuditAble) {
 		this.yaoqingAuditAble = yaoqingAuditAble;
 	}
-	public String getMemberMgr_ids() {
-		if(null==memberMgr_ids) return "";
-		return memberMgr_ids;
+	public String getMemberMgrIds() {
+		if(null== memberMgrIds) return "";
+		return memberMgrIds;
 	}
-	public void setMemberMgr_ids(String memberMgr_ids) {
-		this.memberMgr_ids = memberMgr_ids;
+	public void setMemberMgrIds(String memberMgrIds) {
+		this.memberMgrIds = memberMgrIds;
 	}
-	public String getStopspeak_member_ids() {
-		if(null==stopspeak_member_ids) return "";
-		return stopspeak_member_ids;
+	public String getStopspeakMemberIds() {
+		if(null== stopspeakMemberIds) return "";
+		return stopspeakMemberIds;
 	}
-	public void setStopspeak_member_ids(String stopspeak_member_ids) {
-		this.stopspeak_member_ids = stopspeak_member_ids;
+	public void setStopspeakMemberIds(String stopspeakMemberIds) {
+		this.stopspeakMemberIds = stopspeakMemberIds;
 	}
 
 
@@ -138,16 +138,16 @@ public class RoomBean {
 
 
 	public Integer getMemberCount() {
-		if(StringUtils.isEmpty(member_ids)) return 0;
-		return member_ids.split("#").length;
+		if(StringUtils.isEmpty(memberIds)) return 0;
+		return memberIds.split("#").length;
 	}
 	
 	
-	public String getMember_ids() {
-		return member_ids;
+	public String getMemberIds() {
+		return memberIds;
 	}
-	public void setMember_ids(String member_ids) {
-		this.member_ids = member_ids;
+	public void setMemberIds(String memberIds) {
+		this.memberIds = memberIds;
 	}
 	 
 	public Integer getRobotRule() {
@@ -256,12 +256,12 @@ public class RoomBean {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getOwner_UUID() {
-		if(null==owner_UUID) return "";
-		return owner_UUID;
+	public String getOwnerUuid() {
+		if(null== ownerUuid) return "";
+		return ownerUuid;
 	}
-	public void setOwner_UUID(String owner_UUID) {
-		this.owner_UUID = owner_UUID;
+	public void setOwnerUuid(String ownerUuid) {
+		this.ownerUuid = ownerUuid;
 	}
 	public Integer getGameStatus() {
 		return gameStatus;
@@ -305,17 +305,17 @@ public class RoomBean {
 	public void setControlGame(Integer controlGame) {
 		this.controlGame = controlGame;
 	}
-	public Double getPlayerSendWinRate_s1() {
-		return playerSendWinRate_s1;
+	public Double getPlayerSendWinRateS1() {
+		return playerSendWinRateS1;
 	}
-	public void setPlayerSendWinRate_s1(Double playerSendWinRate_s1) {
-		this.playerSendWinRate_s1 = playerSendWinRate_s1;
+	public void setPlayerSendWinRateS1(Double playerSendWinRateS1) {
+		this.playerSendWinRateS1 = playerSendWinRateS1;
 	}
-	public Double getPlayerOpenWinRate_s1() {
-		return playerOpenWinRate_s1;
+	public Double getPlayerOpenWinRateS1() {
+		return playerOpenWinRateS1;
 	}
-	public void setPlayerOpenWinRate_s1(Double playerOpenWinRate_s1) {
-		this.playerOpenWinRate_s1 = playerOpenWinRate_s1;
+	public void setPlayerOpenWinRateS1(Double playerOpenWinRateS1) {
+		this.playerOpenWinRateS1 = playerOpenWinRateS1;
 	}
 	public String getOwner() {
 		return owner;
@@ -360,11 +360,11 @@ public class RoomBean {
 	public void setProperties(String properties) {
 		this.properties = properties;
 	}
-	public String getSubname() {
-		return subname;
+	public String getSubName() {
+		return subName;
 	}
-	public void setSubname(String subname) {
-		this.subname = subname;
+	public void setSubName(String subName) {
+		this.subName = subName;
 	}
 	public String getDescri1() {
 		String str = descri.replaceAll("\n", "<br/>");
@@ -382,17 +382,17 @@ public class RoomBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getRoomid() {
-		return roomid;
+	public String getRoomId() {
+		return roomId;
 	}
-	public void setRoomid(String roomid) {
-		this.roomid = roomid;
+	public void setRoomId(String roomId) {
+		this.roomId = roomId;
 	}
-	public String getRoomUUID() {
-		return roomUUID;
+	public String getRoomUuid() {
+		return roomUuid;
 	}
-	public void setRoomUUID(String roomUUID) {
-		this.roomUUID = roomUUID;
+	public void setRoomUuid(String roomUuid) {
+		this.roomUuid = roomUuid;
 	}
 	public String getImg() {
 		return img;
