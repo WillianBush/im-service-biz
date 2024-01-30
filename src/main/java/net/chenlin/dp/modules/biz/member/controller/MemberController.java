@@ -3,9 +3,11 @@ package net.chenlin.dp.modules.biz.member.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson2.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
@@ -22,6 +24,7 @@ import net.chenlin.dp.modules.biz.member.service.MemberService;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
+@Slf4j
 @RestController
 @RequestMapping("/mr/member")
 @Api(tags = "用户管理")
@@ -41,6 +44,9 @@ public class MemberController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "用户列表")
 	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
+		if (!params.isEmpty()){
+			log.info("Get params: {}", JSONObject.toJSONString(params));
+		}
 		params.put("domain",getServerName());
 		return memberService.listMember(params);
 	}
