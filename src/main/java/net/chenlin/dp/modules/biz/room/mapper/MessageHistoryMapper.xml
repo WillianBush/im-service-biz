@@ -8,19 +8,19 @@
 		`id`,
 		`uuid`,
 		`date`,
-		`fromHeadpic`,
-		`oldTxt`,
-		`to_uid`,
-		`toGroupid`,
-		`chatid`,
+		`from_headpic` fromHeadpic,
+		`old_txt` oldTxt,
+		`to_uid` toUid,
+		`to_groupid` toGroupid,
+		`chat_id` chatId,
 		`psr`,
 		`txt`,
 		`aite`,
-		`fromUid`,
-		`fromName`,
-		`simple_content`,
-		`createDate`,
-		`modifyDate`
+		`from_uid` fromUid,
+		`from_name` fromName,
+		`simple_content` simpleContent,
+		`create_date` createDate,
+		`modify_date` modifyDate
 		FROM
 		message_history
 		where
@@ -28,21 +28,21 @@
 		<if test="id != null"> and `id` = #{id} </if>
 		<if test="uuid != null"> and `uuid` = #{uuid} </if>
 		<if test="date != null"> and `date` = #{date} </if>
-		<if test="fromHeadpic != null"> and `fromHeadpic` = #{fromHeadpic} </if>
-		<if test="oldTxt != null"> and `oldTxt` = #{oldTxt} </if>
+		<if test="fromHeadpic != null"> and `from_headpic` = #{fromHeadpic} </if>
+		<if test="oldTxt != null"> and `old_txt` = #{oldTxt} </if>
 		<if test="toUid != null"> and `to_uid` = #{toUid} </if>
-		<if test="toGroupid != null"> and `toGroupid` = #{toGroupid} </if>
-		<if test="chatid != null"> and `chatid` = #{chatid} </if>
+		<if test="toGroupid != null"> and `to_groupid` = #{toGroupid} </if>
+		<if test="chatId != null"> and `chat_id` = #{chatId} </if>
 		<if test="psr != null"> and `psr` = #{psr} </if>
 		<if test="txt != null"> and `txt` like  concat('%',#{txt},'%') </if>
 		<if test="aite != null"> and `aite` = #{aite} </if>
-		<if test="fromUid != null"> and `fromUid` = #{fromUid} </if>
-		<if test="fromName != null"> and `fromName` like  concat('%',#{fromName},'%')  </if>
-		<if test="simple_content != null"> and `simple_content` = #{simple_content} </if>
-		<if test="startDate != null"> and `createDate` &gt;=  str_to_date(#{startDate}, '%Y-%m-%d %H:%i:%s') </if>
-		<if test="endDate != null"> and `createDate` &lt;  str_to_date(#{endDate}, '%Y-%m-%d %H:%i:%s') </if>
-		<if test="modifyDate != null"> and `modifyDate` = #{modifyDate} </if>
-		<if test="org_id != null"> and `org_id` = #{org_id} </if>
+		<if test="fromUid != null"> and `from_uid` = #{fromUid} </if>
+		<if test="fromName != null"> and `from_name` like  concat('%',#{fromName},'%')  </if>
+		<if test="simpleContent != null"> and `simple_content` = #{simpleContent} </if>
+		<if test="startDate != null"> and `create_date` &gt;=  str_to_date(#{startDate}, '%Y-%m-%d %H:%i:%s') </if>
+		<if test="endDate != null"> and `create_date` &lt;  str_to_date(#{endDate}, '%Y-%m-%d %H:%i:%s') </if>
+		<if test="modifyDate != null"> and `modify_date` = #{modifyDate} </if>
+		<if test="orgId != null"> and `org_id` = #{orgId} </if>
 		ORDER BY
 		id DESC
 	</select>
@@ -52,18 +52,18 @@
 			`id`, 
 			`uuid`, 
 			`date`, 
-			`fromHeadpic`, 
-			`oldTxt`, 
-			`to_uid`,
-			`chatid`, 
+			`from_headpic` fromHeadpic, 
+			`old_txt` oldTxt, 
+			`to_uid` toUid,
+			`chat_id` chatId, 
 			`psr`, 
 			`txt`, 
 			`aite`, 
-			`fromUid`, 
-			`fromName`, 
-			`simple_content`, 
-			`createDate`, 
-			`modifyDate`
+			`from_uid` fromUid, 
+			`from_name` fromName, 
+			`simple_content` simpleContent, 
+			`create_date` createDate, 
+			`modify_date` modifyDate
 		)
 		VALUES (
 			#{id}, 
@@ -78,7 +78,7 @@
 			#{aite}, 
 			#{fromUid}, 
 			#{fromName}, 
-			#{simple_content}, 
+			#{simpleContent},
 			#{createDate}, 
 			#{modifyDate}
 		)
@@ -89,18 +89,18 @@
 			`id`, 
 			`uuid`, 
 			`date`, 
-			`fromHeadpic`, 
-			`oldTxt`, 
-			`to_uid`,
-			`chatid`, 
+			`from_headpic` fromHeadpic, 
+			`old_txt` oldTxt, 
+			`to_uid` toUid,
+			`chat_id` chatId, 
 			`psr`, 
 			`txt`, 
 			`aite`, 
-			`fromUid`, 
-			`fromName`, 
-			`simple_content`, 
-			`createDate`, 
-			`modifyDate`
+			`from_uid` fromUid, 
+			`from_name` fromName, 
+			`simple_content` simpleContent, 
+			`create_date` createDate, 
+			`modify_date` modifyDate
 		FROM
 			message_history
 		WHERE
@@ -112,18 +112,18 @@
 	 	<set>
 			<if test="uuid != null">`uuid` = #{uuid}, </if>
 			<if test="date != null">`date` = #{date}, </if>
-			<if test="fromHeadpic != null">`fromHeadpic` = #{fromHeadpic}, </if>
-			<if test="oldTxt != null">`oldTxt` = #{oldTxt}, </if>
+			<if test="fromHeadpic != null">`from_headpic` = #{fromHeadpic}, </if>
+			<if test="oldTxt != null">`old_txt` = #{oldTxt}, </if>
 			<if test="toUid != null">`to_uid` = #{toUid}, </if>
-			<if test="chatid != null">`chatid` = #{chatid}, </if>
+			<if test="chatId != null">`chat_id` = #{chatId}, </if>
 			<if test="psr != null">`psr` = #{psr}, </if>
 			<if test="txt != null">`txt` = #{txt}, </if>
 			<if test="aite != null">`aite` = #{aite}, </if>
-			<if test="fromUid != null">`fromUid` = #{fromUid}, </if>
-			<if test="fromName != null">`fromName` = #{fromName}, </if>
-			<if test="simple_content != null">`simple_content` = #{simple_content}, </if>
-			<if test="createDate != null">`createDate` = #{createDate}, </if>
-			<if test="modifyDate != null">`modifyDate` = #{modifyDate}</if>
+			<if test="fromUid != null">`from_uid` = #{fromUid}, </if>
+			<if test="fromName != null">`from_name` = #{fromName}, </if>
+			<if test="simpleContent != null">`simple_content` = #{simpleContent}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="modifyDate != null">`modify_date` = #{modifyDate}</if>
 		</set>
 		WHERE
 			id = #{id}
@@ -153,25 +153,25 @@
 
 
 	<select id="getObjectGroupMessageGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyGroupMsgDayEntity">
-		SELECT date_format(createdate, '%Y-%m-%d') as create_time,
-			   count(toGroupid) as group_message_total
+		SELECT date_format(create_date, '%Y-%m-%d') as create_time,
+			   count(to_groupid) as group_message_total
 		FROM message_history
-		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
-		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
-		  and toGroupid is not null
-		  and org_id = #{org_id}
-		group by date_format(createdate, '%Y-%m-%d')
+		where create_date &gt;=  str_to_date(#{startDate}, '%Y-%m-%d')
+		  and create_date &lt; date_add(str_to_date(#{endDate}, '%Y-%m-%d'),  INTERVAL 1 day)
+		  and to_groupid is not null
+		  and org_id = #{orgId}
+		group by date_format(create_date, '%Y-%m-%d')
 	</select>
 
 	<select id="getObjectPersonalMessageGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity">
-		SELECT date_format(createdate, '%Y-%m-%d') as create_time,
+		SELECT date_format(create_date, '%Y-%m-%d') as create_time,
 			   count(to_uid) as personal_message_total
 		FROM message_history
-		where createdate &gt;=  str_to_date(#{startdate}, '%Y-%m-%d')
-		  and createdate &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'),  INTERVAL 1 day)
+		where create_date &gt;=  str_to_date(#{startDate}, '%Y-%m-%d')
+		  and create_date &lt; date_add(str_to_date(#{endDate}, '%Y-%m-%d'),  INTERVAL 1 day)
 		  and to_uid is not null
-		  and org_id = #{org_id}
-		group by date_format(createdate, '%Y-%m-%d')
+		  and org_id = #{orgId}
+		group by date_format(create_date, '%Y-%m-%d')
 	</select>
 
 	<delete id="deleteByFromUid">
@@ -179,18 +179,18 @@
         FROM
         message_history
         WHERE
-        fromUid= #{uid}
+        from_uid= #{uid}
         or to_uid= #{uid}
     </delete>
 
 	<select id="getGroupMessageTotal" resultType="java.lang.Long">
 		SELECT
-			count(toGroupid)
+			count(to_groupid)
 		FROM
 			message_history
 		where
-			toGroupid is not null
-			and org_id = #{org_id}
+		to_groupid is not null
+			and org_id = #{orgId}
 	</select>
 
 	<select id="getPersonalMessageTotal" resultType="java.lang.Long">
@@ -200,7 +200,7 @@
 		     message_history
 		where
 			to_uid is not null
-			and org_id = #{org_id}
+			and org_id = #{orgId}
 	</select>
 
 </mapper>

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.UploadResp;
 import net.chenlin.dp.common.entity.Resp;
-import net.chenlin.dp.common.utils.OssUtil;
 import net.chenlin.dp.common.utils.UploadUtils;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
 import net.chenlin.dp.modules.biz.member.service.MemberService;
@@ -137,7 +136,7 @@ public class SysEditorUploadController {
                 UploadResp resp = fileSystemService.uploadObject(file.getInputStream(), iconName, ossPath, file.getSize());
                 Resp<RoomEntity> respRoom = roomService.getRoomById(roomid);
                 RoomEntity room = respRoom.getData();
-                room.setHeadimg(removeDomain(resp.getFilePath()));
+                room.setHeadImg(removeDomain(resp.getFilePath()));
                 roomService.updateRoom(room);
                 return removeDomain(resp.getFilePath());
             } catch (Exception e) {

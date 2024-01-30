@@ -19,342 +19,342 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.room.entity.RoomEntity">
 		SELECT
 			r.`id`,
-			r.`createDate`,
-			r.`modifyDate`,
+			r.`create_date` createDate,
+			r.`modify_date` modifyDate,
 			r.`descri`,
-			r.`headImg`,
+			r.`head_img` headImg,
 			r.`name`,
-			r.`openerPrice`,
-			r.`sendPrice`,
+			r.`opener_price` openerPrice,
+			r.`send_price` sendPrice,
 			r.`status`,
-			r.`controlGame`,
-			r.`controlModel`,
-			r.`gameType`,
-			r.`limitNum`,
-			r.`openFeeAdd`,
-			r.`openFeeSum`,
+			r.`control_game` controlGame,
+			r.`control_model` controlModel,
+			r.`game_type` gameType,
+			r.`limit_num` limitNum,
+			r.`open_fee_add` openFeeAdd,
+			r.`open_fee_sum` openFeeSum,
 			r.`owner`,
-			r.`playerWinRate_s1`,
+			r.`player_win_rate_s1` playerWinRateS1,
 			r.`psw`,
-			r.`sendCount`,
-			r.`sendFeeAdd`,
-			r.`sendFeeSum`,
-			r.`unDead`,
-			r.`playerOpenWinRate_s1`,
-			r.`playerSendWinRate_s1`,
-			r.`roomId`,
+			r.`send_count` sendCount,
+			r.`send_fee_add` sendFeeAdd,
+			r.`send_fee_sum` sendFeeSum,
+			r.`un_dead` unDead,
+			r.`player_open_win_rate_s1` playerOpenWinRateS1,
+			r.`player_send_win_rate_s1` playerSendWinRateS1,
+			r.`room_id` roomId,
 			r.`props`,
 			r.`subname`,
-			r.`fixedRobotIds`,
-			r.`winFeeAdd`,
-			r.`winFeeSum`,
-			r.`rulePic`,
-			r.`gameStatus`,
-			r.`endDate`,
-			r.`owner_UUID`,
+			r.`fixed_robot_ids` fixedRobotIds,
+			r.`win_fee_add` winFeeAdd,
+			r.`win_fee_sum` winFeeSum,
+			r.`rule_pic` rulePic,
+			r.`game_status` gameStatus,
+			r.`end_date` endDate,
+			r.`owner_uuid` ownerUuid,
 			r.`independence`,
-			r.`agentRedFanDian`,
-			r.`maxRobotCount`,
-			r.`openRedDelayEnd`,
-			r.`openRedDelayStart`,
-			r.`fateqq_codepay_id`,
-			r.`fateqq_key`,
-			r.`fateqq_token`,
+			r.`agent_red_fan_dian` agentRedFanDian,
+			r.`max_robot_count` maxRobotCount,
+			r.`open_red_delay_end` openRedDelayEnd,
+			r.`open_red_delay_start` openRedDelayStart,
+			r.`fateqq_codepay_id` fateqqCodepayId,
+			r.`fateqq_key` fateqqKey,
+			r.`fateqq_token` fateqqToken,
 			r.`domain`,
-			r.`robotRule`,
-			r.`member_ids`,
+			r.`robot_rule` robotRule,
+			r.`member_ids` memberIds,
 			r.`stopspeak_member_ids`,
-			r.`memberMgr_ids`,
-			r.`yaoqingAble`,
-			r.`yaoqingAuditAble`,
-			r.`useCustomHeadpic`,
-			r.`org_id`,
-			m.nickName ownerName
+			r.`member_mgr_ids` memberMgrIds,
+			r.`yaoqing_able` yaoqingAble,
+			r.`yaoqing_audit_able` yaoqingAuditAble,
+			r.`use_custom_headpic` useCustomHeadpic,
+			r.`org_id` orgId,
+			m.`nick_name` ownerName
 		FROM
 			room r left join member m on r.owner_UUID=m.id
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="createdate != null"> and `createDate` = #{createdate} </if>
-		<if test="modifydate != null"> and `modifyDate` = #{modifydate} </if>
+		<if test="createDate != null"> and `create_date` = #{createDate} </if>
+		<if test="modifyDate != null"> and `modify_date` = #{modifyDate} </if>
 		<if test="descri != null"> and `descri` = #{descri} </if>
-		<if test="headimg != null"> and `headImg` = #{headimg} </if>
+		<if test="headImg != null"> and `head_img` = #{headImg} </if>
 		<if test="name != null and name != ''"> and `name` = #{name} </if>
-		<if test="openerprice != null"> and `openerPrice` = #{openerprice} </if>
-		<if test="sendprice != null"> and `sendPrice` = #{sendprice} </if>
+		<if test="openerPrice != null"> and `opener_price` = #{openerPrice} </if>
+		<if test="sendPrice != null"> and `sendPrice` = #{sendPrice} </if>
 		<if test="status != null"> and `status` = #{status} </if>
-		<if test="controlgame != null"> and `controlGame` = #{controlgame} </if>
-		<if test="controlmodel != null"> and `controlModel` = #{controlmodel} </if>
-		<if test="gametype != null"> and `gameType` = #{gametype} </if>
-		<if test="limitnum != null"> and `limitNum` = #{limitnum} </if>
-		<if test="openfeeadd != null"> and `openFeeAdd` = #{openfeeadd} </if>
-		<if test="openfeesum != null"> and `openFeeSum` = #{openfeesum} </if>
+		<if test="controlGame != null"> and `control_game` = #{controlGame} </if>
+		<if test="controlModel != null"> and `control_model` = #{controlModel} </if>
+		<if test="gameType != null"> and `game_type` = #{gameType} </if>
+		<if test="limitNum != null"> and `limit_num` = #{limitNum} </if>
+		<if test="openFeeAdd != null"> and `open_fee_add` = #{openFeeAdd} </if>
+		<if test="openFeeSum != null"> and `open_fee_sum` = #{openFeeSum} </if>
 		<if test="owner != null"> and `owner` = #{owner} </if>
-		<if test="playerwinrate_S1 != null"> and `playerWinRate_s1` = #{playerwinrate_S1} </if>
+		<if test="playerWinRateS1 != null"> and `player_win_rate_s1` = #{playerWinRateS1} </if>
 		<if test="psw != null"> and `psw` = #{psw} </if>
-		<if test="sendcount != null"> and `sendCount` = #{sendcount} </if>
-		<if test="sendfeeadd != null"> and `sendFeeAdd` = #{sendfeeadd} </if>
-		<if test="sendfeesum != null"> and `sendFeeSum` = #{sendfeesum} </if>
-		<if test="undead != null"> and `unDead` = #{undead} </if>
-		<if test="playeropenwinrate_S1 != null"> and `playerOpenWinRate_s1` = #{playeropenwinrate_S1} </if>
-		<if test="playersendwinrate_S1 != null"> and `playerSendWinRate_s1` = #{playersendwinrate_S1} </if>
-		<if test="roomid != null"> and `roomId` = #{roomid} </if>
+		<if test="sendCount != null"> and `send_count` = #{sendCount} </if>
+		<if test="sendFeeAdd != null"> and `send_fee_add` = #{sendFeeAdd} </if>
+		<if test="sendFeeSum != null"> and `send_fee_sum` = #{sendFeeSum} </if>
+		<if test="unDead != null"> and `un_dead` = #{unDead} </if>
+		<if test="playerOpenWinRateS1 != null"> and `player_open_win_rate_s1` = #{playerOpenWinRateS1} </if>
+		<if test="playerSendWinRateS1 != null"> and `player_send_win_rate_s1` = #{playerSendWinRateS1} </if>
+		<if test="roomId != null"> and `room_id` = #{roomId} </if>
 		<if test="props != null"> and `props` = #{props} </if>
 		<if test="subname != null"> and `subname` = #{subname} </if>
-		<if test="fixedrobotids != null"> and `fixedRobotIds` = #{fixedrobotids} </if>
-		<if test="winfeeadd != null"> and `winFeeAdd` = #{winfeeadd} </if>
-		<if test="winfeesum != null"> and `winFeeSum` = #{winfeesum} </if>
-		<if test="rulepic != null"> and `rulePic` = #{rulepic} </if>
-		<if test="gamestatus != null"> and `gameStatus` = #{gamestatus} </if>
-		<if test="enddate != null"> and `endDate` = #{enddate} </if>
-		<if test="owner_Uuid != null"> and `owner_UUID` = #{owner_Uuid} </if>
+		<if test="fixedRobotIds != null"> and `fixed_robot_ids` = #{fixedRobotIds} </if>
+		<if test="winFeeAdd != null"> and `win_fee_add` = #{winFeeAdd} </if>
+		<if test="winFeeSum != null"> and `win_fee_sum` = #{winFeeSum} </if>
+		<if test="rulePic != null"> and `rule_pic` = #{rulePic} </if>
+		<if test="gameStatus != null"> and `game_status` = #{gameStatus} </if>
+		<if test="endDate != null"> and `end_date` = #{endDate} </if>
+		<if test="ownerUuid != null"> and `owner_uuid` = #{ownerUuid} </if>
 		<if test="independence != null"> and `independence` = #{independence} </if>
-		<if test="agentredfandian != null"> and `agentRedFanDian` = #{agentredfandian} </if>
-		<if test="maxrobotcount != null"> and `maxRobotCount` = #{maxrobotcount} </if>
-		<if test="openreddelayend != null"> and `openRedDelayEnd` = #{openreddelayend} </if>
-		<if test="openreddelaystart != null"> and `openRedDelayStart` = #{openreddelaystart} </if>
-		<if test="fateqq_Codepay_Id != null"> and `fateqq_codepay_id` = #{fateqq_Codepay_Id} </if>
-		<if test="fateqq_Key != null"> and `fateqq_key` = #{fateqq_Key} </if>
-		<if test="fateqq_Token != null"> and `fateqq_token` = #{fateqq_Token} </if>
+		<if test="agentRedFanDian != null"> and `agent_red_fan_dian` = #{agentRedFanDian} </if>
+		<if test="maxRobotCount != null"> and `max_robot_count` = #{maxRobotCount} </if>
+		<if test="openRedDelayEnd != null"> and `open_red_delay_end` = #{openRedDelayEnd} </if>
+		<if test="openRedDelayStart != null"> and `open_red_delay_start` = #{openRedDelayStart} </if>
+		<if test="fateqqCodepayId != null"> and `fateqq_codepay_id` = #{fateqqCodepayId} </if>
+		<if test="fateqqKey != null"> and `fateqq_key` = #{fateqqKey} </if>
+		<if test="fateqqToken != null"> and `fateqq_token` = #{fateqqToken} </if>
 		<if test="domain != null"> and `domain` = #{domain} </if>
-		<if test="robotrule != null"> and `robotRule` = #{robotrule} </if>
-		<if test="member_Ids != null"> and `member_ids` = #{member_Ids} </if>
-		<if test="stopspeak_Member_Ids != null"> and `stopspeak_member_ids` = #{stopspeak_Member_Ids} </if>
-		<if test="membermgr_Ids != null"> and `memberMgr_ids` = #{membermgr_Ids} </if>
-		<if test="yaoqingable != null"> and `yaoqingAble` = #{yaoqingable} </if>
-		<if test="yaoqingauditable != null"> and `yaoqingAuditAble` = #{yaoqingauditable} </if>
-		<if test="usecustomheadpic != null"> and `useCustomHeadpic` = #{usecustomheadpic} </if>
-		<if test="org_id != null"> and r.org_id = #{org_id} </if>
-		<if test="ownerName != null and ownerName != ''"> and m.nickName = #{ownerName} </if>
+		<if test="robotRule != null"> and `robot_rule` = #{robotRule} </if>
+		<if test="memberIds != null"> and `member_ids` = #{memberIds} </if>
+		<if test="stopspeakMemberIds != null"> and `stopspeak_member_ids` = #{stopspeakMemberIds} </if>
+		<if test="memberMgrIds != null"> and `member_mgr_ids` = #{memberMgrIds} </if>
+		<if test="yaoqingAble != null"> and `yaoqing_able` = #{yaoqingAble} </if>
+		<if test="yaoqingAuditAble != null"> and `yaoqing_audit_able` = #{yaoqingAuditAble} </if>
+		<if test="useCustomHeadpic != null"> and `use_custom_headpic` = #{useCustomHeadpic} </if>
+		<if test="orgId != null"> and r.`org_id` = #{orgId} </if>
+		<if test="ownerName != null and ownerName != ''"> and m.`nick_name` = #{ownerName} </if>
 		ORDER BY
 			id DESC
 	</select>
-	
+
 	<insert id="save">
 		INSERT INTO room (
-			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`descri`, 
-			`headImg`, 
-			`name`, 
-			`openerPrice`, 
-			`sendPrice`, 
-			`status`, 
-			`controlGame`, 
-			`controlModel`, 
-			`gameType`, 
-			`limitNum`, 
-			`openFeeAdd`, 
-			`openFeeSum`, 
-			`owner`, 
-			`playerWinRate_s1`, 
-			`psw`, 
-			`sendCount`, 
-			`sendFeeAdd`, 
-			`sendFeeSum`, 
-			`unDead`, 
-			`playerOpenWinRate_s1`, 
-			`playerSendWinRate_s1`, 
-			`roomId`, 
-			`props`, 
-			`subname`, 
-			`fixedRobotIds`, 
-			`winFeeAdd`, 
-			`winFeeSum`, 
-			`rulePic`, 
-			`gameStatus`, 
-			`endDate`, 
-			`owner_UUID`, 
-			`independence`, 
-			`agentRedFanDian`, 
-			`maxRobotCount`, 
-			`openRedDelayEnd`, 
-			`openRedDelayStart`, 
-			`fateqq_codepay_id`, 
-			`fateqq_key`, 
-			`fateqq_token`, 
-			`domain`, 
-			`robotRule`, 
-			`member_ids`, 
-			`stopspeak_member_ids`, 
-			`memberMgr_ids`, 
-			`yaoqingAble`, 
-			`yaoqingAuditAble`, 
-			`useCustomHeadpic`,
-			`org_id`
+			`id`,
+			`create_date` createDate,
+			`modify_date` modifyDate,
+			`descri`,
+			`head_img` headImg,
+			`name`,
+			`opener_price` openerPrice,
+			`send_price` sendPrice,
+			`status`,
+			`control_game` controlGame,
+			`control_model` controlModel,
+			`game_type` gameType,
+			`limit_num` limitNum,
+			`open_fee_add` openFeeAdd,
+			`open_fee_sum` openFeeSum,
+			`owner`,
+			`player_win_rate_s1` playerWinRateS1,
+			`psw`,
+			`send_count` sendCount,
+			`send_fee_add` sendFeeAdd,
+			`send_fee_sum` sendFeeSum,
+			`un_dead` unDead,
+			`player_open_win_rate_s1` playerOpenWinRateS1,
+			`player_send_win_rate_s1` playerSendWinRateS1,
+			`room_id` roomId,
+			`props`,
+			`subname`,
+			`fixed_robot_ids` fixedRobotIds,
+			`win_fee_add` winFeeAdd,
+			`win_fee_sum` winFeeSum,
+			`rule_pic` rulePic,
+			`game_status` gameStatus,
+			`end_date` endDate,
+			`owner_uuid` ownerUuid,
+			`independence`,
+			`agent_red_fan_dian` agentRedFanDian,
+			`max_robot_count` maxRobotCount,
+			`open_red_delay_end` openRedDelayEnd,
+			`open_red_delay_start` openRedDelayStart,
+			`fateqq_codepay_id` fateqqCodepayId,
+			`fateqq_key` fateqqKey,
+			`fateqq_token` fateqqToken,
+			`domain`,
+			`robot_rule` robotRule,
+			`member_ids` memberIds,
+			`stopspeak_member_ids`,
+			`member_mgr_ids` memberMgrIds,
+			`yaoqing_able` yaoqingAble,
+			`yaoqing_audit_able` yaoqingAuditAble,
+			`use_custom_headpic` useCustomHeadpic,
+			`org_id` orgId
 		)
 		VALUES (
-			#{id}, 
-			#{createdate}, 
-			#{modifydate}, 
-			#{descri}, 
-			#{headimg}, 
-			#{name}, 
-			#{openerprice}, 
-			#{sendprice}, 
-			#{status}, 
-			#{controlgame}, 
-			#{controlmodel}, 
-			#{gametype}, 
-			#{limitnum}, 
-			#{openfeeadd}, 
-			#{openfeesum}, 
-			#{owner}, 
-			#{playerwinrate_S1}, 
-			#{psw}, 
-			#{sendcount}, 
-			#{sendfeeadd}, 
-			#{sendfeesum}, 
-			#{undead}, 
-			#{playeropenwinrate_S1}, 
-			#{playersendwinrate_S1}, 
-			#{roomid}, 
-			#{props}, 
-			#{subname}, 
-			#{fixedrobotids}, 
-			#{winfeeadd}, 
-			#{winfeesum}, 
-			#{rulepic}, 
-			#{gamestatus}, 
-			#{enddate}, 
-			#{owner_Uuid}, 
-			#{independence}, 
-			#{agentredfandian}, 
-			#{maxrobotcount}, 
-			#{openreddelayend}, 
-			#{openreddelaystart}, 
-			#{fateqq_Codepay_Id}, 
-			#{fateqq_Key}, 
-			#{fateqq_Token}, 
-			#{domain}, 
-			#{robotrule}, 
-			#{member_Ids}, 
-			#{stopspeak_Member_Ids}, 
-			#{membermgr_Ids}, 
-			#{yaoqingable}, 
-			#{yaoqingauditable}, 
-			#{usecustomheadpic},
-			#{org_id}
+			#{id},
+			#{createDate},
+			#{modifyDate},
+			#{descri},
+			#{headImg},
+			#{name},
+			#{openerPrice},
+			#{sendPrice},
+			#{status},
+			#{controlGame},
+			#{controlModel},
+			#{gameType},
+			#{limitNum},
+			#{openFeeAdd},
+			#{openFeeSum},
+			#{owner},
+			#{playerWinRateS1},
+			#{psw},
+			#{sendCount},
+			#{sendFeeAdd},
+			#{sendFeeSum},
+			#{unDead},
+			#{playerOpenWinRateS1},
+			#{playerSendWinRateS1},
+			#{roomId},
+			#{props},
+			#{subname},
+			#{fixedRobotIds},
+			#{winFeeAdd},
+			#{winFeeSum},
+			#{rulePic},
+			#{gameStatus},
+			#{endDate},
+			#{ownerUuid},
+			#{independence},
+			#{agentRedFanDian},
+			#{maxRobotCount},
+			#{openRedDelayEnd},
+			#{openRedDelayStart},
+			#{fateqqCodepayId},
+			#{fateqqKey},
+			#{fateqqToken},
+			#{domain},
+			#{robotRule},
+			#{memberIds},
+			#{stopspeakMemberIds},
+			#{memberMgrIds},
+			#{yaoqingAble},
+			#{yaoqingAuditAble},
+			#{useCustomHeadpic},
+			#{orgId}
 		)
 	</insert>
-	
+
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.room.entity.RoomEntity">
 		SELECT
-			`id`, 
-			`createDate`, 
-			`modifyDate`, 
-			`descri`, 
-			`headImg`, 
-			`name`, 
-			`openerPrice`, 
-			`sendPrice`, 
-			`status`, 
-			`controlGame`, 
-			`controlModel`, 
-			`gameType`, 
-			`limitNum`, 
-			`openFeeAdd`, 
-			`openFeeSum`, 
-			`owner`, 
-			`playerWinRate_s1`, 
-			`psw`, 
-			`sendCount`, 
-			`sendFeeAdd`, 
-			`sendFeeSum`, 
-			`unDead`, 
-			`playerOpenWinRate_s1`, 
-			`playerSendWinRate_s1`, 
-			`roomId`, 
-			`props`, 
-			`subname`, 
-			`fixedRobotIds`, 
-			`winFeeAdd`, 
-			`winFeeSum`, 
-			`rulePic`, 
-			`gameStatus`, 
-			`endDate`, 
-			`owner_UUID`, 
-			`independence`, 
-			`agentRedFanDian`, 
-			`maxRobotCount`, 
-			`openRedDelayEnd`, 
-			`openRedDelayStart`, 
-			`fateqq_codepay_id`, 
-			`fateqq_key`, 
-			`fateqq_token`, 
-			`domain`, 
-			`robotRule`, 
-			`member_ids`, 
-			`stopspeak_member_ids`, 
-			`memberMgr_ids`, 
-			`yaoqingAble`, 
-			`yaoqingAuditAble`, 
-			`useCustomHeadpic`,
-			`org_id`
+			`id`,
+			`create_date` createDate,
+			`modify_date` modifyDate,
+			`descri`,
+			`head_img` headImg,
+			`name`,
+			`opener_price` openerPrice,
+			`send_price` sendPrice,
+			`status`,
+			`control_game` controlGame,
+			`control_model` controlModel,
+			`game_type` gameType,
+			`limit_num` limitNum,
+			`open_fee_add` openFeeAdd,
+			`open_fee_sum` openFeeSum,
+			`owner`,
+			`player_win_rate_s1` playerWinRateS1,
+			`psw`,
+			`send_count` sendCount,
+			`send_fee_add` sendFeeAdd,
+			`send_fee_sum` sendFeeSum,
+			`un_dead` unDead,
+			`player_open_win_rate_s1` playerOpenWinRateS1,
+			`player_send_win_rate_s1` playerSendWinRateS1,
+			`room_id` roomId,
+			`props`,
+			`subname`,
+			`fixed_robot_ids` fixedRobotIds,
+			`win_fee_add` winFeeAdd,
+			`win_fee_sum` winFeeSum,
+			`rule_pic` rulePic,
+			`game_status` gameStatus,
+			`end_date` endDate,
+			`owner_uuid` ownerUuid,
+			`independence`,
+			`agent_red_fan_dian` agentRedFanDian,
+			`max_robot_count` maxRobotCount,
+			`open_red_delay_end` openRedDelayEnd,
+			`open_red_delay_start` openRedDelayStart,
+			`fateqq_codepay_id` fateqqCodepayId,
+			`fateqq_key` fateqqKey,
+			`fateqq_token` fateqqToken,
+			`domain`,
+			`robot_rule` robotRule,
+			`member_ids` memberIds,
+			`stopspeak_member_ids`,
+			`member_mgr_ids` memberMgrIds,
+			`yaoqing_able` yaoqingAble,
+			`yaoqing_audit_able` yaoqingAuditAble,
+			`use_custom_headpic` useCustomHeadpic,
+			`org_id` orgId
 		FROM
 			room
 		WHERE
 			id = #{id}
 	</select>
-	
+
 	<update id="update">
 		UPDATE room
 	 	<set>
-			<if test="createdate != null">`createDate` = #{createdate}, </if>
-			<if test="modifydate != null">`modifyDate` = #{modifydate}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="modifyDate != null">`modify_date` = #{modifyDate}, </if>
 			<if test="descri != null">`descri` = #{descri}, </if>
-			<if test="headimg != null">`headImg` = #{headimg}, </if>
+			<if test="headImg != null">`head_img` = #{headImg}, </if>
 			<if test="name != null">`name` = #{name}, </if>
-			<if test="openerprice != null">`openerPrice` = #{openerprice}, </if>
-			<if test="sendprice != null">`sendPrice` = #{sendprice}, </if>
+			<if test="openerPrice != null">`opener_price` = #{openerPrice}, </if>
+			<if test="sendPrice != null">`sendPrice` = #{sendPrice}, </if>
 			<if test="status != null">`status` = #{status}, </if>
-			<if test="controlgame != null">`controlGame` = #{controlgame}, </if>
-			<if test="controlmodel != null">`controlModel` = #{controlmodel}, </if>
-			<if test="gametype != null">`gameType` = #{gametype}, </if>
-			<if test="limitnum != null">`limitNum` = #{limitnum}, </if>
-			<if test="openfeeadd != null">`openFeeAdd` = #{openfeeadd}, </if>
-			<if test="openfeesum != null">`openFeeSum` = #{openfeesum}, </if>
+			<if test="controlGame != null">`control_game` = #{controlGame}, </if>
+			<if test="controlModel != null">`control_model` = #{controlModel}, </if>
+			<if test="gameType != null">`game_type` = #{gameType}, </if>
+			<if test="limitNum != null">`limit_num` = #{limitNum}, </if>
+			<if test="openFeeAdd != null">`open_fee_add` = #{openFeeAdd}, </if>
+			<if test="openFeeSum != null">`open_fee_sum` = #{openFeeSum}, </if>
 			<if test="owner != null">`owner` = #{owner}, </if>
-			<if test="playerwinrate_S1 != null">`playerWinRate_s1` = #{playerwinrate_S1}, </if>
+			<if test="playerWinRateS1 != null">`player_win_rate_s1` = #{playerWinRateS1}, </if>
 			<if test="psw != null">`psw` = #{psw}, </if>
-			<if test="sendcount != null">`sendCount` = #{sendcount}, </if>
-			<if test="sendfeeadd != null">`sendFeeAdd` = #{sendfeeadd}, </if>
-			<if test="sendfeesum != null">`sendFeeSum` = #{sendfeesum}, </if>
-			<if test="undead != null">`unDead` = #{undead}, </if>
-			<if test="playeropenwinrate_S1 != null">`playerOpenWinRate_s1` = #{playeropenwinrate_S1}, </if>
-			<if test="playersendwinrate_S1 != null">`playerSendWinRate_s1` = #{playersendwinrate_S1}, </if>
-			<if test="roomid != null">`roomId` = #{roomid}, </if>
+			<if test="sendCount != null">`send_count` = #{sendCount}, </if>
+			<if test="sendFeeAdd != null">`send_fee_add` = #{sendFeeAdd}, </if>
+			<if test="sendFeeSum != null">`send_fee_sum` = #{sendFeeSum}, </if>
+			<if test="unDead != null">`un_dead` = #{unDead}, </if>
+			<if test="playerOpenWinRateS1 != null">`player_open_win_rate_s1` = #{playerOpenWinRateS1}, </if>
+			<if test="playerSendWinRateS1 != null">`player_send_win_rate_s1` = #{playerSendWinRateS1}, </if>
+			<if test="roomId != null">`room_id` = #{roomId}, </if>
 			<if test="props != null">`props` = #{props}, </if>
 			<if test="subname != null">`subname` = #{subname}, </if>
-			<if test="fixedrobotids != null">`fixedRobotIds` = #{fixedrobotids}, </if>
-			<if test="winfeeadd != null">`winFeeAdd` = #{winfeeadd}, </if>
-			<if test="winfeesum != null">`winFeeSum` = #{winfeesum}, </if>
-			<if test="rulepic != null">`rulePic` = #{rulepic}, </if>
-			<if test="gamestatus != null">`gameStatus` = #{gamestatus}, </if>
-			<if test="enddate != null">`endDate` = #{enddate}, </if>
-			<if test="owner_Uuid != null">`owner_UUID` = #{owner_Uuid}, </if>
+			<if test="fixedRobotIds != null">`fixed_robot_ids` = #{fixedRobotIds}, </if>
+			<if test="winFeeAdd != null">`win_fee_add` = #{winFeeAdd}, </if>
+			<if test="winFeeSum != null">`win_fee_sum` = #{winFeeSum}, </if>
+			<if test="rulePic != null">`rule_pic` = #{rulePic}, </if>
+			<if test="gameStatus != null">`game_status` = #{gameStatus}, </if>
+			<if test="endDate != null">`end_date` = #{endDate}, </if>
+			<if test="ownerUuid != null">`owner_uuid` = #{ownerUuid}, </if>
 			<if test="independence != null">`independence` = #{independence}, </if>
-			<if test="agentredfandian != null">`agentRedFanDian` = #{agentredfandian}, </if>
-			<if test="maxrobotcount != null">`maxRobotCount` = #{maxrobotcount}, </if>
-			<if test="openreddelayend != null">`openRedDelayEnd` = #{openreddelayend}, </if>
-			<if test="openreddelaystart != null">`openRedDelayStart` = #{openreddelaystart}, </if>
-			<if test="fateqq_Codepay_Id != null">`fateqq_codepay_id` = #{fateqq_Codepay_Id}, </if>
-			<if test="fateqq_Key != null">`fateqq_key` = #{fateqq_Key}, </if>
-			<if test="fateqq_Token != null">`fateqq_token` = #{fateqq_Token}, </if>
+			<if test="agentRedFanDian != null">`agent_red_fan_dian` = #{agentRedFanDian}, </if>
+			<if test="maxRobotCount != null">`max_robot_count` = #{maxRobotCount}, </if>
+			<if test="openRedDelayEnd != null">`open_red_delay_end` = #{openRedDelayEnd}, </if>
+			<if test="openRedDelayStart != null">`open_red_delay_start` = #{openRedDelayStart}, </if>
+			<if test="fateqqCodepayId != null">`fateqq_codepay_id` = #{fateqqCodepayId}, </if>
+			<if test="fateqqKey != null">`fateqq_key` = #{fateqqKey}, </if>
+			<if test="fateqqToken != null">`fateqq_token` = #{fateqqToken}, </if>
 			<if test="domain != null">`domain` = #{domain}, </if>
-			<if test="robotrule != null">`robotRule` = #{robotrule}, </if>
-			<if test="member_Ids != null">`member_ids` = #{member_Ids}, </if>
-			<if test="stopspeak_Member_Ids != null">`stopspeak_member_ids` = #{stopspeak_Member_Ids}, </if>
-			<if test="membermgr_Ids != null">`memberMgr_ids` = #{membermgr_Ids}, </if>
-			<if test="yaoqingable != null">`yaoqingAble` = #{yaoqingable}, </if>
-			<if test="yaoqingauditable != null">`yaoqingAuditAble` = #{yaoqingauditable}, </if>
-			<if test="usecustomheadpic != null">`useCustomHeadpic` = #{usecustomheadpic}</if>
+			<if test="robotRule != null">`robot_rule` = #{robotRule}, </if>
+			<if test="memberIds != null">`member_ids` = #{memberIds}, </if>
+			<if test="stopspeakMemberIds != null">`stopspeak_member_ids` = #{stopspeakMemberIds}, </if>
+			<if test="memberMgrIds != null">`member_mgr_ids` = #{memberMgrIds}, </if>
+			<if test="yaoqingAble != null">`yaoqing_able` = #{yaoqingAble}, </if>
+			<if test="yaoqingAuditAble != null">`yaoqing_audit_able` = #{yaoqingAuditAble}, </if>
+			<if test="useCustomHeadpic != null">`use_custom_headpic` = #{useCustomHeadpic}</if>
 		</set>
 		WHERE
-			id = #{id} and org_id = #{org_id}
+			id = #{id} and org_id = #{orgId}
 	</update>
-	
+
 	<delete id="batchRemove">
 		DELETE
 		FROM
@@ -370,56 +370,56 @@
 	<select id="getRoomMemberById" resultMap="roomMmemberResult">
 		SELECT
 			`id`,
-			`createDate`,
-			`modifyDate`,
+			`create_date` createDate,
+			`modify_date` modifyDate,
 			`descri`,
-			`headImg`,
+			`head_img` headImg,
 			`name`,
-			`openerPrice`,
-			`sendPrice`,
+			`opener_price` openerPrice,
+			`send_price` sendPrice,
 			`status`,
-			`controlGame`,
-			`controlModel`,
-			`gameType`,
-			`limitNum`,
-			`openFeeAdd`,
-			`openFeeSum`,
+			`control_game` controlGame,
+			`control_model` controlModel,
+			`game_type` gameType,
+			`limit_num` limitNum,
+			`open_fee_add` openFeeAdd,
+			`open_fee_sum` openFeeSum,
 			`owner`,
-			`playerWinRate_s1`,
+			`player_win_rate_s1` playerWinRateS1,
 			`psw`,
-			`sendCount`,
-			`sendFeeAdd`,
-			`sendFeeSum`,
-			`unDead`,
-			`playerOpenWinRate_s1`,
-			`playerSendWinRate_s1`,
-			`roomId`,
+			`send_count` sendCount,
+			`send_fee_add` sendFeeAdd,
+			`send_fee_sum` sendFeeSum,
+			`un_dead` unDead,
+			`player_open_win_rate_s1` playerOpenWinRateS1,
+			`player_send_win_rate_s1` playerSendWinRateS1,
+			`room_id` roomId,
 			`props`,
 			`subname`,
-			`fixedRobotIds`,
-			`winFeeAdd`,
-			`winFeeSum`,
-			`rulePic`,
-			`gameStatus`,
-			`endDate`,
-			`owner_UUID`,
+			`fixed_robot_ids` fixedRobotIds,
+			`win_fee_add` winFeeAdd,
+			`win_fee_sum` winFeeSum,
+			`rule_pic` rulePic,
+			`game_status` gameStatus,
+			`end_date` endDate,
+			`owner_uuid` ownerUuid,
 			`independence`,
-			`agentRedFanDian`,
-			`maxRobotCount`,
-			`openRedDelayEnd`,
-			`openRedDelayStart`,
-			`fateqq_codepay_id`,
-			`fateqq_key`,
-			`fateqq_token`,
+			`agent_red_fan_dian` agentRedFanDian,
+			`max_robot_count` maxRobotCount,
+			`open_red_delay_end` openRedDelayEnd,
+			`open_red_delay_start` openRedDelayStart,
+			`fateqq_codepay_id` fateqqCodepayId,
+			`fateqq_key` fateqqKey,
+			`fateqq_token` fateqqToken,
 			`domain`,
-			`robotRule`,
-			`member_ids`,
+			`robot_rule` robotRule,
+			`member_ids` memberIds,
 			`stopspeak_member_ids`,
-			`memberMgr_ids`,
-			`yaoqingAble`,
-			`yaoqingAuditAble`,
-			`useCustomHeadpic`,
-			`org_id`
+			`member_mgr_ids` memberMgrIds,
+			`yaoqing_able` yaoqingAble,
+			`yaoqing_audit_able` yaoqingAuditAble,
+			`use_custom_headpic` useCustomHeadpic,
+			`org_id` orgId
 		FROM
 			room
 		WHERE
@@ -433,6 +433,6 @@
 		FROM
 			room
 		WHERE
-			org_id = #{org_id}
+			org_id = #{orgId}
 	</select>
 </mapper>

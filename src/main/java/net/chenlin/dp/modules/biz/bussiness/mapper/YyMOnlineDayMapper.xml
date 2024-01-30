@@ -6,15 +6,15 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity">
 		SELECT
 			`id`, 
-			`create_time`, 
-			`m_online_number`
+			`create_time` createTime, 
+			`m_online_number` mOnlineNumber
 		FROM
 			yy_m_online_day
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="create_time != null"> and `create_time` = #{create_time} </if>
-		<if test="m_online_number != null"> and `m_online_number` = #{m_online_number} </if>
+		<if test="createTime != null"> and `create_time` = #{createTime} </if>
+		<if test="mOnlineNumber != null"> and `m_online_number` = #{mOnlineNumber} </if>
 <!--		<if test="ids.size()>0">-->
 <!--				and id in-->
 <!--				<foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">-->
@@ -28,21 +28,21 @@
 	<insert id="save">
 		INSERT INTO yy_m_online_day (
 			`id`, 
-			`create_time`, 
-			`m_online_number`
+			`create_time` createTime, 
+			`m_online_number` mOnlineNumber
 		)
 		VALUES (
 			#{id}, 
-			#{create_time}, 
-			#{m_online_number}
+			#{createTime}, 
+			#{mOnlineNumber}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity">
 		SELECT
 			`id`, 
-			`create_time`, 
-			`m_online_number`
+			`create_time` createTime, 
+			`m_online_number` mOnlineNumber
 		FROM
 			yy_m_online_day
 		WHERE
@@ -52,8 +52,8 @@
 	<update id="update">
 		UPDATE yy_m_online_day
 	 	<set>
-			<if test="create_time != null">`create_time` = #{create_time}, </if>
-			<if test="m_online_number != null">`m_online_number` = #{m_online_number}</if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="mOnlineNumber != null">`m_online_number` = #{mOnlineNumber}</if>
 		</set>
 		WHERE
 			id = #{id}

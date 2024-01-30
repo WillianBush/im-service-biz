@@ -6,20 +6,20 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.HomepageUserEntity">
 		SELECT
 			hpu.`id`,
-			hpu.`member_id`,
-			m.`nickName`,
-			hpu.`out_link_id`,
+			hpu.`member_id` memberId,
+			m.`nick_name` nickName,
+			hpu.`out_link_id` outLinkId,
 			hpu.`status`,
-			hp.`name` as out_link_name
+			hp.`name` as outLinkName
 		FROM
 			homepage_user hpu
 		left join homepage hp on hpu.`out_link_id` = hp.`id`
-		left join  member m on hpu.`member_id` = m.`memberId`
+		left join  member m on hpu.`member_id` = m.`member_id`
 		where
 		1=1
 		<if test="id != null"> and hpu.`id` = #{id} </if>
-		<if test="member_id != null"> and hpu.`member_id` = #{member_id} </if>
-		<if test="out_link_id != null"> and hpu.`out_link_id` = #{out_link_id} </if>
+		<if test="memberId != null"> and hpu.`member_id` = #{memberId} </if>
+		<if test="outLinkId != null"> and hpu.`out_link_id` = #{outLinkId} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -27,14 +27,14 @@
 	<insert id="save">
 		INSERT INTO homepage_user (
 			`id`,
-			`member_id`,
-			`out_link_id`,
+			`member_id` memberId,
+			`out_link_id` outLinkId,
 			`status`
 		)
 		VALUES (
 			#{id}, 
-			#{member_id},
-			#{out_link_id},
+			#{memberId},
+			#{outLinkId},
 			#{status}
 		)
 	</insert>
@@ -42,8 +42,8 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.HomepageUserEntity">
 		SELECT
 			`id`,
-			`member_id`,
-			`out_link_id`,
+			`member_id` memberId,
+			`out_link_id` outLinkId,
 			`status`
 		FROM
 			homepage_user

@@ -1,18 +1,12 @@
 package net.chenlin.dp.modules.biz.member.service.impl;
 
-import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import net.chenlin.dp.common.entity.Resp;
 import net.chenlin.dp.common.utils.SnowFlakeIdWorker;
 import net.chenlin.dp.modules.biz.member.dao.MemberMapper;
 import net.chenlin.dp.modules.biz.member.entity.MemberEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.Query;
-import net.chenlin.dp.common.entity.R;
 import net.chenlin.dp.common.utils.CommonUtils;
 import net.chenlin.dp.modules.biz.member.entity.FriendsEntity;
 import net.chenlin.dp.modules.biz.member.dao.FriendsMapper;
@@ -39,11 +33,11 @@ public class FriendsServiceImpl implements FriendsService {
 		SnowFlakeIdWorker sw=new SnowFlakeIdWorker(1);
 		friends.setMid(para.getMid());
 		/*** 根据memberId 查询 member 得到 id */
-		MemberEntity memberEntity=memberMapper.getMemberByMid(para.getFriendid());
+		MemberEntity memberEntity=memberMapper.getMemberByMid(para.getFriendId());
 		if(null==memberEntity){
 			return Resp.error("添加好友不存在");
 		}
-		friends.setFriendid(memberEntity.getId());
+		friends.setFriendId(memberEntity.getId());
 		friends.setId(sw.createId());
 		int count = friendsMapper.save(friends);
 		return CommonUtils.msgResp(count);

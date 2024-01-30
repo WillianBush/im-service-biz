@@ -29,10 +29,10 @@ public class YySendGroupMsgEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "发送账号")
-	private String send_member_ids;
+	private String sendMemberIds;
 	
 	@ApiModelProperty(value = "消息类型：0-文字；1-图片")
-	private String msg_type;
+	private String msgType;
 	
 	@ApiModelProperty(value = "文字消息")
 	private String message;
@@ -41,7 +41,7 @@ public class YySendGroupMsgEntity implements Serializable {
 	private String picture;
 	
 	@ApiModelProperty(value = "")
-	private Date create_time;
+	private Date createTime;
 	
 
 

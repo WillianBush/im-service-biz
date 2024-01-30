@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.Resp;
-import net.chenlin.dp.modules.biz.employee.entity.EmployeeEntity;
 import net.chenlin.dp.modules.biz.employee.service.EmployeeService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.DependsOn;
@@ -63,7 +62,7 @@ public class MemberController extends AbstractController {
 		if (StringUtils.isEmpty(member.getPassword())) {
 			return Resp.error(500, "密码不能为空");
 		}
-		if (StringUtils.isEmpty(member.getNickname()) || member.getNickname().contains(" ")) {
+		if (StringUtils.isEmpty(member.getNickName()) || member.getNickName().contains(" ")) {
 			return Resp.error(500, "昵称不呢为空且不能含有空格");
 		}
 		Resp resp = memberService.saveMember(member,getServerName());

@@ -6,17 +6,17 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
 		SELECT
 			`id`, 
-			`room_id`, 
-			`member_id`, 
-			`is_manager`
+			`room_id` roomId, 
+			`member_id` memberId, 
+			`is_manager` isManager
 		FROM
 			room_member
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="room_id != null"> and `room_id` = #{room_id} </if>
-		<if test="member_id != null"> and `member_id` = #{member_id} </if>
-		<if test="is_manager != null"> and `is_manager` = #{is_manager} </if>
+		<if test="roomId != null"> and `room_id` = #{roomId} </if>
+		<if test="memberId != null"> and `member_id` = #{memberId} </if>
+		<if test="isManager != null"> and `is_manager` = #{isManager} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -24,24 +24,24 @@
 	<insert id="save">
 		INSERT INTO room_member (
 			`id`, 
-			`room_id`, 
-			`member_id`, 
-			`is_manager`
+			`room_id` roomId, 
+			`member_id` memberId, 
+			`is_manager` isManager
 		)
 		VALUES (
 			#{id}, 
-			#{room_id}, 
-			#{member_id}, 
-			#{is_manager}
+			#{roomId}, 
+			#{memberId}, 
+			#{isManager}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE room_member
 	 	<set>
-			<if test="room_id != null">`room_id` = #{room_id}, </if>
-			<if test="member_id != null">`member_id` = #{member_id}, </if>
-			<if test="is_manager != null">`is_manager` = #{is_manager}</if>
+			<if test="roomId != null">`room_id` = #{roomId}, </if>
+			<if test="memberId != null">`member_id` = #{memberId}, </if>
+			<if test="isManager != null">`is_manager` = #{isManager}</if>
 		</set>
 		WHERE
 			id = #{id}
@@ -72,8 +72,8 @@
 	<insert id="batchAddRobot" parameterType="java.util.List">
 		INSERT INTO room_member (
 			`id`,
-			`room_id`,
-			`member_id`
+			`room_id` roomId,
+			`member_id` memberId
 		)
 		VALUES
 		<foreach collection ="robotList" item="rm" separator =",">
@@ -89,17 +89,17 @@
 	<select id="getRoomMember" resultType="net.chenlin.dp.modules.biz.room.entity.RoomMemberEntity">
 		SELECT
 		`id`,
-		`room_id`,
-		`member_id`,
-		`is_manager`
+		`room_id` roomId,
+		`member_id` memberId,
+		`is_manager` isManager
 		FROM
 		room_member
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="room_id != null"> and `room_id` = #{room_id} </if>
-		<if test="member_id != null"> and `member_id` = #{member_id} </if>
-		<if test="is_manager != null"> and `is_manager` = #{is_manager} </if>
+		<if test="roomId != null"> and `room_id` = #{roomId} </if>
+		<if test="memberId != null"> and `member_id` = #{memberId} </if>
+		<if test="isManager != null"> and `is_manager` = #{isManager} </if>
 	</select>
 
 </mapper>

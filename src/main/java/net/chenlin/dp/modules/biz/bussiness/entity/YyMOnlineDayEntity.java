@@ -29,10 +29,10 @@ public class YyMOnlineDayEntity implements Serializable {
 	private String id;
 	
 	@ApiModelProperty(value = "")
-	private Date create_time;
+	private Date createTime;
 	
 	@ApiModelProperty(value = "每日在线用户数量")
-	private Double m_online_number;
+	private Double mOnlineNumber;
 	
 
 

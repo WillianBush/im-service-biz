@@ -6,15 +6,15 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity">
 		SELECT
 			`id`, 
-			`personal_message_total`, 
-			`create_time`
+			`personal_message_total` personalMessageTotal, 
+			`create_time` createTime
 		FROM
 			yy_personal_msg_day
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="personal_message_total != null"> and `personal_message_total` = #{personal_message_total} </if>
-		<if test="create_time != null"> and `create_time` = #{create_time} </if>
+		<if test="personalMessageTotal != null"> and `personal_message_total` = #{personalMessageTotal} </if>
+		<if test="createTime != null"> and `create_time` = #{createTime} </if>
 		ORDER BY
 			id DESC
 	</select>
@@ -22,12 +22,12 @@
 	<insert id="save">
 		INSERT INTO yy_personal_msg_day (
 			`id`, 
-			`personal_message_total`, 
-			`create_time`
+			`personal_message_total` personalMessageTotal, 
+			`create_time` createTime
 		)
 		VALUES (
 			#{id}, 
-			#{personal_message_total}, 
+			#{personalMessageTotal}, 
 			#{create_time}
 		)
 	</insert>
@@ -35,8 +35,8 @@
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyPersonalMsgDayEntity">
 		SELECT
 			`id`, 
-			`personal_message_total`, 
-			`create_time`
+			`personal_message_total` personalMessageTotal, 
+			`create_time` createTime
 		FROM
 			yy_personal_msg_day
 		WHERE
@@ -46,8 +46,8 @@
 	<update id="update">
 		UPDATE yy_personal_msg_day
 	 	<set>
-			<if test="personal_message_total != null">`personal_message_total` = #{personal_message_total}, </if>
-			<if test="create_time != null">`create_time` = #{create_time}</if>
+			<if test="personalMessageTotal != null">`personal_message_total` = #{personalMessageTotal}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
 		</set>
 		WHERE
 			id = #{id}

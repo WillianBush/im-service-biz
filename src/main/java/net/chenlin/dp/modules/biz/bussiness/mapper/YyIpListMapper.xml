@@ -6,50 +6,50 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity">
 		SELECT
 			`id`, 
-			`ip_address`, 
+			`ip_address` ipAddress, 
 			`note`, 
 			`type`, 
 			`stauts`,
-			`org_id`
+			`org_id` orgId
 		FROM
 			yy_ip_list
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="ip_address != null"> and `ip_address` = #{ip_address} </if>
+		<if test="ipAddress != null"> and `ip_address` = #{ipAddress} </if>
 		<if test="note != null"> and `note` = #{note} </if>
 		<if test="type != null"> and `type` = #{type} </if>
 		<if test="stauts != null"> and `stauts` = 0 </if>
-		<if test="org_id != null"> and `org_id` = #{org_id} </if>
+		<if test="orgId != null"> and `org_id` = #{orgId} </if>
 		ORDER BY
 			ip_address DESC
 	</select>
 	
 	<insert id="save">
 		INSERT INTO yy_ip_list (
-			`ip_address`, 
+			`ip_address` ipAddress, 
 			`note`, 
 			`type`, 
 			`stauts`,
-			`org_id`
+			`org_id` orgId
 		)
 		VALUES (
-			#{ip_address}, 
+			#{ipAddress}, 
 			#{note}, 
 			#{type}, 
 			#{stauts},
-			#{org_id}
+			#{orgId}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity">
 		SELECT
 			`id`, 
-			`ip_address`, 
+			`ip_address` ipAddress, 
 			`note`, 
 			`type`, 
 			`stauts`,
-			`org_id`
+			`org_id` orgId
 		FROM
 			yy_ip_list
 		WHERE
@@ -59,13 +59,13 @@
 	<update id="update">
 		UPDATE yy_ip_list
 	 	<set>
-			<if test="ip_address != null">`ip_address` = #{ip_address}, </if>
+			<if test="ipAddress != null">`ip_address` = #{ipAddress}, </if>
 			<if test="note != null">`note` = #{note}, </if>
 			<if test="type != null">`type` = #{type}, </if>
 			<if test="stauts != null">`stauts` = #{stauts}</if>
 		</set>
 		WHERE
-			id = #{id} and org_id = #{org_id}
+			id = #{id} and org_id = #{orgId}
 	</update>
 	
 	<delete id="batchRemove">
@@ -82,15 +82,15 @@
 	<select id="getObjectByIp" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyIpListEntity">
 		SELECT
 			`id`,
-			`ip_address`,
+			`ip_address` ipAddress,
 			`note`,
 			`type`,
 			`stauts`,
-			`org_id`
+			`org_id` orgId
 		FROM
 			yy_ip_list
 		WHERE
-			ip_address = #{ipAddress} and type = #{type} and org_id = #{org_id}
+			ip_address = #{ipAddress} and type = #{type} and org_id = #{orgId}
 	</select>
 
 </mapper>

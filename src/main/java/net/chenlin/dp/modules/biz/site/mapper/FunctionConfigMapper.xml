@@ -6,43 +6,43 @@
 	<select id="listForPage" resultType="net.chenlin.dp.modules.biz.site.entity.FunctionConfigEntity">
 		SELECT
 			`id`, 
-			`org_id`,
-			`web_app_regist`, 
-			`web_app_ip_show`, 
-			`max_login_counts`, 
-			`safe_login`, 
-			`safe_login_retry_counts`, 
-			`safe_login_apply_blacklist`, 
-			`add_friend`, 
-			`create_room`, 
-			`phone_verify`, 
-			`out_room_del_message`, 
-			`miss_room_maneger_msg`,
-			`is_frozen`,
-			`ip_black`,
-			`ip_white`,
-			`out_link_status`
+			`org_id` orgId,
+			`web_app_regist` webAppRegist, 
+			`web_app_ip_show` webAppIpShow, 
+			`max_login_counts` maxLoginCounts, 
+			`safe_login` safeLogin, 
+			`safe_login_retry_counts` safeLoginRetryCounts, 
+			`safe_login_apply_blacklist` safeLoginApplyBlacklist, 
+			`add_friend` addFriend, 
+			`create_room` createRoom, 
+			`phone_verify` phoneVerify, 
+			`out_room_del_message` outRoomDelMessage, 
+			`miss_room_maneger_msg` missRoomManegerMsg,
+			`is_frozen` isFrozen,
+			`ip_black` ipBlack,
+			`ip_white` ipWhite,
+			`out_link_status` outLinkStatus
 		FROM
 			function_config
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="org_id != null"> and `org_id` = #{org_id} </if>
-		<if test="web_app_regist != null"> and `web_app_regist` = #{web_app_regist} </if>
-		<if test="web_app_ip_show != null"> and `web_app_ip_show` = #{web_app_ip_show} </if>
-		<if test="max_login_counts != null"> and `max_login_counts` = #{max_login_counts} </if>
-		<if test="safe_login != null"> and `safe_login` = #{safe_login} </if>
-		<if test="safe_login_retry_counts != null"> and `safe_login_retry_counts` = #{safe_login_retry_counts} </if>
-		<if test="safe_login_apply_blacklist != null"> and `safe_login_apply_blacklist` = #{safe_login_apply_blacklist} </if>
-		<if test="add_friend != null"> and `add_friend` = #{add_friend} </if>
-		<if test="create_room != null"> and `create_room` = #{create_room} </if>
-		<if test="phone_verify != null"> and `phone_verify` = #{phone_verify} </if>
-		<if test="out_room_del_message != null"> and `out_room_del_message` = #{out_room_del_message} </if>
-		<if test="miss_room_maneger_msg != null"> and `miss_room_maneger_msg` = #{miss_room_maneger_msg} </if>
-		<if test="is_frozen != null">`is_frozen` = #{is_frozen}</if>
-		<if test="ip_black != null">`ip_black` = #{ip_black}</if>
-		<if test="ip_white != null">`ip_white` = #{ip_white}</if>
-		<if test="out_link_status != null">`out_link_status` = #{out_link_status}</if>
+		<if test="orgId != null"> and `org_id` = #{orgId} </if>
+		<if test="webAppRegist != null"> and `web_app_regist` = #{webAppRegist} </if>
+		<if test="webAppIpShow != null"> and `web_app_ip_show` = #{webAppIpShow} </if>
+		<if test="maxLoginCounts != null"> and `max_login_counts` = #{maxLoginCounts} </if>
+		<if test="safeLogin != null"> and `safe_login` = #{safeLogin} </if>
+		<if test="safeLoginRetryCounts != null"> and `safe_login_retry_counts` = #{safeLoginRetryCounts} </if>
+		<if test="safeLoginApplyBlacklist != null"> and `safe_login_apply_blacklist` = #{safeLoginApplyBlacklist} </if>
+		<if test="addFriend != null"> and `add_friend` = #{addFriend} </if>
+		<if test="createRoom != null"> and `create_room` = #{createRoom} </if>
+		<if test="phoneVerify != null"> and `phone_verify` = #{phoneVerify} </if>
+		<if test="outRoomDelMessage != null"> and `out_room_del_message` = #{outRoomDelMessage} </if>
+		<if test="missRoomManegerMsg != null"> and `miss_room_maneger_msg` = #{missRoomManegerMsg} </if>
+		<if test="isFrozen != null">`is_frozen` = #{isFrozen}</if>
+		<if test="ipBlack != null">`ip_black` = #{ipBlack}</if>
+		<if test="ipWhite != null">`ip_white` = #{ipWhite}</if>
+		<if test="outLinkStatus != null">`out_link_status` = #{outLinkStatus}</if>
 		ORDER BY
 			id DESC
 	</select>
@@ -50,63 +50,63 @@
 	<insert id="save">
 		INSERT INTO function_config (
 			`id`, 
-			`org_id`,
-			`web_app_regist`, 
-			`web_app_ip_show`, 
-			`max_login_counts`, 
-			`safe_login`, 
-			`safe_login_retry_counts`, 
-			`safe_login_apply_blacklist`, 
-			`add_friend`, 
-			`create_room`, 
-			`phone_verify`, 
-			`out_room_del_message`, 
-			`miss_room_maneger_msg`,
-			`is_frozen`,
-			`ip_black`,
-			`ip_white`,
-			`out_link_status`
+			`org_id` orgId,
+			`web_app_regist` webAppRegist, 
+			`web_app_ip_show` webAppIpShow, 
+			`max_login_counts` maxLoginCounts, 
+			`safe_login` safeLogin, 
+			`safe_login_retry_counts` safeLoginRetryCounts, 
+			`safe_login_apply_blacklist` safeLoginApplyBlacklist, 
+			`add_friend` addFriend, 
+			`create_room` createRoom, 
+			`phone_verify` phoneVerify, 
+			`out_room_del_message` outRoomDelMessage, 
+			`miss_room_maneger_msg` missRoomManegerMsg,
+			`is_frozen` isFrozen,
+			`ip_black` ipBlack,
+			`ip_white` ipWhite,
+			`out_link_status` outLinkStatus
 		)
 		VALUES (
 			#{id}, 
-			#{org_id},
-			#{web_app_regist}, 
-			#{web_app_ip_show}, 
-			#{max_login_counts}, 
-			#{safe_login}, 
-			#{safe_login_retry_counts}, 
-			#{safe_login_apply_blacklist}, 
-			#{add_friend}, 
-			#{create_room}, 
-			#{phone_verify}, 
-			#{out_room_del_message}, 
-			#{miss_room_maneger_msg},
-			#{is_frozen},
-			#{ip_black},
-			#{ip_white},
-			#{out_link_status}
+			#{orgId},
+			#{webAppRegist}, 
+			#{webAppIpShow}, 
+			#{maxLoginCounts}, 
+			#{safeLogin}, 
+			#{safeLoginRetryCounts}, 
+			#{safeLoginApplyBlacklist}, 
+			#{addFriend}, 
+			#{createRoom}, 
+			#{phoneVerify}, 
+			#{outRoomDelMessage}, 
+			#{missRoomManegerMsg},
+			#{isFrozen},
+			#{ipBlack},
+			#{ipWhite},
+			#{outLinkStatus}
 		)
 	</insert>
 	
 	<select id="getObjectById" resultType="net.chenlin.dp.modules.biz.site.entity.FunctionConfigEntity">
 		SELECT
 			`id`, 
-			`org_id`,
-			`web_app_regist`, 
-			`web_app_ip_show`, 
-			`max_login_counts`, 
-			`safe_login`, 
-			`safe_login_retry_counts`, 
-			`safe_login_apply_blacklist`, 
-			`add_friend`, 
-			`create_room`, 
-			`phone_verify`, 
-			`out_room_del_message`, 
-			`miss_room_maneger_msg`,
-			`is_frozen`,
-			`ip_black`,
-			`ip_white`,
-			`out_link_status`
+			`org_id` orgId,
+			`web_app_regist` webAppRegist, 
+			`web_app_ip_show` webAppIpShow, 
+			`max_login_counts` maxLoginCounts, 
+			`safe_login` safeLogin, 
+			`safe_login_retry_counts` safeLoginRetryCounts, 
+			`safe_login_apply_blacklist` safeLoginApplyBlacklist, 
+			`add_friend` addFriend, 
+			`create_room` createRoom, 
+			`phone_verify` phoneVerify, 
+			`out_room_del_message` outRoomDelMessage, 
+			`miss_room_maneger_msg` missRoomManegerMsg,
+			`is_frozen` isFrozen,
+			`ip_black` ipBlack,
+			`ip_white` ipWhite,
+			`out_link_status` outLinkStatus
 		FROM
 			function_config
 		WHERE
@@ -116,22 +116,22 @@
 	<update id="update">
 		UPDATE function_config
 	 	<set>
-			<if test="org_id != null">`org_id` = #{org_id}, </if>
-			<if test="web_app_regist != null">`web_app_regist` = #{web_app_regist}, </if>
-			<if test="web_app_ip_show != null">`web_app_ip_show` = #{web_app_ip_show}, </if>
-			<if test="max_login_counts != null">`max_login_counts` = #{max_login_counts}, </if>
-			<if test="safe_login != null">`safe_login` = #{safe_login}, </if>
-			<if test="safe_login_retry_counts != null">`safe_login_retry_counts` = #{safe_login_retry_counts}, </if>
-			<if test="safe_login_apply_blacklist != null">`safe_login_apply_blacklist` = #{safe_login_apply_blacklist}, </if>
-			<if test="add_friend != null">`add_friend` = #{add_friend}, </if>
-			<if test="create_room != null">`create_room` = #{create_room}, </if>
-			<if test="phone_verify != null">`phone_verify` = #{phone_verify}, </if>
-			<if test="out_room_del_message != null">`out_room_del_message` = #{out_room_del_message}, </if>
-			<if test="miss_room_maneger_msg != null">`miss_room_maneger_msg` = #{miss_room_maneger_msg},</if>
-			<if test="is_frozen != null">`is_frozen` = #{is_frozen},</if>
-			<if test="ip_black != null">`ip_black` = #{ip_black},</if>
-			<if test="ip_white != null">`ip_white` = #{ip_white}</if>
-			<if test="out_link_status != null">`out_link_status` = #{out_link_status}</if>
+			<if test="orgId != null">`org_id` = #{orgId}, </if>
+			<if test="webAppRegist != null">`web_app_regist` = #{webAppRegist}, </if>
+			<if test="webAppIpShow != null">`web_app_ip_show` = #{webAppIpShow}, </if>
+			<if test="maxLoginCounts != null">`max_login_counts` = #{maxLoginCounts}, </if>
+			<if test="safeLogin != null">`safe_login` = #{safeLogin}, </if>
+			<if test="safeLoginRetryCounts != null">`safe_login_retry_counts` = #{safeLoginRetryCounts}, </if>
+			<if test="safeLoginApplyBlacklist != null">`safe_login_apply_blacklist` = #{safeLoginApplyBlacklist}, </if>
+			<if test="addFriend != null">`add_friend` = #{addFriend}, </if>
+			<if test="createRoom != null">`create_room` = #{createRoom}, </if>
+			<if test="phoneVerify != null">`phone_verify` = #{phoneVerify}, </if>
+			<if test="outRoomDelMessage != null">`out_room_del_message` = #{outRoomDelMessage}, </if>
+			<if test="missRoomManegerMsg != null">`miss_room_maneger_msg` = #{missRoomManegerMsg},</if>
+			<if test="isFrozen != null">`is_frozen` = #{isFrozen},</if>
+			<if test="ipBlack != null">`ip_black` = #{ipBlack},</if>
+			<if test="ipWhite != null">`ip_white` = #{ipWhite}</if>
+			<if test="outLinkStatus != null">`out_link_status` = #{outLinkStatus}</if>
 		</set>
 		WHERE
 			id = #{id}

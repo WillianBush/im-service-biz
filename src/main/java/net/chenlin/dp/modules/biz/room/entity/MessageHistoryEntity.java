@@ -47,7 +47,7 @@ public class MessageHistoryEntity implements Serializable {
 	private String toGroupid;
 	
 	@ApiModelProperty(value = "")
-	private String chatid;
+	private String chatId;
 	
 	@ApiModelProperty(value = "解析方式  默认使用rich-text   还有其它的选择uparse voice(语音) video(视频)")
 	private String psr;
@@ -65,7 +65,7 @@ public class MessageHistoryEntity implements Serializable {
 	private String fromName;
 	
 	@ApiModelProperty(value = "如果是媒体消息，则是多媒体格式 simple_content: [图片]")
-	private String simple_content;
+	private String simpleContent;
 	
 	@ApiModelProperty(value = "")
 	private Date createDate;
