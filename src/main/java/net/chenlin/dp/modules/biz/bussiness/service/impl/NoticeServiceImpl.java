@@ -1,7 +1,6 @@
 package net.chenlin.dp.modules.biz.bussiness.service.impl;
 
 import lombok.AllArgsConstructor;
-import net.chenlin.dp.common.entity.OSSModel;
 import net.chenlin.dp.common.entity.Page;
 import net.chenlin.dp.common.entity.Query;
 import net.chenlin.dp.common.entity.Resp;
@@ -53,8 +52,8 @@ public class NoticeServiceImpl implements NoticeService {
     public Resp<NoticeEntity> save(NoticeEntity notice, String domain) {
         notice.setOrgId(domainsMapper.getOrgIdByDomain(domain));
         notice.setOrgId(1L);
-        notice.setCreateDate(new Date());
-        notice.setModifyDate(new Date());
+        notice.setCreateTime(new Date());
+        notice.setModifyTime(new Date());
         int count = noticeMapper.save(notice);
         return CommonUtils.msgResp(count);
     }
@@ -80,7 +79,7 @@ public class NoticeServiceImpl implements NoticeService {
     public Resp<Integer> update(NoticeEntity notice, String domain) {
         notice.setOrgId(domainsMapper.getOrgIdByDomain(domain));
         notice.setOrgId(1L);
-        notice.setModifyDate(new Date());
+        notice.setModifyTime(new Date());
         int count = noticeMapper.update(notice);
         return CommonUtils.msgResp(count);
     }

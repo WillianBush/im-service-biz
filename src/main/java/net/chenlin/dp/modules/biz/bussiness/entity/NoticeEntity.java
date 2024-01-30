@@ -27,10 +27,10 @@ public class NoticeEntity implements Serializable {
     private String id;
 
     @ApiModelProperty(value = "创建时间")
-    private Date createDate;
+    private Date createTime;
 
     @ApiModelProperty(value = "修改时间")
-    private Date modifyDate;
+    private Date modifyTime;
 
     @ApiModelProperty(value = "公告内容")
     private String content;
