@@ -15,13 +15,13 @@
 
     <select id="selectObj" resultMap="domainsResultMap">
         SELECT
-        o.name orgName,
-        d.domain_id domainId,
-        o.org_id orgId,
-        http_domain httpDomain,
-        ws_domain wsDomain,
-        oss_domain ossDomain,
-        admin_domain adminDomain
+        o.name ,
+        d.domain_id ,
+        o.org_id ,
+        http_domain ,
+        ws_domain ,
+        oss_domain ,
+        admin_domain
         FROM
         sys_org o
         LEFT JOIN domains d ON o.org_id = d.org_id
@@ -48,13 +48,13 @@
                 #{admin_domain})
     </insert>
 
-    <select id="getDomainByOrgId" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+    <select id="getDomainByOrgId" resultMap="domainsResultMap">
         SELECT *
         FROM domains
         where org_id = #{org_id}
     </select>
 
-    <select id="listForPage" resultType="net.chenlin.dp.modules.sys.entity.DomainsEntity">
+    <select id="listForPage" resultMap="domainsResultMap">
         SELECT
         o.name org_name,
         d.domain_id domain_id,

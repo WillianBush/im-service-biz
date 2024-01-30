@@ -34,7 +34,7 @@ public class DomainsEntity implements Serializable {
     @ApiModelProperty(value = "机构id")
     private Long orgId;
 
-//    private String orgName;
+    private String orgName;
     /**
      * http域名
      */
@@ -57,5 +57,5 @@ public class DomainsEntity implements Serializable {
      * oss域名
      */
     @ApiModelProperty(value = "oss域名")
-    private String admin_domain;
+    private String adminDomain;
 }

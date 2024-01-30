@@ -52,7 +52,7 @@ public class MemberServiceImpl implements MemberService {
     public Page<MemberEntity> listMember(Map<String, Object> params) {
         DomainsEntity domainsEntity=domainsService.getDomainsByUrl(params.get("domain").toString());
         if (null==domainsEntity){
-            return null;
+            return new Page<>();
         }
         if (!params.isEmpty()) {
             List<String> lastLogin = (ArrayList<String>) params.get("createdate");
