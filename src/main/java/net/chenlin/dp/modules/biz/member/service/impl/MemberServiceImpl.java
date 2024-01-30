@@ -51,7 +51,9 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Page<MemberEntity> listMember(Map<String, Object> params) {
         DomainsEntity domainsEntity=domainsService.getDomainsByUrl(params.get("domain").toString());
-
+        if (null==domainsEntity){
+            return null;
+        }
         if (!params.isEmpty()) {
             List<String> lastLogin = (ArrayList<String>) params.get("createdate");
             if (lastLogin != null && lastLogin.size() == 2) {

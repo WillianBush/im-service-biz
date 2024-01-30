@@ -43,10 +43,10 @@ public class MemberController extends AbstractController {
 	@PostMapping("/list")
 	@ApiOperation(value = "用户列表")
 	public Page<MemberEntity> list(@RequestBody Map<String, Object> params) {
+		params.put("domain",getServerName());
 		if (!params.isEmpty()){
 			log.info("Get params: {}", JSONObject.toJSONString(params));
 		}
-		params.put("domain",getServerName());
 		return memberService.listMember(params);
 	}
 		
