@@ -44,7 +44,7 @@ public class RoomServiceImpl implements RoomService {
      */
 	@Override
 	public Page<RoomEntity> listRoom(Map<String, Object> params) {
-		params.put("org_id", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
+		params.put("orgId", domainsMapper.getOrgIdByDomain(params.get("domain").toString()));
 		Query query = new Query(params);
 		Page<RoomEntity> page = new Page<>(query);
 		List<RoomEntity> roomEntityList = roomMapper.listForPage(page, query);

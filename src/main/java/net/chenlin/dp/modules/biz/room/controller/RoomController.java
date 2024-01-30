@@ -3,8 +3,10 @@ package net.chenlin.dp.modules.biz.room.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson2.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import net.chenlin.dp.common.entity.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
@@ -21,6 +23,7 @@ import net.chenlin.dp.modules.biz.room.service.RoomService;
  * 
  * @author wang<fangyuan.co@outlook.com>
  */
+@Slf4j
 @RestController
 @RequestMapping("/mr/room")
 @Api(tags = "群组管理")
@@ -39,6 +42,9 @@ public class RoomController extends AbstractController {
 	@ApiOperation(value = "群组列表")
 	public Page<RoomEntity> list(@RequestBody Map<String, Object> params) {
 		params.put("domain",getServerName());
+		if (!params.isEmpty()){
+			log.info("Get params: {}", JSONObject.toJSONString(params));
+		}
 		return roomService.listRoom(params);
 	}
 		
