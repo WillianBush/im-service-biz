@@ -75,7 +75,7 @@ public class WaitsendmessageEntity implements Serializable {
 	private String cmd;
 	
 	@ApiModelProperty(value = "")
-	private String desc;
+	private String descri;
 	
 //	@ApiModelProperty(value = "")
 //	private String descri1;
