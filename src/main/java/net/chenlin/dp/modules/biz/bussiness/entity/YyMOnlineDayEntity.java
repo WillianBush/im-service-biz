@@ -32,7 +32,7 @@ public class YyMOnlineDayEntity implements Serializable {
 	private Date createTime;
 	
 	@ApiModelProperty(value = "每日在线用户数量")
-	private Double mOnlineNumber;
+	private Long mOnlineNumber;
 	
 
 
