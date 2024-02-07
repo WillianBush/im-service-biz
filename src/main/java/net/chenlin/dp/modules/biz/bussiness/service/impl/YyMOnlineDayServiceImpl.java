@@ -53,6 +53,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
      */
     @Override
     public Resp<List<YyMOnlineDayEntity>> listYyMOnlineDay(Map<String, Object> params) {
+        params.put("domain","admin.441635.pw");
         String domainName = params.get("domain").toString();
         Long orgId = domainsMapper.getOrgIdByDomain(domainName);
         params.put("org_id", orgId);

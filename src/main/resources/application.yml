@@ -6,3 +6,6 @@ logging:
           modules:
             sys:
               dao: debug
+            biz:
+              member:
+                dao: debug

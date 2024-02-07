@@ -123,11 +123,11 @@
     </delete>
 
     <select id="getObjectGroupByDate" resultType="net.chenlin.dp.modules.biz.bussiness.entity.YyMOnlineDayEntity">
-        SELECT date_format(create_date, '%Y-%m-%d') as create_time,
-               count(distinct mid)                 as m_online_number
+        SELECT date_format(create_date, '%Y-%m-%d') as createTime,
+               count(distinct mid)                  as mOnlineNumber
         FROM member_login_log
-        where create_date &gt;= str_to_date(#{startDate}, '%Y-%m-%d')
-            and create_date &lt; date_add(str_to_date(#{endDate}, '%Y-%m-%d'), INTERVAL 1 day)
+        where create_date &gt;= str_to_date(#{startdate}, '%Y-%m-%d')
+            and create_date &lt; date_add(str_to_date(#{enddate}, '%Y-%m-%d'), INTERVAL 1 day)
             and org_id = #{org_id}
         group by date_format(create_date, '%Y-%m-%d')
     </select>
