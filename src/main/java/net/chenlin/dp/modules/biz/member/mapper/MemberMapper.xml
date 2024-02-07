@@ -18,40 +18,16 @@
 			`password`, 
 			`regist_ip` registIp, 
 			`status`, 
-			`telphone`, 
-			`tx_money` txMoney, 
-			`tx_money_ing` txMoneyIng, 
-			`member_id` memberId, 
-			`lose_price_sum` losePriceSum, 
-			`open_red_count` openRedCount, 
-			`open_red_price_sum` openRedPriceSum, 
-			`recharge_price_sum` rechargePriceSum, 
-			`send_red_count` sendRedCount, 
-			`send_red_price_sum` sendRedPriceSum, 
-			`tx_price_sum` txPriceSum, 
-			`win_price_sum` winPriceSum, 
-			`username`, 
+			`telephone`,
+			`member_id` memberId,
+			`username`,
 			`qr_code_img` qrCodeImg, 
-			`tichen_price_sum` tichenPriceSum, 
-			`pre_tx_img` preTxImg, 
-			`pre_tx_pay` preTxPay, 
-			`member_type` memberType, 
+			`member_type` memberType,
 			`parentmid`, 
-			`one_level_count` oneLevelCount, 
-			`recharge_price_today` rechargePriceToday, 
-			`tichen_price_today` tichenPriceToday, 
-			`tx_price_today` txPriceToday, 
-			`pre_bank_addr` preBankAddr, 
-			`pre_bank_belonger` preBankBelonger, 
-			`pre_bank_code` preBankCode, 
-			`pre_bank_name` preBankName, 
-			`wx_open_id` wxOpenId, 
+			`wx_open_id` wxOpenId,
 			`qq_open_id` qqOpenId, 
 			`sex`, 
-			`pay_pwd` payPwd, 
-			`send_transfer_count` sendTransferCount, 
-			`send_transfer_price_sum` sendTransferPriceSum, 
-			`shiming_status` shimingStatus, 
+			`shiming_status` shimingStatus,
 			`sys_generate` sysGenerate,
 			`org_id`
 		FROM
@@ -59,53 +35,29 @@
 		where
 		1=1
 		<if test="id != null"> and `id` = #{id} </if>
-		<if test="createdate != null"> and `createDate` = #{createdate} </if>
-		<if test="modifydate != null"> and `modifyDate` = #{modifydate} </if>
+		<if test="createdate != null"> and `create_date` = #{createdate} </if>
+		<if test="modifydate != null"> and `modify_date` = #{modifydate} </if>
 		<if test="headpic != null"> and `headpic` = #{headpic} </if>
-		<if test="lastlogindate != null"> and `lastLoginDate` = #{lastlogindate} </if>
-		<if test="lastloginip != null"> and `lastLoginIp` = #{lastloginip} </if>
+		<if test="lastlogindate != null"> and `last_login_date` = #{lastlogindate} </if>
+		<if test="lastloginip != null"> and `last_login_ip` = #{lastloginip} </if>
 		<if test="money != null"> and `money` = #{money} </if>
-		<if test="nickname != null"> and `nickName` LIKE concat('%',#{nickname},'%') </if>
+		<if test="nickname != null"> and `nick_name` LIKE concat('%',#{nickname},'%') </if>
 		<if test="parent != null"> and `parent` = #{parent} </if>
-		<if test="parentpath != null"> and `parentPath` = #{parentpath} </if>
+		<if test="parentpath != null"> and `parent_path` = #{parentpath} </if>
 		<if test="password != null"> and `password` = #{password} </if>
-		<if test="registip != null"> and `registIp` = #{registip} </if>
+		<if test="registip != null"> and `regist_ip` = #{registip} </if>
 		<if test="status != null"> and `status` = #{status} </if>
-		<if test="telphone != null"> and `telphone` = #{telphone} </if>
-		<if test="txmoney != null"> and `txMoney` = #{txmoney} </if>
-		<if test="txmoneying != null"> and `txMoneyIng` = #{txmoneying} </if>
-		<if test="memberid != null"> and `memberId` = #{memberid} </if>
-		<if test="losepricesum != null"> and `losePriceSum` = #{losepricesum} </if>
-		<if test="openredcount != null"> and `openRedCount` = #{openredcount} </if>
-		<if test="openredpricesum != null"> and `openRedPriceSum` = #{openredpricesum} </if>
-		<if test="rechargepricesum != null"> and `rechargePriceSum` = #{rechargepricesum} </if>
-		<if test="sendredcount != null"> and `sendRedCount` = #{sendredcount} </if>
-		<if test="sendredpricesum != null"> and `sendRedPriceSum` = #{sendredpricesum} </if>
-		<if test="txpricesum != null"> and `txPriceSum` = #{txpricesum} </if>
-		<if test="winpricesum != null"> and `winPriceSum` = #{winpricesum} </if>
+		<if test="telephone != null"> and `telephone` = #{telephone} </if>
+		<if test="memberid != null"> and `member_id` = #{memberid} </if>
 		<if test="username != null"> and `username` = #{username} </if>
-		<if test="qrcodeimg != null"> and `qrCodeImg` = #{qrcodeimg} </if>
-		<if test="tichenpricesum != null"> and `tichenPriceSum` = #{tichenpricesum} </if>
-		<if test="pretximg != null"> and `preTxImg` = #{pretximg} </if>
-		<if test="pretxpay != null"> and `preTxPay` = #{pretxpay} </if>
-		<if test="membertype != null"> and `memberType` = #{membertype} </if>
+		<if test="qrcodeimg != null"> and `qr_code_img` = #{qrcodeimg} </if>
+		<if test="membertype != null"> and `member_type` = #{membertype} </if>
 		<if test="parentmid != null"> and `parentmid` = #{parentmid} </if>
-		<if test="one_Level_Count != null"> and `one_level_count` = #{one_Level_Count} </if>
-		<if test="rechargeprice_Today != null"> and `rechargePrice_today` = #{rechargeprice_Today} </if>
-		<if test="tichenprice_Today != null"> and `tichenPrice_today` = #{tichenprice_Today} </if>
-		<if test="txprice_Today != null"> and `txPrice_today` = #{txprice_Today} </if>
-		<if test="prebank_Addr != null"> and `preBank_addr` = #{prebank_Addr} </if>
-		<if test="prebank_Belonger != null"> and `preBank_belonger` = #{prebank_Belonger} </if>
-		<if test="prebank_Code != null"> and `preBank_code` = #{prebank_Code} </if>
-		<if test="prebank_Name != null"> and `preBank_name` = #{prebank_Name} </if>
-		<if test="wxopenid != null"> and `wxOpenId` = #{wxopenid} </if>
-		<if test="qqopenid != null"> and `qqOpenId` = #{qqopenid} </if>
+		<if test="wxopenid != null"> and `wx_open_id` = #{wxopenid} </if>
+		<if test="qqopenid != null"> and `qq_openid` = #{qqopenid} </if>
 		<if test="sex != null"> and `sex` = #{sex} </if>
-		<if test="pay_Pwd != null"> and `pay_pwd` = #{pay_Pwd} </if>
-		<if test="sendtransfercount != null"> and `sendTransferCount` = #{sendtransfercount} </if>
-		<if test="sendtransferpricesum != null"> and `sendTransferPriceSum` = #{sendtransferpricesum} </if>
-		<if test="shimingstatus != null"> and `shimingStatus` = #{shimingstatus} </if>
-		<if test="sysgenerate != null"> and `sysGenerate` = #{sysgenerate} </if>
+		<if test="shimingstatus != null"> and `shiming_status` = #{shimingstatus} </if>
+		<if test="sysgenerate != null"> and `sys_generate` = #{sysgenerate} </if>
 		<if test="org_id != null"> and `org_id` = #{org_id} </if>
 		<if test="ids != null">
 			<if test="ids.size()>0">
@@ -116,13 +68,13 @@
 			</if>
 		</if>
 		<if test="startTime != null and startTime.trim() != ''">
-			AND createDate &gt;= #{startTime}
+			AND create_date &gt;= #{startTime}
 		</if>
 		<if test="endTime != null and endTime.trim() != ''">
-			AND createDate &lt; #{endTime}
+			AND create_date &lt; #{endTime}
 		</if>
 		ORDER BY
-			createDate DESC
+			create_date DESC
 	</select>
 	
 	<insert id="save">
@@ -140,40 +92,16 @@
 			`password`, 
 			`regist_ip` registIp, 
 			`status`, 
-			`telphone`, 
-			`tx_money` txMoney, 
-			`tx_money_ing` txMoneyIng, 
-			`member_id` memberId, 
-			`lose_price_sum` losePriceSum, 
-			`open_red_count` openRedCount, 
-			`open_red_price_sum` openRedPriceSum, 
-			`recharge_price_sum` rechargePriceSum, 
-			`send_red_count` sendRedCount, 
-			`send_red_price_sum` sendRedPriceSum, 
-			`tx_price_sum` txPriceSum, 
-			`win_price_sum` winPriceSum, 
-			`username`, 
+			`telephone`,
+			`member_id` memberId,
+			`username`,
 			`qr_code_img` qrCodeImg, 
-			`tichen_price_sum` tichenPriceSum, 
-			`pre_tx_img` preTxImg, 
-			`pre_tx_pay` preTxPay, 
-			`member_type` memberType, 
+			`member_type` memberType,
 			`parentmid`, 
-			`one_level_count` oneLevelCount, 
-			`recharge_price_today` rechargePriceToday, 
-			`tichen_price_today` tichenPriceToday, 
-			`tx_price_today` txPriceToday, 
-			`pre_bank_addr` preBankAddr, 
-			`pre_bank_belonger` preBankBelonger, 
-			`pre_bank_code` preBankCode, 
-			`pre_bank_name` preBankName, 
-			`wx_open_id` wxOpenId, 
+			`wx_open_id` wxOpenId,
 			`qq_open_id` qqOpenId, 
 			`sex`, 
-			`pay_pwd` payPwd, 
-			`send_transfer_count` sendTransferCount, 
-			`send_transfer_price_sum` sendTransferPriceSum, 
-			`shiming_status` shimingStatus, 
+			`shiming_status` shimingStatus,
 			`sys_generate` sysGenerate
 		)
 		VALUES (
@@ -190,40 +118,16 @@
 			#{password}, 
 			#{registip}, 
 			#{status}, 
-			#{telphone}, 
-			#{txmoney}, 
-			#{txmoneying}, 
-			#{memberid}, 
-			#{losepricesum}, 
-			#{openredcount}, 
-			#{openredpricesum}, 
-			#{rechargepricesum}, 
-			#{sendredcount}, 
-			#{sendredpricesum}, 
-			#{txpricesum}, 
-			#{winpricesum}, 
-			#{username}, 
+			#{telephone},
+			#{memberid},
+			#{username},
 			#{qrcodeimg}, 
-			#{tichenpricesum}, 
-			#{pretximg}, 
-			#{pretxpay}, 
-			#{membertype}, 
+			#{membertype},
 			#{parentmid}, 
-			#{one_Level_Count}, 
-			#{rechargeprice_Today}, 
-			#{tichenprice_Today}, 
-			#{txprice_Today}, 
-			#{prebank_Addr}, 
-			#{prebank_Belonger}, 
-			#{prebank_Code}, 
-			#{prebank_Name}, 
-			#{wxopenid}, 
+			#{wxopenid},
 			#{qqopenid}, 
 			#{sex}, 
-			#{pay_Pwd}, 
-			#{sendtransfercount}, 
-			#{sendtransferpricesum}, 
-			#{shimingstatus}, 
+			#{shimingstatus},
 			#{sysgenerate}
 		)
 	</insert>
@@ -243,40 +147,16 @@
 			`password`, 
 			`regist_ip` registIp, 
 			`status`, 
-			`telphone`, 
-			`tx_money` txMoney, 
-			`tx_money_ing` txMoneyIng, 
-			`member_id` memberId, 
-			`lose_price_sum` losePriceSum, 
-			`open_red_count` openRedCount, 
-			`open_red_price_sum` openRedPriceSum, 
-			`recharge_price_sum` rechargePriceSum, 
-			`send_red_count` sendRedCount, 
-			`send_red_price_sum` sendRedPriceSum, 
-			`tx_price_sum` txPriceSum, 
-			`win_price_sum` winPriceSum, 
-			`username`, 
+			`telephone`,
+			`member_id` memberId,
+			`username`,
 			`qr_code_img` qrCodeImg, 
-			`tichen_price_sum` tichenPriceSum, 
-			`pre_tx_img` preTxImg, 
-			`pre_tx_pay` preTxPay, 
-			`member_type` memberType, 
+			`member_type` memberType,
 			`parentmid`, 
-			`one_level_count` oneLevelCount, 
-			`recharge_price_today` rechargePriceToday, 
-			`tichen_price_today` tichenPriceToday, 
-			`tx_price_today` txPriceToday, 
-			`pre_bank_addr` preBankAddr, 
-			`pre_bank_belonger` preBankBelonger, 
-			`pre_bank_code` preBankCode, 
-			`pre_bank_name` preBankName, 
-			`wx_open_id` wxOpenId, 
+			`wx_open_id` wxOpenId,
 			`qq_open_id` qqOpenId, 
 			`sex`, 
-			`pay_pwd` payPwd, 
-			`send_transfer_count` sendTransferCount, 
-			`send_transfer_price_sum` sendTransferPriceSum, 
-			`shiming_status` shimingStatus, 
+			`shiming_status` shimingStatus,
 			`sys_generate` sysGenerate,
 			`org_id`
 		FROM
@@ -292,8 +172,8 @@
 			`create_date` createDate,
 			`modify_date` modifyDate,
 			`headpic`,
-			`lastLoginDate`,
-			`lastLoginIp`,
+			`last_login_date`,
+			`last_login_ip`,
 			`money`,
 			`nick_name` nickName,
 			`parent`,
@@ -301,39 +181,15 @@
 			`password`,
 			`regist_ip` registIp,
 			`status`,
-			`telphone`,
-			`tx_money` txMoney,
-			`tx_money_ing` txMoneyIng,
+			`telephone`,
 			`member_id` memberId,
-			`lose_price_sum` losePriceSum,
-			`open_red_count` openRedCount,
-			`open_red_price_sum` openRedPriceSum,
-			`recharge_price_sum` rechargePriceSum,
-			`send_red_count` sendRedCount,
-			`send_red_price_sum` sendRedPriceSum,
-			`tx_price_sum` txPriceSum,
-			`win_price_sum` winPriceSum,
 			`username`,
 			`qr_code_img` qrCodeImg,
-			`tichen_price_sum` tichenPriceSum,
-			`pre_tx_img` preTxImg,
-			`pre_tx_pay` preTxPay,
 			`member_type` memberType,
 			`parentmid`,
-			`one_level_count` oneLevelCount,
-			`recharge_price_today` rechargePriceToday,
-			`tichen_price_today` tichenPriceToday,
-			`tx_price_today` txPriceToday,
-			`pre_bank_addr` preBankAddr,
-			`pre_bank_belonger` preBankBelonger,
-			`pre_bank_code` preBankCode,
-			`pre_bank_name` preBankName,
 			`wx_open_id` wxOpenId,
 			`qq_open_id` qqOpenId,
 			`sex`,
-			`pay_pwd` payPwd,
-			`send_transfer_count` sendTransferCount,
-			`send_transfer_price_sum` sendTransferPriceSum,
 			`shiming_status` shimingStatus,
 			`sys_generate` sysGenerate,
 			`org_id`
@@ -346,53 +202,29 @@
 	<update id="update">
 		UPDATE member
 	 	<set>
-			<if test="createdate != null">`createDate` = #{createdate}, </if>
-			<if test="modifydate != null">`modifyDate` = #{modifydate}, </if>
+			<if test="createdate != null">`create_date` = #{createdate}, </if>
+			<if test="modifydate != null">`modify_date` = #{modifydate}, </if>
 			<if test="headpic != null">`headpic` = #{headpic}, </if>
-			<if test="lastlogindate != null">`lastLoginDate` = #{lastlogindate}, </if>
-			<if test="lastloginip != null">`lastLoginIp` = #{lastloginip}, </if>
+			<if test="lastlogindate != null">`last_login_date` = #{lastlogindate}, </if>
+			<if test="lastloginip != null">`last_login_ip` = #{lastloginip}, </if>
 			<if test="money != null">`money` = #{money}, </if>
-			<if test="nickname != null">`nickName` = #{nickname}, </if>
+			<if test="nickname != null">`nick_name` = #{nickname}, </if>
 			<if test="parent != null">`parent` = #{parent}, </if>
-			<if test="parentpath != null">`parentPath` = #{parentpath}, </if>
+			<if test="parentpath != null">`parent_path` = #{parentpath}, </if>
 			<if test="password != null">`password` = #{password}, </if>
-			<if test="registip != null">`registIp` = #{registip}, </if>
+			<if test="registip != null">`regist_ip` = #{registip}, </if>
 			<if test="status != null">`status` = #{status}, </if>
-			<if test="telphone != null">`telphone` = #{telphone}, </if>
-			<if test="txmoney != null">`txMoney` = #{txmoney}, </if>
-			<if test="txmoneying != null">`txMoneyIng` = #{txmoneying}, </if>
-			<if test="memberid != null">`memberId` = #{memberid}, </if>
-			<if test="losepricesum != null">`losePriceSum` = #{losepricesum}, </if>
-			<if test="openredcount != null">`openRedCount` = #{openredcount}, </if>
-			<if test="openredpricesum != null">`openRedPriceSum` = #{openredpricesum}, </if>
-			<if test="rechargepricesum != null">`rechargePriceSum` = #{rechargepricesum}, </if>
-			<if test="sendredcount != null">`sendRedCount` = #{sendredcount}, </if>
-			<if test="sendredpricesum != null">`sendRedPriceSum` = #{sendredpricesum}, </if>
-			<if test="txpricesum != null">`txPriceSum` = #{txpricesum}, </if>
-			<if test="winpricesum != null">`winPriceSum` = #{winpricesum}, </if>
+			<if test="telephone != null">`telephone` = #{telephone}, </if>
+			<if test="memberid != null">`member_id` = #{memberid}, </if>
 			<if test="username != null">`username` = #{username}, </if>
-			<if test="qrcodeimg != null">`qrCodeImg` = #{qrcodeimg}, </if>
-			<if test="tichenpricesum != null">`tichenPriceSum` = #{tichenpricesum}, </if>
-			<if test="pretximg != null">`preTxImg` = #{pretximg}, </if>
-			<if test="pretxpay != null">`preTxPay` = #{pretxpay}, </if>
-			<if test="membertype != null">`memberType` = #{membertype}, </if>
+			<if test="qrcodeimg != null">`qr_code_img` = #{qrcodeimg}, </if>
+			<if test="membertype != null">`member_type` = #{membertype}, </if>
 			<if test="parentmid != null">`parentmid` = #{parentmid}, </if>
-			<if test="one_Level_Count != null">`one_level_count` = #{one_Level_Count}, </if>
-			<if test="rechargeprice_Today != null">`rechargePrice_today` = #{rechargeprice_Today}, </if>
-			<if test="tichenprice_Today != null">`tichenPrice_today` = #{tichenprice_Today}, </if>
-			<if test="txprice_Today != null">`txPrice_today` = #{txprice_Today}, </if>
-			<if test="prebank_Addr != null">`preBank_addr` = #{prebank_Addr}, </if>
-			<if test="prebank_Belonger != null">`preBank_belonger` = #{prebank_Belonger}, </if>
-			<if test="prebank_Code != null">`preBank_code` = #{prebank_Code}, </if>
-			<if test="prebank_Name != null">`preBank_name` = #{prebank_Name}, </if>
-			<if test="wxopenid != null">`wxOpenId` = #{wxopenid}, </if>
-			<if test="qqopenid != null">`qqOpenId` = #{qqopenid}, </if>
+			<if test="wxopenid != null">`wx_open_id` = #{wxopenid}, </if>
+			<if test="qqopenid != null">`qq_openid` = #{qqopenid}, </if>
 			<if test="sex != null">`sex` = #{sex}, </if>
-			<if test="pay_Pwd != null">`pay_pwd` = #{pay_Pwd}, </if>
-			<if test="sendtransfercount != null">`sendTransferCount` = #{sendtransfercount}, </if>
-			<if test="sendtransferpricesum != null">`sendTransferPriceSum` = #{sendtransferpricesum}, </if>
-			<if test="shimingstatus != null">`shimingStatus` = #{shimingstatus}, </if>
-			<if test="sysgenerate != null">`sysGenerate` = #{sysgenerate}</if>
+			<if test="shimingstatus != null">`shiming_status` = #{shimingstatus}, </if>
+			<if test="sysgenerate != null">`sys_generate` = #{sysgenerate}</if>
 			<if test="org_id != null">`org_id` = #{org_id}</if>
 		</set>
 		WHERE
@@ -426,39 +258,15 @@
 		`password`,
 		`regist_ip` registIp,
 		`status`,
-		`telphone`,
-		`tx_money` txMoney,
-		`tx_money_ing` txMoneyIng,
+		`telephone`,
 		`member_id` memberId,
-		`lose_price_sum` losePriceSum,
-		`open_red_count` openRedCount,
-		`open_red_price_sum` openRedPriceSum,
-		`recharge_price_sum` rechargePriceSum,
-		`send_red_count` sendRedCount,
-		`send_red_price_sum` sendRedPriceSum,
-		`tx_price_sum` txPriceSum,
-		`win_price_sum` winPriceSum,
 		`username`,
 		`qr_code_img` qrCodeImg,
-		`tichen_price_sum` tichenPriceSum,
-		`pre_tx_img` preTxImg,
-		`pre_tx_pay` preTxPay,
 		`member_type` memberType,
 		`parentmid`,
-		`one_level_count` oneLevelCount,
-		`recharge_price_today` rechargePriceToday,
-		`tichen_price_today` tichenPriceToday,
-		`tx_price_today` txPriceToday,
-		`pre_bank_addr` preBankAddr,
-		`pre_bank_belonger` preBankBelonger,
-		`pre_bank_code` preBankCode,
-		`pre_bank_name` preBankName,
 		`wx_open_id` wxOpenId,
 		`qq_open_id` qqOpenId,
 		`sex`,
-		`pay_pwd` payPwd,
-		`send_transfer_count` sendTransferCount,
-		`send_transfer_price_sum` sendTransferPriceSum,
 		`shiming_status` shimingStatus,
 		`sys_generate` sysGenerate,
 		`org_id` orgId

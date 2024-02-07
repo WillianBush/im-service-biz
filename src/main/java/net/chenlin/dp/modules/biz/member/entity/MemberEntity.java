@@ -91,62 +91,15 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String telphone;
+	private String telephone;
 	
-	/**
-	 * 
-	 */
-	private Double txMoney;
-	
-	/**
-	 * 
-	 */
-	private Double txMoneyIng;
+
 	
 	/**
 	 * 
 	 */
 	private String memberId;
-	
-	/**
-	 * 
-	 */
-	private Double losePriceSum;
-	
-	/**
-	 * 
-	 */
-	private Integer openRedCount;
-	
-	/**
-	 * 
-	 */
-	private Double openRedPriceSum;
-	
-	/**
-	 * 
-	 */
-	private Double rechargePriceSum;
-	
-	/**
-	 * 
-	 */
-	private Integer sendRedCount;
-	
-	/**
-	 * 
-	 */
-	private Double sendRedPriceSum;
-	
-	/**
-	 * 
-	 */
-	private Double txPriceSum;
-	
-	/**
-	 * 
-	 */
-	private Double winPriceSum;
+
 	
 	/**
 	 * 

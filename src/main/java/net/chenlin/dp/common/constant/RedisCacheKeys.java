@@ -26,7 +26,7 @@ public class RedisCacheKeys {
 
     public static final String REDIS_KEY_CREATE_USERNAME="member";
 
-    public final static String default_telphone = "18888888888";
+    public final static String default_telephone = "18888888888";
 
     public static String appLastVersion(String os,Long siteId,String appId) {
         return APP_LAST_VERSION +":" +siteId +":"+ os +":"+appId;

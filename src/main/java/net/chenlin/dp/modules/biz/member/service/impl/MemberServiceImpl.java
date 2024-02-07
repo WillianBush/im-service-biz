@@ -97,7 +97,7 @@ public class MemberServiceImpl implements MemberService {
         long number = redisCacheManager.incr(RedisCacheKeys.REDIS_KEY_CREATE_MEMBERID, 1);
         member.setMemberId(Long.toString(number));
         member.setUsername(RedisCacheKeys.REDIS_KEY_CREATE_USERNAME + number);
-        member.setTelphone(RedisCacheKeys.default_telphone);
+        member.setTelephone(RedisCacheKeys.default_telephone);
         //普通用户
         member.setMemberType(0);
         member.setPassword(MD5Utils.MD5Encode(member.getPassword()));
