@@ -59,7 +59,7 @@ public class YyMOnlineDayServiceImpl implements YyMOnlineDayService {
         Query query = new Query(params);
 
         List<YyMOnlineDayEntity> resp = memberloginlogMapper.getObjectGroupByDate(query);
-        log.info("select online member 返回 {} 条记录, domain: {} , orgId: {}", resp.size(), domainName, orgId);
+        log.info("select online member 返回 {} 条记录, params: {}", resp.size(),params);
         return Resp.ok(200, "操作成功", resp);
     }
 
